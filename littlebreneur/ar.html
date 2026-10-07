@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>الانتربرونور الصغير — لعبة عن المال للأطفال من 8 إلى 12</title>
+<meta name="description" content="مشروع صغير لصيف واحد: تسعير، وصنع بالقدر المناسب، وبيع، وادّخار لهدف. مجانية، بالعربية والإنجليزية، بلا إعلانات ولا تتبّع ولا مشتريات.">
+<link rel="canonical" href="https://adam.ahmedhaz.com/littlebreneur/ar.html">
+<link rel="alternate" hreflang="en" href="https://adam.ahmedhaz.com/littlebreneur/">
+<link rel="alternate" hreflang="ar" href="https://adam.ahmedhaz.com/littlebreneur/ar.html">
+<link rel="alternate" hreflang="x-default" href="https://adam.ahmedhaz.com/littlebreneur/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="الانتربرونور الصغير — لعبة عن المال للأطفال من 8 إلى 12">
+<meta property="og:description" content="مشروع صغير لصيف واحد: تسعير، وصنع بالقدر المناسب، وبيع، وادّخار لهدف. مجانية، بالعربية والإنجليزية، بلا إعلانات ولا تتبّع ولا مشتريات.">
+<meta property="og:image" content="https://adam.ahmedhaz.com/littlebreneur/og-ar.png">
+<meta property="og:url" content="https://adam.ahmedhaz.com/littlebreneur/ar.html">
+<meta property="og:locale" content="ar_AR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#FFF4DE">
+<link rel="icon" type="image/png" href="../little/icons/icon-192.png">
+<link rel="apple-touch-icon" href="../little/icons/icon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script>
+  // First visit follows the device language. A choice made here or in the game is remembered
+  // (the game keeps it in little.v1.meta, on this device only).
+  (function () {
+    document.documentElement.classList.add("js");
+    var page = document.documentElement.lang, pref = null;
+    try { pref = (JSON.parse(localStorage.getItem("little.v1.meta") || "{}") || {}).lang || null; } catch (e) {}
+    var want = pref || ((navigator.language || "").toLowerCase().indexOf("ar") === 0 ? "ar" : "en");
+    if (want !== page && !/[?&]stay/.test(location.search)) location.replace(want === "ar" ? "ar.html" : "./");
+  })();
+  function setLang(l) { try { var m = JSON.parse(localStorage.getItem("little.v1.meta") || "{}") || {}; m.lang = l; localStorage.setItem("little.v1.meta", JSON.stringify(m)); } catch (e) {} }
+</script>
+<style>
+  :root {
+    --bg: #FFF4DE; --bg2: #FFE7BD; --panel: #FFFFFF; --panel2: #FFF9EE; --line: #F1DFC0;
+    --ink: #2B2140; --ink2: #5E5373; --ink3: #8E83A3;
+    --accent: #FF7A1A; --accent-dk: #D45A08; --yellow: #FFC93C; --green: #22A86B; --purple: #8B5CF6; --pink: #FF5C8A;
+    --shadow: 0 6px 0 rgba(43, 33, 64, .07), 0 14px 30px rgba(43, 33, 64, .08);
+    --font: "Baloo Bhaijaan 2", system-ui, -apple-system, "Segoe UI", sans-serif;
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1A1530; --bg2: #241D42; --panel: #272046; --panel2: #2F2753; --line: #3B3264;
+      --ink: #F6F1FF; --ink2: #CFC5E8; --ink3: #9C91BC; --accent: #FF8A33;
+      --shadow: 0 6px 0 rgba(0, 0, 0, .25), 0 14px 30px rgba(0, 0, 0, .25);
+      color-scheme: dark;
+    }
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  html, body { margin: 0; overflow-x: hidden; }
+  body { background: var(--bg); color: var(--ink); font-family: var(--font); font-size: 18px; line-height: 1.55; }
+  img { max-width: 100%; }
+  a { color: var(--accent); }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 16px; }
+  section, .band { padding: 56px 0; }
+  .band { background: var(--bg2); }
+  .kicker { color: var(--accent); font-weight: 800; letter-spacing: .06em; text-transform: uppercase; font-size: 14px; }
+  :lang(ar) .kicker { letter-spacing: 0; font-size: 16px; }
+  h1, h2, h3 { line-height: 1.15; margin: 6px 0 12px; }
+  h1 { font-size: clamp(36px, 9vw, 60px); font-weight: 800; }
+  h2 { font-size: clamp(28px, 6.5vw, 42px); font-weight: 800; }
+  h3 { font-size: 21px; }
+  .sub { color: var(--ink2); font-size: 19px; max-width: 620px; margin: 0 0 18px; }
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 52px; padding: 0 22px; border-radius: 18px;
+         font: inherit; font-weight: 800; font-size: 18px; text-decoration: none; border: 2px solid var(--line); background: var(--panel); color: var(--ink);
+         box-shadow: 0 4px 0 var(--line); transition: transform .1s, box-shadow .1s; }
+  .btn:active { transform: translateY(3px); box-shadow: 0 1px 0 var(--line); }
+  .btn-primary { background: var(--accent); color: #fff; border-color: #E2600A; box-shadow: 0 5px 0 var(--accent-dk); }
+  .btn-primary:active { box-shadow: 0 2px 0 var(--accent-dk); }
+  .btn-sm { min-height: 44px; padding: 0 14px; font-size: 16px; border-radius: 14px; }
+  .ctas { display: flex; flex-wrap: wrap; gap: 12px; }
+
+  /* bar */
+  .bar { position: sticky; top: 0; z-index: 20; background: color-mix(in srgb, var(--bg) 88%, transparent); backdrop-filter: blur(10px); border-bottom: 2px solid var(--line); }
+  .bar .wrap { display: flex; align-items: center; gap: 10px; min-height: 64px; }
+  .logo { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 19px; color: var(--ink); text-decoration: none; margin-inline-end: auto; min-width: 0; }
+  .logo img { width: 38px; height: 38px; border-radius: 10px; flex: none; }
+  .logo span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .lang { min-width: 48px; }
+  @media (max-width: 420px) { .hide-sm { display: none; } }
+
+  /* hero */
+  .hero { padding: 36px 0 24px; position: relative; overflow: hidden; }
+  .hero-grid { display: grid; gap: 28px; align-items: center; }
+  @media (min-width: 860px) { .hero-grid { grid-template-columns: 1.1fr .9fr; } }
+  .note { color: var(--ink3); font-size: 15px; margin-top: 14px; }
+  .stage { position: relative; display: grid; place-items: center; min-height: 520px; }
+  .phone { width: min(300px, 78vw); aspect-ratio: 390 / 844; border-radius: 38px; padding: 10px; background: #2B2140; box-shadow: 0 30px 60px rgba(43, 33, 64, .28); position: relative; z-index: 2; }
+  .phone img { width: 100%; height: 100%; border-radius: 30px; display: block; object-fit: cover; object-position: top; }
+  .stage .fl { position: absolute; width: 74px; height: 74px; z-index: 3; animation: bob 3.4s ease-in-out infinite; filter: drop-shadow(0 8px 10px rgba(43, 33, 64, .18)); }
+  .fl.a { top: 4%; inset-inline-start: 4%; } .fl.b { top: 18%; inset-inline-end: 2%; animation-delay: .7s; }
+  .fl.c { bottom: 14%; inset-inline-start: 0; animation-delay: 1.3s; } .fl.d { bottom: 2%; inset-inline-end: 8%; animation-delay: 2s; }
+  .fl.gp { width: 96px; height: 96px; top: 42%; inset-inline-start: -2%; animation-delay: .4s; }
+  @keyframes bob { 0%, 100% { transform: translateY(0) } 50% { transform: translateY(-10px) } }
+
+  /* stats */
+  .stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: 8px; }
+  @media (min-width: 700px) { .stats { grid-template-columns: repeat(5, 1fr); } }
+  .stat { background: var(--panel); border: 2px solid var(--line); border-radius: 20px; padding: 12px; text-align: center; box-shadow: var(--shadow); }
+  .stat b { display: block; font-size: 38px; line-height: 1; color: var(--accent); }
+  .stat span { color: var(--ink2); font-size: 15px; }
+  .stat:last-child { grid-column: 1 / -1; } @media (min-width: 700px) { .stat:last-child { grid-column: auto; } }
+
+  /* steps */
+  .steps { list-style: none; padding: 0; margin: 18px 0 0; display: grid; gap: 12px; counter-reset: s; }
+  @media (min-width: 860px) { .steps { grid-template-columns: repeat(5, 1fr); } }
+  .steps li { background: var(--panel); border: 2px solid var(--line); border-radius: 22px; padding: 16px; box-shadow: var(--shadow); position: relative; counter-increment: s; }
+  .steps li::before { content: counter(s); position: absolute; top: 12px; inset-inline-end: 14px; font-weight: 800; color: var(--ink3); font-size: 20px; }
+  .steps img { width: 54px; height: 54px; }
+  .steps b { display: block; font-size: 20px; margin: 4px 0 2px; }
+  .steps p { margin: 0; color: var(--ink2); font-size: 16px; }
+
+  /* screens */
+  .screens { display: flex; gap: 18px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 16px 16px 24px; margin: 8px -16px 0; scrollbar-width: thin; }
+  .shot { flex: 0 0 auto; width: 230px; scroll-snap-align: center; margin: 0; }
+  .shot .phone { width: 230px; border-radius: 30px; padding: 8px; box-shadow: 0 16px 30px rgba(43, 33, 64, .2); }
+  .shot .phone img { border-radius: 23px; }
+  .shot figcaption { margin-top: 12px; color: var(--ink2); font-size: 15px; }
+  .shot figcaption b { display: block; color: var(--ink); font-size: 18px; }
+
+  /* cards */
+  .grid4 { display: grid; gap: 12px; margin-top: 18px; }
+  @media (min-width: 640px) { .grid4 { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 980px) { .grid4 { grid-template-columns: repeat(4, 1fr); } }
+  .card { background: var(--panel); border: 2px solid var(--line); border-radius: 22px; padding: 18px; box-shadow: var(--shadow); }
+  .card img { width: 64px; height: 64px; }
+  .card h3 { margin: 6px 0 4px; }
+  .card p { margin: 0 0 8px; color: var(--ink2); font-size: 16px; }
+  .card .lesson { display: inline-block; background: var(--panel2); border: 2px dashed var(--line); border-radius: 12px; padding: 2px 10px; font-weight: 700; font-size: 15px; color: var(--ink); }
+
+  .split { display: grid; gap: 26px; align-items: center; }
+  @media (min-width: 860px) { .split { grid-template-columns: 1fr 1fr; gap: 48px; } }
+  .ticks { list-style: none; padding: 0; margin: 16px 0 0; display: grid; gap: 12px; }
+  .ticks li { display: flex; gap: 14px; align-items: flex-start; background: var(--panel); border: 2px solid var(--line); border-radius: 20px; padding: 14px; }
+  .ticks img { width: 46px; height: 46px; flex: none; }
+  .ticks b { display: block; font-size: 18px; } .ticks span { color: var(--ink2); font-size: 16px; }
+  .meter { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 8px; }
+  .meter i { font-style: normal; font-weight: 800; border-radius: 999px; padding: 4px 14px; border: 2px solid var(--line); background: var(--panel); font-size: 15px; }
+  .meter .low { border-color: #E5484D; color: #E5484D; } .meter .high { border-color: var(--green); color: var(--green); }
+
+  details { background: var(--panel); border: 2px solid var(--line); border-radius: 18px; padding: 4px 18px; margin: 10px 0; }
+  summary { cursor: pointer; font-weight: 800; font-size: 19px; min-height: 48px; display: flex; align-items: center; }
+  details p { margin: 0 0 14px; color: var(--ink2); }
+
+  .finale { text-align: center; padding: 64px 0; }
+  .finale .sub { margin-inline: auto; }
+  .finale .ctas { justify-content: center; }
+  .finale .row { display: flex; justify-content: center; gap: 10px; margin-bottom: 8px; }
+  .finale .row img { width: 64px; height: 64px; animation: bob 3s ease-in-out infinite; }
+  .finale .row img:nth-child(2) { animation-delay: .4s } .finale .row img:nth-child(3) { animation-delay: .8s } .finale .row img:nth-child(4) { animation-delay: 1.2s }
+  footer { border-top: 2px solid var(--line); padding: 24px 0 40px; color: var(--ink3); font-size: 14px; text-align: center; }
+  footer p { margin: 4px 0; }
+
+  .js .reveal { opacity: 0; transform: translateY(14px); transition: opacity .6s ease, transform .6s ease; }
+  .js .reveal.in { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) { .js .reveal { opacity: 1; transform: none; transition: none; } * { animation: none !important; } }
+</style>
+</head>
+<body>
+<header class="bar"><div class="wrap">
+  <a class="logo" href="./"><img src="../little/icons/icon-192.png" alt=""><span>الانتربرونور الصغير</span></a>
+  <a class="btn btn-sm lang" href="./" hreflang="en" lang="en" onclick="setLang('en')">EN</a>
+  <a class="btn btn-primary btn-sm hide-sm" href="../little/?lang=ar">اللعب مجانًا</a>
+</div></header>
+<main>
+  <div class="hero"><div class="wrap hero-grid">
+    <div>
+      <div class="kicker reveal">لعبة مجانية عن المال للأعمار من 8 إلى 12</div>
+      <h1 class="reveal">صيف واحد. مشروع صغير. ودروس أولى كثيرة.</h1>
+      <p class="sub reveal">كشك عصير، أو غسيل دراجات، أو كيك، أو طاولة أساور، لمدة 12 أسبوعًا: تحديد السعر، وصنع الكمية المناسبة، والبيع، والادّخار لشيء مرغوب فعلًا. وجدّو حاضر بعد كل اختيار.</p>
+      <div class="ctas reveal"><a class="btn btn-primary" href="../little/?lang=ar">▶ اللعب مجانًا في المتصفح</a><a class="btn" href="#parents">للأهل</a></div>
+      <p class="note reveal">بلا إعلانات · بلا حساب · لا شيء للشراء · تعمل دون اتصال</p>
+    </div>
+    <div class="stage reveal" aria-hidden="false">
+      <img src="../little/img/lemon.webp" alt="" class="fl a" width="160" height="160" loading="lazy"><img src="../little/img/birthday_cake.webp" alt="" class="fl b" width="160" height="160" loading="lazy"><img src="../little/img/bicycle.webp" alt="" class="fl c" width="160" height="160" loading="lazy"><img src="../little/img/artist_palette.webp" alt="" class="fl d" width="160" height="160" loading="lazy"><img src="../little/img/old_man.webp" alt="" class="fl gp" width="160" height="160" loading="lazy">
+      <div class="phone"><img src="shots/ar-plan.webp" alt="شاشة خطة الأسبوع" width="390" height="844"></div>
+    </div>
+  </div>
+  <div class="wrap"><div class="stats"><div class="stat reveal"><b>12</b><span>أسبوعًا من الصيف</span></div><div class="stat reveal"><b>4</b><span>مشاريع صغيرة</span></div><div class="stat reveal"><b>32</b><span>معضلة</span></div><div class="stat reveal"><b>42</b><span>فكرة من جدّو</span></div><div class="stat reveal"><b>0</b><span>إعلانات أو تتبّع</span></div></div></div></div>
+
+  <section id="how"><div class="wrap">
+    <div class="kicker reveal">كل أسبوع</div>
+    <h2 class="reveal">تخطيط، ثم بيع، ثم حساب، ثم قرار.</h2>
+    <ol class="steps"><li class="reveal"><img src="../little/img/placard.webp" alt="" class="" width="160" height="160" loading="lazy"><b>التخطيط</b><p>اختيار السعر، وعدد ما يُصنع، ونشاط واحد: ملصق، أو تدريب، أو مذاكرة، أو راحة.</p></li><li class="reveal"><img src="../little/img/lemon.webp" alt="" class="" width="160" height="160" loading="lazy"><b>يوم السوق</b><p>يأتي الزبائن. والطقس والسعر والجودة والابتسامات تحدّد عددهم.</p></li><li class="reveal"><img src="../little/img/coin.webp" alt="" class="" width="160" height="160" loading="lazy"><b>الحساب</b><p>نقود دخلت، ونقود صُرفت، والربح. والكيك المتبقّي نقود في سلّة المهملات.</p></li><li class="reveal"><img src="../little/img/thinking_face.webp" alt="" class="" width="160" height="160" loading="lazy"><b>القرار</b><p>معضلة صغيرة لها جوابان معقولان. ثم يشارك جدّو فكرة واحدة.</p></li><li class="reveal"><img src="../little/img/hourglass_not_done.webp" alt="" class="" width="160" height="160" loading="lazy"><b>الصدى</b><p>بعض الاختيارات تعود بعد أسابيع: «هذا بسبب ما حدث في الأسبوع 3.»</p></li></ol>
+  </div></section>
+
+  <div class="band" id="screens"><div class="wrap">
+    <div class="kicker reveal">داخل اللعبة</div>
+    <h2 class="reveal">مصمّمة لأيدٍ صغيرة وأفكار كبيرة.</h2>
+    <div class="screens" tabindex="0"><figure class="shot"><div class="phone"><img loading="lazy" src="shots/ar-plan.webp" alt="الخطة" width="390" height="844"></div><figcaption><b>الخطة</b>السعر والكمية، وتوقّع جدّو لعدد الزبائن.</figcaption></figure><figure class="shot"><div class="phone"><img loading="lazy" src="shots/ar-sell.webp" alt="يوم السوق" width="390" height="844"></div><figcaption><b>يوم السوق</b>يصل الزبائن، وإذا نفدت البضاعة عاد بعضهم بلا شيء.</figcaption></figure><figure class="shot"><div class="phone"><img loading="lazy" src="shots/ar-results.webp" alt="الربح" width="390" height="844"></div><figcaption><b>الربح</b>33 دخلت − 12 صُرفت = 21. المعادلة التي يحتاجها كل طفل.</figcaption></figure><figure class="shot"><div class="phone"><img loading="lazy" src="shots/ar-door.webp" alt="الباب الحكيم" width="390" height="844"></div><figcaption><b>الباب الحكيم</b>مع طاقة 70 أو أكثر، يُفتح خيار ثالث أحكم.</figcaption></figure><figure class="shot"><div class="phone"><img loading="lazy" src="shots/ar-echo.webp" alt="الصدى" width="390" height="844"></div><figcaption><b>الصدى</b>الاختيارات تعود بعد أسابيع، بالخير أو بغيره.</figcaption></figure><figure class="shot"><div class="phone"><img loading="lazy" src="shots/ar-report.webp" alt="بطاقة التقييم" width="390" height="844"></div><figcaption><b>بطاقة التقييم</b>نجوم للحساب والعملاء والتوازن والأمانة.</figcaption></figure></div>
+  </div></div>
+
+  <section id="businesses"><div class="wrap">
+    <div class="kicker reveal">اختيار المشروع</div>
+    <h2 class="reveal">أربع طرق لكسب أول العملات.</h2>
+    <div class="grid4"><div class="card reveal"><img src="../little/img/lemon.webp" alt="" class="" width="160" height="160" loading="lazy"><h3>كشك العصير</h3><p>تكلفته قليلة ويحب الأيام الحارّة، لكنه لا يدوم.</p><span class="lesson">الدرس: لا داعي لصنع الكثير.</span></div><div class="card reveal"><img src="../little/img/artist_palette.webp" alt="" class="" width="160" height="160" loading="lazy"><h3>رسومات وأساور</h3><p>تكلفتها أعلى، لكنها تُحفظ للأسبوع القادم.</p><span class="lesson">الدرس: المخزون والصبر.</span></div><div class="card reveal"><img src="../little/img/bicycle.webp" alt="" class="" width="160" height="160" loading="lazy"><h3>غسيل الدراجات وإصلاحها</h3><p>المطر يُبعد الزبائن، والوحل يعيدهم.</p><span class="lesson">الدرس: التخطيط حسب الطقس.</span></div><div class="card reveal"><img src="../little/img/birthday_cake.webp" alt="" class="" width="160" height="160" loading="lazy"><h3>كيك وكوكيز</h3><p>الجميع يحب الكيك، لكنه أغلى ولا يبقى طازجًا.</p><span class="lesson">الدرس: التسعير والهدر.</span></div></div>
+  </div></section>
+
+  <div class="band" id="energy"><div class="wrap split">
+    <div>
+      <div class="kicker reveal">الطاقة مورد</div>
+      <h2 class="reveal">مع التعب تقع الأخطاء.</h2>
+      <p class="sub reveal">البيع والسهر يستهلكان الطاقة، والراحة واللعب يعيدانها. تحت 40 تبدأ الأرقام بالتمايل والغباش، ويُحسب الباقي خطأً. ومن 70 فما فوق يُفتح باب ثالث أحكم في القرارات الصعبة. إنها فكرة «الوضوح» في ضباب المؤسس، بنسخة للأطفال.</p>
+      <div class="meter reveal"><i class="low">⚡ &lt; 40</i><i class="high">⚡ 70+</i></div>
+      <ul class="ticks"><li class="reveal"><img src="../little/img/books.webp" alt="" class="" width="160" height="160" loading="lazy"><div><b>قاعدة الواجبات</b><span>3 أسابيع متتالية بلا مذاكرة، فتُبقي ماما أو بابا الكشك مغلقًا أسبوعًا واحدًا. بلطف.</span></div></li><li class="reveal"><img src="../little/img/glowing_star.webp" alt="" class="" width="160" height="160" loading="lazy"><div><b>دفتر الملصقات</b><span>كل فكرة من جدّو تصبح ملصقًا يُجمع صيفًا بعد صيف.</span></div></li></ul>
+    </div>
+    <div class="reveal"><div class="phone" style="margin-inline:auto"><img loading="lazy" src="shots/ar-door.webp" alt="الباب الحكيم" width="390" height="844"></div></div>
+  </div></div>
+
+  <section id="skills"><div class="wrap">
+    <div class="kicker reveal">ماذا يتعلّم الأطفال</div>
+    <h2 class="reveal">أساسيات المال الحقيقية، دون محاضرات.</h2>
+    <div class="grid4"><div class="card reveal"><img src="../little/img/coin.webp" alt="" class="" width="160" height="160" loading="lazy"><h3>الحساب</h3><p>الربح = المبيعات − التكاليف. الادّخار مقابل الإنفاق. وعدم صنع الكثير.</p></div><div class="card reveal"><img src="../little/img/smiling_face_with_smiling_eyes.webp" alt="" class="" width="160" height="160" loading="lazy"><h3>العملاء</h3><p>الإصغاء للشكوى، والسعر العادل، والجودة الأعلى.</p></div><div class="card reveal"><img src="../little/img/high_voltage.webp" alt="" class="" width="160" height="160" loading="lazy"><h3>التوازن</h3><p>الطاقة والراحة والواجبات جزء من أي مشروع ناجح.</p></div><div class="card reveal"><img src="../little/img/handshake.webp" alt="" class="" width="160" height="160" loading="lazy"><h3>الأمانة</h3><p>الاعتراف بالخطأ، واللافتة الصادقة، وإرجاع الباقي الزائد.</p></div></div>
+  </div></section>
+
+  <div class="band" id="parents"><div class="wrap split">
+    <div>
+      <div class="kicker reveal">للأهل</div>
+      <h2 class="reveal">الخصوصية جزء من التصميم.</h2>
+      <ul class="ticks"><li class="reveal"><img src="../little/img/house.webp" alt="" class="" width="160" height="160" loading="lazy"><div><b>لا شيء يغادر الجهاز</b><span>لا حسابات ولا إعلانات ولا تحليلات ولا تتبّع ولا لوحة صدارة. اسم طفلكم وتقدّمه محفوظان في هذا المتصفح فقط.</span></div></li><li class="reveal"><img src="../little/img/pig_face.webp" alt="" class="" width="160" height="160" loading="lazy"><div><b>لا شيء للشراء</b><span>مجانية، بلا مشتريات داخل اللعبة، ولا مقامرة، ولا قروض.</span></div></li><li class="reveal"><img src="../little/img/heart_hands.webp" alt="" class="" width="160" height="160" loading="lazy"><div><b>لطيفة، لا تُخيف</b><span>لا نهايات قاسية. وإذا لم يكتمل الهدف، يلخّص جدّو ما تعلّمه الطفل ويعرض صيفًا آخر.</span></div></li><li class="reveal"><img src="../little/img/sun.webp" alt="" class="" width="160" height="160" loading="lazy"><div><b>قصيرة، وتعمل دون اتصال</b><span>الصيف الواحد نحو 15 دقيقة. وبعد إضافتها إلى الشاشة الرئيسية تعمل دون إنترنت.</span></div></li><li class="reveal"><img src="../little/img/speech_balloon.webp" alt="" class="" width="160" height="160" loading="lazy"><div><b>بالعربية والإنجليزية</b><span>مكتوبة لأطفال مصر والخليج، بعربية لا تفترض إن كان الطفل ولدًا أو بنتًا.</span></div></li></ul>
+    </div>
+    <div class="reveal"><div class="phone" style="margin-inline:auto"><img loading="lazy" src="shots/ar-report.webp" alt="بطاقة التقييم" width="390" height="844"></div></div>
+  </div></div>
+
+  <section id="faq"><div class="wrap">
+    <div class="kicker reveal">أسئلة</div>
+    <h2 class="reveal">قبل أن تبدأوا</h2><details class="reveal"><summary>لأي عمر هي؟</summary><p>من 8 إلى 12، للأطفال القادرين على قراءة جمل قصيرة وحدهم. والأصغر سنًّا يستمتعون بها مع أحد الوالدين.</p></details><details class="reveal"><summary>هل هي مجانية؟</summary><p>نعم. بلا إعلانات ولا حساب ولا شيء للشراء.</p></details><details class="reveal"><summary>ما العملة المستخدمة؟</summary><p>عملات بسيطة لا تنتمي إلى بلد، لتناسب القاهرة والرياض ودبي بالقدر نفسه.</p></details><details class="reveal"><summary>هل تصلح للفصل الدراسي؟</summary><p>نعم. يستغرق الصيف نحو 15 دقيقة، وينتهي ببطاقة تقييم وأفكار من جدّو يمكن مناقشتها معًا.</p></details><details class="reveal"><summary>أين تُحفظ البيانات؟</summary><p>في متصفحكم على هذا الجهاز فقط. ومسح بيانات المتصفح يعيد اللعبة من البداية.</p></details><details class="reveal"><summary>هل توجد لعبة للكبار؟</summary><p>نعم: <a href="../fog/ar.html">ضباب المؤسس</a>، لعبة الشركات الناشئة التي خرجت منها هذه اللعبة.</p></details>
+  </div></section>
+
+  <div class="finale band"><div class="wrap">
+    <div class="row" aria-hidden="true"><img src="../little/img/lemon.webp" alt="" class="" width="160" height="160" loading="lazy"><img src="../little/img/coin.webp" alt="" class="" width="160" height="160" loading="lazy"><img src="../little/img/pig_face.webp" alt="" class="" width="160" height="160" loading="lazy"><img src="../little/img/wrapped_gift.webp" alt="" class="" width="160" height="160" loading="lazy"></div>
+    <h2 class="reveal">جاهزون لصيف من المشاريع؟</h2>
+    <p class="sub reveal">اختيار مشروع، وتحديد هدف، ثم معرفة رأي جدّو.</p>
+    <div class="ctas reveal"><a class="btn btn-primary" href="../little/?lang=ar">▶ اللعب مجانًا في المتصفح</a></div>
+  </div></div>
+</main>
+<footer><div class="wrap">
+  <p>الانتربرونور الصغير · لعبة شقيقة لضباب المؤسس</p>
+  <p><small>رموز تعبيرية 3D: <bdi>Microsoft Fluent Emoji</bdi> (رخصة <bdi>MIT</bdi>). بلا ملفات تعريف ارتباط ولا تتبّع.</small></p>
+</div></footer>
+<script>
+  (function () {
+    var els = document.querySelectorAll(".reveal");
+    if (!("IntersectionObserver" in window)) { els.forEach(function (el) { el.classList.add("in"); }); return; }
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (x) { if (x.isIntersecting) { x.target.classList.add("in"); io.unobserve(x.target); } });
+    }, { rootMargin: "0px 0px -8% 0px" });
+    els.forEach(function (el) { io.observe(el); });
+  })();
+</script>
+</body>
+</html>

@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The Little Entrepreneur — a money game for kids 8 to 12</title>
+<meta name="description" content="A tiny business for one summer: set a price, make just enough, sell, and save for a goal. Free, in Arabic and English. No ads, no tracking, nothing to buy.">
+<link rel="canonical" href="https://adam.ahmedhaz.com/littlebreneur/">
+<link rel="alternate" hreflang="en" href="https://adam.ahmedhaz.com/littlebreneur/">
+<link rel="alternate" hreflang="ar" href="https://adam.ahmedhaz.com/littlebreneur/ar.html">
+<link rel="alternate" hreflang="x-default" href="https://adam.ahmedhaz.com/littlebreneur/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="The Little Entrepreneur — a money game for kids 8 to 12">
+<meta property="og:description" content="A tiny business for one summer: set a price, make just enough, sell, and save for a goal. Free, in Arabic and English. No ads, no tracking, nothing to buy.">
+<meta property="og:image" content="https://adam.ahmedhaz.com/littlebreneur/og-en.png">
+<meta property="og:url" content="https://adam.ahmedhaz.com/littlebreneur/">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#FFF4DE">
+<link rel="icon" type="image/png" href="../little/icons/icon-192.png">
+<link rel="apple-touch-icon" href="../little/icons/icon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script>
+  // First visit follows the device language. A choice made here or in the game is remembered
+  // (the game keeps it in little.v1.meta, on this device only).
+  (function () {
+    document.documentElement.classList.add("js");
+    var page = document.documentElement.lang, pref = null;
+    try { pref = (JSON.parse(localStorage.getItem("little.v1.meta") || "{}") || {}).lang || null; } catch (e) {}
+    var want = pref || ((navigator.language || "").toLowerCase().indexOf("ar") === 0 ? "ar" : "en");
+    if (want !== page && !/[?&]stay/.test(location.search)) location.replace(want === "ar" ? "ar.html" : "./");
+  })();
+  function setLang(l) { try { var m = JSON.parse(localStorage.getItem("little.v1.meta") || "{}") || {}; m.lang = l; localStorage.setItem("little.v1.meta", JSON.stringify(m)); } catch (e) {} }
+</script>
+<style>
+  :root {
+    --bg: #FFF4DE; --bg2: #FFE7BD; --panel: #FFFFFF; --panel2: #FFF9EE; --line: #F1DFC0;
+    --ink: #2B2140; --ink2: #5E5373; --ink3: #8E83A3;
+    --accent: #FF7A1A; --accent-dk: #D45A08; --yellow: #FFC93C; --green: #22A86B; --purple: #8B5CF6; --pink: #FF5C8A;
+    --shadow: 0 6px 0 rgba(43, 33, 64, .07), 0 14px 30px rgba(43, 33, 64, .08);
+    --font: "Baloo Bhaijaan 2", system-ui, -apple-system, "Segoe UI", sans-serif;
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1A1530; --bg2: #241D42; --panel: #272046; --panel2: #2F2753; --line: #3B3264;
+      --ink: #F6F1FF; --ink2: #CFC5E8; --ink3: #9C91BC; --accent: #FF8A33;
+      --shadow: 0 6px 0 rgba(0, 0, 0, .25), 0 14px 30px rgba(0, 0, 0, .25);
+      color-scheme: dark;
+    }
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  html, body { margin: 0; overflow-x: hidden; }
+  body { background: var(--bg); color: var(--ink); font-family: var(--font); font-size: 18px; line-height: 1.55; }
+  img { max-width: 100%; }
+  a { color: var(--accent); }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 16px; }
+  section, .band { padding: 56px 0; }
+  .band { background: var(--bg2); }
+  .kicker { color: var(--accent); font-weight: 800; letter-spacing: .06em; text-transform: uppercase; font-size: 14px; }
+  :lang(ar) .kicker { letter-spacing: 0; font-size: 16px; }
+  h1, h2, h3 { line-height: 1.15; margin: 6px 0 12px; }
+  h1 { font-size: clamp(36px, 9vw, 60px); font-weight: 800; }
+  h2 { font-size: clamp(28px, 6.5vw, 42px); font-weight: 800; }
+  h3 { font-size: 21px; }
+  .sub { color: var(--ink2); font-size: 19px; max-width: 620px; margin: 0 0 18px; }
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 52px; padding: 0 22px; border-radius: 18px;
+         font: inherit; font-weight: 800; font-size: 18px; text-decoration: none; border: 2px solid var(--line); background: var(--panel); color: var(--ink);
+         box-shadow: 0 4px 0 var(--line); transition: transform .1s, box-shadow .1s; }
+  .btn:active { transform: translateY(3px); box-shadow: 0 1px 0 var(--line); }
+  .btn-primary { background: var(--accent); color: #fff; border-color: #E2600A; box-shadow: 0 5px 0 var(--accent-dk); }
+  .btn-primary:active { box-shadow: 0 2px 0 var(--accent-dk); }
+  .btn-sm { min-height: 44px; padding: 0 14px; font-size: 16px; border-radius: 14px; }
+  .ctas { display: flex; flex-wrap: wrap; gap: 12px; }
+
+  /* bar */
+  .bar { position: sticky; top: 0; z-index: 20; background: color-mix(in srgb, var(--bg) 88%, transparent); backdrop-filter: blur(10px); border-bottom: 2px solid var(--line); }
+  .bar .wrap { display: flex; align-items: center; gap: 10px; min-height: 64px; }
+  .logo { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 19px; color: var(--ink); text-decoration: none; margin-inline-end: auto; min-width: 0; }
+  .logo img { width: 38px; height: 38px; border-radius: 10px; flex: none; }
+  .logo span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .lang { min-width: 48px; }
+  @media (max-width: 420px) { .hide-sm { display: none; } }
+
+  /* hero */
+  .hero { padding: 36px 0 24px; position: relative; overflow: hidden; }
+  .hero-grid { display: grid; gap: 28px; align-items: center; }
+  @media (min-width: 860px) { .hero-grid { grid-template-columns: 1.1fr .9fr; } }
+  .note { color: var(--ink3); font-size: 15px; margin-top: 14px; }
+  .stage { position: relative; display: grid; place-items: center; min-height: 520px; }
+  .phone { width: min(300px, 78vw); aspect-ratio: 390 / 844; border-radius: 38px; padding: 10px; background: #2B2140; box-shadow: 0 30px 60px rgba(43, 33, 64, .28); position: relative; z-index: 2; }
+  .phone img { width: 100%; height: 100%; border-radius: 30px; display: block; object-fit: cover; object-position: top; }
+  .stage .fl { position: absolute; width: 74px; height: 74px; z-index: 3; animation: bob 3.4s ease-in-out infinite; filter: drop-shadow(0 8px 10px rgba(43, 33, 64, .18)); }
+  .fl.a { top: 4%; inset-inline-start: 4%; } .fl.b { top: 18%; inset-inline-end: 2%; animation-delay: .7s; }
+  .fl.c { bottom: 14%; inset-inline-start: 0; animation-delay: 1.3s; } .fl.d { bottom: 2%; inset-inline-end: 8%; animation-delay: 2s; }
+  .fl.gp { width: 96px; height: 96px; top: 42%; inset-inline-start: -2%; animation-delay: .4s; }
+  @keyframes bob { 0%, 100% { transform: translateY(0) } 50% { transform: translateY(-10px) } }
+
+  /* stats */
+  .stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: 8px; }
+  @media (min-width: 700px) { .stats { grid-template-columns: repeat(5, 1fr); } }
+  .stat { background: var(--panel); border: 2px solid var(--line); border-radius: 20px; padding: 12px; text-align: center; box-shadow: var(--shadow); }
+  .stat b { display: block; font-size: 38px; line-height: 1; color: var(--accent); }
+  .stat span { color: var(--ink2); font-size: 15px; }
+  .stat:last-child { grid-column: 1 / -1; } @media (min-width: 700px) { .stat:last-child { grid-column: auto; } }
+
+  /* steps */
+  .steps { list-style: none; padding: 0; margin: 18px 0 0; display: grid; gap: 12px; counter-reset: s; }
+  @media (min-width: 860px) { .steps { grid-template-columns: repeat(5, 1fr); } }
+  .steps li { background: var(--panel); border: 2px solid var(--line); border-radius: 22px; padding: 16px; box-shadow: var(--shadow); position: relative; counter-increment: s; }
+  .steps li::before { content: counter(s); position: absolute; top: 12px; inset-inline-end: 14px; font-weight: 800; color: var(--ink3); font-size: 20px; }
+  .steps img { width: 54px; height: 54px; }
+  .steps b { display: block; font-size: 20px; margin: 4px 0 2px; }
+  .steps p { margin: 0; color: var(--ink2); font-size: 16px; }
+
+  /* screens */
+  .screens { display: flex; gap: 18px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 16px 16px 24px; margin: 8px -16px 0; scrollbar-width: thin; }
+  .shot { flex: 0 0 auto; width: 230px; scroll-snap-align: center; margin: 0; }
+  .shot .phone { width: 230px; border-radius: 30px; padding: 8px; box-shadow: 0 16px 30px rgba(43, 33, 64, .2); }
+  .shot .phone img { border-radius: 23px; }
+  .shot figcaption { margin-top: 12px; color: var(--ink2); font-size: 15px; }
+  .shot figcaption b { display: block; color: var(--ink); font-size: 18px; }
+
+  /* cards */
+  .grid4 { display: grid; gap: 12px; margin-top: 18px; }
+  @media (min-width: 640px) { .grid4 { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 980px) { .grid4 { grid-template-columns: repeat(4, 1fr); } }
+  .card { background: var(--panel); border: 2px solid var(--line); border-radius: 22px; padding: 18px; box-shadow: var(--shadow); }
+  .card img { width: 64px; height: 64px; }
+  .card h3 { margin: 6px 0 4px; }
+  .card p { margin: 0 0 8px; color: var(--ink2); font-size: 16px; }
+  .card .lesson { display: inline-block; background: var(--panel2); border: 2px dashed var(--line); border-radius: 12px; padding: 2px 10px; font-weight: 700; font-size: 15px; color: var(--ink); }
+
+  .split { display: grid; gap: 26px; align-items: center; }
+  @media (min-width: 860px) { .split { grid-template-columns: 1fr 1fr; gap: 48px; } }
+  .ticks { list-style: none; padding: 0; margin: 16px 0 0; display: grid; gap: 12px; }
+  .ticks li { display: flex; gap: 14px; align-items: flex-start; background: var(--panel); border: 2px solid var(--line); border-radius: 20px; padding: 14px; }
+  .ticks img { width: 46px; height: 46px; flex: none; }
+  .ticks b { display: block; font-size: 18px; } .ticks span { color: var(--ink2); font-size: 16px; }
+  .meter { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 8px; }
+  .meter i { font-style: normal; font-weight: 800; border-radius: 999px; padding: 4px 14px; border: 2px solid var(--line); background: var(--panel); font-size: 15px; }
+  .meter .low { border-color: #E5484D; color: #E5484D; } .meter .high { border-color: var(--green); color: var(--green); }
+
+  details { background: var(--panel); border: 2px solid var(--line); border-radius: 18px; padding: 4px 18px; margin: 10px 0; }
+  summary { cursor: pointer; font-weight: 800; font-size: 19px; min-height: 48px; display: flex; align-items: center; }
+  details p { margin: 0 0 14px; color: var(--ink2); }
+
+  .finale { text-align: center; padding: 64px 0; }
+  .finale .sub { margin-inline: auto; }
+  .finale .ctas { justify-content: center; }
+  .finale .row { display: flex; justify-content: center; gap: 10px; margin-bottom: 8px; }
+  .finale .row img { width: 64px; height: 64px; animation: bob 3s ease-in-out infinite; }
+  .finale .row img:nth-child(2) { animation-delay: .4s } .finale .row img:nth-child(3) { animation-delay: .8s } .finale .row img:nth-child(4) { animation-delay: 1.2s }
+  footer { border-top: 2px solid var(--line); padding: 24px 0 40px; color: var(--ink3); font-size: 14px; text-align: center; }
+  footer p { margin: 4px 0; }
+
+  .js .reveal { opacity: 0; transform: translateY(14px); transition: opacity .6s ease, transform .6s ease; }
+  .js .reveal.in { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) { .js .reveal { opacity: 1; transform: none; transition: none; } * { animation: none !important; } }
+</style>
+</head>
+<body>
+<header class="bar"><div class="wrap">
+  <a class="logo" href="./"><img src="../little/icons/icon-192.png" alt=""><span>The Little Entrepreneur</span></a>
+  <a class="btn btn-sm lang" href="ar.html" hreflang="ar" lang="ar" onclick="setLang('ar')">عربي</a>
+  <a class="btn btn-primary btn-sm hide-sm" href="../little/?lang=en">Play free</a>
+</div></header>
+<main>
+  <div class="hero"><div class="wrap hero-grid">
+    <div>
+      <div class="kicker reveal">A free money game for kids 8 to 12</div>
+      <h1 class="reveal">One summer. One tiny business. Lots of first lessons.</h1>
+      <p class="sub reveal">A juice stand, a bike wash, a cake stall or a bracelet table, for 12 weeks: set a price, make just enough, sell, and save for something you really want. Grandpa is there after every choice.</p>
+      <div class="ctas reveal"><a class="btn btn-primary" href="../little/?lang=en">▶ Play free in your browser</a><a class="btn" href="#parents">For parents</a></div>
+      <p class="note reveal">No ads · No account · Nothing to buy · Works offline</p>
+    </div>
+    <div class="stage reveal" aria-hidden="false">
+      <img src="../little/img/lemon.webp" alt="" class="fl a" width="160" height="160" loading="lazy"><img src="../little/img/birthday_cake.webp" alt="" class="fl b" width="160" height="160" loading="lazy"><img src="../little/img/bicycle.webp" alt="" class="fl c" width="160" height="160" loading="lazy"><img src="../little/img/artist_palette.webp" alt="" class="fl d" width="160" height="160" loading="lazy"><img src="../little/img/old_man.webp" alt="" class="fl gp" width="160" height="160" loading="lazy">
+      <div class="phone"><img src="shots/en-plan.webp" alt="The weekly plan screen" width="390" height="844"></div>
+    </div>
+  </div>
+  <div class="wrap"><div class="stats"><div class="stat reveal"><b>12</b><span>weeks of summer</span></div><div class="stat reveal"><b>4</b><span>small businesses</span></div><div class="stat reveal"><b>32</b><span>dilemmas</span></div><div class="stat reveal"><b>42</b><span>ideas from Grandpa</span></div><div class="stat reveal"><b>0</b><span>ads or trackers</span></div></div></div></div>
+
+  <section id="how"><div class="wrap">
+    <div class="kicker reveal">Every week</div>
+    <h2 class="reveal">Plan, sell, count, decide.</h2>
+    <ol class="steps"><li class="reveal"><img src="../little/img/placard.webp" alt="" class="" width="160" height="160" loading="lazy"><b>Plan</b><p>Pick a price, how many to make, and one thing to do: a poster, practice, homework, or rest.</p></li><li class="reveal"><img src="../little/img/lemon.webp" alt="" class="" width="160" height="160" loading="lazy"><b>Market day</b><p>Customers arrive. Weather, price, quality and smiles all decide how many.</p></li><li class="reveal"><img src="../little/img/coin.webp" alt="" class="" width="160" height="160" loading="lazy"><b>Count</b><p>Coins in, coins spent, profit. Leftover cakes are coins in the bin.</p></li><li class="reveal"><img src="../little/img/thinking_face.webp" alt="" class="" width="160" height="160" loading="lazy"><b>Decide</b><p>A small dilemma with two fair answers. Then Grandpa shares one idea.</p></li><li class="reveal"><img src="../little/img/hourglass_not_done.webp" alt="" class="" width="160" height="160" loading="lazy"><b>Echo</b><p>Some choices come back weeks later: “This is because of what you did in week 3.”</p></li></ol>
+  </div></section>
+
+  <div class="band" id="screens"><div class="wrap">
+    <div class="kicker reveal">Inside the game</div>
+    <h2 class="reveal">Made for small hands and big ideas.</h2>
+    <div class="screens" tabindex="0"><figure class="shot"><div class="phone"><img loading="lazy" src="shots/en-plan.webp" alt="Plan" width="390" height="844"></div><figcaption><b>Plan</b>Price, how many to make, and Grandpa&#x27;s guess of how many will come.</figcaption></figure><figure class="shot"><div class="phone"><img loading="lazy" src="shots/en-sell.webp" alt="Market day" width="390" height="844"></div><figcaption><b>Market day</b>Customers walk up. If you run out, some go home with nothing.</figcaption></figure><figure class="shot"><div class="phone"><img loading="lazy" src="shots/en-results.webp" alt="Profit" width="390" height="844"></div><figcaption><b>Profit</b>33 in − 12 spent = 21. The sum every child should know.</figcaption></figure><figure class="shot"><div class="phone"><img loading="lazy" src="shots/en-door.webp" alt="The wise door" width="390" height="844"></div><figcaption><b>The wise door</b>With 70 energy or more, a third, wiser choice opens.</figcaption></figure><figure class="shot"><div class="phone"><img loading="lazy" src="shots/en-echo.webp" alt="Echoes" width="390" height="844"></div><figcaption><b>Echoes</b>Choices come back weeks later, for better or worse.</figcaption></figure><figure class="shot"><div class="phone"><img loading="lazy" src="shots/en-report.webp" alt="Report card" width="390" height="844"></div><figcaption><b>Report card</b>Stars for money, customers, balance and honesty.</figcaption></figure></div>
+  </div></div>
+
+  <section id="businesses"><div class="wrap">
+    <div class="kicker reveal">Pick a business</div>
+    <h2 class="reveal">Four ways to earn your first coins.</h2>
+    <div class="grid4"><div class="card reveal"><img src="../little/img/lemon.webp" alt="" class="" width="160" height="160" loading="lazy"><h3>Juice stand</h3><p>Cheap to make and loves hot days, but it spoils.</p><span class="lesson">Lesson: Don&#x27;t make too much.</span></div><div class="card reveal"><img src="../little/img/artist_palette.webp" alt="" class="" width="160" height="160" loading="lazy"><h3>Drawings &amp; bracelets</h3><p>Costs more to make, but keeps for next week.</p><span class="lesson">Lesson: Stock and patience.</span></div><div class="card reveal"><img src="../little/img/bicycle.webp" alt="" class="" width="160" height="160" loading="lazy"><h3>Bike wash &amp; fix</h3><p>Rain keeps customers away. Mud brings them back.</p><span class="lesson">Lesson: Plan around the weather.</span></div><div class="card reveal"><img src="../little/img/birthday_cake.webp" alt="" class="" width="160" height="160" loading="lazy"><h3>Cakes &amp; cookies</h3><p>Everyone loves cake, but it costs more and won&#x27;t last.</p><span class="lesson">Lesson: Pricing and waste.</span></div></div>
+  </div></section>
+
+  <div class="band" id="energy"><div class="wrap split">
+    <div>
+      <div class="kicker reveal">Energy is a resource</div>
+      <h2 class="reveal">Tired sellers make mistakes.</h2>
+      <p class="sub reveal">Selling and staying up late use energy. Rest and play bring it back. Below 40 the numbers wobble and blur, and change gets miscounted. At 70 or more, a third, wiser door opens on hard choices. It&#x27;s Founder Fog&#x27;s clarity, made for kids.</p>
+      <div class="meter reveal"><i class="low">⚡ &lt; 40</i><i class="high">⚡ 70+</i></div>
+      <ul class="ticks"><li class="reveal"><img src="../little/img/books.webp" alt="" class="" width="160" height="160" loading="lazy"><div><b>The homework rule</b><span>Skip studying 3 weeks in a row and Mum or Dad keeps the stand closed for a week. Gently.</span></div></li><li class="reveal"><img src="../little/img/glowing_star.webp" alt="" class="" width="160" height="160" loading="lazy"><div><b>The sticker book</b><span>Every idea from Grandpa becomes a sticker, collected summer after summer.</span></div></li></ul>
+    </div>
+    <div class="reveal"><div class="phone" style="margin-inline:auto"><img loading="lazy" src="shots/en-door.webp" alt="The wise door" width="390" height="844"></div></div>
+  </div></div>
+
+  <section id="skills"><div class="wrap">
+    <div class="kicker reveal">What children learn</div>
+    <h2 class="reveal">Real money basics, never a lecture.</h2>
+    <div class="grid4"><div class="card reveal"><img src="../little/img/coin.webp" alt="" class="" width="160" height="160" loading="lazy"><h3>Money</h3><p>Profit = sales − costs. Saving vs spending. Not making too much.</p></div><div class="card reveal"><img src="../little/img/smiling_face_with_smiling_eyes.webp" alt="" class="" width="160" height="160" loading="lazy"><h3>Customers</h3><p>Listening to a complaint, fair prices, better quality.</p></div><div class="card reveal"><img src="../little/img/high_voltage.webp" alt="" class="" width="160" height="160" loading="lazy"><h3>Balance</h3><p>Energy, rest and homework are part of a good business.</p></div><div class="card reveal"><img src="../little/img/handshake.webp" alt="" class="" width="160" height="160" loading="lazy"><h3>Honesty</h3><p>Owning a mistake, a truthful sign, giving back extra change.</p></div></div>
+  </div></section>
+
+  <div class="band" id="parents"><div class="wrap split">
+    <div>
+      <div class="kicker reveal">For parents</div>
+      <h2 class="reveal">Private by design.</h2>
+      <ul class="ticks"><li class="reveal"><img src="../little/img/house.webp" alt="" class="" width="160" height="160" loading="lazy"><div><b>Nothing leaves the device</b><span>No accounts, ads, analytics, tracking or leaderboard. Your child&#x27;s name and progress stay in this browser.</span></div></li><li class="reveal"><img src="../little/img/pig_face.webp" alt="" class="" width="160" height="160" loading="lazy"><div><b>Nothing to buy</b><span>Free, with no in-app purchases, no gambling and no loans.</span></div></li><li class="reveal"><img src="../little/img/heart_hands.webp" alt="" class="" width="160" height="160" loading="lazy"><div><b>Kind, never scary</b><span>No harsh endings. If the goal isn&#x27;t reached, Grandpa sums up what was learned and offers another summer.</span></div></li><li class="reveal"><img src="../little/img/sun.webp" alt="" class="" width="160" height="160" loading="lazy"><div><b>Short, and works offline</b><span>A summer takes about 15 minutes. Add it to the home screen and it plays without internet.</span></div></li><li class="reveal"><img src="../little/img/speech_balloon.webp" alt="" class="" width="160" height="160" loading="lazy"><div><b>Arabic and English</b><span>Written for children in Egypt and the Gulf, in Arabic that never assumes whether your child is a boy or a girl.</span></div></li></ul>
+    </div>
+    <div class="reveal"><div class="phone" style="margin-inline:auto"><img loading="lazy" src="shots/en-report.webp" alt="Report card" width="390" height="844"></div></div>
+  </div></div>
+
+  <section id="faq"><div class="wrap">
+    <div class="kicker reveal">Questions</div>
+    <h2 class="reveal">Before you start</h2><details class="reveal"><summary>What age is it for?</summary><p>8 to 12, for children who can read short sentences on their own. Younger children enjoy it with a parent.</p></details><details class="reveal"><summary>Is it free?</summary><p>Yes. No ads, no account and nothing to buy.</p></details><details class="reveal"><summary>Which currency does it use?</summary><p>Plain coins with no country, so it works the same in Cairo, Riyadh or Dubai.</p></details><details class="reveal"><summary>Can we use it in class?</summary><p>Yes. A summer takes about 15 minutes and ends with a report card and Grandpa's ideas to talk about together.</p></details><details class="reveal"><summary>Where is the data stored?</summary><p>Only in your browser on this device. Clearing the browser's data starts the game over.</p></details><details class="reveal"><summary>Is there a game for grown-ups?</summary><p>Yes: <a href="../fog/">Founder Fog</a>, the startup game this one grew out of.</p></details>
+  </div></section>
+
+  <div class="finale band"><div class="wrap">
+    <div class="row" aria-hidden="true"><img src="../little/img/lemon.webp" alt="" class="" width="160" height="160" loading="lazy"><img src="../little/img/coin.webp" alt="" class="" width="160" height="160" loading="lazy"><img src="../little/img/pig_face.webp" alt="" class="" width="160" height="160" loading="lazy"><img src="../little/img/wrapped_gift.webp" alt="" class="" width="160" height="160" loading="lazy"></div>
+    <h2 class="reveal">Ready for a summer of business?</h2>
+    <p class="sub reveal">Pick a business, set a goal, and see what Grandpa thinks.</p>
+    <div class="ctas reveal"><a class="btn btn-primary" href="../little/?lang=en">▶ Play free in your browser</a></div>
+  </div></div>
+</main>
+<footer><div class="wrap">
+  <p>The Little Entrepreneur · a sister game to Founder Fog</p>
+  <p><small>3D emoji: Microsoft Fluent Emoji (MIT licence). No cookies, no tracking.</small></p>
+</div></footer>
+<script>
+  (function () {
+    var els = document.querySelectorAll(".reveal");
+    if (!("IntersectionObserver" in window)) { els.forEach(function (el) { el.classList.add("in"); }); return; }
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (x) { if (x.isIntersecting) { x.target.classList.add("in"); io.unobserve(x.target); } });
+    }, { rootMargin: "0px 0px -8% 0px" });
+    els.forEach(function (el) { io.observe(el); });
+  })();
+</script>
+</body>
+</html>
