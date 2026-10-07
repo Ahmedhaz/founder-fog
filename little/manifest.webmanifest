@@ -1,0 +1,17 @@
+{
+  "name": "الانتربرونور الصغير · The Little Entrepreneur",
+  "short_name": "Little Entrepreneur",
+  "description": "Run a tiny business for one summer: a free money game for kids aged 8–12, in Arabic and English.",
+  "id": "./",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#FFF4DE",
+  "theme_color": "#FFF4DE",
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
