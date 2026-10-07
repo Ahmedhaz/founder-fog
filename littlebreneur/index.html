@@ -38,11 +38,13 @@
   :root {
     --bg: #FFF4DE; --bg2: #FFE7BD; --panel: #FFFFFF; --panel2: #FFF9EE; --line: #F1DFC0;
     --ink: #2B2140; --ink2: #5E5373; --ink3: #8E83A3;
-    --accent: #FF7A1A; --accent-dk: #D45A08; --yellow: #FFC93C; --green: #22A86B; --purple: #8B5CF6; --pink: #FF5C8A;
+    --accent: #FF7A1A; --accent-dk: #D45A08; --yellow: #FFC93C; --green: #22A86B; --red: #E5484D; --purple: #8B5CF6; --pink: #FF5C8A; --blue: #3D8BFF;
     --shadow: 0 6px 0 rgba(43, 33, 64, .07), 0 14px 30px rgba(43, 33, 64, .08);
     --font: "Baloo Bhaijaan 2", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --d: 1;
     color-scheme: light;
   }
+  [dir="rtl"] { --d: -1; }
   @media (prefers-color-scheme: dark) {
     :root {
       --bg: #1A1530; --bg2: #241D42; --panel: #272046; --panel2: #2F2753; --line: #3B3264;
@@ -52,13 +54,13 @@
     }
   }
   * { box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
   html, body { margin: 0; overflow-x: hidden; }
   body { background: var(--bg); color: var(--ink); font-family: var(--font); font-size: 18px; line-height: 1.55; }
   img { max-width: 100%; }
   a { color: var(--accent); }
+  bdi.n { unicode-bidi: isolate; direction: ltr; font-variant-numeric: tabular-nums; }
   .wrap { max-width: 1080px; margin: 0 auto; padding: 0 16px; }
-  section, .band { padding: 56px 0; }
+  section, .band { padding: 56px 0; position: relative; }
   .band { background: var(--bg2); }
   .kicker { color: var(--accent); font-weight: 800; letter-spacing: .06em; text-transform: uppercase; font-size: 14px; }
   :lang(ar) .kicker { letter-spacing: 0; font-size: 16px; }
@@ -67,12 +69,15 @@
   h2 { font-size: clamp(28px, 6.5vw, 42px); font-weight: 800; }
   h3 { font-size: 21px; }
   .sub { color: var(--ink2); font-size: 19px; max-width: 620px; margin: 0 0 18px; }
-  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 52px; padding: 0 22px; border-radius: 18px;
+  .btn { position: relative; overflow: hidden; display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 52px; padding: 0 22px; border-radius: 18px;
          font: inherit; font-weight: 800; font-size: 18px; text-decoration: none; border: 2px solid var(--line); background: var(--panel); color: var(--ink);
          box-shadow: 0 4px 0 var(--line); transition: transform .1s, box-shadow .1s; }
+  .btn:hover { transform: translateY(-2px); }
   .btn:active { transform: translateY(3px); box-shadow: 0 1px 0 var(--line); }
   .btn-primary { background: var(--accent); color: #fff; border-color: #E2600A; box-shadow: 0 5px 0 var(--accent-dk); }
   .btn-primary:active { box-shadow: 0 2px 0 var(--accent-dk); }
+  .btn-primary::after { content: ""; position: absolute; inset: 0; background: linear-gradient(105deg, transparent 35%, rgba(255, 255, 255, .5) 50%, transparent 65%); transform: translateX(-130%); animation: shine 3.6s ease-in-out infinite; pointer-events: none; }
+  @keyframes shine { 0%, 55% { transform: translateX(-130%) } 85%, 100% { transform: translateX(130%) } }
   .btn-sm { min-height: 44px; padding: 0 14px; font-size: 16px; border-radius: 14px; }
   .ctas { display: flex; flex-wrap: wrap; gap: 12px; }
 
@@ -80,24 +85,45 @@
   .bar { position: sticky; top: 0; z-index: 20; background: color-mix(in srgb, var(--bg) 88%, transparent); backdrop-filter: blur(10px); border-bottom: 2px solid var(--line); }
   .bar .wrap { display: flex; align-items: center; gap: 10px; min-height: 64px; }
   .logo { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 19px; color: var(--ink); text-decoration: none; margin-inline-end: auto; min-width: 0; }
-  .logo img { width: 38px; height: 38px; border-radius: 10px; flex: none; }
+  .logo img { width: 38px; height: 38px; border-radius: 10px; flex: none; transition: transform .4s; }
+  .logo:hover img { transform: rotate(-12deg) scale(1.1); }
   .logo span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .lang { min-width: 48px; }
   @media (max-width: 420px) { .hide-sm { display: none; } }
+  .progress { position: absolute; bottom: -2px; inset-inline-start: 0; height: 3px; width: calc(var(--sp, 0) * 100%); background: linear-gradient(90deg, var(--yellow), var(--accent)); }
 
   /* hero */
   .hero { padding: 36px 0 24px; position: relative; overflow: hidden; }
   .hero-grid { display: grid; gap: 28px; align-items: center; }
   @media (min-width: 860px) { .hero-grid { grid-template-columns: 1.1fr .9fr; } }
   .note { color: var(--ink3); font-size: 15px; margin-top: 14px; }
-  .stage { position: relative; display: grid; place-items: center; min-height: 520px; }
+  .stage { position: relative; display: grid; place-items: center; min-height: 560px; padding-bottom: 40px; }
   .phone { width: min(300px, 78vw); aspect-ratio: 390 / 844; border-radius: 38px; padding: 10px; background: #2B2140; box-shadow: 0 30px 60px rgba(43, 33, 64, .28); position: relative; z-index: 2; }
   .phone img { width: 100%; height: 100%; border-radius: 30px; display: block; object-fit: cover; object-position: top; }
+  .stage > .phone { animation: tilt 7s ease-in-out infinite; }
+  @keyframes tilt { 0%, 100% { transform: rotate(calc(var(--d) * 2deg)) } 50% { transform: rotate(calc(var(--d) * -1.5deg)) translateY(-6px) } }
   .stage .fl { position: absolute; width: 74px; height: 74px; z-index: 3; animation: bob 3.4s ease-in-out infinite; filter: drop-shadow(0 8px 10px rgba(43, 33, 64, .18)); }
-  .fl.a { top: 4%; inset-inline-start: 4%; } .fl.b { top: 18%; inset-inline-end: 2%; animation-delay: .7s; }
-  .fl.c { bottom: 14%; inset-inline-start: 0; animation-delay: 1.3s; } .fl.d { bottom: 2%; inset-inline-end: 8%; animation-delay: 2s; }
-  .fl.gp { width: 96px; height: 96px; top: 42%; inset-inline-start: -2%; animation-delay: .4s; }
+  .fl.a { top: 4%; inset-inline-start: 4%; } .fl.b { top: 16%; inset-inline-end: 2%; animation-delay: .7s; }
+  .fl.c { bottom: 26%; inset-inline-start: 0; animation-delay: 1.3s; } .fl.d { bottom: 18%; inset-inline-end: 4%; animation-delay: 2s; }
+  .fl.gp { width: 96px; height: 96px; top: 38%; inset-inline-start: -2%; animation-delay: .4s; }
   @keyframes bob { 0%, 100% { transform: translateY(0) } 50% { transform: translateY(-10px) } }
+  /* savings goal card: coins drop into the piggy bank and the bar fills to the goal */
+  .goalcard { position: absolute; bottom: 0; z-index: 4; width: min(340px, 90vw); background: var(--panel); border: 2px solid var(--line); border-radius: 20px; padding: 10px 12px; box-shadow: var(--shadow); display: grid; grid-template-columns: auto 1fr auto; gap: 4px 10px; align-items: center; }
+  .goalcard small { grid-column: 1 / -1; color: var(--ink2); font-weight: 700; font-size: 14px; }
+  .goalcard .pig { width: 46px; height: 46px; }
+  .goalcard .pig.gulp { animation: gulp .35s ease; }
+  @keyframes gulp { 40% { transform: scale(1.18, .9) } 70% { transform: scale(.95, 1.08) } }
+  .gbar { height: 16px; border-radius: 999px; background: var(--panel2); border: 2px solid var(--line); overflow: hidden; position: relative; }
+  .gbar i { position: absolute; inset-block: 0; inset-inline-start: 0; width: calc(var(--g, 0) * 100%); background: linear-gradient(90deg, var(--yellow), var(--accent)); border-radius: 999px; }
+  [dir="rtl"] .gbar i { background: linear-gradient(270deg, var(--yellow), var(--accent)); }
+  .goalcard .gift { width: 46px; height: 46px; transition: transform .3s; }
+  .goalcard.done .gift { animation: giftpop .7s ease; }
+  @keyframes giftpop { 0% { transform: scale(1) } 40% { transform: scale(1.45) rotate(-12deg) } 70% { transform: scale(.9) rotate(6deg) } 100% { transform: scale(1) } }
+  .goalcard .gnum { grid-column: 1 / -1; font-weight: 800; font-size: 15px; color: var(--ink2); text-align: center; }
+  .coinfall { position: absolute; width: 30px; height: 30px; z-index: 5; pointer-events: none; animation: fall .9s cubic-bezier(.5, 0, .9, .6) forwards; }
+  @keyframes fall { 0% { transform: translate(0, 0) rotate(0); opacity: 0 } 15% { opacity: 1 } 100% { transform: translate(var(--dx), var(--dy)) rotate(540deg); opacity: 1 } }
+  .confetti { position: absolute; width: 10px; height: 14px; border-radius: 3px; z-index: 6; pointer-events: none; animation: conf 1.1s ease-out forwards; }
+  @keyframes conf { 0% { transform: translate(0, 0) rotate(0); opacity: 1 } 100% { transform: translate(var(--dx), var(--dy)) rotate(var(--r)); opacity: 0 } }
 
   /* stats */
   .stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: 8px; }
@@ -106,60 +132,172 @@
   .stat b { display: block; font-size: 38px; line-height: 1; color: var(--accent); }
   .stat span { color: var(--ink2); font-size: 15px; }
   .stat:last-child { grid-column: 1 / -1; } @media (min-width: 700px) { .stat:last-child { grid-column: auto; } }
+  .stat.zero.hit b { animation: stamp .5s ease; color: var(--green); }
+  @keyframes stamp { 0% { transform: scale(2.2); opacity: 0 } 60% { transform: scale(.9); opacity: 1 } 100% { transform: scale(1) } }
 
-  /* steps */
-  .steps { list-style: none; padding: 0; margin: 18px 0 0; display: grid; gap: 12px; counter-reset: s; }
+  /* steps: each one acts out what it says */
+  .steps { list-style: none; padding: 0; margin: 18px 0 0; display: grid; gap: 12px; counter-reset: s; position: relative; }
   @media (min-width: 860px) { .steps { grid-template-columns: repeat(5, 1fr); } }
-  .steps li { background: var(--panel); border: 2px solid var(--line); border-radius: 22px; padding: 16px; box-shadow: var(--shadow); position: relative; counter-increment: s; }
-  .steps li::before { content: counter(s); position: absolute; top: 12px; inset-inline-end: 14px; font-weight: 800; color: var(--ink3); font-size: 20px; }
-  .steps img { width: 54px; height: 54px; }
+  .steps li { background: var(--panel); border: 2px solid var(--line); border-radius: 22px; padding: 16px; box-shadow: var(--shadow); position: relative; counter-increment: s; overflow: hidden; min-height: 190px; }
+  .steps li::before { content: counter(s); position: absolute; top: 12px; inset-inline-end: 14px; font-weight: 800; color: #fff; background: var(--ink3); width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center; font-size: 16px; transition: background .4s, transform .4s; }
+  .steps li.in::before { background: var(--accent); transform: scale(1.1); }
+  .steps .ic { position: relative; height: 60px; }
+  .steps .ic img { width: 54px; height: 54px; }
   .steps b { display: block; font-size: 20px; margin: 4px 0 2px; }
   .steps p { margin: 0; color: var(--ink2); font-size: 16px; }
+  .a-plan .ic > img { transform-origin: 50% 100%; animation: sway 2.4s ease-in-out infinite; }
+  @keyframes sway { 0%, 100% { transform: rotate(-7deg) } 50% { transform: rotate(7deg) } }
+  .a-market .ic > img:first-child { animation: hop 1.2s ease-in-out infinite; }
+  @keyframes hop { 0%, 100% { transform: translateY(0) } 40% { transform: translateY(-8px) } }
+  .a-market .walker { position: absolute; width: 34px !important; height: 34px !important; bottom: 0; inset-inline-start: 120px; animation: walkto 3s ease-in-out infinite; }
+  @keyframes walkto { 0% { transform: translateX(calc(var(--d) * 60px)); opacity: 0 } 15% { opacity: 1 } 60%, 80% { transform: translateX(calc(var(--d) * -50px)); opacity: 1 } 100% { transform: translateX(calc(var(--d) * -50px)); opacity: 0 } }
+  .a-count .ic > img { animation: flip 1.8s ease-in-out infinite; }
+  @keyframes flip { 0%, 30% { transform: rotateY(0) } 60%, 100% { transform: rotateY(360deg) } }
+  .a-count .pop { position: absolute; inset-inline-start: 62px; top: 14px; font-weight: 800; color: var(--green); font-size: 20px; animation: rise 1.8s ease-out infinite; }
+  @keyframes rise { 0%, 30% { transform: translateY(10px); opacity: 0 } 50% { opacity: 1 } 100% { transform: translateY(-16px); opacity: 0 } }
+  .a-decide .ic > img { animation: ponder 2.6s ease-in-out infinite; }
+  @keyframes ponder { 0%, 100% { transform: rotate(0) } 30% { transform: rotate(-12deg) } 60% { transform: rotate(10deg) } }
+  .a-decide .ab { position: absolute; inset-inline-start: 64px; top: 14px; display: flex; gap: 6px; }
+  .a-decide .ab i { font-style: normal; font-weight: 800; width: 30px; height: 30px; border-radius: 10px; display: grid; place-items: center; border: 2px solid var(--line); background: var(--panel2); animation: pick 2.6s infinite; }
+  .a-decide .ab i:last-child { animation-delay: 1.3s; }
+  @keyframes pick { 0%, 45%, 100% { background: var(--panel2); color: var(--ink) } 10%, 40% { background: var(--accent); color: #fff; border-color: var(--accent) } }
+  .a-echo .ic > img { animation: hourglass 2.8s ease-in-out infinite; }
+  @keyframes hourglass { 0%, 40% { transform: rotate(0) } 55%, 100% { transform: rotate(180deg) } }
+  .a-echo .ghost { position: absolute; inset-inline-start: 62px; top: 16px; font-weight: 800; color: var(--purple); background: color-mix(in srgb, var(--purple) 12%, var(--panel)); border-radius: 999px; padding: 0 10px; font-size: 15px; animation: echo 2.8s ease-in-out infinite; }
+  @keyframes echo { 0%, 50% { opacity: 0; transform: scale(.7) } 65%, 90% { opacity: 1; transform: scale(1) } 100% { opacity: 0 } }
 
   /* screens */
-  .screens { display: flex; gap: 18px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 16px 16px 24px; margin: 8px -16px 0; scrollbar-width: thin; }
-  .shot { flex: 0 0 auto; width: 230px; scroll-snap-align: center; margin: 0; }
+  .screens { display: flex; gap: 18px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 26px 16px 28px; margin: 8px -16px 0; scrollbar-width: thin; }
+  .shot { flex: 0 0 auto; width: 230px; scroll-snap-align: center; margin: 0; transition: transform .45s ease, opacity .45s ease; transform: scale(.92); opacity: .75; }
+  .shot.active { transform: scale(1.04); opacity: 1; }
   .shot .phone { width: 230px; border-radius: 30px; padding: 8px; box-shadow: 0 16px 30px rgba(43, 33, 64, .2); }
   .shot .phone img { border-radius: 23px; }
   .shot figcaption { margin-top: 12px; color: var(--ink2); font-size: 15px; }
   .shot figcaption b { display: block; color: var(--ink); font-size: 18px; }
+  .dots { display: flex; justify-content: center; gap: 8px; }
+  .dots i { width: 9px; height: 9px; border-radius: 50%; background: var(--line); transition: width .3s, background .3s; }
+  .dots i.on { width: 26px; border-radius: 999px; background: var(--accent); }
 
   /* cards */
   .grid4 { display: grid; gap: 12px; margin-top: 18px; }
   @media (min-width: 640px) { .grid4 { grid-template-columns: repeat(2, 1fr); } }
   @media (min-width: 980px) { .grid4 { grid-template-columns: repeat(4, 1fr); } }
-  .card { background: var(--panel); border: 2px solid var(--line); border-radius: 22px; padding: 18px; box-shadow: var(--shadow); }
-  .card img { width: 64px; height: 64px; }
+  .card { background: var(--panel); border: 2px solid var(--line); border-radius: 22px; padding: 18px; box-shadow: var(--shadow); position: relative; overflow: hidden; transition: transform .25s, box-shadow .25s; }
+  .card:hover { transform: translateY(-4px) rotate(calc(var(--d) * -.6deg)); }
+  .card .ic { position: relative; height: 72px; }
+  .card .ic > img { width: 64px; height: 64px; position: relative; z-index: 1; }
   .card h3 { margin: 6px 0 4px; }
   .card p { margin: 0 0 8px; color: var(--ink2); font-size: 16px; }
   .card .lesson { display: inline-block; background: var(--panel2); border: 2px dashed var(--line); border-radius: 12px; padding: 2px 10px; font-weight: 700; font-size: 15px; color: var(--ink); }
+  /* juice: the lemon squeezes and drips */
+  .b-juice .ic > img { transform-origin: 50% 100%; animation: squeeze 2s ease-in-out infinite; }
+  @keyframes squeeze { 0%, 60%, 100% { transform: scale(1) } 70% { transform: scale(1.12, .85) } 80% { transform: scale(.95, 1.06) } }
+  .drops i { position: absolute; top: 52px; width: 8px; height: 11px; border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%; background: #FFD43B; opacity: 0; animation: drip 2s ease-in infinite; }
+  .drops i:nth-child(1) { inset-inline-start: 22px; animation-delay: .1s } .drops i:nth-child(2) { inset-inline-start: 34px; animation-delay: .25s } .drops i:nth-child(3) { inset-inline-start: 44px; animation-delay: .4s }
+  @keyframes drip { 0%, 65% { opacity: 0; transform: translateY(0) } 72% { opacity: 1 } 100% { opacity: 0; transform: translateY(26px) } }
+  /* art: the palette turns and paint dots splash out */
+  .b-art .ic > img { animation: spin 6s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg) } }
+  .splash i { position: absolute; top: 28px; inset-inline-start: 28px; width: 12px; height: 12px; border-radius: 50%; opacity: 0; animation: splash 2.4s ease-out infinite; }
+  .splash i:nth-child(1) { background: var(--pink); --x: 50px; --y: -18px } .splash i:nth-child(2) { background: var(--blue); --x: 64px; --y: 10px; animation-delay: .3s }
+  .splash i:nth-child(3) { background: var(--green); --x: 40px; --y: 30px; animation-delay: .6s } .splash i:nth-child(4) { background: var(--yellow); --x: 76px; --y: -8px; animation-delay: .9s }
+  @keyframes splash { 0% { opacity: 0; transform: translate(0, 0) scale(.3) } 20% { opacity: 1 } 70% { opacity: 1; transform: translate(calc(var(--d) * var(--x)), var(--y)) scale(1) } 100% { opacity: 0; transform: translate(calc(var(--d) * var(--x)), var(--y)) scale(1.2) } }
+  /* bike: rides across the card */
+  .b-bike .ic > img { animation: ride 4.5s linear infinite; }
+  @keyframes ride { 0% { transform: translateX(calc(var(--d) * -80px)) } 100% { transform: translateX(calc(var(--d) * 260px)) } }
+  [dir="rtl"] .b-bike .ic > img { scale: -1 1; }
+  .b-bike .ic::after { content: ""; position: absolute; bottom: 4px; inset-inline: 0; height: 3px; border-radius: 3px; background: repeating-linear-gradient(90deg, var(--line) 0 14px, transparent 14px 24px); animation: road .5s linear infinite; }
+  @keyframes road { to { background-position: calc(var(--d) * -24px) 0 } }
+  /* cakes: the cake bounces and sparkles */
+  .b-cakes .ic > img { transform-origin: 50% 100%; animation: jelly 2.2s ease-in-out infinite; }
+  @keyframes jelly { 0%, 50%, 100% { transform: scale(1) } 60% { transform: scale(1.1, .9) } 70% { transform: scale(.94, 1.08) } 80% { transform: scale(1.03, .97) } }
+  .b-cakes .spark { position: absolute; width: 30px !important; height: 30px !important; top: 0; inset-inline-start: 58px; animation: twinkle 1.6s ease-in-out infinite; }
+  .b-cakes .spark.two { top: 36px; inset-inline-start: 72px; width: 22px !important; height: 22px !important; animation-delay: .8s; }
+  @keyframes twinkle { 0%, 100% { opacity: 0; transform: scale(.4) rotate(0) } 50% { opacity: 1; transform: scale(1) rotate(30deg) } }
+
+  /* skills */
+  .s-money .ic > img { animation: flip 2.4s ease-in-out infinite; }
+  .s-customers .ic > img { animation: hop 1.4s ease-in-out infinite; }
+  .s-balance .ic > img { animation: charge 1.8s ease-in-out infinite; }
+  @keyframes charge { 0%, 100% { filter: brightness(1); transform: scale(1) } 50% { filter: brightness(1.35) drop-shadow(0 0 10px #FFC93C); transform: scale(1.08) } }
+  .s-honesty .ic > img { animation: shake 2s ease-in-out infinite; }
+  @keyframes shake { 0%, 50%, 100% { transform: translateY(0) } 60% { transform: translateY(-6px) } 70% { transform: translateY(4px) } 80% { transform: translateY(-3px) } }
+  .eq { display: inline-block; margin-top: 4px; background: var(--panel2); border-radius: 12px; padding: 2px 12px; font-weight: 800; font-size: 20px; }
+  .eq b { color: var(--green); }
 
   .split { display: grid; gap: 26px; align-items: center; }
   @media (min-width: 860px) { .split { grid-template-columns: 1fr 1fr; gap: 48px; } }
   .ticks { list-style: none; padding: 0; margin: 16px 0 0; display: grid; gap: 12px; }
-  .ticks li { display: flex; gap: 14px; align-items: flex-start; background: var(--panel); border: 2px solid var(--line); border-radius: 20px; padding: 14px; }
+  .ticks li { display: flex; gap: 14px; align-items: flex-start; background: var(--panel); border: 2px solid var(--line); border-radius: 20px; padding: 14px; transition: transform .25s; }
+  .ticks li:hover { transform: translateX(calc(var(--d) * 4px)); }
   .ticks img { width: 46px; height: 46px; flex: none; }
   .ticks b { display: block; font-size: 18px; } .ticks span { color: var(--ink2); font-size: 16px; }
-  .meter { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 8px; }
-  .meter i { font-style: normal; font-weight: 800; border-radius: 999px; padding: 4px 14px; border: 2px solid var(--line); background: var(--panel); font-size: 15px; }
-  .meter .low { border-color: #E5484D; color: #E5484D; } .meter .high { border-color: var(--green); color: var(--green); }
+  #parents .ticks li.in img { animation: hop .6s ease 1; }
 
-  details { background: var(--panel); border: 2px solid var(--line); border-radius: 18px; padding: 4px 18px; margin: 10px 0; }
-  summary { cursor: pointer; font-weight: 800; font-size: 19px; min-height: 48px; display: flex; align-items: center; }
+  /* energy demo: the meter from the game, live */
+  .edemo { background: var(--panel); border: 2px solid var(--line); border-radius: 24px; padding: 18px; box-shadow: var(--shadow); margin-top: 18px; max-width: 460px; }
+  .erow { display: flex; align-items: center; gap: 10px; }
+  .erow img { width: 40px; height: 40px; }
+  .erow .elabel { font-weight: 800; font-size: 20px; flex: 1; }
+  .erow .enum { font-size: 40px; font-weight: 800; line-height: 1; min-width: 70px; text-align: end; transition: color .3s; }
+  .ebar { position: relative; height: 22px; border-radius: 999px; background: var(--panel2); border: 2px solid var(--line); margin: 12px 0 6px; }
+  .ebar i { position: absolute; inset-block: 0; inset-inline-start: 0; width: calc(var(--e, .8) * 100%); border-radius: 999px; background: linear-gradient(90deg, #FFC93C, #22A86B); transition: width .25s linear, background .3s; }
+  [dir="rtl"] .ebar i { background: linear-gradient(270deg, #FFC93C, #22A86B); }
+  .ebar .m { position: absolute; top: -6px; bottom: -6px; width: 3px; border-radius: 3px; background: var(--ink3); }
+  .ebar .m40 { inset-inline-start: 40%; } .ebar .m70 { inset-inline-start: 70%; background: var(--green); }
+  .marks { position: relative; height: 18px; font-size: 13px; color: var(--ink3); font-weight: 700; }
+  .marks span { position: absolute; transform: translateX(calc(var(--d) * -50%)); }
+  .marks .k40 { inset-inline-start: 40%; } .marks .k70 { inset-inline-start: 70%; }
+  .estate { display: flex; align-items: center; gap: 10px; margin-top: 8px; min-height: 52px; font-weight: 700; }
+  .estate img { width: 36px; height: 36px; }
+  .estate .door { margin-inline-start: auto; display: flex; align-items: center; gap: 6px; border: 2px dashed var(--line); border-radius: 14px; padding: 4px 10px; font-size: 14px; transition: all .3s; }
+  .edemo input { width: 100%; margin: 10px 0 0; accent-color: var(--accent); height: 28px; }
+  .edemo small { color: var(--ink3); }
+  .edemo.sleepy .ebar i { background: var(--red); }
+  .edemo.sleepy .enum { color: var(--red); animation: wobble 1.4s ease-in-out infinite; filter: blur(.9px); }
+  .edemo.sleepy .estate > img { animation: hop 1.6s infinite; }
+  @keyframes wobble { 0%, 100% { transform: translate(0, 0) rotate(0) } 25% { transform: translate(1px, -1px) rotate(-4deg) } 75% { transform: translate(-1px, 1px) rotate(4deg) } }
+  .edemo.open .door { border-style: solid; border-color: var(--green); background: color-mix(in srgb, var(--green) 12%, var(--panel)); color: var(--green); box-shadow: 0 0 0 4px color-mix(in srgb, var(--green) 18%, transparent); }
+  .edemo.open .door img { animation: giftpop .6s ease 1; }
+  .edemo.open .enum { color: var(--green); }
+
+  details { background: var(--panel); border: 2px solid var(--line); border-radius: 18px; padding: 4px 18px; margin: 10px 0; transition: border-color .3s; }
+  details[open] { border-color: var(--accent); }
+  summary { cursor: pointer; font-weight: 800; font-size: 19px; min-height: 48px; display: flex; align-items: center; gap: 10px; list-style: none; }
+  summary::-webkit-details-marker { display: none; }
+  summary::after { content: "+"; margin-inline-start: auto; font-size: 26px; color: var(--accent); transition: transform .3s; }
+  details[open] summary::after { transform: rotate(45deg); }
   details p { margin: 0 0 14px; color: var(--ink2); }
+  details[open] p { animation: drop .35s ease; }
+  @keyframes drop { from { opacity: 0; transform: translateY(-6px) } }
 
-  .finale { text-align: center; padding: 64px 0; }
+  /* finale: coins keep dropping into the piggy bank */
+  .finale { text-align: center; padding: 64px 0; overflow: hidden; }
   .finale .sub { margin-inline: auto; }
   .finale .ctas { justify-content: center; }
-  .finale .row { display: flex; justify-content: center; gap: 10px; margin-bottom: 8px; }
-  .finale .row img { width: 64px; height: 64px; animation: bob 3s ease-in-out infinite; }
-  .finale .row img:nth-child(2) { animation-delay: .4s } .finale .row img:nth-child(3) { animation-delay: .8s } .finale .row img:nth-child(4) { animation-delay: 1.2s }
+  .bank { position: relative; height: 150px; width: 220px; margin: 0 auto 8px; }
+  .bank .pig { position: absolute; bottom: 0; left: 50%; width: 96px; height: 96px; margin-left: -48px; animation: oink 1.2s ease-in-out infinite; }
+  @keyframes oink { 0%, 70%, 100% { transform: scale(1) } 80% { transform: scale(1.12, .9) } 90% { transform: scale(.96, 1.05) } }
+  .bank .c { position: absolute; top: 0; left: 50%; width: 34px; height: 34px; margin-left: -17px; opacity: 0; animation: drop2 1.2s ease-in infinite; }
+  .bank .c:nth-of-type(2) { animation-delay: .4s; margin-left: -40px } .bank .c:nth-of-type(3) { animation-delay: .8s; margin-left: 6px }
+  @keyframes drop2 { 0% { transform: translateY(-10px) rotate(0); opacity: 0 } 15% { opacity: 1 } 70% { transform: translateY(70px) rotate(300deg); opacity: 1 } 80%, 100% { transform: translateY(78px) scale(.4); opacity: 0 } }
+  .bank .side { position: absolute; bottom: 10px; width: 54px; height: 54px; animation: bob 3s ease-in-out infinite; }
+  .bank .l { left: 0 } .bank .r { right: 0; animation-delay: .8s }
   footer { border-top: 2px solid var(--line); padding: 24px 0 40px; color: var(--ink3); font-size: 14px; text-align: center; }
   footer p { margin: 4px 0; }
 
-  .js .reveal { opacity: 0; transform: translateY(14px); transition: opacity .6s ease, transform .6s ease; }
+  .js .reveal { opacity: 0; transform: translateY(18px) scale(.98); transition: opacity .6s ease, transform .6s cubic-bezier(.2, .8, .2, 1); transition-delay: calc(var(--i, 0) * 90ms); }
   .js .reveal.in { opacity: 1; transform: none; }
-  @media (prefers-reduced-motion: reduce) { .js .reveal { opacity: 1; transform: none; transition: none; } * { animation: none !important; } }
+  h1.words .w { display: inline-block; opacity: 0; transform: translateY(.4em) rotate(calc(var(--d) * 4deg)); animation: word .55s cubic-bezier(.2, .8, .2, 1) forwards; animation-delay: calc(var(--i) * 70ms + 150ms); }
+  @keyframes word { to { opacity: 1; transform: none } }
+  /* animations only run while their section is on screen */
+  .js .scene:not(.live) *, .js .scene:not(.live) *::before, .js .scene:not(.live) *::after { animation-play-state: paused !important; }
+  @media (prefers-reduced-motion: reduce) {
+    .js .reveal { opacity: 1; transform: none; transition: none; }
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+    h1.words .w { opacity: 1; transform: none; }
+    .a-market .walker, .a-count .pop, .a-echo .ghost { opacity: 1; }
+  }
 </style>
 </head>
 <body>
@@ -167,74 +305,87 @@
   <a class="logo" href="./"><img src="../little/icons/icon-192.png" alt=""><span>The Little Entrepreneur</span></a>
   <a class="btn btn-sm lang" href="ar.html" hreflang="ar" lang="ar" onclick="setLang('ar')">عربي</a>
   <a class="btn btn-primary btn-sm hide-sm" href="../little/?lang=en">Play free</a>
-</div></header>
+</div><span class="progress" aria-hidden="true"></span></header>
 <main>
-  <div class="hero"><div class="wrap hero-grid">
+  <div class="hero scene"><div class="wrap hero-grid">
     <div>
       <div class="kicker reveal">A free money game for kids 8 to 12</div>
-      <h1 class="reveal">One summer. One tiny business. Lots of first lessons.</h1>
-      <p class="sub reveal">A juice stand, a bike wash, a cake stall or a bracelet table, for 12 weeks: set a price, make just enough, sell, and save for something you really want. Grandpa is there after every choice.</p>
-      <div class="ctas reveal"><a class="btn btn-primary" href="../little/?lang=en">▶ Play free in your browser</a><a class="btn" href="#parents">For parents</a></div>
-      <p class="note reveal">No ads · No account · Nothing to buy · Works offline</p>
+      <h1 class="words">One summer. One tiny business. Lots of first lessons.</h1>
+      <p class="sub reveal" style="--i:2">A juice stand, a bike wash, a cake stall or a bracelet table, for 12 weeks: set a price, make just enough, sell, and save for something you really want. Grandpa is there after every choice.</p>
+      <div class="ctas reveal" style="--i:3"><a class="btn btn-primary" href="../little/?lang=en">▶ Play free in your browser</a><a class="btn" href="#parents">For parents</a></div>
+      <p class="note reveal" style="--i:4">No ads · No account · Nothing to buy · Works offline</p>
     </div>
-    <div class="stage reveal" aria-hidden="false">
-      <img src="../little/img/lemon.webp" alt="" class="fl a" width="160" height="160" loading="lazy"><img src="../little/img/birthday_cake.webp" alt="" class="fl b" width="160" height="160" loading="lazy"><img src="../little/img/bicycle.webp" alt="" class="fl c" width="160" height="160" loading="lazy"><img src="../little/img/artist_palette.webp" alt="" class="fl d" width="160" height="160" loading="lazy"><img src="../little/img/old_man.webp" alt="" class="fl gp" width="160" height="160" loading="lazy">
+    <div class="stage reveal">
+      <img src="../little/img/lemon.webp" alt="" class="fl a" width="160" height="160"><img src="../little/img/birthday_cake.webp" alt="" class="fl b" width="160" height="160"><img src="../little/img/bicycle.webp" alt="" class="fl c" width="160" height="160"><img src="../little/img/artist_palette.webp" alt="" class="fl d" width="160" height="160"><img src="../little/img/old_man.webp" alt="" class="fl gp" width="160" height="160">
       <div class="phone"><img src="shots/en-plan.webp" alt="The weekly plan screen" width="390" height="844"></div>
+      <div class="goalcard" aria-label="Saving for a gift for Mum">
+        <small>Saving for a gift for Mum</small>
+        <img src="../little/img/pig_face.webp" alt="" class="pig" width="160" height="160"><div class="gbar"><i></i></div><img src="../little/img/wrapped_gift.webp" alt="" class="gift" width="160" height="160">
+        <b class="gnum"><bdi class="n"><span data-goal="220">0</span> / 220</bdi></b>
+      </div>
     </div>
   </div>
-  <div class="wrap"><div class="stats"><div class="stat reveal"><b>12</b><span>weeks of summer</span></div><div class="stat reveal"><b>4</b><span>small businesses</span></div><div class="stat reveal"><b>32</b><span>dilemmas</span></div><div class="stat reveal"><b>42</b><span>ideas from Grandpa</span></div><div class="stat reveal"><b>0</b><span>ads or trackers</span></div></div></div></div>
+  <div class="wrap"><div class="stats"><div class="stat reveal" style="--i:0"><b><bdi class="n" data-count="12">12</bdi></b><span>weeks of summer</span></div><div class="stat reveal" style="--i:1"><b><bdi class="n" data-count="4">4</bdi></b><span>small businesses</span></div><div class="stat reveal" style="--i:2"><b><bdi class="n" data-count="32">32</bdi></b><span>dilemmas</span></div><div class="stat reveal" style="--i:3"><b><bdi class="n" data-count="42">42</bdi></b><span>ideas from Grandpa</span></div><div class="stat reveal zero" style="--i:4"><b><bdi class="n" data-count="0" data-from="99">0</bdi></b><span>ads or trackers</span></div></div></div></div>
 
-  <section id="how"><div class="wrap">
+  <section id="how" class="scene"><div class="wrap">
     <div class="kicker reveal">Every week</div>
     <h2 class="reveal">Plan, sell, count, decide.</h2>
-    <ol class="steps"><li class="reveal"><img src="../little/img/placard.webp" alt="" class="" width="160" height="160" loading="lazy"><b>Plan</b><p>Pick a price, how many to make, and one thing to do: a poster, practice, homework, or rest.</p></li><li class="reveal"><img src="../little/img/lemon.webp" alt="" class="" width="160" height="160" loading="lazy"><b>Market day</b><p>Customers arrive. Weather, price, quality and smiles all decide how many.</p></li><li class="reveal"><img src="../little/img/coin.webp" alt="" class="" width="160" height="160" loading="lazy"><b>Count</b><p>Coins in, coins spent, profit. Leftover cakes are coins in the bin.</p></li><li class="reveal"><img src="../little/img/thinking_face.webp" alt="" class="" width="160" height="160" loading="lazy"><b>Decide</b><p>A small dilemma with two fair answers. Then Grandpa shares one idea.</p></li><li class="reveal"><img src="../little/img/hourglass_not_done.webp" alt="" class="" width="160" height="160" loading="lazy"><b>Echo</b><p>Some choices come back weeks later: “This is because of what you did in week 3.”</p></li></ol>
+    <ol class="steps"><li class="reveal a-plan" style="--i:0"><div class="ic"><img src="../little/img/placard.webp" alt="" class="" width="160" height="160" loading="lazy"></div><b>Plan</b><p>Pick a price, how many to make, and one thing to do: a poster, practice, homework, or rest.</p></li><li class="reveal a-market" style="--i:1"><div class="ic"><img src="../little/img/lemon.webp" alt="" class="" width="160" height="160" loading="lazy"><img src="../little/img/boy.webp" alt="" class="walker" width="160" height="160" loading="lazy"></div><b>Market day</b><p>Customers arrive. Weather, price, quality and smiles all decide how many.</p></li><li class="reveal a-count" style="--i:2"><div class="ic"><img src="../little/img/coin.webp" alt="" class="" width="160" height="160" loading="lazy"><span class="pop"><bdi class="n">+21</bdi></span></div><b>Count</b><p>Coins in, coins spent, profit. Leftover cakes are coins in the bin.</p></li><li class="reveal a-decide" style="--i:3"><div class="ic"><img src="../little/img/thinking_face.webp" alt="" class="" width="160" height="160" loading="lazy"><span class="ab"><i>A</i><i>B</i></span></div><b>Decide</b><p>A small dilemma with two fair answers. Then Grandpa shares one idea.</p></li><li class="reveal a-echo" style="--i:4"><div class="ic"><img src="../little/img/hourglass_not_done.webp" alt="" class="" width="160" height="160" loading="lazy"><span class="ghost">week <bdi class="n">3</bdi></span></div><b>Echo</b><p>Some choices come back weeks later: “This is because of what you did in week <bdi class="n">3</bdi>.”</p></li></ol>
   </div></section>
 
-  <div class="band" id="screens"><div class="wrap">
+  <div class="band scene" id="screens"><div class="wrap">
     <div class="kicker reveal">Inside the game</div>
     <h2 class="reveal">Made for small hands and big ideas.</h2>
-    <div class="screens" tabindex="0"><figure class="shot"><div class="phone"><img loading="lazy" src="shots/en-plan.webp" alt="Plan" width="390" height="844"></div><figcaption><b>Plan</b>Price, how many to make, and Grandpa&#x27;s guess of how many will come.</figcaption></figure><figure class="shot"><div class="phone"><img loading="lazy" src="shots/en-sell.webp" alt="Market day" width="390" height="844"></div><figcaption><b>Market day</b>Customers walk up. If you run out, some go home with nothing.</figcaption></figure><figure class="shot"><div class="phone"><img loading="lazy" src="shots/en-results.webp" alt="Profit" width="390" height="844"></div><figcaption><b>Profit</b>33 in − 12 spent = 21. The sum every child should know.</figcaption></figure><figure class="shot"><div class="phone"><img loading="lazy" src="shots/en-door.webp" alt="The wise door" width="390" height="844"></div><figcaption><b>The wise door</b>With 70 energy or more, a third, wiser choice opens.</figcaption></figure><figure class="shot"><div class="phone"><img loading="lazy" src="shots/en-echo.webp" alt="Echoes" width="390" height="844"></div><figcaption><b>Echoes</b>Choices come back weeks later, for better or worse.</figcaption></figure><figure class="shot"><div class="phone"><img loading="lazy" src="shots/en-report.webp" alt="Report card" width="390" height="844"></div><figcaption><b>Report card</b>Stars for money, customers, balance and honesty.</figcaption></figure></div>
+    <div class="screens" tabindex="0"><figure class="shot"><div class="phone"><img loading="lazy" src="shots/en-plan.webp" alt="Plan" width="390" height="844"></div><figcaption><b>Plan</b>Price, how many to make, and Grandpa&#x<bdi class="n">27</bdi>;s guess of how many will come.</figcaption></figure><figure class="shot"><div class="phone"><img loading="lazy" src="shots/en-sell.webp" alt="Market day" width="390" height="844"></div><figcaption><b>Market day</b>Customers walk up. If you run out, some go home with nothing.</figcaption></figure><figure class="shot"><div class="phone"><img loading="lazy" src="shots/en-results.webp" alt="Profit" width="390" height="844"></div><figcaption><b>Profit</b><bdi class="n">33</bdi> in − <bdi class="n">12</bdi> spent = <bdi class="n">21</bdi>. The sum every child should know.</figcaption></figure><figure class="shot"><div class="phone"><img loading="lazy" src="shots/en-door.webp" alt="The wise door" width="390" height="844"></div><figcaption><b>The wise door</b>With <bdi class="n">70</bdi> energy or more, a third, wiser choice opens.</figcaption></figure><figure class="shot"><div class="phone"><img loading="lazy" src="shots/en-echo.webp" alt="Echoes" width="390" height="844"></div><figcaption><b>Echoes</b>Choices come back weeks later, for better or worse.</figcaption></figure><figure class="shot"><div class="phone"><img loading="lazy" src="shots/en-report.webp" alt="Report card" width="390" height="844"></div><figcaption><b>Report card</b>Stars for money, customers, balance and honesty.</figcaption></figure></div><div class="dots" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
   </div></div>
 
-  <section id="businesses"><div class="wrap">
+  <section id="businesses" class="scene"><div class="wrap">
     <div class="kicker reveal">Pick a business</div>
     <h2 class="reveal">Four ways to earn your first coins.</h2>
-    <div class="grid4"><div class="card reveal"><img src="../little/img/lemon.webp" alt="" class="" width="160" height="160" loading="lazy"><h3>Juice stand</h3><p>Cheap to make and loves hot days, but it spoils.</p><span class="lesson">Lesson: Don&#x27;t make too much.</span></div><div class="card reveal"><img src="../little/img/artist_palette.webp" alt="" class="" width="160" height="160" loading="lazy"><h3>Drawings &amp; bracelets</h3><p>Costs more to make, but keeps for next week.</p><span class="lesson">Lesson: Stock and patience.</span></div><div class="card reveal"><img src="../little/img/bicycle.webp" alt="" class="" width="160" height="160" loading="lazy"><h3>Bike wash &amp; fix</h3><p>Rain keeps customers away. Mud brings them back.</p><span class="lesson">Lesson: Plan around the weather.</span></div><div class="card reveal"><img src="../little/img/birthday_cake.webp" alt="" class="" width="160" height="160" loading="lazy"><h3>Cakes &amp; cookies</h3><p>Everyone loves cake, but it costs more and won&#x27;t last.</p><span class="lesson">Lesson: Pricing and waste.</span></div></div>
+    <div class="grid4"><div class="card reveal b-juice" style="--i:0"><div class="ic"><img src="../little/img/lemon.webp" alt="" class="" width="160" height="160" loading="lazy"><span class="drops"><i></i><i></i><i></i></span></div><h3>Juice stand</h3><p>Cheap to make and loves hot days, but it spoils.</p><span class="lesson">Lesson: Don&#x27;t make too much.</span></div><div class="card reveal b-art" style="--i:1"><div class="ic"><img src="../little/img/artist_palette.webp" alt="" class="" width="160" height="160" loading="lazy"><span class="splash"><i></i><i></i><i></i><i></i></span></div><h3>Drawings &amp; bracelets</h3><p>Costs more to make, but keeps for next week.</p><span class="lesson">Lesson: Stock and patience.</span></div><div class="card reveal b-bike" style="--i:2"><div class="ic"><img src="../little/img/bicycle.webp" alt="" class="" width="160" height="160" loading="lazy"></div><h3>Bike wash &amp; fix</h3><p>Rain keeps customers away. Mud brings them back.</p><span class="lesson">Lesson: Plan around the weather.</span></div><div class="card reveal b-cakes" style="--i:3"><div class="ic"><img src="../little/img/birthday_cake.webp" alt="" class="" width="160" height="160" loading="lazy"><img src="../little/img/sparkles.webp" alt="" class="spark" width="160" height="160" loading="lazy"><img src="../little/img/sparkles.webp" alt="" class="spark two" width="160" height="160" loading="lazy"></div><h3>Cakes &amp; cookies</h3><p>Everyone loves cake, but it costs more and won&#x27;t last.</p><span class="lesson">Lesson: Pricing and waste.</span></div></div>
   </div></section>
 
-  <div class="band" id="energy"><div class="wrap split">
+  <div class="band scene" id="energy"><div class="wrap split">
     <div>
       <div class="kicker reveal">Energy is a resource</div>
       <h2 class="reveal">Tired sellers make mistakes.</h2>
-      <p class="sub reveal">Selling and staying up late use energy. Rest and play bring it back. Below 40 the numbers wobble and blur, and change gets miscounted. At 70 or more, a third, wiser door opens on hard choices. It&#x27;s Founder Fog&#x27;s clarity, made for kids.</p>
-      <div class="meter reveal"><i class="low">⚡ &lt; 40</i><i class="high">⚡ 70+</i></div>
-      <ul class="ticks"><li class="reveal"><img src="../little/img/books.webp" alt="" class="" width="160" height="160" loading="lazy"><div><b>The homework rule</b><span>Skip studying 3 weeks in a row and Mum or Dad keeps the stand closed for a week. Gently.</span></div></li><li class="reveal"><img src="../little/img/glowing_star.webp" alt="" class="" width="160" height="160" loading="lazy"><div><b>The sticker book</b><span>Every idea from Grandpa becomes a sticker, collected summer after summer.</span></div></li></ul>
+      <p class="sub reveal">Selling and staying up late use energy. Rest and play bring it back. Below <bdi class="n">40</bdi> the numbers wobble and blur, and change gets miscounted. At <bdi class="n">70</bdi> or more, a third, wiser door opens on hard choices. It&#x<bdi class="n">27</bdi>;s Founder Fog&#x<bdi class="n">27</bdi>;s clarity, made for kids.</p>
+      <ul class="ticks"><li class="reveal" style="--i:0"><img src="../little/img/books.webp" alt="" class="" width="160" height="160" loading="lazy"><div><b>The homework rule</b><span>Skip studying <bdi class="n">3</bdi> weeks in a row and Mum or Dad keeps the stand closed for a week. Gently.</span></div></li><li class="reveal" style="--i:1"><img src="../little/img/glowing_star.webp" alt="" class="" width="160" height="160" loading="lazy"><div><b>The sticker book</b><span>Every idea from Grandpa becomes a sticker, collected summer after summer.</span></div></li></ul>
     </div>
-    <div class="reveal"><div class="phone" style="margin-inline:auto"><img loading="lazy" src="shots/en-door.webp" alt="The wise door" width="390" height="844"></div></div>
+    <div class="reveal">
+      <div class="edemo" data-sleepy="Sleepy: numbers wobble, mistakes happen" data-normal="A normal day" data-open="70+: the wise door opens">
+        <div class="erow"><img src="../little/img/high_voltage.webp" alt="" class="" width="160" height="160" loading="lazy"><span class="elabel">Energy</span><b class="enum n" dir="ltr">86</b></div>
+        <div class="ebar"><i></i><span class="m m40"></span><span class="m m70"></span></div>
+        <div class="marks" aria-hidden="true"><span class="k40"><bdi class="n">40</bdi></span><span class="k70"><bdi class="n">70</bdi></span></div>
+        <div class="estate"><img src="../little/img/partying_face.webp" alt="" class="" width="160" height="160" loading="lazy"><span>70+: the wise door opens</span><span class="door"><img src="../little/img/unlocked.webp" alt="" class="" width="160" height="160" loading="lazy">The wise door</span></div>
+        <input type="range" min="0" max="100" value="86" aria-label="Energy">
+        <small>Drag to try it</small>
+      </div>
+    </div>
   </div></div>
 
-  <section id="skills"><div class="wrap">
+  <section id="skills" class="scene"><div class="wrap">
     <div class="kicker reveal">What children learn</div>
     <h2 class="reveal">Real money basics, never a lecture.</h2>
-    <div class="grid4"><div class="card reveal"><img src="../little/img/coin.webp" alt="" class="" width="160" height="160" loading="lazy"><h3>Money</h3><p>Profit = sales − costs. Saving vs spending. Not making too much.</p></div><div class="card reveal"><img src="../little/img/smiling_face_with_smiling_eyes.webp" alt="" class="" width="160" height="160" loading="lazy"><h3>Customers</h3><p>Listening to a complaint, fair prices, better quality.</p></div><div class="card reveal"><img src="../little/img/high_voltage.webp" alt="" class="" width="160" height="160" loading="lazy"><h3>Balance</h3><p>Energy, rest and homework are part of a good business.</p></div><div class="card reveal"><img src="../little/img/handshake.webp" alt="" class="" width="160" height="160" loading="lazy"><h3>Honesty</h3><p>Owning a mistake, a truthful sign, giving back extra change.</p></div></div>
+    <div class="grid4"><div class="card reveal s-money" style="--i:0"><div class="ic"><img src="../little/img/coin.webp" alt="" class="" width="160" height="160" loading="lazy"></div><h3>Money</h3><p>Profit = sales − costs. Saving vs spending. Not making too much.</p><span class="eq"><bdi class="n">33 − 12 = <b data-count="21">21</b></bdi></span></div><div class="card reveal s-customers" style="--i:1"><div class="ic"><img src="../little/img/smiling_face_with_smiling_eyes.webp" alt="" class="" width="160" height="160" loading="lazy"></div><h3>Customers</h3><p>Listening to a complaint, fair prices, better quality.</p></div><div class="card reveal s-balance" style="--i:2"><div class="ic"><img src="../little/img/high_voltage.webp" alt="" class="" width="160" height="160" loading="lazy"></div><h3>Balance</h3><p>Energy, rest and homework are part of a good business.</p></div><div class="card reveal s-honesty" style="--i:3"><div class="ic"><img src="../little/img/handshake.webp" alt="" class="" width="160" height="160" loading="lazy"></div><h3>Honesty</h3><p>Owning a mistake, a truthful sign, giving back extra change.</p></div></div>
   </div></section>
 
-  <div class="band" id="parents"><div class="wrap split">
+  <div class="band scene" id="parents"><div class="wrap split">
     <div>
       <div class="kicker reveal">For parents</div>
       <h2 class="reveal">Private by design.</h2>
-      <ul class="ticks"><li class="reveal"><img src="../little/img/house.webp" alt="" class="" width="160" height="160" loading="lazy"><div><b>Nothing leaves the device</b><span>No accounts, ads, analytics, tracking or leaderboard. Your child&#x27;s name and progress stay in this browser.</span></div></li><li class="reveal"><img src="../little/img/pig_face.webp" alt="" class="" width="160" height="160" loading="lazy"><div><b>Nothing to buy</b><span>Free, with no in-app purchases, no gambling and no loans.</span></div></li><li class="reveal"><img src="../little/img/heart_hands.webp" alt="" class="" width="160" height="160" loading="lazy"><div><b>Kind, never scary</b><span>No harsh endings. If the goal isn&#x27;t reached, Grandpa sums up what was learned and offers another summer.</span></div></li><li class="reveal"><img src="../little/img/sun.webp" alt="" class="" width="160" height="160" loading="lazy"><div><b>Short, and works offline</b><span>A summer takes about 15 minutes. Add it to the home screen and it plays without internet.</span></div></li><li class="reveal"><img src="../little/img/speech_balloon.webp" alt="" class="" width="160" height="160" loading="lazy"><div><b>Arabic and English</b><span>Written for children in Egypt and the Gulf, in Arabic that never assumes whether your child is a boy or a girl.</span></div></li></ul>
+      <ul class="ticks"><li class="reveal" style="--i:0"><img src="../little/img/house.webp" alt="" class="" width="160" height="160" loading="lazy"><div><b>Nothing leaves the device</b><span>No accounts, ads, analytics, tracking or leaderboard. Your child&#x<bdi class="n">27</bdi>;s name and progress stay in this browser.</span></div></li><li class="reveal" style="--i:1"><img src="../little/img/pig_face.webp" alt="" class="" width="160" height="160" loading="lazy"><div><b>Nothing to buy</b><span>Free, with no in-app purchases, no gambling and no loans.</span></div></li><li class="reveal" style="--i:2"><img src="../little/img/heart_hands.webp" alt="" class="" width="160" height="160" loading="lazy"><div><b>Kind, never scary</b><span>No harsh endings. If the goal isn&#x<bdi class="n">27</bdi>;t reached, Grandpa sums up what was learned and offers another summer.</span></div></li><li class="reveal" style="--i:3"><img src="../little/img/sun.webp" alt="" class="" width="160" height="160" loading="lazy"><div><b>Short, and works offline</b><span>A summer takes about <bdi class="n">15</bdi> minutes. Add it to the home screen and it plays without internet.</span></div></li><li class="reveal" style="--i:4"><img src="../little/img/speech_balloon.webp" alt="" class="" width="160" height="160" loading="lazy"><div><b>Arabic and English</b><span>Written for children in Egypt and the Gulf, in Arabic that never assumes whether your child is a boy or a girl.</span></div></li></ul>
     </div>
     <div class="reveal"><div class="phone" style="margin-inline:auto"><img loading="lazy" src="shots/en-report.webp" alt="Report card" width="390" height="844"></div></div>
   </div></div>
 
   <section id="faq"><div class="wrap">
     <div class="kicker reveal">Questions</div>
-    <h2 class="reveal">Before you start</h2><details class="reveal"><summary>What age is it for?</summary><p>8 to 12, for children who can read short sentences on their own. Younger children enjoy it with a parent.</p></details><details class="reveal"><summary>Is it free?</summary><p>Yes. No ads, no account and nothing to buy.</p></details><details class="reveal"><summary>Which currency does it use?</summary><p>Plain coins with no country, so it works the same in Cairo, Riyadh or Dubai.</p></details><details class="reveal"><summary>Can we use it in class?</summary><p>Yes. A summer takes about 15 minutes and ends with a report card and Grandpa's ideas to talk about together.</p></details><details class="reveal"><summary>Where is the data stored?</summary><p>Only in your browser on this device. Clearing the browser's data starts the game over.</p></details><details class="reveal"><summary>Is there a game for grown-ups?</summary><p>Yes: <a href="../fog/">Founder Fog</a>, the startup game this one grew out of.</p></details>
+    <h2 class="reveal">Before you start</h2><details class="reveal" style="--i:0"><summary>What age is it for?</summary><p>8 to 12, for children who can read short sentences on their own. Younger children enjoy it with a parent.</p></details><details class="reveal" style="--i:1"><summary>Is it free?</summary><p>Yes. No ads, no account and nothing to buy.</p></details><details class="reveal" style="--i:2"><summary>Which currency does it use?</summary><p>Plain coins with no country, so it works the same in Cairo, Riyadh or Dubai.</p></details><details class="reveal" style="--i:3"><summary>Can we use it in class?</summary><p>Yes. A summer takes about 15 minutes and ends with a report card and Grandpa's ideas to talk about together.</p></details><details class="reveal" style="--i:4"><summary>Where is the data stored?</summary><p>Only in your browser on this device. Clearing the browser's data starts the game over.</p></details><details class="reveal" style="--i:5"><summary>Is there a game for grown-ups?</summary><p>Yes: <a href="../fog/">Founder Fog</a>, the startup game this one grew out of.</p></details>
   </div></section>
 
-  <div class="finale band"><div class="wrap">
-    <div class="row" aria-hidden="true"><img src="../little/img/lemon.webp" alt="" class="" width="160" height="160" loading="lazy"><img src="../little/img/coin.webp" alt="" class="" width="160" height="160" loading="lazy"><img src="../little/img/pig_face.webp" alt="" class="" width="160" height="160" loading="lazy"><img src="../little/img/wrapped_gift.webp" alt="" class="" width="160" height="160" loading="lazy"></div>
+  <div class="finale band scene"><div class="wrap">
+    <div class="bank" aria-hidden="true"><img src="../little/img/lemon.webp" alt="" class="side l" width="160" height="160" loading="lazy"><img src="../little/img/coin.webp" alt="" class="c" width="160" height="160" loading="lazy"><img src="../little/img/coin.webp" alt="" class="c" width="160" height="160" loading="lazy"><img src="../little/img/coin.webp" alt="" class="c" width="160" height="160" loading="lazy"><img src="../little/img/pig_face.webp" alt="" class="pig" width="160" height="160" loading="lazy"><img src="../little/img/wrapped_gift.webp" alt="" class="side r" width="160" height="160" loading="lazy"></div>
     <h2 class="reveal">Ready for a summer of business?</h2>
     <p class="sub reveal">Pick a business, set a goal, and see what Grandpa thinks.</p>
     <div class="ctas reveal"><a class="btn btn-primary" href="../little/?lang=en">▶ Play free in your browser</a></div>
@@ -245,14 +396,144 @@
   <p><small>3D emoji: Microsoft Fluent Emoji (MIT licence). No cookies, no tracking.</small></p>
 </div></footer>
 <script>
-  (function () {
-    var els = document.querySelectorAll(".reveal");
-    if (!("IntersectionObserver" in window)) { els.forEach(function (el) { el.classList.add("in"); }); return; }
-    var io = new IntersectionObserver(function (es) {
-      es.forEach(function (x) { if (x.isIntersecting) { x.target.classList.add("in"); io.unobserve(x.target); } });
-    }, { rootMargin: "0px 0px -8% 0px" });
-    els.forEach(function (el) { io.observe(el); });
-  })();
+(function () {
+  var reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var rtl = document.dir === "rtl";
+  function $(s, r) { return (r || document).querySelector(s); }
+  function $$(s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); }
+  function ease(t) { return 1 - Math.pow(1 - t, 3); }
+  function tween(ms, fn, done) {
+    var t0 = performance.now();
+    (function step(now) { var t = Math.min(1, (now - t0) / ms); fn(ease(t)); if (t < 1) requestAnimationFrame(step); else if (done) done(); })(t0);
+  }
+
+  // Headline: words arrive one by one.
+  var h1 = $("h1.words");
+  if (h1 && !reduce) h1.innerHTML = h1.textContent.trim().split(/\s+/).map(function (w, i) { return '<span class="w" style="--i:' + i + '">' + w + "</span>"; }).join(" ");
+
+  // Reading progress under the bar.
+  var bar = $(".bar");
+  function prog() { var h = document.documentElement.scrollHeight - innerHeight; bar.style.setProperty("--sp", h > 0 ? Math.min(1, scrollY / h) : 0); }
+  addEventListener("scroll", prog, { passive: true }); prog();
+
+  // Count a number up (or down) when it comes into view.
+  function count(el) {
+    var to = +el.dataset.count, from = el.dataset.from != null ? +el.dataset.from : 0;
+    if (reduce) { el.textContent = to; return; }
+    tween(1400, function (t) { el.textContent = Math.round(from + (to - from) * t); }, function () {
+      var stat = el.closest(".stat"); if (stat && to === 0) stat.classList.add("hit");
+    });
+  }
+
+  // Reveal + section scenes (animations pause off-screen).
+  var seen = new WeakSet();
+  if (!("IntersectionObserver" in window)) { $$(".reveal").forEach(function (el) { el.classList.add("in"); }); $$(".scene").forEach(function (el) { el.classList.add("live"); }); return; }
+  var io = new IntersectionObserver(function (es) {
+    es.forEach(function (x) {
+      if (!x.isIntersecting) return;
+      x.target.classList.add("in");
+      $$("[data-count]", x.target).concat(x.target.dataset.count != null ? [x.target] : []).forEach(function (c) { if (!seen.has(c)) { seen.add(c); count(c); } });
+      io.unobserve(x.target);
+    });
+  }, { rootMargin: "0px 0px -8% 0px" });
+  $$(".reveal").forEach(function (el) { io.observe(el); });
+  var live = new IntersectionObserver(function (es) {
+    es.forEach(function (x) { x.target.classList.toggle("live", x.isIntersecting); x.target.dispatchEvent(new CustomEvent(x.isIntersecting ? "live" : "idle")); });
+  });
+  $$(".scene").forEach(function (el) { live.observe(el); });
+
+  // Hero: coins drop into the piggy bank until the goal is reached, then the gift pops.
+  var goal = $(".goalcard"), stage = $(".stage");
+  if (goal) {
+    var pig = $(".pig", goal), num = $("[data-goal]", goal), target = +num.dataset.goal, running = false, timer = null;
+    function coin() {
+      var s = stage.getBoundingClientRect(), p = pig.getBoundingClientRect();
+      var c = document.createElement("img");
+      c.src = "../little/img/coin.webp"; c.className = "coinfall"; c.alt = "";
+      var x0 = s.width * (0.25 + Math.random() * 0.5), y0 = 40 + Math.random() * 60;
+      c.style.left = x0 + "px"; c.style.top = y0 + "px";
+      c.style.setProperty("--dx", (p.left - s.left + p.width / 2 - 15 - x0) + "px");
+      c.style.setProperty("--dy", (p.top - s.top + 6 - y0) + "px");
+      stage.appendChild(c);
+      setTimeout(function () { c.remove(); pig.classList.remove("gulp"); void pig.offsetWidth; pig.classList.add("gulp"); }, 880);
+    }
+    function confetti() {
+      var g = $(".gift", goal).getBoundingClientRect(), s = stage.getBoundingClientRect(), cols = ["#FF7A1A", "#FFC93C", "#22A86B", "#8B5CF6", "#FF5C8A", "#3D8BFF"];
+      for (var i = 0; i < 22; i++) {
+        var c = document.createElement("i"); c.className = "confetti";
+        c.style.left = (g.left - s.left + g.width / 2) + "px"; c.style.top = (g.top - s.top + 10) + "px";
+        c.style.background = cols[i % cols.length];
+        c.style.setProperty("--dx", (Math.random() * 220 - 110) + "px"); c.style.setProperty("--dy", (-60 - Math.random() * 160) + "px"); c.style.setProperty("--r", (Math.random() * 720 - 360) + "deg");
+        stage.appendChild(c); setTimeout(function (el) { el.remove(); }.bind(null, c), 1200);
+      }
+    }
+    function run() {
+      if (running) return; running = true;
+      goal.classList.remove("done");
+      var drops = setInterval(coin, 330);
+      tween(4200, function (t) { var v = Math.round(target * t); num.textContent = v; goal.style.setProperty("--g", t); }, function () {
+        clearInterval(drops); goal.classList.add("done"); confetti();
+        timer = setTimeout(function () { running = false; if (stage.closest(".scene").classList.contains("live")) { tween(500, function (t) { goal.style.setProperty("--g", 1 - t); num.textContent = Math.round(target * (1 - t)); }, run); } }, 2600);
+      });
+    }
+    if (reduce) { num.textContent = target; goal.style.setProperty("--g", 1); goal.classList.add("done"); }
+    else stage.closest(".scene").addEventListener("live", function () { setTimeout(run, 600); });
+  }
+
+  // Screens: the carousel swipes itself until someone touches it; the middle phone grows.
+  var rail = $(".screens");
+  if (rail) {
+    var shots = $$(".shot", rail), dots = $$(".dots i"), user = false, auto = null;
+    function active() {
+      var r = rail.getBoundingClientRect(), mid = r.left + r.width / 2, best = 0, bd = 1e9;
+      shots.forEach(function (s, i) { var b = s.getBoundingClientRect(), d = Math.abs(b.left + b.width / 2 - mid); if (d < bd) { bd = d; best = i; } });
+      shots.forEach(function (s, i) { s.classList.toggle("active", i === best); });
+      dots.forEach(function (d, i) { d.classList.toggle("on", i === best); });
+      return best;
+    }
+    rail.addEventListener("scroll", function () { requestAnimationFrame(active); }, { passive: true });
+    ["pointerdown", "wheel", "touchstart", "keydown"].forEach(function (ev) { rail.addEventListener(ev, function () { user = true; }, { passive: true }); });
+    function next() {
+      if (user) return;
+      var i = active(), n = (i + 1) % shots.length;
+      var s = shots[n], r = rail.getBoundingClientRect(), b = s.getBoundingClientRect();
+      rail.scrollBy({ left: b.left + b.width / 2 - (r.left + r.width / 2), behavior: reduce ? "auto" : "smooth" });
+    }
+    var sc = rail.closest(".scene");
+    sc.addEventListener("live", function () { active(); if (!reduce && !auto) auto = setInterval(next, 2600); });
+    sc.addEventListener("idle", function () { clearInterval(auto); auto = null; });
+    active();
+  }
+
+  // Energy: the meter from the game. Plays a little day on its own; drag to try.
+  var demo = $(".edemo");
+  if (demo) {
+    var range = $("input", demo), enum_ = $(".enum", demo), state = $(".estate", demo), stateImg = $(".estate > img", demo), stateTxt = $(".estate > span", demo);
+    var lock = $(".door img", demo), touched = false, playing = null;
+    function set(v) {
+      v = Math.max(0, Math.min(100, Math.round(v)));
+      demo.style.setProperty("--e", v / 100); enum_.textContent = v; range.value = v;
+      var sleepy = v < 40, open = v >= 70;
+      demo.classList.toggle("sleepy", sleepy); demo.classList.toggle("open", open);
+      var key = sleepy ? "sleepy" : open ? "open" : "normal";
+      if (state.dataset.k !== key) {
+        state.dataset.k = key;
+        stateImg.src = "../little/img/" + (sleepy ? "yawning_face" : open ? "partying_face" : "smiling_face_with_smiling_eyes") + ".webp";
+        stateTxt.textContent = demo.dataset[key];
+        lock.src = "../little/img/" + (open ? "unlocked" : "locked") + ".webp";
+      }
+    }
+    range.addEventListener("input", function () { touched = true; clearTimeout(playing); set(+range.value); });
+    var path = [86, 74, 58, 44, 32, 22, 38, 61, 78, 92], k = 0, cur = 86;
+    function day() {
+      if (touched || !demo.closest(".scene").classList.contains("live")) { playing = null; return; }
+      var from = cur, to = path[k = (k + 1) % path.length];
+      tween(1100, function (t) { if (!touched) { cur = from + (to - from) * t; set(cur); } }, function () { if (!touched) playing = setTimeout(day, 700); });
+    }
+    set(86);
+    if (!reduce) demo.closest(".scene").addEventListener("live", function () { if (!playing && !touched) playing = setTimeout(day, 500); });
+  }
+})();
 </script>
 </body>
 </html>
