@@ -23,10 +23,27 @@ const nums = (s) => s.replace(/[+−-]?\d+(?:[.,]\d+)?%?/g, (m) => `<bdi class="
 const T = (o, lang) => nums(esc(o[lang]));
 // All pictures are the book's own needle-felted art in art/ (scenes sNN, objects o_*, grandpa).
 const img = (n, cls = "", style = "") => `<img src="art/${n}.jpg" alt="" class="${cls}" style="${style}">`;
-const arch = (name, cls = "") => `<figure class="arch ${cls}"><img src="art/${name}.jpg" alt=""></figure>`;
+const arch = (name, cls = "", focus = "") => `<figure class="arch ${cls}"><img src="art/${name}.jpg" alt=""${focus ? ` style="object-position:${focus}"` : ""}></figure>`;
 
 function ideaBox(o, lang) {
   return `<div class="idea">${img("grandpa", "gp")}<div><b>${esc(C.ui.idea[lang])}</b><p>${T(o, lang)}</p></div></div>`;
+}
+
+// Pencil puzzles after the bracelet story; answers upside down at the bottom.
+function priceit(lang) {
+  const A = C.priceit;
+  const cell = '<span class="blank"></span>';
+  const answers = [...A.rows.map((r) => r.price - r.cost), ...A.items.map((it) => (it.keeps ? A.keeps : A.spoils)[lang]), A.box.n * A.box.cost];
+  return { cls: "priceit", html: `
+    <h2>${esc(A.title[lang])}</h2><p class="lead">${T(A.intro, lang)}</p>
+    <h3>${T(A.profitTitle, lang)}</h3>
+    <table class="ptab"><thead><tr>${A.head.map((h) => `<th>${esc(h[lang])}</th>`).join("")}</tr></thead>
+    <tbody>${A.rows.map((r) => `<tr><td class="nm">${img(r.img)}<span>${esc(r.name[lang])}</span></td><td><bdi class="n">${r.cost}</bdi></td><td><bdi class="n">${r.price}</bdi></td><td>${cell}</td></tr>`).join("")}</tbody></table>
+    <h3>${T(A.keepTitle, lang)}</h3>
+    <div class="keeps">${A.items.map((it) => `<div class="kitem">${img(it.img)}<b>${esc(it.name[lang])}</b><span><i class="tick"></i>${esc(A.keeps[lang])}</span><span><i class="tick"></i>${esc(A.spoils[lang])}</span></div>`).join("")}</div>
+    <h3>${T(A.boxTitle, lang)}</h3>
+    <div class="boxq">${img("o_beads")}<p>${T(A.box.text, lang)}</p>${cell}</div>
+    <p class="answers">${esc(A.answers[lang])}: ${answers.map((x) => (typeof x === "number" ? `<bdi class="n">${x}</bdi>` : esc(x))).join(" · ")}</p>` };
 }
 
 function pages(lang) {
@@ -52,35 +69,42 @@ function pages(lang) {
     <h2>${esc(C.parents.title[lang])}</h2>
     ${C.parents.paras.map((p) => `<p>${T(p, lang)}</p>`).join("")}
     <div class="toc"><h3>${esc(C.ui.contents[lang])}</h3>@@TOC@@</div>` });
-  // Part 1: the story
-  const storyStart = P.length + 1;
-  C.story.forEach((s, i) => {
-    if (s.type === "equation") {
-      const e = s.eq;
-      P.push({ cls: "story equation", html: `
-        <div class="kicker">${esc(C.ui.partOne[lang])} · ${i + 1}</div>
-        <h2>${esc(s.title[lang])}</h2>
-        <div class="eq" dir="ltr">
-          <div class="box in"><b>${e.a}</b><span>${esc(e.la[lang])}</span></div><i>−</i>
-          <div class="box out"><b>${e.b}</b><span>${esc(e.lb[lang])}</span></div><i>=</i>
-          <div class="box pr"><b>${e.c}</b><span>${esc(e.lc[lang])}</span></div>
-        </div>
-        ${arch(s.art, "mini")}
-        <p class="text">${T(s.text, lang)}</p>
-        ${ideaBox(s.idea, lang)}` });
-    } else {
-      P.push({ cls: "story", html: `
-        ${arch(s.art)}
-        <div class="kicker">${esc(C.ui.partOne[lang])} · ${i + 1}</div>
-        <h2>${esc(s.title[lang])}</h2>
-        <p class="text">${T(s.text, lang)}</p>
-        ${ideaBox(s.idea, lang)}` });
-    }
+  // Part 1: the stories. Each one: its scenes, then Grandpa's ideas, then its activity (if any).
+  const starts = [];
+  C.stories.forEach((st, si) => {
+    starts.push(P.length + 1);
+    const label = `${esc(C.ui.story[lang])} ${si + 1}`;
+    st.scenes.forEach((s, i) => {
+      const kicker = `<div class="kicker">${label} · ${i === 0 ? esc(st.name[lang]) : `<bdi class="n">${i + 1}</bdi>`}</div>`;
+      if (s.type === "equation") {
+        const e = s.eq;
+        P.push({ cls: "story equation", html: `
+          ${kicker}
+          <h2>${esc(s.title[lang])}</h2>
+          <div class="eq" dir="ltr">
+            <div class="box in"><b>${e.a}</b><span>${esc(e.la[lang])}</span></div><i>−</i>
+            <div class="box out"><b>${e.b}</b><span>${esc(e.lb[lang])}</span></div><i>=</i>
+            <div class="box pr"><b>${e.c}</b><span>${esc(e.lc[lang])}</span></div>
+          </div>
+          ${arch(s.art, "mini", s.focus)}
+          <p class="text">${T(s.text, lang)}</p>
+          ${ideaBox(s.idea, lang)}` });
+      } else {
+        P.push({ cls: "story", html: `
+          ${arch(s.art)}
+          ${kicker}
+          <h2>${esc(s.title[lang])}</h2>
+          <p class="text">${T(s.text, lang)}</p>
+          ${ideaBox(s.idea, lang)}` });
+      }
+    });
+    // Grandpa's ideas recap for this story
+    P.push({ cls: "ideas", html: `
+      <div class="kicker">${label} · ${esc(st.name[lang])}</div>
+      <h2>${esc(C.ideasPage.title[lang])}</h2><p class="lead">${T(st.ideas, lang)}</p>
+      <div class="stickers">${st.scenes.map((s, i) => `<div class="sticker" style="--r:${(i % 2 ? 1 : -1) * (1 + (i % 3) * 0.6)}deg">${img(s.art, "thumb")}<p>${T(s.idea, lang)}</p></div>`).join("")}</div>` });
+    if (st.activity === "priceit") P.push(priceit(lang));
   });
-  // Grandpa's ideas recap
-  P.push({ cls: "ideas", html: `
-    <h2>${esc(C.ideasPage.title[lang])}</h2><p class="lead">${T(C.ideasPage.intro, lang)}</p>
-    <div class="stickers">${C.story.map((s, i) => `<div class="sticker" style="--r:${(i % 2 ? 1 : -1) * (1 + (i % 3) * 0.6)}deg">${img(s.art, "thumb")}<p>${T(s.idea, lang)}</p></div>`).join("")}</div>` });
   // Worksheet
   const W = C.worksheet;
   P.push({ cls: "worksheet", html: `
@@ -121,9 +145,8 @@ function pages(lang) {
     <div class="back-art">${img("o_lemon")}${img("o_palette")}${img("o_bike")}${img("o_cake")}</div>` });
 
   const toc = [
-    [C.ui.partOne[lang] + ": " + (ar ? "الحكاية" : "The story"), storyStart],
-    [C.ideasPage.title[lang], storyStart + C.story.length],
-    [C.worksheet.title[lang], storyStart + C.story.length + 1],
+    ...C.stories.map((st, si) => [`${C.ui.story[lang]} ${si + 1}: ${st.name[lang]}`, starts[si]]),
+    [C.worksheet.title[lang], manualStart - 1],
     [C.ui.partTwo[lang] + ": " + C.manualIntro.title[lang], manualStart],
     [C.businesses.title[lang], manualStart + C.manual.length + 1],
     [C.glossary.title[lang], manualStart + C.manual.length + 2],

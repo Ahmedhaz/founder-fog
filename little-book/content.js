@@ -10,8 +10,8 @@
 //   - The story's children are Malak (a girl) and Yousef (a boy). Pages that speak to the
 //     reader (the worksheet) stay gender-neutral in Arabic: nouns and labels, no imperatives.
 //
-// Pictures: each story page has art: "sNN" (littlebreneur/book/art/sNN.webp), needle-felted
-// wool dioramas made for this book. Small object pictures are art/o_*.webp.
+// Pictures: each story page has art: "sNN" (littlebreneur/book/art/sNN.jpg), needle-felted
+// wool dioramas made for this book; optional focus: "x y" moves the crop. Objects are art/o_*.jpg.
 
 module.exports = {
   meta: {
@@ -34,11 +34,12 @@ module.exports = {
     partOne: { en: "Part 1", ar: "الجزء الأول" },
     partTwo: { en: "Part 2", ar: "الجزء الثاني" },
     contents: { en: "Contents", ar: "المحتويات" },
+    story: { en: "Story", ar: "الحكاية" },
   },
 
   title: {
     lines: [
-      { en: "A story about Malak, Yousef and Grandpa, and a guide to the free game.", ar: "حكاية عن ملك ويوسف وجدّو، ودليل للعبة المجانية." },
+      { en: "Stories about Malak, Yousef and Grandpa, and a guide to the free game.", ar: "حكايات عن ملك ويوسف وجدّو، ودليل للعبة المجانية." },
       { en: "Written for children aged 8 to 12 and the grown-ups who read with them.", ar: "مكتوبة للأطفال من 8 إلى 12 عامًا، وللكبار الذين يقرؤون معهم." },
     ],
     credits: [
@@ -51,16 +52,20 @@ module.exports = {
   parents: {
     title: { en: "For the grown-ups", ar: "إلى الكبار" },
     paras: [
-      { en: "This book has two parts. The story follows Malak and Yousef through one summer with a juice stand. Each scene ends with one of Grandpa's ideas about money: cost, price, profit, saving, honesty and rest.",
-        ar: "لهذا الكتاب جزءان. تتبع الحكاية ملك ويوسف خلال صيف واحد مع كشك عصير. وينتهي كل مشهد بفكرة من أفكار جدّو عن المال: التكلفة والسعر والربح والادّخار والأمانة والراحة." },
-      { en: "The second part shows how to play The Little Entrepreneur, the free game the story comes from. It works in any browser and on phones, with no ads, no accounts and nothing to buy.",
-        ar: "ويشرح الجزء الثاني طريقة لعب «الانتربرونور الصغير»، اللعبة المجانية التي خرجت منها الحكاية. تعمل في أي متصفح وعلى الهواتف، بلا إعلانات ولا حسابات ولا مشتريات." },
-      { en: "A good way to use it: read one scene together, talk about Grandpa's idea, then let your child try it in the game. At the end there is a page for planning a real tiny business.",
-        ar: "طريقة مقترحة: قراءة مشهد واحد معًا، ثم الحديث عن فكرة جدّو، ثم ترك الطفل يجرّبها في اللعبة. وبعد الحكاية صفحة لتخطيط مشروع صغير حقيقي." },
+      { en: "This book has two parts. The stories follow Malak and Yousef through two summers: one with a juice stand, and one making drawings and bracelets. Each scene ends with one of Grandpa's ideas about money: cost, price, profit, saving, stock, partners, honesty and rest.",
+        ar: "لهذا الكتاب جزءان. تتبع الحكايات ملك ويوسف خلال صيفين: صيف مع كشك عصير، وصيف يصنعان فيه رسومات وأساور. وينتهي كل مشهد بفكرة من أفكار جدّو عن المال: التكلفة والسعر والربح والادّخار والبضاعة والشراكة والأمانة والراحة." },
+      { en: "The second part shows how to play The Little Entrepreneur, the free game the stories come from. It works in any browser and on phones, with no ads, no accounts and nothing to buy.",
+        ar: "ويشرح الجزء الثاني طريقة لعب «الانتربرونور الصغير»، اللعبة المجانية التي خرجت منها الحكايات. تعمل في أي متصفح وعلى الهواتف، بلا إعلانات ولا حسابات ولا مشتريات." },
+      { en: "A good way to use it: read one scene together, talk about Grandpa's idea, then let your child try it in the game. After each story there are activity pages, and at the end a page for planning a real tiny business.",
+        ar: "طريقة مقترحة: قراءة مشهد واحد معًا، ثم الحديث عن فكرة جدّو، ثم ترك الطفل يجرّبها في اللعبة. وبعد كل حكاية صفحات أنشطة، وفي النهاية صفحة لتخطيط مشروع صغير حقيقي." },
     ],
   },
 
-  story: [
+  stories: [
+  {
+    name: { en: "The juice stand", ar: "كشك العصير" },
+    ideas: { en: "Every idea from the juice summer, in one place. In the game, each one becomes a sticker.", ar: "كل أفكار صيف العصير في مكان واحد. وفي اللعبة تصبح كل فكرة ملصقًا." },
+    scenes: [
     {
       title: { en: "Summer begins", ar: "الصيف يبدأ" },
       text: { en: "On the first day of summer, Malak and Yousef had a plan. \"Mum's birthday is at the end of summer,\" said Malak. \"We want to buy her a real gift.\" Yousef emptied his pockets: 15 coins. \"That's not enough,\" he sighed. Grandpa put down his tea. \"Then let's earn the rest. What do people here want on a hot day?\" \"Something cold!\" they shouted together.",
@@ -147,11 +152,102 @@ module.exports = {
       idea: { en: "Every coin you don't spend today walks your goal one step closer.", ar: "كل عملة لا تُصرف اليوم تقرّب الهدف خطوة." },
       art: "s12",
     },
+    ],
+  },
+  {
+    name: { en: "Drawings and bracelets", ar: "رسومات وأساور" },
+    ideas: { en: "The ideas from the bracelet summer. Which one matters most in a real business?", ar: "أفكار صيف الأساور. أي فكرة منها هي الأهم في مشروع حقيقي؟" },
+    activity: "priceit",
+    scenes: [
+    {
+      title: { en: "A new summer, a new idea", ar: "صيف جديد وفكرة جديدة" },
+      text: { en: "A year later, summer came back, and so did the plan. This time Malak and Yousef were saving for a set of storybooks: 160 coins. \"No juice this year,\" said Malak, and held up a bracelet of round beads. Yousef held up his drawing of the street cat. \"Everyone at the club asks where we got these.\" Grandpa smiled. \"Then you already have a business. You are good at it, and people want it.\"",
+              ar: "بعد عام عاد الصيف، وعادت الخطة معه. هذه المرة كان ملك ويوسف يدّخران لمجموعة كتب حكايات ثمنها 160 عملة. قالت ملك: «لا عصير هذا العام.» ورفعت سوارًا من خرز مستدير. ورفع يوسف رسمته لقطة الشارع وقال: «كل من في النادي يسأل من أين جئنا بهذه.» ابتسم جدّو: «إذن عندكما مشروع بالفعل. أنتما تجيدانه، والناس يريدونه.»" },
+      idea: { en: "The best business mixes what we are good at with what people want.", ar: "أفضل مشروع يجمع بين ما نجيده وما يريده الناس." },
+      art: "s13",
+    },
+    {
+      title: { en: "Small costs add up", ar: "التكاليف الصغيرة تتجمّع" },
+      text: { en: "\"Thread costs almost nothing,\" said Yousef. Grandpa opened his notebook. \"Let's count everything anyway.\" Beads, thread and a little clasp. Paper, and coloured pencils that get shorter every day. They added it all up. One bracelet cost 2 coins to make. One drawing cost 2 coins too. \"Each thing is tiny on its own,\" said Malak, \"but together they are not.\"",
+              ar: "قال يوسف: «الخيط لا يكلّف شيئًا تقريبًا.» ففتح جدّو دفتره: «لنحسب كل شيء على أي حال.» خرز وخيط ومشبك صغير. وورق، وأقلام ألوان تقصر كل يوم. جمعوا كل شيء، فإذا السوار الواحد يكلّف عملتين، والرسمة الواحدة تكلّف عملتين أيضًا. قالت ملك: «كل شيء صغير وحده، لكنها معًا ليست صغيرة.»" },
+      idea: { en: "Small costs add up. Count every one.", ar: "التكاليف الصغيرة تتجمّع، فلنحسبها كلها." },
+      art: "s14",
+    },
+    {
+      title: { en: "What is an hour worth?", ar: "كم تساوي ساعة من العمل؟" },
+      text: { en: "Malak wanted to sell her bracelets for 3 coins. \"I don't want to ask for too much,\" she said. Grandpa asked, \"How long does one take?\" \"Almost an hour.\" \"It costs 2 coins. At 3, a whole hour of careful work earns you one coin.\" Malak thought about it. At 8, very few would buy. They chose 5, and people paid it happily, because the bracelets were really good.",
+              ar: "أرادت ملك أن تبيع السوار بـ3 عملات، وقالت: «لا أريد أن أطلب كثيرًا.» سألها جدّو: «كم يستغرق السوار الواحد؟» «ساعة تقريبًا.» «يكلّف عملتين. فبـ3 عملات تكسبين من ساعة عمل دقيق عملة واحدة فقط.» فكّرت ملك. بـ8 عملات سيشتري قليلون جدًا. فاختارا 5، ودفعها الناس عن طيب خاطر، لأن الأساور كانت جميلة حقًا." },
+      idea: { en: "Good work deserves a fair price. Time and skill are worth something too.", ar: "العمل الجيد يستحق سعرًا عادلًا. فالوقت والمهارة لهما قيمة." },
+      art: "s15",
+    },
+    {
+      type: "equation",
+      title: { en: "Leftovers that wait", ar: "بقايا تنتظر" },
+      eq: { a: 30, b: 20, c: 10, la: { en: "coins in", ar: "نقود دخلت" }, lb: { en: "coins spent", ar: "نقود صُرفت" }, lc: { en: "profit", ar: "الربح" } },
+      text: { en: "On Saturday they made 10 bracelets and sold 6, at 5 coins each. 30 coins came in. The 10 bracelets had cost 20 coins. So 10 coins were profit, and 4 bracelets were left. \"Last summer the leftover juice went down the sink,\" said Yousef. \"These don't spoil.\" He put the 4 bracelets in a little wooden box for next week.",
+              ar: "يوم السبت صنعا 10 أساور وباعا 6 منها، كل سوار بـ5 عملات. فدخلت 30 عملة. وكانت الأساور الـ10 قد كلّفت 20 عملة. فكان الربح 10 عملات، وبقيت 4 أساور. قال يوسف: «في الصيف الماضي سُكب العصير الباقي في الحوض. أما هذه فلا تفسد.» ووضع الأساور الـ4 في صندوق خشبي صغير للأسبوع القادم." },
+      idea: { en: "Some leftovers keep. They wait in a box for the next customer.", ar: "بعض البقايا لا تفسد، بل تنتظر في صندوق زبونًا جديدًا." },
+      art: "s16", focus: "center 12%",
+    },
+    {
+      title: { en: "The box that got too full", ar: "الصندوق الذي امتلأ" },
+      text: { en: "\"If they don't spoil, let's make lots!\" said Yousef. That week he made 30 bracelets, all in his favourite colour: orange. Only 5 were sold. Soon the box was full and the piggy bank was thin. Grandpa picked up the box and shook it gently by his ear. \"Do you hear that? Those are 50 coins, fast asleep.\"",
+              ar: "قال يوسف: «ما دامت لا تفسد، فلنصنع الكثير!» وفي ذلك الأسبوع صنع 30 سوارًا، كلها بلونه المفضّل: البرتقالي. ولم يُبع منها إلا 5. وسرعان ما امتلأ الصندوق ونحفت الحصّالة. رفع جدّو الصندوق وهزّه بلطف قرب أذنه وقال: «هل تسمع؟ هذه 50 عملة نائمة.»" },
+      idea: { en: "Things waiting in a box are coins we can't spend yet.", ar: "الأشياء المنتظرة في الصندوق نقود لا يمكن إنفاقها بعد." },
+      art: "s17",
+    },
+    {
+      title: { en: "Ask the customers", ar: "سؤال الزبائن" },
+      text: { en: "Malak took her notebook to the summer club. \"What colours do you like? What would you buy?\" Most children said teal and sand. Many asked for one special bead with their own little sign: a heart, a star, a cat. Those took longer and cost 3 coins to make, so they sold them for 8. By Saturday every one was gone.",
+              ar: "أخذت ملك دفترها إلى النادي الصيفي وسألت: «ما الألوان التي تحبونها؟ وماذا تشترون؟» قال أغلب الأطفال: الأزرق المخضرّ والرملي. وطلب كثيرون خرزة مميّزة عليها رمز خاص بهم: قلب أو نجمة أو قطة. كانت هذه تأخذ وقتًا أطول وتكلّف 3 عملات، فباعاها بـ8. وقبل السبت نفدت كلها." },
+      idea: { en: "Customers tell us what to make, if we ask them.", ar: "الزبائن يخبروننا بما نصنع، إذا سألناهم." },
+      art: "s18",
+    },
+    {
+      title: { en: "A fair split", ar: "قسمة عادلة" },
+      text: { en: "Orders kept coming, and four hands were not enough. Their friend Hana ties the best knots on the street. \"Can I help?\" she asked. Before anyone threaded a single bead, Grandpa opened his notebook. \"First, agree on the split.\" For every bracelet Hana tied, she would get one coin. They wrote it down, and all three signed.",
+              ar: "توالت الطلبات، ولم تعد أربع أيادٍ تكفي. وصديقتهما هناء أمهر من يعقد الخيوط في الشارع. سألت: «هل أستطيع المساعدة؟» وقبل أن تُنظم خرزة واحدة، فتح جدّو دفتره وقال: «أولًا، اتفقوا على القسمة.» لكل سوار تعقده هناء عملة واحدة لها. كتبوا ذلك، ووقّع الثلاثة." },
+      idea: { en: "Partners agree on the split before the work starts.", ar: "الشركاء يتفقون على القسمة قبل بدء العمل." },
+      art: "s19",
+    },
+    {
+      title: { en: "The big sale", ar: "التخفيضات الكبيرة" },
+      text: { en: "In the last week, 25 orange bracelets were still asleep in the box. \"Let's sell them for 3,\" said Malak. \"They cost 2, so we still keep one coin from each.\" They made a small sign that said SALE, and by noon the box was empty. They counted the piggy bank twice: 171 coins. The storybooks cost 160. Yousef drew a little orange cat inside the first book.",
+              ar: "في الأسبوع الأخير كانت 25 سوارًا برتقاليًا ما تزال نائمة في الصندوق. قالت ملك: «لنبعها بـ3. كلّفت عملتين، فيبقى لنا من كل واحد عملة.» وكتبا على لافتة صغيرة: «تخفيضات»، وقبل الظهر فرغ الصندوق. وعدّا ما في الحصّالة مرتين: 171 عملة. وثمن كتب الحكايات 160. ورسم يوسف قطة برتقالية صغيرة في أول صفحة من الكتاب الأول." },
+      idea: { en: "A sale turns waiting stock back into coins.", ar: "التخفيضات تعيد البضاعة المنتظرة نقودًا." },
+      art: "s20",
+    },
+    ],
+  },
   ],
 
   ideasPage: {
     title: { en: "Grandpa's ideas", ar: "أفكار جدّو" },
-    intro: { en: "Every idea from the story, in one place. In the game, each one becomes a sticker.", ar: "كل أفكار الحكاية في مكان واحد. وفي اللعبة تصبح كل فكرة ملصقًا." },
+  },
+
+  // After the bracelet story: pencil puzzles. Answers sit upside down at the bottom.
+  priceit: {
+    title: { en: "Price it, keep it, count it", ar: "تسعير وحفظ وحساب" },
+    intro: { en: "Fill this in with pencil. The answers are upside down at the bottom of the page.", ar: "تُملأ هذه الصفحة بقلم رصاص. والإجابات مقلوبة في أسفل الصفحة." },
+    profitTitle: { en: "1. Profit from one", ar: "1. ربح القطعة الواحدة" },
+    head: [ { en: "Thing", ar: "الشيء" }, { en: "Cost", ar: "التكلفة" }, { en: "Price", ar: "السعر" }, { en: "Profit", ar: "الربح" } ],
+    rows: [
+      { img: "o_beads", name: { en: "Bracelet", ar: "سوار" }, cost: 2, price: 5 },
+      { img: "o_palette", name: { en: "Drawing", ar: "رسمة" }, cost: 2, price: 3 },
+      { img: "o_beads", name: { en: "Special-bead bracelet", ar: "سوار بخرزة مميّزة" }, cost: 3, price: 8 },
+    ],
+    keepTitle: { en: "2. Keeps or spoils?", ar: "2. يُحفظ أم يفسد؟" },
+    keeps: { en: "keeps", ar: "يُحفظ" },
+    spoils: { en: "spoils", ar: "يفسد" },
+    items: [
+      { img: "o_lemon", name: { en: "Juice", ar: "عصير" }, keeps: false },
+      { img: "o_beads", name: { en: "Bracelet", ar: "سوار" }, keeps: true },
+      { img: "o_cake", name: { en: "Cake", ar: "كيك" }, keeps: false },
+      { img: "o_palette", name: { en: "Drawing", ar: "رسمة" }, keeps: true },
+    ],
+    boxTitle: { en: "3. Coins asleep in the box", ar: "3. نقود نائمة في الصندوق" },
+    box: { n: 6, cost: 2, text: { en: "6 bracelets wait in the box. Each one cost 2 coins to make. How many coins are asleep?", ar: "في الصندوق 6 أساور تنتظر، وكل سوار كلّف عملتين. كم عملة نائمة في الصندوق؟" } },
+    answers: { en: "Answers", ar: "الإجابات" },
   },
 
   worksheet: {
@@ -269,6 +365,7 @@ module.exports = {
       { img: "o_bag", w: { en: "Profit", ar: "الربح" }, d: { en: "Coins in minus coins spent.", ar: "النقود الداخلة ناقص النقود المصروفة." } },
       { img: "o_smile", w: { en: "Customer", ar: "الزبون" }, d: { en: "Someone who buys from you.", ar: "من يشتري منك." } },
       { img: "o_cups", w: { en: "Leftovers", ar: "البقايا" }, d: { en: "Things you made but didn't sell.", ar: "ما صُنع ولم يُبع." } },
+      { img: "o_beads", w: { en: "Stock", ar: "البضاعة" }, d: { en: "Things that keep, waiting to be sold.", ar: "أشياء لا تفسد، تنتظر أن تُباع." } },
       { img: "o_piggy", w: { en: "Saving", ar: "الادّخار" }, d: { en: "Keeping coins now for something bigger later.", ar: "الاحتفاظ بالنقود الآن من أجل شيء أكبر لاحقًا." } },
       { img: "o_wrench", w: { en: "Investing", ar: "الاستثمار" }, d: { en: "Spending coins on something that helps you earn more.", ar: "إنفاق النقود على شيء يساعد على كسب المزيد." } },
       { img: "o_hands", w: { en: "Partner", ar: "الشريك" }, d: { en: "Someone who shares the work and the profit.", ar: "من يشارك في العمل وفي الربح." } },
@@ -280,7 +377,7 @@ module.exports = {
       { en: "Play the game free", ar: "اللعبة مجانية" },
       { en: "No ads · No accounts · Nothing to buy", ar: "بلا إعلانات · بلا حسابات · لا شيء للشراء" },
     ],
-    blurb: { en: "Malak and Yousef want to buy Mum a gift by the end of summer. With a juice stand, a notebook and Grandpa's ideas, they learn what every business owner knows: cost, price, profit, saving, honesty and rest.",
-             ar: "ملك ويوسف يريدان شراء هدية لماما قبل نهاية الصيف. ومع كشك عصير ودفتر وأفكار جدّو، يتعلّمان ما يعرفه كل صاحب مشروع: التكلفة والسعر والربح والادّخار والأمانة والراحة." },
+    blurb: { en: "Two summers, two tiny businesses. With a juice stand, a box of beads, a notebook and Grandpa's ideas, Malak and Yousef learn what every business owner knows: cost, price, profit, stock, partners, saving and honesty.",
+             ar: "صيفان ومشروعان صغيران. ومع كشك عصير وعلبة خرز ودفتر وأفكار جدّو، يتعلّم ملك ويوسف ما يعرفه كل صاحب مشروع: التكلفة والسعر والربح والبضاعة والشراكة والادّخار والأمانة." },
   },
 };

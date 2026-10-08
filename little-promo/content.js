@@ -8,8 +8,8 @@
 module.exports = {
   meta: {
     title: { en: "The Little Entrepreneur: a money game and picture book for kids 8 to 12", ar: "الانتربرونور الصغير: لعبة وكتاب مصوّر عن المال للأطفال من 8 إلى 12" },
-    desc: { en: "One summer, one tiny business. A free game for the browser and the phone, and a 28-page picture book to read or print. Arabic and English. No ads, no tracking.",
-            ar: "صيف واحد ومشروع صغير. لعبة مجانية للمتصفح والهاتف، وكتاب مصوّر من 28 صفحة للقراءة أو الطباعة. بالعربية والإنجليزية، بلا إعلانات ولا تتبّع." },
+    desc: { en: "One summer, one tiny business. A free game for the browser and the phone, and a 38-page picture book to read or print. Arabic and English. No ads, no tracking.",
+            ar: "صيف واحد ومشروع صغير. لعبة مجانية للمتصفح والهاتف، وكتاب مصوّر من 38 صفحة للقراءة أو الطباعة. بالعربية والإنجليزية، بلا إعلانات ولا تتبّع." },
     brand: { en: "The Little Entrepreneur", ar: "الانتربرونور الصغير" },
   },
   nav: {
@@ -29,7 +29,7 @@ module.exports = {
   stats: [
     ["12", { en: "weeks of summer", ar: "أسبوعًا من الصيف" }],
     ["32", { en: "dilemmas in the game", ar: "معضلة في اللعبة" }],
-    ["28", { en: "pages in the book", ar: "صفحة في الكتاب" }],
+    ["38", { en: "pages in the book", ar: "صفحة في الكتاب" }],
     ["2", { en: "languages", ar: "لغتان" }],
     ["0", { en: "ads or trackers", ar: "إعلانات أو أدوات تتبّع" }],
   ],
@@ -48,9 +48,9 @@ module.exports = {
     },
     book: {
       title: { en: "The picture book", ar: "الكتاب المصوّر" },
-      lead: { en: "A 28-page book: a story in needle-felted pictures, then a guide to the game and a page for planning a real tiny business.", ar: "كتاب من 28 صفحة: حكاية برسومات من الصوف الملبّد، ثم دليل للعبة وصفحة لتخطيط مشروع صغير حقيقي." },
+      lead: { en: "A 38-page book: two stories in needle-felted pictures, then a guide to the game and a page for planning a real tiny business.", ar: "كتاب من 38 صفحة: حكايتان برسومات من الصوف الملبّد، ثم دليل للعبة وصفحة لتخطيط مشروع صغير حقيقي." },
       points: [
-        { en: "12 scenes, each ending with one of Grandpa's ideas", ar: "12 مشهدًا، وكل مشهد ينتهي بفكرة من أفكار جدّو" },
+        { en: "20 scenes, each ending with one of Grandpa's ideas", ar: "20 مشهدًا، وكل مشهد ينتهي بفكرة من أفكار جدّو" },
         { en: "Read it page by page online", ar: "للقراءة صفحة بعد صفحة على الإنترنت" },
         { en: "A5 PDF, free to print for home and school", ar: "ملف PDF بمقاس A5، مجاني للطباعة في البيت والمدرسة" },
       ],
@@ -93,7 +93,7 @@ module.exports = {
   },
   bookIn: {
     kicker: { en: "Inside the book", ar: "داخل الكتاب" },
-    h2: { en: "12 felted scenes and one idea each.", ar: "12 مشهدًا من الصوف الملبّد، وفكرة في كل مشهد." },
+    h2: { en: "20 felted scenes and one idea each.", ar: "20 مشهدًا من الصوف الملبّد، وفكرة في كل مشهد." },
     sub: { en: "Every picture was made in the same handmade wool style, so Malak, Yousef and Grandpa look the same on every page. The numbers in the story match the game.", ar: "كل الصور مصنوعة بأسلوب الصوف اليدوي نفسه، فيظهر ملك ويوسف وجدّو بالشكل نفسه في كل صفحة. وأرقام الحكاية تطابق أرقام اللعبة." },
     pages: [
       ["01", { en: "The cover", ar: "الغلاف" }], ["04", { en: "Summer begins", ar: "الصيف يبدأ" }], ["08", { en: "Profit", ar: "الربح" }],

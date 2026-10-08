@@ -108,6 +108,29 @@ img { display: block; }
 .piggyrow img { width: 15mm; height: 15mm; border-radius: 50%; object-fit: cover; }
 .piggyrow .dot { width: 7.5mm; height: 7.5mm; border-radius: 50%; border: .4mm dashed var(--bronze); }
 
+/* ───────── price it (after the bracelet story) ───────── */
+.priceit h3 { margin: 3mm 0 1.5mm; }
+.ptab { width: 100%; border-collapse: separate; border-spacing: 0 1.6mm; font-size: 10.4pt; }
+.ptab th { font-size: 7.6pt; color: var(--bronze); text-align: start; padding: 0 1.5mm; letter-spacing: .1em; text-transform: uppercase; font-weight: 700; }
+:lang(ar) .ptab th { letter-spacing: 0; font-size: 8.6pt; font-weight: 500; }
+.ptab td { background: var(--white); padding: 1.4mm 1.8mm; border-top: .3mm solid var(--line); border-bottom: .3mm solid var(--line); font-weight: 600; }
+.ptab td:first-child { border-inline-start: .3mm solid var(--line); border-start-start-radius: 3mm; border-end-start-radius: 3mm; }
+.ptab td:last-child { border-inline-end: .3mm solid var(--line); border-start-end-radius: 3mm; border-end-end-radius: 3mm; }
+.ptab .nm { display: flex; align-items: center; gap: 2mm; color: var(--teal); }
+.ptab .nm img { width: 8mm; height: 8mm; flex: none; border-radius: 50%; object-fit: cover; }
+.priceit .blank { display: inline-block; width: 14mm; height: 7mm; border: .4mm dashed var(--bronze); border-radius: 2mm; vertical-align: middle; }
+.keeps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2mm; }
+.kitem { background: var(--white); border: .3mm solid var(--line); border-radius: 3mm; padding: 2mm 1.5mm; text-align: center; font-size: 8.6pt; }
+.kitem img { width: 11mm; height: 11mm; border-radius: 50%; object-fit: cover; margin: 0 auto 1mm; }
+.kitem b { display: block; color: var(--teal); font-size: 9.6pt; margin-bottom: 1mm; }
+.kitem span { display: flex; align-items: center; gap: 1.5mm; justify-content: center; color: var(--grey); line-height: 1.7; }
+.tick { width: 3.4mm; height: 3.4mm; border: .35mm solid var(--bronze); border-radius: .8mm; flex: none; }
+.boxq { display: flex; align-items: center; gap: 3mm; background: var(--sand); border-radius: 4mm; padding: 2.5mm 3.5mm; }
+.boxq img { width: 12mm; height: 12mm; border-radius: 50%; object-fit: cover; flex: none; }
+.boxq p { margin: 0; flex: 1; font-size: 10pt; line-height: 1.45; }
+.boxq .blank { flex: none; }
+.answers { margin: auto 0 0 !important; transform: rotate(180deg); text-align: center; font-size: 8pt; color: var(--grey); }
+
 /* ───────── game guide ───────── */
 .manual-intro p { font-size: 12pt; }
 .mi-art { margin-top: auto; display: flex; align-items: flex-end; justify-content: center; gap: 8mm; }
