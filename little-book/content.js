@@ -42,7 +42,7 @@ module.exports = {
       { en: "Written for children aged 8 to 12 and the grown-ups who read with them.", ar: "مكتوبة للأطفال من 8 إلى 12 عامًا، وللكبار الذين يقرؤون معهم." },
     ],
     credits: [
-      { en: "Pictures: Microsoft Fluent Emoji (MIT licence). Font: Baloo Bhaijaan 2 (SIL Open Font Licence).", ar: "الصور: Microsoft Fluent Emoji (رخصة MIT). الخط: Baloo Bhaijaan 2 (رخصة SIL المفتوحة)." },
+      { en: "Pictures: needle-felted art made for this book. Fonts: Manrope and Readex Pro (SIL Open Font Licence).", ar: "الصور: رسومات صوف ملبّد صُنعت لهذا الكتاب. الخطوط: Manrope و Readex Pro (رخصة SIL المفتوحة)." },
       { en: "Free to print and share with family, friends and schools.", ar: "مجاني للطباعة والمشاركة مع العائلة والأصدقاء والمدارس." },
       { en: "© 2026 adam.ahmedhaz.com", ar: "© 2026 adam.ahmedhaz.com" },
     ],

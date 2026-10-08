@@ -2,15 +2,15 @@
   "appId": "com.ahmedhaz.littleentrepreneur",
   "appName": "Littlebreneur",
   "webDir": "www",
-  "backgroundColor": "#FFF4DE",
+  "backgroundColor": "#F8F6F1",
   "ios": {
-    "backgroundColor": "#FFF4DE",
+    "backgroundColor": "#F8F6F1",
     "contentInset": "never"
   },
   "plugins": {
     "StatusBar": {
       "style": "LIGHT",
-      "backgroundColor": "#FFF4DE",
+      "backgroundColor": "#F8F6F1",
       "overlaysWebView": false
     }
   }

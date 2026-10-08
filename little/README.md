@@ -9,11 +9,12 @@ Run a tiny business for one 12-week summer: pick a price, how many to make and o
 - `content.js`: all text and numbers, English and Arabic side by side (businesses, goals, dilemmas, Grandpa's ideas, UI strings). The writing rules are in its header comment. Edit here to add dilemmas.
 - `game.js`: the engine (pure functions, also runs in Node) and the UI.
 - `index.html`: the page and all styles. `sw.js` and `manifest.webmanifest` make it installable and offline.
-- `img/`: 3D emoji from [Microsoft Fluent Emoji](https://github.com/microsoft/fluentui-emoji) (MIT), resized to 160px webp.
+- `img/`: needle-felted wool pictures made for the game with Cloudflare Workers AI (FLUX.2 [dev]), following the Creatives design system. Shown as round badges or arches.
+- `fonts/`: Manrope (English) and Readex Pro (Arabic), both OFL. They are bundled, so the game loads nothing from other websites.
 
 ## Privacy
 
-No analytics, no tracking, no accounts and no network calls except the Google Font. The child's name and progress stay in `localStorage` on the device.
+No analytics, no tracking, no accounts and no network calls at all. The child's name and progress stay in `localStorage` on the device.
 
 ## Tests
 
