@@ -187,7 +187,9 @@ python3 founder-fog-app/site/build.py
 ```
 
 Copy lives in `site/strings.json` (both languages side by side) and the
-layout in `site/template.html`. Set `config.testflight_url` to a public
+layout in `site/template.html`. It follows the book look (palette, Manrope /
+Readex Pro bundled in `fog/fonts/`, the cover in an arch frame, felted pictures,
+the teal mentor panel). `site/shots.cjs` recaptures the game screens. Set `config.testflight_url` to a public
 TestFlight link to show an "iPhone beta" button. Screenshots in `fog/shots/`
 are real captures of the game in each language.
 
