@@ -48,7 +48,7 @@ img { display: block; }
 :lang(ar) .cover .ages { letter-spacing: 0; }
 .cover h1 { font-size: 32pt; }
 .cover .cover-sub { color: var(--grey); font-size: 11.5pt; margin: 2.5mm 4mm 6mm; }
-.arch.cover-art { height: 138mm; border-radius: 62mm 62mm 4mm 4mm / 50mm 50mm 4mm 4mm; }
+.arch.cover-art { height: 130mm; border-radius: 62mm 62mm 4mm 4mm / 50mm 50mm 4mm 4mm; }
 .cover .cover-foot { margin-top: auto; margin-bottom: 0; font-size: 8pt; color: var(--grey); letter-spacing: .1em; }
 .back { background: var(--teal); color: var(--ivory); text-align: center; padding: 16mm 14mm 12mm; }
 .back .blurb { font-size: 12.5pt; line-height: 1.6; margin: 0 2mm 9mm; font-weight: 400; }
@@ -213,6 +213,9 @@ html.print body, html.print .reader { background: none; padding: 0; display: blo
 html.print .bar, html.print .nav { display: none; }
 html.print .stage, html.print .book { position: static; overflow: visible; width: auto; height: auto; transform: none; }
 html.print .reader .page { display: flex; border-radius: 0; box-shadow: none; animation: none; break-after: page; }
+/* Print-shop edition: 3 mm bleed on every side. The transparent border shows the page's own background,
+   so colour runs past the trim line and the trimmed page is exactly 148 × 210 mm. */
+html.bleed .reader .page { width: 154mm; height: 216mm; border: 3mm solid transparent; }
 @media print {
   .bar, .nav { display: none !important; }
   body, .reader { background: none; padding: 0; display: block; overflow: visible !important; }

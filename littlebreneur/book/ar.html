@@ -62,7 +62,7 @@ img { display: block; }
 :lang(ar) .cover .ages { letter-spacing: 0; }
 .cover h1 { font-size: 32pt; }
 .cover .cover-sub { color: var(--grey); font-size: 11.5pt; margin: 2.5mm 4mm 6mm; }
-.arch.cover-art { height: 138mm; border-radius: 62mm 62mm 4mm 4mm / 50mm 50mm 4mm 4mm; }
+.arch.cover-art { height: 130mm; border-radius: 62mm 62mm 4mm 4mm / 50mm 50mm 4mm 4mm; }
 .cover .cover-foot { margin-top: auto; margin-bottom: 0; font-size: 8pt; color: var(--grey); letter-spacing: .1em; }
 .back { background: var(--teal); color: var(--ivory); text-align: center; padding: 16mm 14mm 12mm; }
 .back .blurb { font-size: 12.5pt; line-height: 1.6; margin: 0 2mm 9mm; font-weight: 400; }
@@ -227,6 +227,9 @@ html.print body, html.print .reader { background: none; padding: 0; display: blo
 html.print .bar, html.print .nav { display: none; }
 html.print .stage, html.print .book { position: static; overflow: visible; width: auto; height: auto; transform: none; }
 html.print .reader .page { display: flex; border-radius: 0; box-shadow: none; animation: none; break-after: page; }
+/* Print-shop edition: 3 mm bleed on every side. The transparent border shows the page's own background,
+   so colour runs past the trim line and the trimmed page is exactly 148 × 210 mm. */
+html.bleed .reader .page { width: 154mm; height: 216mm; border: 3mm solid transparent; }
 @media print {
   .bar, .nav { display: none !important; }
   body, .reader { background: none; padding: 0; display: block; overflow: visible !important; }
@@ -247,7 +250,7 @@ html.print .reader .page { display: flex; border-radius: 0; box-shadow: none; an
 <section class="page cover" data-n="1">
     <div class="cover-top"><span class="ages">للأعمار من <bdi class="n">8</bdi> إلى <bdi class="n">12</bdi></span></div>
     <h1>الانتربرونور الصغير</h1>
-    <p class="cover-sub">حكاية مشروع صيفي، ودليل اللعب</p>
+    <p class="cover-sub">أربع حكايات عن مشاريع الصيف، ودليل اللعب</p>
     <figure class="arch cover-art"><img src="art/cover.jpg" alt=""></figure>
     <p class="cover-foot">adam.ahmedhaz.com/littlebreneur</p></section>
 <section class="page titlepage" data-n="2">
@@ -610,10 +613,14 @@ html.print .reader .page { display: flex; border-radius: 0; box-shadow: none; an
     <div class="back-art"><img src="art/o_lemon.jpg" alt="" class="" style=""><img src="art/o_beads.jpg" alt="" class="" style=""><img src="art/o_bike.jpg" alt="" class="" style=""><img src="art/o_cupcake.jpg" alt="" class="" style=""></div></section>
 </div></div></main>
 <nav class="nav"><button class="prev" aria-label="السابق">→</button><span class="count" dir="ltr"><span class="cur">1</span> / 60</span><button class="next" aria-label="التالي">←</button></nav>
-<script>// Page-by-page reader. ?print shows every page for the PDF. #p5 opens page 5.
+<script>// Page-by-page reader. ?print shows every page for the PDF (?print&bleed adds 3 mm bleed). #p5 opens page 5.
 (function () {
   "use strict";
-  if (/[?&]print\b/.test(location.search)) { document.documentElement.classList.add("print"); return; }
+  if (/[?&]print\b/.test(location.search)) {
+    document.documentElement.classList.add("print");
+    if (/[?&]bleed\b/.test(location.search)) document.documentElement.classList.add("bleed");
+    return;
+  }
   var pages = Array.prototype.slice.call(document.querySelectorAll(".page"));
   var rtl = document.documentElement.dir === "rtl";
   var cur = document.querySelector(".cur"), prev = document.querySelector(".prev"), next = document.querySelector(".next");

@@ -1,7 +1,11 @@
-// Page-by-page reader. ?print shows every page for the PDF. #p5 opens page 5.
+// Page-by-page reader. ?print shows every page for the PDF (?print&bleed adds 3 mm bleed). #p5 opens page 5.
 (function () {
   "use strict";
-  if (/[?&]print\b/.test(location.search)) { document.documentElement.classList.add("print"); return; }
+  if (/[?&]print\b/.test(location.search)) {
+    document.documentElement.classList.add("print");
+    if (/[?&]bleed\b/.test(location.search)) document.documentElement.classList.add("bleed");
+    return;
+  }
   var pages = Array.prototype.slice.call(document.querySelectorAll(".page"));
   var rtl = document.documentElement.dir === "rtl";
   var cur = document.querySelector(".cur"), prev = document.querySelector(".prev"), next = document.querySelector(".next");

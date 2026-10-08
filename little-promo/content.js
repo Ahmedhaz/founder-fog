@@ -96,8 +96,8 @@ module.exports = {
     h2: { en: "36 felted scenes and one idea each.", ar: "36 مشهدًا من الصوف الملبّد، وفكرة في كل مشهد." },
     sub: { en: "Every picture was made in the same handmade wool style, so Malak, Yousef and Grandpa look the same on every page. The numbers in the story match the game.", ar: "كل الصور مصنوعة بأسلوب الصوف اليدوي نفسه، فيظهر ملك ويوسف وجدّو بالشكل نفسه في كل صفحة. وأرقام الحكاية تطابق أرقام اللعبة." },
     pages: [
-      ["01", { en: "The cover", ar: "الغلاف" }], ["04", { en: "Summer begins", ar: "الصيف يبدأ" }], ["08", { en: "Profit", ar: "الربح" }],
-      ["09", { en: "A rainy Saturday", ar: "سبت ماطر" }], ["17", { en: "Your turn", ar: "دورك" }], ["22", { en: "The game guide", ar: "دليل اللعبة" }],
+      ["01", { en: "The cover", ar: "الغلاف" }], ["04", { en: "Story 1: The juice stand", ar: "الحكاية 1: كشك العصير" }], ["17", { en: "Story 2: Drawings and bracelets", ar: "الحكاية 2: رسومات وأساور" }],
+      ["27", { en: "Story 3: Bike wash and fix", ar: "الحكاية 3: غسيل الدراجات" }], ["37", { en: "Story 4: Cakes and cookies", ar: "الحكاية 4: كيك وكوكيز" }], ["59", { en: "The certificate", ar: "الشهادة" }],
     ],
     cta: { en: "Open the book", ar: "افتحوا الكتاب" },
   },

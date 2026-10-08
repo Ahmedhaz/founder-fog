@@ -16,7 +16,7 @@
 module.exports = {
   meta: {
     title: { en: "The Little Entrepreneur", ar: "الانتربرونور الصغير" },
-    subtitle: { en: "A summer business story, and how to play the game", ar: "حكاية مشروع صيفي، ودليل اللعب" },
+    subtitle: { en: "Four summer business stories, and how to play the game", ar: "أربع حكايات عن مشاريع الصيف، ودليل اللعب" },
     ages: { en: "For ages 8 to 12", ar: "للأعمار من 8 إلى 12" },
     url: "https://adam.ahmedhaz.com/little/",
     promo: "https://adam.ahmedhaz.com/littlebreneur/",

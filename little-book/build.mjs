@@ -5,6 +5,8 @@
 //   node little-book/build.mjs            web pages only
 //   node little-book/build.mjs --pdf      web pages + PDFs (needs playwright or playwright-core,
 //                                         and CHROME_PATH or PLAYWRIGHT_BROWSERS_PATH)
+//   node little-book/build.mjs --print DIR   print-shop PDFs with 3 mm bleed (154 × 216 mm) into DIR,
+//                                         kept out of the repo because the whole repo is published
 // No network: the font, pictures and screenshots are all local files.
 import fs from "node:fs";
 import path from "node:path";
@@ -232,11 +234,13 @@ fs.mkdirSync(OUT, { recursive: true });
 for (const lang of ["en", "ar"]) fs.writeFileSync(path.join(OUT, lang === "ar" ? "ar.html" : "index.html"), html(lang));
 console.log("built", OUT);
 
-if (process.argv.includes("--pdf")) {
+const printDir = process.argv.includes("--print") ? path.resolve(process.argv[process.argv.indexOf("--print") + 1]) : null;
+if (process.argv.includes("--pdf") || printDir) {
   let pw;
   try { pw = require("playwright"); } catch { pw = require("playwright-core"); }
   const browser = await pw.chromium.launch(process.env.CHROME_PATH ? { executablePath: process.env.CHROME_PATH } : {});
   for (const lang of ["en", "ar"]) {
+    if (!process.argv.includes("--pdf")) break;
     const page = await browser.newPage();
     await page.goto(pathToFileURL(path.join(OUT, lang === "ar" ? "ar.html" : "index.html")).href + "?print");
     await page.evaluate(() => document.fonts.ready);
@@ -245,6 +249,20 @@ if (process.argv.includes("--pdf")) {
     await page.pdf({ path: out, preferCSSPageSize: true, printBackground: true });
     console.log("pdf", out, Math.round(fs.statSync(out).size / 1024) + " KB");
     await page.close();
+  }
+  if (printDir) {
+    fs.mkdirSync(printDir, { recursive: true });
+    for (const lang of ["en", "ar"]) {
+      const page = await browser.newPage();
+      await page.goto(pathToFileURL(path.join(OUT, lang === "ar" ? "ar.html" : "index.html")).href + "?print&bleed");
+      await page.addStyleTag({ content: "@page { size: 154mm 216mm; margin: 0; }" });
+      await page.evaluate(() => document.fonts.ready);
+      await page.waitForTimeout(300);
+      const out = path.join(printDir, `the-little-entrepreneur-${lang}-print-bleed.pdf`);
+      await page.pdf({ path: out, preferCSSPageSize: true, printBackground: true });
+      console.log("print", out, Math.round(fs.statSync(out).size / 1024) + " KB");
+      await page.close();
+    }
   }
   await browser.close();
 }
