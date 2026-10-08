@@ -142,8 +142,8 @@ h3 { font-size: 22px; }
 .prod h3 { margin-top: 0; }
 .prod p { margin: 0 0 12px; color: var(--grey); }
 .prod ul { list-style: none; padding: 0; margin: 0 0 18px; display: grid; gap: 8px; }
-.prod li { display: flex; gap: 10px; align-items: flex-start; font-size: 15.5px; }
-.prod li::before { content: ""; flex: none; width: 8px; height: 8px; margin-top: 9px; border-radius: 50%; background: var(--bronze); }
+.prod li { position: relative; padding-inline-start: 18px; font-size: 15.5px; }
+.prod li::before { content: ""; position: absolute; inset-inline-start: 0; top: 9px; width: 8px; height: 8px; border-radius: 50%; background: var(--bronze); }
 .prod .ctas .btn { min-height: 48px; }
 
 /* family */

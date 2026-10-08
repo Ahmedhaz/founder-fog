@@ -1,6 +1,6 @@
 // The Little Entrepreneur service worker: caches the whole game so it works offline.
 // Everything is same-origin: fonts and pictures are bundled.
-const CACHE = 'little-v2';
+const CACHE = 'little-v3';
 const ASSETS = [
   './',
   './index.html',
