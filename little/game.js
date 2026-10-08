@@ -696,7 +696,7 @@
       (o.echo ? '<p class="because soft">' + img("hourglass_not_done", "tiny") + "…</p>" : "") + "</section>" +
       ideaBox(d.id, false) +
       '<div class="sticky"><button class="btn primary big" data-act="next" data-focus>' + esc(T("next")) + "</button></div>";
-    gameShell(html, "idea");
+    gameShell(html, "ideascr");
     on('[data-act="next"]', function () { collect(d.id); finishWeek(); });
   }
 

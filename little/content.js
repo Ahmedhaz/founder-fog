@@ -192,7 +192,7 @@ var LITTLE = {
     stickerCount: { en: "{a} of {b} stickers", ar: "الملصقات: {a} من {b}" },
     stickerEmpty: { en: "Play a summer to collect Grandpa's ideas.", ar: "كل صيف يضيف أفكارًا جديدة من جدّو." },
 
-    credit: { en: "3D emoji: Microsoft Fluent Emoji (MIT licence).", ar: "رموز تعبيرية 3D: Microsoft Fluent Emoji (رخصة MIT)." },
+    credit: { en: "Pictures: needle-felted art made for this game. Fonts: Manrope and Readex Pro (OFL).", ar: "الصور: رسومات صوف ملبّد صُنعت لهذه اللعبة. الخطوط: Manrope و Readex Pro (رخصة OFL)." },
     resetQ: { en: "Start a new summer? This one will be lost.", ar: "بدء صيف جديد؟ سيضيع هذا الصيف." },
   },
 
@@ -223,13 +223,13 @@ var LITTLE = {
     en: [
       "The Little Entrepreneur is a free game for ages 8 to 12 about money basics: profit, saving, pricing, listening to customers, honesty and rest.",
       "Nothing leaves this device. There are no accounts, no ads, no analytics, no tracking and nothing to buy. Your child's name and progress are saved only in this browser.",
-      "The only thing loaded from the internet is the font. After the first visit it also works offline.",
+      "It loads nothing from other websites. After the first visit it also works offline.",
       "There are no harsh endings. A summer takes about 15 minutes.",
     ],
     ar: [
       "الانتربرونور الصغير لعبة مجانية للأعمار من 8 إلى 12 عن أساسيات المال: الربح والادّخار والتسعير والإصغاء للزبائن والأمانة والراحة.",
       "لا يخرج شيء من هذا الجهاز. لا حسابات ولا إعلانات ولا تحليلات ولا تتبّع ولا مشتريات. اسم طفلكم وتقدّمه محفوظان في هذا المتصفح فقط.",
-      "الشيء الوحيد الذي يُحمَّل من الإنترنت هو الخط. وبعد الزيارة الأولى تعمل اللعبة دون اتصال أيضًا.",
+      "لا تُحمِّل اللعبة شيئًا من مواقع أخرى. وبعد الزيارة الأولى تعمل دون اتصال أيضًا.",
       "لا توجد نهايات قاسية. ويستغرق الصيف الواحد نحو 15 دقيقة.",
     ],
   },
