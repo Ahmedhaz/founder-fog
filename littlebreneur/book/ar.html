@@ -1,0 +1,420 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>الانتربرونور الصغير · الكتاب المصوّر</title>
+<meta name="description" content="ملك ويوسف يريدان شراء هدية لماما قبل نهاية الصيف. ومع كشك عصير ودفتر وأفكار جدّو، يتعلّمان ما يعرفه كل صاحب مشروع: التكلفة والسعر والربح والادّخار والأمانة والراحة.">
+<link rel="canonical" href="https://adam.ahmedhaz.com/littlebreneur/book/ar.html">
+<link rel="alternate" hreflang="en" href="https://adam.ahmedhaz.com/littlebreneur/book/">
+<link rel="alternate" hreflang="ar" href="https://adam.ahmedhaz.com/littlebreneur/book/ar.html">
+<meta property="og:title" content="الانتربرونور الصغير">
+<meta property="og:description" content="ملك ويوسف يريدان شراء هدية لماما قبل نهاية الصيف. ومع كشك عصير ودفتر وأفكار جدّو، يتعلّمان ما يعرفه كل صاحب مشروع: التكلفة والسعر والربح والادّخار والأمانة والراحة.">
+<meta property="og:image" content="https://adam.ahmedhaz.com/littlebreneur/og-ar.png">
+<link rel="icon" type="image/png" href="../../little/icons/icon-192.png">
+<style>@font-face { font-family: "Baloo Bhaijaan 2"; src: url(fonts/BalooBhaijaan2.ttf) format("truetype"); font-weight: 400 800; font-display: block; }
+:root {
+  --ink: #2B2140; --ink2: #5E5373; --ink3: #8E83A3; --paper: #FFFBF2; --cream: #FFF4DE; --line: #F1DFC0;
+  --orange: #FF7A1A; --yellow: #FFC93C; --green: #22A86B; --red: #E5484D; --purple: #8B5CF6; --pink: #FF5C8A; --blue: #3D8BFF;
+  --font: "Baloo Bhaijaan 2", system-ui, sans-serif;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body { font-family: var(--font); color: var(--ink); background: #EFE6D6; }
+bdi.n { unicode-bidi: isolate; direction: ltr; }
+img { display: block; }
+
+/* ───────── the page (A5) ───────── */
+@page { size: 148mm 210mm; margin: 0; }
+.page { width: 148mm; height: 210mm; position: relative; overflow: hidden; background: var(--paper); padding: 10mm 11mm 13mm;
+        display: flex; flex-direction: column; font-size: 11.6pt; line-height: 1.5; }
+.page h1 { font-size: 30pt; line-height: 1.05; margin: 0; font-weight: 800; }
+.page h2 { font-size: 20pt; line-height: 1.15; margin: 1mm 0 2.5mm; font-weight: 800; }
+.page h3 { font-size: 13pt; margin: 0 0 2mm; }
+.page p { margin: 0 0 2.6mm; }
+.kicker { color: var(--orange); font-weight: 800; font-size: 9pt; letter-spacing: .06em; text-transform: uppercase; }
+:lang(ar) .kicker { letter-spacing: 0; font-size: 10pt; }
+.lead { color: var(--ink2); }
+.pn { position: absolute; bottom: 5mm; left: 0; right: 0; text-align: center; font-size: 9pt; color: var(--ink3); font-weight: 700; }
+
+/* ───────── scenes ───────── */
+.scene { position: relative; height: 80mm; flex: none; border-radius: 6mm; overflow: hidden; margin-bottom: 4mm; border: .6mm solid var(--line); }
+.scene .it { position: absolute; height: auto; filter: drop-shadow(0 1.2mm 1.2mm rgba(43, 33, 64, .18)); }
+.bg-day { background: linear-gradient(#A9DCFF 0 62%, #93D47E 62% 100%); }
+.bg-hot { background: linear-gradient(#FFD08F 0 62%, #E9C86B 62% 100%); }
+.bg-rain { background: repeating-linear-gradient(105deg, transparent 0 7mm, rgba(255, 255, 255, .35) 7mm 7.4mm), linear-gradient(#A3B0C7 0 62%, #74A56F 62% 100%); }
+.bg-night { background: radial-gradient(circle at 80% 20%, #3B3680 0, transparent 40%), linear-gradient(#1E1B4B 0 62%, #3B2F5E 62% 100%); }
+.bg-room { background: radial-gradient(circle, rgba(255, 122, 26, .12) .7mm, transparent .8mm) 0 0 / 7mm 7mm, linear-gradient(#FFE9C7 0 66%, #E6BC85 66% 100%); }
+.stand { position: absolute; bottom: 8%; height: 58%; }
+.stand .awning { position: absolute; top: 0; left: -4%; right: -4%; height: 26%; z-index: 1; border-radius: 1.5mm 1.5mm 3mm 3mm;
+                 background: repeating-linear-gradient(90deg, var(--aw) 0 12%, #fff 12% 24%); box-shadow: 0 1mm 0 rgba(0, 0, 0, .1); }
+.stand .posts { position: absolute; top: 20%; bottom: 30%; left: 3%; right: 3%; z-index: 1; border-left: 1.4mm solid #B07A45; border-right: 1.4mm solid #B07A45; }
+.stand .counter { position: absolute; bottom: 0; left: 0; right: 0; height: 42%; z-index: 20; background: linear-gradient(#D69A5E, #B97B42); border-radius: 1.5mm;
+                  display: grid; place-items: center; box-shadow: 0 1mm 0 rgba(0, 0, 0, .12); }
+.stand .counter span { background: #fff; border-radius: 1.5mm; padding: .2mm 2.5mm; font-weight: 800; font-size: 9pt; white-space: nowrap; color: var(--ink); }
+
+/* ───────── idea box ───────── */
+.idea { margin-top: auto; display: flex; gap: 3mm; align-items: center; background: #FFF1C9; border: .6mm solid var(--yellow); border-radius: 4mm; padding: 2.5mm 3.5mm; }
+.idea .gp { width: 12mm; height: 12mm; flex: none; }
+.idea b { font-size: 9.5pt; color: #B06F00; }
+.idea p { margin: 0; font-weight: 700; font-size: 11pt; line-height: 1.35; }
+
+/* ───────── cover & back ───────── */
+.cover, .back { background: radial-gradient(circle at 25% 15%, #FFE08A, #FF9F45 55%, #FF7A1A); color: #fff; text-align: center; padding: 12mm 10mm; }
+.cover h1 { font-size: 36pt; text-shadow: 0 1mm 0 rgba(160, 60, 0, .25); margin-top: 3mm; }
+.cover .cover-sub { font-size: 13pt; font-weight: 700; margin: 3mm 6mm 6mm; }
+.cover .cover-top { display: flex; justify-content: center; }
+.cover .ages { background: #fff; color: var(--orange); border-radius: 99px; padding: .5mm 4mm; font-weight: 800; font-size: 10pt; }
+.cover .scene { height: 104mm; border: 1.2mm solid #fff; box-shadow: 0 3mm 6mm rgba(160, 60, 0, .25); }
+.cover .cover-foot { margin-top: auto; margin-bottom: 0; font-weight: 700; font-size: 9pt; opacity: .9; }
+.back .blurb { font-size: 12.5pt; font-weight: 600; line-height: 1.5; margin: 4mm 2mm 8mm; }
+.qrbig { width: 44mm; height: 44mm; margin: 0 auto; background: #fff; border-radius: 5mm; padding: 4mm; }
+.qrbig svg, .qr svg { width: 100%; height: 100%; display: block; }
+.back .b1 { font-size: 15pt; font-weight: 800; margin: 5mm 0 0; }
+.back .url { font-size: 12pt; font-weight: 700; margin: 0 0 2mm; direction: ltr; }
+.back .b2 { font-size: 10pt; opacity: .95; }
+.back-art { margin-top: auto; display: flex; justify-content: center; gap: 4mm; }
+.back-art img { width: 15mm; height: 15mm; }
+
+/* ───────── front matter ───────── */
+.titlepage { text-align: center; justify-content: center; }
+.tp-art { display: flex; justify-content: center; gap: 4mm; margin-bottom: 6mm; }
+.tp-art img { width: 18mm; height: 18mm; }
+.titlepage h1 { color: var(--orange); }
+.titlepage .alt { color: var(--ink2); font-size: 15pt; margin: 2mm 0 8mm; }
+.titlepage .lead { font-size: 12pt; margin: 0 6mm 3mm; }
+.titlepage .credits { margin-top: auto; font-size: 8.5pt; color: var(--ink3); }
+.titlepage .credits p { margin: 0 0 1mm; }
+.parents p { font-size: 12.4pt; }
+.toc { margin-top: auto; background: var(--cream); border-radius: 4mm; padding: 3.5mm 5mm; }
+.toc ol { list-style: none; margin: 0; padding: 0; }
+.toc li { display: flex; align-items: baseline; gap: 2mm; font-size: 10.5pt; font-weight: 700; padding: .6mm 0; }
+.toc li i { flex: 1; border-bottom: .4mm dotted var(--ink3); transform: translateY(-1mm); }
+
+/* ───────── story ───────── */
+.story .text { font-size: 14pt; line-height: 1.55; }
+:lang(ar) .story .text { font-size: 13.6pt; line-height: 1.6; }
+.equation .eq { display: flex; align-items: center; justify-content: center; gap: 2.5mm; margin: 2mm 0 4mm; }
+.eq .box { border-radius: 4mm; padding: 2mm 3mm; text-align: center; min-width: 30mm; background: #fff; border: .7mm solid var(--line); }
+.eq .box b { display: block; font-size: 26pt; line-height: 1.1; }
+.eq .box span { font-size: 9pt; color: var(--ink2); font-weight: 700; }
+.eq .in b { color: var(--green); } .eq .out b { color: var(--red); } .eq .pr { border-color: var(--orange); background: #FFF1E2; } .eq .pr b { color: var(--orange); }
+.eq i { font-style: normal; font-size: 22pt; font-weight: 800; color: var(--ink3); }
+.scene.mini { height: 44mm; }
+
+/* ───────── ideas recap ───────── */
+.stickers { display: grid; grid-template-columns: 1fr 1fr; gap: 2.4mm; flex: 1; align-content: start; }
+.sticker { background: #fff; border: .5mm solid var(--line); border-radius: 3.5mm; padding: 1.8mm 2.5mm; display: flex; gap: 2mm; align-items: center; transform: rotate(var(--r)); box-shadow: 0 .8mm 0 var(--line); }
+.sticker img { width: 9mm; height: 9mm; flex: none; }
+.sticker p { margin: 0; font-size: 8.4pt; line-height: 1.3; font-weight: 600; }
+
+/* ───────── worksheet ───────── */
+.field { display: flex; align-items: flex-end; gap: 3mm; margin: 2.8mm 0; font-weight: 700; font-size: 11pt; }
+.field span { white-space: nowrap; }
+.field .line { flex: 1; border-bottom: .5mm dashed var(--ink3); height: 8mm; position: relative; }
+.field .line em { position: absolute; inset-inline-end: 0; bottom: .5mm; font-style: normal; color: var(--ink3); font-size: 9pt; }
+.sumbox { background: var(--cream); border-radius: 4mm; padding: 3mm 4mm; margin: 3mm 0; }
+.sumbox p { font-weight: 700; margin: 0 0 2mm; }
+.sumrow { display: flex; align-items: center; justify-content: center; gap: 3mm; }
+.sumrow .blank { width: 24mm; height: 12mm; border: .6mm solid var(--ink3); border-radius: 3mm; background: #fff; }
+.sumrow .blank.big { width: 30mm; border-color: var(--orange); }
+.sumrow i { font-style: normal; font-size: 18pt; font-weight: 800; color: var(--ink3); }
+.field.goal .gimg { width: 10mm; height: 10mm; }
+.piggyrow { margin-top: auto; display: flex; align-items: center; gap: 2.2mm; justify-content: center; }
+.piggyrow img { width: 14mm; height: 14mm; }
+.piggyrow .dot { width: 7.5mm; height: 7.5mm; border-radius: 50%; border: .6mm dashed var(--yellow); }
+
+/* ───────── game guide ───────── */
+.manual-intro p { font-size: 12.6pt; }
+.mi-art { margin-top: auto; display: flex; align-items: flex-end; justify-content: center; gap: 8mm; }
+.phone { width: 60mm; aspect-ratio: 390 / 844; border-radius: 6mm; padding: 1.6mm; background: #2B2140; flex: none; box-shadow: 0 2mm 4mm rgba(43, 33, 64, .25); }
+.phone img { width: 100%; height: 100%; object-fit: cover; object-position: top; border-radius: 4.6mm; }
+.mi-art .phone { width: 46mm; }
+.qr { width: 34mm; text-align: center; font-size: 8pt; font-weight: 700; color: var(--ink2); }
+.qr svg { width: 34mm; height: 34mm; background: #fff; border-radius: 3mm; padding: 2mm; border: .5mm solid var(--line); margin-bottom: 1.5mm; }
+.mrow { display: flex; gap: 5mm; align-items: flex-start; flex: 1; }
+.mrow.stack { flex-direction: column; align-items: center; }
+.phone.crop-top { aspect-ratio: auto; width: 112mm; height: 58mm; border-radius: 7mm; }
+.mrow.stack .steps { width: 100%; margin-top: 2mm; }
+.steps { list-style: none; margin: 0; padding: 0; counter-reset: st; flex: 1; }
+.steps li { counter-increment: st; position: relative; padding-inline-start: 8.5mm; margin-bottom: 4.5mm; font-size: 12pt; line-height: 1.45; }
+.steps li::before { content: counter(st); position: absolute; inset-inline-start: 0; top: .2mm; width: 6mm; height: 6mm; border-radius: 50%; background: var(--orange); color: #fff; font-weight: 800; font-size: 9pt; display: grid; place-items: center; }
+.biz table { width: 100%; border-collapse: separate; border-spacing: 0 2.6mm; font-size: 11pt; }
+.biz th { font-size: 8.5pt; color: var(--ink2); text-align: start; padding: 0 1.5mm; }
+.biz td { background: #fff; padding: 1.8mm 1.5mm; border-top: .4mm solid var(--line); border-bottom: .4mm solid var(--line); font-weight: 700; }
+.biz td:first-child { border-inline-start: .4mm solid var(--line); border-start-start-radius: 3mm; border-end-start-radius: 3mm; }
+.biz td:last-child { border-inline-end: .4mm solid var(--line); border-start-end-radius: 3mm; border-end-end-radius: 3mm; }
+.biz .nm { display: flex; align-items: center; gap: 1.8mm; }
+.biz .nm img { width: 8mm; height: 8mm; flex: none; }
+.biz .spoil { color: var(--red); } .biz .kept { color: var(--green); }
+.tips { margin-top: auto; background: #FFF1C9; border: .6mm solid var(--yellow); border-radius: 4mm; padding: 3mm 4mm; }
+.tips-h { display: flex; align-items: center; gap: 2.5mm; }
+.tips-h .gp { width: 11mm; height: 11mm; }
+.tips-h h3 { margin: 0; }
+.tips ul { margin: 2mm 0 0; padding-inline-start: 5mm; font-size: 11.4pt; font-weight: 600; line-height: 1.6; }
+.words { display: grid; grid-template-columns: 1fr 1fr; gap: 4mm; margin-top: 3mm; }
+.word { display: flex; gap: 2.5mm; background: #fff; border: .5mm solid var(--line); border-radius: 3.5mm; padding: 2.5mm; }
+.word img { width: 11mm; height: 11mm; flex: none; }
+.word b { font-size: 12pt; color: var(--orange); }
+.word p { margin: 0; font-size: 10.6pt; line-height: 1.35; }
+
+/* ───────── screen reader ───────── */
+.bar { position: sticky; top: 0; z-index: 10; display: flex; align-items: center; gap: 8px; padding: 8px 12px; background: #FFF4DE; border-bottom: 2px solid var(--line); }
+.bar .home { display: flex; align-items: center; gap: 8px; margin-inline-end: auto; color: var(--ink); text-decoration: none; font-weight: 800; min-width: 0; }
+.bar .home img { width: 34px; height: 34px; border-radius: 9px; }
+.bar .home span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.chip { min-height: 44px; display: inline-flex; align-items: center; padding: 0 12px; border-radius: 12px; border: 2px solid var(--line); background: #fff; color: var(--ink); text-decoration: none; font-weight: 700; font-size: 15px; white-space: nowrap; }
+.chip.primary { background: var(--orange); border-color: #E2600A; color: #fff; }
+@media (max-width: 560px) { .bar .home span { display: none; } .chip { padding: 0 9px; font-size: 14px; } }
+.reader { display: flex; justify-content: center; padding: 14px 10px 86px; }
+.stage { width: calc(148mm * var(--k, 1)); height: calc(210mm * var(--k, 1)); position: relative; overflow: hidden; }
+.book { position: absolute; top: 0; left: 0; width: 148mm; height: 210mm; transform: scale(var(--k, 1)); transform-origin: top left; }
+.reader { overflow: hidden; }
+.reader .page { display: none; border-radius: 3mm; box-shadow: 0 6px 24px rgba(43, 33, 64, .18); }
+.reader .page.current { display: flex; animation: turn .35s ease; }
+.reader .page.current.back-turn { animation: turnback .35s ease; }
+@keyframes turn { from { opacity: 0; transform: translateX(calc(var(--d, 1) * 12mm)) rotateY(calc(var(--d, 1) * -8deg)); } }
+@keyframes turnback { from { opacity: 0; transform: translateX(calc(var(--d, 1) * -12mm)) rotateY(calc(var(--d, 1) * 8deg)); } }
+[dir="rtl"] { --d: -1; }
+.nav { position: fixed; bottom: 0; left: 0; right: 0; display: flex; align-items: center; justify-content: center; gap: 16px; padding: 10px 12px calc(10px + env(safe-area-inset-bottom)); background: linear-gradient(transparent, #EFE6D6 35%); }
+.nav button { width: 56px; height: 56px; border-radius: 50%; border: 2px solid var(--line); background: #fff; font-size: 24px; font-weight: 800; color: var(--ink); cursor: pointer; box-shadow: 0 3px 0 var(--line); font-family: var(--font); }
+.nav button:disabled { opacity: .35; cursor: default; }
+.nav .count { font-weight: 800; color: var(--ink2); min-width: 70px; text-align: center; }
+@media (prefers-reduced-motion: reduce) { .reader .page.current { animation: none !important; } }
+
+/* ───────── print / PDF: every page, one per sheet ───────── */
+html.print body, html.print .reader { background: none; padding: 0; display: block; }
+html.print .bar, html.print .nav { display: none; }
+html.print .stage, html.print .book { position: static; overflow: visible; width: auto; height: auto; transform: none; }
+html.print .reader { overflow: visible; }
+html.print .reader .page { display: flex; border-radius: 0; box-shadow: none; animation: none; break-after: page; }
+@media print {
+  .bar, .nav { display: none !important; }
+  body, .reader { background: none; padding: 0; display: block; }
+  .stage, .book { position: static !important; overflow: visible !important; width: auto !important; height: auto !important; transform: none !important; }
+  .reader { overflow: visible !important; }
+  .reader .page { display: flex !important; border-radius: 0; box-shadow: none; animation: none !important; break-after: page; }
+  * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+}
+</style>
+</head>
+<body>
+<header class="bar">
+  <a class="home" href="../ar.html"><img src="../../little/icons/icon-192.png" alt=""><span>الانتربرونور الصغير</span></a>
+  <a class="chip" href="./" lang="en">English</a>
+  <a class="chip" href="the-little-entrepreneur-ar.pdf" download>تحميل PDF</a>
+  <a class="chip primary" href="../../little/?lang=ar">هيا نلعب</a>
+</header>
+<main class="reader"><div class="stage"><div class="book">
+<section class="page cover" data-n="1">
+    <div class="cover-top"><span class="ages">للأعمار من <bdi class="n">8</bdi> إلى <bdi class="n">12</bdi></span></div>
+    <h1>الانتربرونور الصغير</h1>
+    <p class="cover-sub">حكاية مشروع صيفي، ودليل اللعب</p>
+    <div class="scene bg-day cover-scene" dir="ltr"><div class="ground"></div><img src="img/sun.webp" alt="" class="it" style="left:80%;bottom:70%;width:15%;z-index:2"><div class="stand" style="left:28%;width:46%;--aw:#FFC93C"><div class="awning"></div><div class="posts"></div><div class="counter"><span dir="rtl">ليموناضة · <bdi class="n">3</bdi></span></div></div><img src="img/girl.webp" alt="" class="it" style="left:34%;bottom:34%;width:15%;z-index:4"><img src="img/boy.webp" alt="" class="it" style="left:52%;bottom:34%;width:15%;transform:scaleX(-1);z-index:5"><img src="img/old_man.webp" alt="" class="it" style="left:2%;bottom:8%;width:24%;z-index:6"><img src="img/pig_face.webp" alt="" class="it" style="left:78%;bottom:8%;width:17%;z-index:7"><img src="img/coin.webp" alt="" class="it" style="left:82%;bottom:40%;width:8%;transform:rotate(20deg);z-index:8"><img src="img/lemon.webp" alt="" class="it" style="left:8%;bottom:66%;width:11%;transform:rotate(-15deg);z-index:9"></div>
+    <p class="cover-foot">adam.ahmedhaz.com/littlebreneur</p></section>
+<section class="page titlepage" data-n="2">
+    <div class="tp-art"><img src="img/lemon.webp" alt="" class="" style=""><img src="img/coin.webp" alt="" class="" style=""><img src="img/pig_face.webp" alt="" class="" style=""></div>
+    <h1>الانتربرونور الصغير</h1>
+    <h2 class="alt">The Little Entrepreneur</h2>
+    <p class="lead">حكاية عن ملك ويوسف وجدّو، ودليل للعبة المجانية.</p><p class="lead">مكتوبة للأطفال من <bdi class="n">8</bdi> إلى <bdi class="n">12</bdi> عامًا، وللكبار الذين يقرؤون معهم.</p>
+    <div class="credits"><p>الصور: Microsoft Fluent Emoji (رخصة MIT). الخط: Baloo Bhaijaan <bdi class="n">2</bdi> (رخصة SIL المفتوحة).</p><p>مجاني للطباعة والمشاركة مع العائلة والأصدقاء والمدارس.</p><p>© <bdi class="n">2026</bdi> adam.ahmedhaz.com</p></div><footer class="pn"><bdi class="n">2</bdi></footer></section>
+<section class="page parents" data-n="3">
+    <h2>إلى الكبار</h2>
+    <p>لهذا الكتاب جزءان. تتبع الحكاية ملك ويوسف خلال صيف واحد مع كشك عصير. وينتهي كل مشهد بفكرة من أفكار جدّو عن المال: التكلفة والسعر والربح والادّخار والأمانة والراحة.</p><p>ويشرح الجزء الثاني طريقة لعب «الانتربرونور الصغير»، اللعبة المجانية التي خرجت منها الحكاية. تعمل في أي متصفح وعلى الهواتف، بلا إعلانات ولا حسابات ولا مشتريات.</p><p>طريقة مقترحة: قراءة مشهد واحد معًا، ثم الحديث عن فكرة جدّو، ثم ترك الطفل يجرّبها في اللعبة. وبعد الحكاية صفحة لتخطيط مشروع صغير حقيقي.</p>
+    <div class="toc"><h3>المحتويات</h3><ol><li><span>الجزء الأول: الحكاية</span><i></i><bdi class="n">4</bdi></li><li><span>أفكار جدّو</span><i></i><bdi class="n">16</bdi></li><li><span>دورك: خطة مشروع صغير</span><i></i><bdi class="n">17</bdi></li><li><span>الجزء الثاني: طريقة لعب الانتربرونور الصغير</span><i></i><bdi class="n">18</bdi></li><li><span>المشاريع الأربعة</span><i></i><bdi class="n">26</bdi></li><li><span>كلمات مهمة</span><i></i><bdi class="n">27</bdi></li></ol></div><footer class="pn"><bdi class="n">3</bdi></footer></section>
+<section class="page story" data-n="4">
+        <div class="scene bg-day " dir="ltr"><div class="ground"></div><img src="img/sun.webp" alt="" class="it" style="left:78%;bottom:70%;width:16%;z-index:2"><img src="img/deciduous_tree.webp" alt="" class="it" style="left:2%;bottom:18%;width:26%;z-index:3"><img src="img/old_man.webp" alt="" class="it" style="left:38%;bottom:16%;width:22%;z-index:4"><img src="img/hot_beverage.webp" alt="" class="it" style="left:57%;bottom:16%;width:10%;z-index:5"><img src="img/girl.webp" alt="" class="it" style="left:14%;bottom:12%;width:20%;z-index:6"><img src="img/boy.webp" alt="" class="it" style="left:68%;bottom:12%;width:20%;transform:scaleX(-1);z-index:7"><img src="img/coin.webp" alt="" class="it" style="left:86%;bottom:14%;width:8%;z-index:8"><img src="img/wrapped_gift.webp" alt="" class="it" style="left:26%;bottom:58%;width:12%;transform:rotate(-10deg);z-index:9"></div>
+        <div class="kicker">الجزء الأول · 1</div>
+        <h2>الصيف يبدأ</h2>
+        <p class="text">في أول يوم من الصيف، كانت لدى ملك ويوسف خطة. قالت ملك: «عيد ميلاد ماما في آخر الصيف، ونريد أن نشتري لها هدية حقيقية.» أفرغ يوسف جيوبه: <bdi class="n">15</bdi> عملة، وتنهّد: «هذا لا يكفي.» وضع جدّو كوب الشاي وقال: «إذن لنكسب الباقي. ماذا يريد الناس هنا في يوم حار؟» فصاحا معًا: «شيئًا باردًا!»</p>
+        <div class="idea"><img src="img/old_man.webp" alt="" class="gp" style=""><div><b>فكرة جدّو</b><p>كل مشروع يبدأ بشيء يريده الناس.</p></div></div><footer class="pn"><bdi class="n">4</bdi></footer></section>
+<section class="page story" data-n="5">
+        <div class="scene bg-room " dir="ltr"><div class="ground"></div><img src="img/old_man.webp" alt="" class="it" style="left:40%;bottom:14%;width:22%;z-index:2"><img src="img/notebook.webp" alt="" class="it" style="left:44%;bottom:54%;width:14%;transform:rotate(-8deg);z-index:3"><img src="img/pencil.webp" alt="" class="it" style="left:60%;bottom:60%;width:9%;transform:rotate(20deg);z-index:4"><img src="img/girl.webp" alt="" class="it" style="left:10%;bottom:12%;width:21%;z-index:5"><img src="img/boy.webp" alt="" class="it" style="left:70%;bottom:12%;width:21%;transform:scaleX(-1);z-index:6"><img src="img/lemon.webp" alt="" class="it" style="left:22%;bottom:60%;width:11%;z-index:7"><img src="img/cup_with_straw.webp" alt="" class="it" style="left:76%;bottom:58%;width:11%;z-index:8"><img src="img/abacus.webp" alt="" class="it" style="left:2%;bottom:64%;width:13%;z-index:9"></div>
+        <div class="kicker">الجزء الأول · 2</div>
+        <h2>كم يكلّف الكوب الواحد؟</h2>
+        <p class="text">فتح جدّو دفتره القديم وقال: «ليمون وسكر وماء وكوب ورقي. لنحسب.» جمعا كل شيء وقسماه على عدد الأكواب. قال يوسف: «الكوب الواحد يكلّفنا عملة واحدة.» فقال جدّو: «هذه هي التكلفة. كل كوب نصنعه ندفع ثمنه، حتى لو لم يشتره أحد.»</p>
+        <div class="idea"><img src="img/old_man.webp" alt="" class="gp" style=""><div><b>فكرة جدّو</b><p>التكلفة هي ما ندفعه لنصنع الشيء.</p></div></div><footer class="pn"><bdi class="n">5</bdi></footer></section>
+<section class="page story" data-n="6">
+        <div class="scene bg-day " dir="ltr"><div class="ground"></div><div class="stand" style="left:30%;width:44%;--aw:#FFC93C"><div class="awning"></div><div class="posts"></div><div class="counter"><span dir="rtl">ليموناضة · <bdi class="n">3</bdi></span></div></div><img src="img/girl.webp" alt="" class="it" style="left:6%;bottom:10%;width:20%;z-index:3"><img src="img/pencil.webp" alt="" class="it" style="left:21%;bottom:30%;width:8%;transform:rotate(-30deg);z-index:4"><img src="img/boy.webp" alt="" class="it" style="left:76%;bottom:10%;width:20%;transform:scaleX(-1);z-index:5"><img src="img/thinking_face.webp" alt="" class="it" style="left:84%;bottom:56%;width:11%;z-index:6"><img src="img/sun.webp" alt="" class="it" style="left:4%;bottom:72%;width:13%;z-index:7"></div>
+        <div class="kicker">الجزء الأول · 3</div>
+        <h2>اختيار السعر</h2>
+        <p class="text">عملتان أم <bdi class="n">3</bdi> أم <bdi class="n">5</bdi> للكوب؟ قال يوسف: «<bdi class="n">5</bdi>! نقود أكثر!» هزّت ملك رأسها: «بـ<bdi class="n">5</bdi> سيتوقف عدد أقل من الناس. وبعملتين سيأتي كثيرون، لكن لن يبقى لنا من كل كوب إلا عملة واحدة.» ابتسم جدّو: «جرّبا <bdi class="n">3</bdi>. سعر عادل لهم، وعادل لكما.» وكتبا على اللافتة بخط كبير: <bdi class="n">3</bdi> عملات.</p>
+        <div class="idea"><img src="img/old_man.webp" alt="" class="gp" style=""><div><b>فكرة جدّو</b><p>السعر الغالي يجلب زبائن أقل، والرخيص يجلب ربحًا أقل من كل كوب.</p></div></div><footer class="pn"><bdi class="n">6</bdi></footer></section>
+<section class="page story" data-n="7">
+        <div class="scene bg-hot " dir="ltr"><div class="ground"></div><div class="stand" style="left:52%;width:44%;--aw:#FFC93C"><div class="awning"></div><div class="posts"></div><div class="counter"><span dir="rtl">ليموناضة · <bdi class="n">3</bdi></span></div></div><img src="img/girl.webp" alt="" class="it" style="left:60%;bottom:30%;width:15%;z-index:3"><img src="img/boy.webp" alt="" class="it" style="left:76%;bottom:30%;width:15%;transform:scaleX(-1);z-index:4"><img src="img/woman.webp" alt="" class="it" style="left:2%;bottom:8%;width:16%;z-index:5"><img src="img/child.webp" alt="" class="it" style="left:17%;bottom:8%;width:13%;z-index:6"><img src="img/old_woman.webp" alt="" class="it" style="left:30%;bottom:8%;width:15%;z-index:7"><img src="img/coin.webp" alt="" class="it" style="left:46%;bottom:60%;width:8%;transform:rotate(15deg);z-index:8"><img src="img/coin.webp" alt="" class="it" style="left:40%;bottom:70%;width:7%;transform:rotate(-20deg);z-index:9"><img src="img/sun.webp" alt="" class="it" style="left:4%;bottom:72%;width:14%;z-index:10"></div>
+        <div class="kicker">الجزء الأول · 4</div>
+        <h2>يوم السوق!</h2>
+        <p class="text">يوم السبت صنعا <bdi class="n">12</bdi> كوبًا. كانت الشمس مشرقة، والجيران في الخارج. وقبل الظهر بِيع <bdi class="n">11</bdi> كوبًا. عدّ يوسف النقود مرتين: <bdi class="n">33</bdi> عملة، وهتف: «صرنا أغنياء!» قال جدّو: «على مهلك. كم كلّفت الأكواب؟» «<bdi class="n">12</bdi> عملة.» «إذن كم بقي؟»</p>
+        <div class="idea"><img src="img/old_man.webp" alt="" class="gp" style=""><div><b>فكرة جدّو</b><p>عدّ النقود التي دخلت نصف الحكاية فقط.</p></div></div><footer class="pn"><bdi class="n">7</bdi></footer></section>
+<section class="page story equation" data-n="8">
+        <div class="kicker">الجزء الأول · 5</div>
+        <h2>الربح</h2>
+        <div class="eq" dir="ltr">
+          <div class="box in"><b>33</b><span>نقود دخلت</span></div><i>−</i>
+          <div class="box out"><b>12</b><span>نقود صُرفت</span></div><i>=</i>
+          <div class="box pr"><b>21</b><span>الربح</span></div>
+        </div>
+        <div class="scene bg-room mini" dir="ltr"><div class="ground"></div><img src="img/pig_face.webp" alt="" class="it" style="left:40%;bottom:14%;width:22%;z-index:2"><img src="img/coin.webp" alt="" class="it" style="left:46%;bottom:64%;width:9%;z-index:3"><img src="img/coin.webp" alt="" class="it" style="left:34%;bottom:76%;width:8%;transform:rotate(20deg);z-index:4"><img src="img/coin.webp" alt="" class="it" style="left:58%;bottom:80%;width:7%;transform:rotate(-25deg);z-index:5"></div>
+        <p class="text">كتبت ملك على ظهر اللافتة: دخلت <bdi class="n">33</bdi> عملة، وخرجت <bdi class="n">12</bdi> عملة، والربح <bdi class="n">21</bdi> عملة. قال جدّو: «الربح هو ما يبقى بعد دفع كل شيء.» ووضع يوسف العملات الـ<bdi class="n">21</bdi> في الحصّالة ببطء شديد، واحدة بعد واحدة.</p>
+        <div class="idea"><img src="img/old_man.webp" alt="" class="gp" style=""><div><b>فكرة جدّو</b><p>الربح = النقود الداخلة − النقود المصروفة.</p></div></div><footer class="pn"><bdi class="n">8</bdi></footer></section>
+<section class="page story" data-n="9">
+        <div class="scene bg-rain " dir="ltr"><div class="ground"></div><img src="img/cloud_with_rain.webp" alt="" class="it" style="left:6%;bottom:62%;width:22%;z-index:2"><img src="img/cloud_with_rain.webp" alt="" class="it" style="left:66%;bottom:66%;width:20%;z-index:3"><div class="stand" style="left:28%;width:44%;--aw:#FFC93C"><div class="awning"></div><div class="posts"></div><div class="counter"><span dir="rtl">ليموناضة · <bdi class="n">3</bdi></span></div></div><img src="img/umbrella_with_rain_drops.webp" alt="" class="it" style="left:4%;bottom:14%;width:22%;z-index:5"><img src="img/grimacing_face.webp" alt="" class="it" style="left:76%;bottom:14%;width:15%;z-index:6"><img src="img/cup_with_straw.webp" alt="" class="it" style="left:36%;bottom:44%;width:9%;z-index:7"><img src="img/cup_with_straw.webp" alt="" class="it" style="left:46%;bottom:44%;width:9%;z-index:8"><img src="img/cup_with_straw.webp" alt="" class="it" style="left:56%;bottom:44%;width:9%;z-index:9"></div>
+        <div class="kicker">الجزء الأول · 6</div>
+        <h2>سبت ماطر</h2>
+        <p class="text">في السبت التالي صنعا <bdi class="n">20</bdi> كوبًا. ثم جاءت الغيوم. توقّف <bdi class="n">6</bdi> أشخاص فقط، وكانوا يريدون شيئًا دافئًا. وفي المساء سُكب <bdi class="n">14</bdi> كوبًا من العصير في الحوض. قال يوسف بهدوء: «لقد دفعنا ثمنها.» فقالت ملك: «في المرة القادمة ننظر إلى السماء أولًا، ونصنع بقدر ما سيشتري الناس تقريبًا.»</p>
+        <div class="idea"><img src="img/old_man.webp" alt="" class="gp" style=""><div><b>فكرة جدّو</b><p>البقايا التي تفسد نقودٌ تُرمى في سلّة المهملات. وصنع كمية أقل مهارة.</p></div></div><footer class="pn"><bdi class="n">9</bdi></footer></section>
+<section class="page story" data-n="10">
+        <div class="scene bg-day " dir="ltr"><div class="ground"></div><div class="stand" style="left:46%;width:44%;--aw:#FFC93C"><div class="awning"></div><div class="posts"></div><div class="counter"><span dir="rtl">ليموناضة · <bdi class="n">3</bdi></span></div></div><img src="img/man.webp" alt="" class="it" style="left:8%;bottom:10%;width:20%;z-index:3"><img src="img/lemon.webp" alt="" class="it" style="left:24%;bottom:46%;width:11%;transform:rotate(25deg);z-index:4"><img src="img/girl.webp" alt="" class="it" style="left:54%;bottom:30%;width:15%;z-index:5"><img src="img/boy.webp" alt="" class="it" style="left:70%;bottom:30%;width:15%;transform:scaleX(-1);z-index:6"><img src="img/thumbs_up.webp" alt="" class="it" style="left:30%;bottom:62%;width:10%;z-index:7"></div>
+        <div class="kicker">الجزء الأول · 7</div>
+        <h2>حامض جدًا!</h2>
+        <p class="text">أخذ العم سعيد رشفة واحدة وتجهّم وجهه، وقال بصوت سمعه الطابور كله: «حامض جدًا!» احمرّ وجه يوسف. أما ملك فصبّت كوبًا جديدًا بسكر أكثر وقالت: «هل تخبرنا إن كان هذا أفضل؟» جرّبه وهزّ رأسه موافقًا وقال للطابور: «الآن صار ممتازًا.» وفي ذلك العصر غيّرا الوصفة نهائيًا.</p>
+        <div class="idea"><img src="img/old_man.webp" alt="" class="gp" style=""><div><b>فكرة جدّو</b><p>الشكوى نصيحة مجانية.</p></div></div><footer class="pn"><bdi class="n">10</bdi></footer></section>
+<section class="page story" data-n="11">
+        <div class="scene bg-day " dir="ltr"><div class="ground"></div><img src="img/deciduous_tree.webp" alt="" class="it" style="left:72%;bottom:18%;width:26%;z-index:2"><img src="img/woman.webp" alt="" class="it" style="left:56%;bottom:10%;width:20%;transform:scaleX(-1);z-index:3"><img src="img/basket.webp" alt="" class="it" style="left:70%;bottom:12%;width:11%;z-index:4"><img src="img/girl.webp" alt="" class="it" style="left:8%;bottom:8%;width:19%;z-index:5"><img src="img/boy.webp" alt="" class="it" style="left:26%;bottom:8%;width:19%;z-index:6"><img src="img/coin.webp" alt="" class="it" style="left:44%;bottom:40%;width:8%;z-index:7"><img src="img/heart_hands.webp" alt="" class="it" style="left:44%;bottom:62%;width:12%;z-index:8"></div>
+        <div class="kicker">الجزء الأول · 8</div>
+        <h2>6 عملات زائدة</h2>
+        <p class="text">عند الإغلاق كان في الصندوق <bdi class="n">6</bdi> عملات زائدة. قالت ملك: «السيدة صاحبة السلّة الخضراء دفعت زيادة.» قال يوسف: «لن يعرف أحد.» نظرت إليه ملك. فتنهّد يوسف، وركضا خلفها في الشارع. ضحكت السيدة: «لم يركض خلفي أحد من قبل ليُرجع لي نقودًا!» وفي السبت التالي عادت ومعها صديقتان.</p>
+        <div class="idea"><img src="img/old_man.webp" alt="" class="gp" style=""><div><b>فكرة جدّو</b><p>الثقة مثل الادّخار: تُبنى ببطء وتُصرف بسرعة.</p></div></div><footer class="pn"><bdi class="n">11</bdi></footer></section>
+<section class="page story" data-n="12">
+        <div class="scene bg-day " dir="ltr"><div class="ground"></div><div class="stand" style="left:2%;width:44%;--aw:#FFC93C"><div class="awning"></div><div class="posts"></div><div class="counter"><span dir="rtl">ليموناضة · <bdi class="n">3</bdi></span></div></div><div class="stand" style="left:54%;width:44%;--aw:#FF5C8A"><div class="awning"></div><div class="posts"></div><div class="counter"><span dir="rtl">فشار</span></div></div><img src="img/girl.webp" alt="" class="it" style="left:10%;bottom:30%;width:14%;z-index:4"><img src="img/boy.webp" alt="" class="it" style="left:26%;bottom:30%;width:14%;z-index:5"><img src="img/child.webp" alt="" class="it" style="left:68%;bottom:30%;width:14%;transform:scaleX(-1);z-index:6"><img src="img/popcorn.webp" alt="" class="it" style="left:82%;bottom:44%;width:10%;z-index:7"><img src="img/handshake.webp" alt="" class="it" style="left:44%;bottom:66%;width:12%;z-index:8"></div>
+        <div class="kicker">الجزء الأول · 9</div>
+        <h2>الكشك المجاور</h2>
+        <p class="text">ذات صباح نصب ولد أكبر اسمه كريم كشك عصير على بعد <bdi class="n">5</bdi> خطوات. اللافتة نفسها والأكواب نفسها والسعر نفسه. قال يوسف: «لقد قلّدنا!» ارتشف جدّو شايه وقال: «إذن اسألا نفسيكما: ما الذي يميّزكما؟» وخطرت لملك فكرة، فذهبت وتحدّثت مع كريم. والآن يبيع كريم الفشار، ويبيعان العصير، والناس يشترون الاثنين.</p>
+        <div class="idea"><img src="img/old_man.webp" alt="" class="gp" style=""><div><b>فكرة جدّو</b><p>عندما ينسخك أحد، يصبح السؤال: ما الذي يميّزك؟</p></div></div><footer class="pn"><bdi class="n">12</bdi></footer></section>
+<section class="page story" data-n="13">
+        <div class="scene bg-night " dir="ltr"><div class="ground"></div><img src="img/crescent_moon.webp" alt="" class="it" style="left:76%;bottom:70%;width:14%;z-index:2"><img src="img/star.webp" alt="" class="it" style="left:60%;bottom:80%;width:6%;z-index:3"><img src="img/star.webp" alt="" class="it" style="left:90%;bottom:58%;width:5%;z-index:4"><img src="img/bed.webp" alt="" class="it" style="left:6%;bottom:10%;width:34%;z-index:5"><img src="img/sleeping_face.webp" alt="" class="it" style="left:14%;bottom:36%;width:13%;z-index:6"><img src="img/yawning_face.webp" alt="" class="it" style="left:50%;bottom:18%;width:16%;z-index:7"><img src="img/books.webp" alt="" class="it" style="left:70%;bottom:12%;width:13%;z-index:8"><img src="img/soccer_ball.webp" alt="" class="it" style="left:84%;bottom:10%;width:10%;z-index:9"></div>
+        <div class="kicker">الجزء الأول · 10</div>
+        <h2>تعب يُربك الحساب</h2>
+        <p class="text">في الأسبوع <bdi class="n">6</bdi> سهرا حتى وقت متأخر يصنعان <bdi class="n">30</bdi> كوبًا. وفي اليوم التالي كانت أعينهما تنغلق من النعاس. وردّ يوسف لأحد الزبائن <bdi class="n">5</bdi> عملات باقيًا بدل عملتين. ونسيت ملك الثلج. قال جدّو: «مع التعب تقع أخطاء صغيرة. والراحة جزء من العمل.» فلعبا الكرة يوم الأحد، وأنجزا واجباتهما، وناما مبكرًا.</p>
+        <div class="idea"><img src="img/old_man.webp" alt="" class="gp" style=""><div><b>فكرة جدّو</b><p>الراحة جزء من العمل.</p></div></div><footer class="pn"><bdi class="n">13</bdi></footer></section>
+<section class="page story" data-n="14">
+        <div class="scene bg-room " dir="ltr"><div class="ground"></div><img src="img/pig_face.webp" alt="" class="it" style="left:8%;bottom:12%;width:22%;z-index:2"><img src="img/video_game.webp" alt="" class="it" style="left:40%;bottom:50%;width:18%;transform:rotate(-8deg);z-index:3"><img src="img/thinking_face.webp" alt="" class="it" style="left:46%;bottom:14%;width:14%;z-index:4"><img src="img/framed_picture.webp" alt="" class="it" style="left:72%;bottom:54%;width:16%;z-index:5"><img src="img/wrapped_gift.webp" alt="" class="it" style="left:74%;bottom:12%;width:15%;z-index:6"></div>
+        <div class="kicker">الجزء الأول · 11</div>
+        <h2>اللعبة الجديدة</h2>
+        <p class="text">صارت الحصّالة ثقيلة. ثم بدأ الجميع في النادي الصيفي يتكلّمون عن لعبة فيديو جديدة سعرها <bdi class="n">30</bdi> عملة. همس يوسف: «معنا ما يكفي.» نظرت ملك إلى الحصّالة، ثم إلى صورة ماما على باب الثلاجة. وانتظرا. وبعد <bdi class="n">3</bdi> أسابيع صارت اللعبة نفسها بـ<bdi class="n">18</bdi> عملة. فابتسما، وواصلا الادّخار.</p>
+        <div class="idea"><img src="img/old_man.webp" alt="" class="gp" style=""><div><b>فكرة جدّو</b><p>الادّخار يعني تقديم الحلم الكبير على الرغبة السريعة.</p></div></div><footer class="pn"><bdi class="n">14</bdi></footer></section>
+<section class="page story" data-n="15">
+        <div class="scene bg-room " dir="ltr"><div class="ground"></div><img src="img/party_popper.webp" alt="" class="it" style="left:4%;bottom:64%;width:14%;z-index:2"><img src="img/sparkles.webp" alt="" class="it" style="left:82%;bottom:70%;width:12%;z-index:3"><img src="img/woman.webp" alt="" class="it" style="left:38%;bottom:12%;width:22%;z-index:4"><img src="img/wrapped_gift.webp" alt="" class="it" style="left:42%;bottom:56%;width:14%;z-index:5"><img src="img/girl.webp" alt="" class="it" style="left:8%;bottom:10%;width:20%;z-index:6"><img src="img/boy.webp" alt="" class="it" style="left:62%;bottom:10%;width:19%;transform:scaleX(-1);z-index:7"><img src="img/old_man.webp" alt="" class="it" style="left:80%;bottom:10%;width:18%;transform:scaleX(-1);z-index:8"></div>
+        <div class="kicker">الجزء الأول · 12</div>
+        <h2>آخر يوم في الصيف</h2>
+        <p class="text">في آخر سبت فتح يوسف الحصّالة، وعدّا كل عملة مرتين: <bdi class="n">236</bdi> عملة. وثمن هدية ماما <bdi class="n">220</bdi> عملة. فهتفا: «نجحنا!» ودمعت عينا ماما من الفرح حين فتحتها. وأعطى جدّو كلًّا منهما ملصقًا وقال: «لم تكسبا نقودًا فقط، بل تعلّمتما كيف يعمل المشروع.» وبدأت ملك تخطّط للصيف القادم.</p>
+        <div class="idea"><img src="img/old_man.webp" alt="" class="gp" style=""><div><b>فكرة جدّو</b><p>كل عملة لا تُصرف اليوم تقرّب الهدف خطوة.</p></div></div><footer class="pn"><bdi class="n">15</bdi></footer></section>
+<section class="page ideas" data-n="16">
+    <h2>أفكار جدّو</h2><p class="lead">كل أفكار الحكاية في مكان واحد. وفي اللعبة تصبح كل فكرة ملصقًا.</p>
+    <div class="stickers"><div class="sticker" style="--r:-1deg"><img src="img/old_man.webp" alt="" class="" style=""><p>كل مشروع يبدأ بشيء يريده الناس.</p></div><div class="sticker" style="--r:1.6deg"><img src="img/old_man.webp" alt="" class="" style=""><p>التكلفة هي ما ندفعه لنصنع الشيء.</p></div><div class="sticker" style="--r:-2.2deg"><img src="img/girl.webp" alt="" class="" style=""><p>السعر الغالي يجلب زبائن أقل، والرخيص يجلب ربحًا أقل من كل كوب.</p></div><div class="sticker" style="--r:1deg"><img src="img/girl.webp" alt="" class="" style=""><p>عدّ النقود التي دخلت نصف الحكاية فقط.</p></div><div class="sticker" style="--r:-1.6deg"><img src="img/pig_face.webp" alt="" class="" style=""><p>الربح = النقود الداخلة − النقود المصروفة.</p></div><div class="sticker" style="--r:2.2deg"><img src="img/umbrella_with_rain_drops.webp" alt="" class="" style=""><p>البقايا التي تفسد نقودٌ تُرمى في سلّة المهملات. وصنع كمية أقل مهارة.</p></div><div class="sticker" style="--r:-1deg"><img src="img/man.webp" alt="" class="" style=""><p>الشكوى نصيحة مجانية.</p></div><div class="sticker" style="--r:1.6deg"><img src="img/woman.webp" alt="" class="" style=""><p>الثقة مثل الادّخار: تُبنى ببطء وتُصرف بسرعة.</p></div><div class="sticker" style="--r:-2.2deg"><img src="img/girl.webp" alt="" class="" style=""><p>عندما ينسخك أحد، يصبح السؤال: ما الذي يميّزك؟</p></div><div class="sticker" style="--r:1deg"><img src="img/bed.webp" alt="" class="" style=""><p>الراحة جزء من العمل.</p></div><div class="sticker" style="--r:-1.6deg"><img src="img/pig_face.webp" alt="" class="" style=""><p>الادّخار يعني تقديم الحلم الكبير على الرغبة السريعة.</p></div><div class="sticker" style="--r:2.2deg"><img src="img/party_popper.webp" alt="" class="" style=""><p>كل عملة لا تُصرف اليوم تقرّب الهدف خطوة.</p></div></div><footer class="pn"><bdi class="n">16</bdi></footer></section>
+<section class="page worksheet" data-n="17">
+    <h2>دورك: خطة مشروع صغير</h2><p class="lead">تُملأ هذه الصفحة بقلم رصاص. ويكون التخطيط مع أحد الكبار، وشراء المستلزمات معه.</p>
+    <div class="field"><span>فكرة المشروع</span><div class="line"></div></div><div class="field"><span>ماذا يريد الناس؟</span><div class="line"></div></div><div class="field"><span>تكلفة الواحدة</span><div class="line"><em>عملة</em></div></div><div class="field"><span>سعر الواحدة</span><div class="line"><em>عملة</em></div></div><div class="field"><span>العدد المتوقع بيعه</span><div class="line"></div></div>
+    <div class="sumbox"><p>نقود دخلت − نقود صُرفت = الربح</p><div class="sumrow" dir="ltr"><span class="blank"></span><i>−</i><span class="blank"></span><i>=</i><span class="blank big"></span></div></div>
+    <div class="field goal"><img src="img/wrapped_gift.webp" alt="" class="gimg" style=""><span>حلم الادّخار</span><div class="line"><em>عملة</em></div></div>
+    <div class="piggyrow"><img src="img/pig_face.webp" alt="" class="" style=""><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></div><footer class="pn"><bdi class="n">17</bdi></footer></section>
+<section class="page manual-intro" data-n="18">
+    <div class="kicker">الجزء الثاني</div>
+    <h2>طريقة لعب الانتربرونور الصغير</h2>
+    <p>في اللعبة مشروع صغير خاص بك لصيف من <bdi class="n">12</bdi> أسبوعًا، تمامًا مثل ملك ويوسف: اختيار المشروع، وتحديد هدف للادّخار، وخطة واحدة كل أسبوع.</p><p>اللعب مجاني على adam.ahmedhaz.com/little في أي متصفح. واللعبة تعمل دون اتصال بعد فتحها أول مرة، بالعربية والإنجليزية. ويستغرق الصيف نحو <bdi class="n">15</bdi> دقيقة.</p>
+    <div class="mi-art"><div class="phone"><img src="../shots/ar-plan.webp" alt=""></div>
+      <div class="qr"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 29 29" shape-rendering="crispEdges"><path stroke="#2B2140" d="M0 0.5h7m2 0h1m3 0h3m1 0h2m3 0h7M0 1.5h1m5 0h1m1 0h2m1 0h2m2 0h1m1 0h2m3 0h1m5 0h1M0 2.5h1m1 0h3m1 0h1m1 0h2m4 0h1m1 0h1m2 0h2m1 0h1m1 0h3m1 0h1M0 3.5h1m1 0h3m1 0h1m1 0h2m1 0h2m1 0h2m1 0h1m1 0h2m1 0h1m1 0h3m1 0h1M0 4.5h1m1 0h3m1 0h1m2 0h1m2 0h4m1 0h3m2 0h1m1 0h3m1 0h1M0 5.5h1m5 0h1m2 0h1m1 0h1m1 0h2m1 0h2m4 0h1m5 0h1M0 6.5h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7M8 7.5h1m2 0h3m5 0h1M0 8.5h1m5 0h1m1 0h2m2 0h1m1 0h2m1 0h1m1 0h4m2 0h3M1 9.5h1m1 0h1m1 0h1m2 0h2m1 0h2m1 0h1m2 0h3m4 0h1m1 0h2M1 10.5h3m1 0h3m2 0h1m1 0h1m7 0h1m1 0h3M1 11.5h4m2 0h1m2 0h2m2 0h3m5 0h2m1 0h1M0 12.5h3m1 0h3m5 0h3m1 0h1m1 0h3m1 0h2m4 0h1M0 13.5h4m4 0h2m1 0h1m1 0h2m2 0h4m1 0h3m2 0h2M0 14.5h7m1 0h1m4 0h5m3 0h1m1 0h4M1 15.5h1m3 0h1m1 0h1m2 0h1m2 0h3m4 0h3m1 0h1m1 0h1m1 0h1M0 16.5h1m3 0h4m1 0h1m1 0h1m2 0h1m2 0h1m1 0h1m5 0h2M0 17.5h2m1 0h3m4 0h2m3 0h1m1 0h4m1 0h3m1 0h3M0 18.5h3m1 0h3m1 0h1m2 0h5m1 0h1m1 0h3m1 0h3m2 0h1M0 19.5h1m2 0h1m1 0h1m2 0h1m1 0h3m1 0h1m1 0h1m1 0h1m1 0h1m2 0h2M0 20.5h1m2 0h1m2 0h1m5 0h1m2 0h1m1 0h1m2 0h5m1 0h3M8 21.5h2m2 0h2m1 0h1m1 0h2m1 0h1m3 0h2M0 22.5h7m2 0h1m3 0h3m2 0h3m1 0h1m1 0h3M0 23.5h1m5 0h1m2 0h3m1 0h1m2 0h1m2 0h2m3 0h1m2 0h1M0 24.5h1m1 0h3m1 0h1m3 0h1m1 0h2m2 0h1m2 0h7m1 0h2M0 25.5h1m1 0h3m1 0h1m3 0h1m4 0h2m2 0h1m1 0h1m3 0h2m1 0h1M0 26.5h1m1 0h3m1 0h1m2 0h2m3 0h2m3 0h1m1 0h7M0 27.5h1m5 0h1m2 0h1m1 0h4m3 0h1m2 0h1m1 0h4m1 0h1M0 28.5h7m1 0h1m2 0h2m2 0h3m1 0h1m4 0h1m1 0h1"/></svg>
+<span>adam.ahmedhaz.com/little</span></div></div><footer class="pn"><bdi class="n">18</bdi></footer></section>
+<section class="page manual" data-n="19">
+      <div class="kicker">الجزء الثاني · 1</div>
+      <h2>بداية الصيف</h2>
+      <div class="mrow "><div class="phone "><img src="../shots/ar-setup.webp" alt=""></div>
+        <ol class="steps"><li>كتابة الاسم الأول. ويبقى على الجهاز فقط.</li><li>اختيار صورتك في اللعبة.</li><li>اختيار المشروع: كشك العصير، أو رسومات وأساور، أو غسيل الدراجات وإصلاحها، أو كيك وكوكيز.</li><li>اختيار الهدف: كرة قدم (<bdi class="n">100</bdi>)، أو مجموعة كتب (<bdi class="n">160</bdi>)، أو هدية لماما (<bdi class="n">220</bdi>)، أو دراجة جديدة (<bdi class="n">300</bdi>).</li></ol></div><footer class="pn"><bdi class="n">19</bdi></footer></section>
+<section class="page manual" data-n="20">
+      <div class="kicker">الجزء الثاني · 2</div>
+      <h2>العدّادات الثلاثة</h2>
+      <div class="mrow stack"><div class="phone crop-top"><img src="../shots/ar-plan.webp" alt=""></div>
+        <ol class="steps"><li>نقود: كل ما في صندوقك. الصنع يكلّف نقودًا، والبيع يعيدها.</li><li>طاقة: البيع والسهر يستهلكانها، والراحة تعيدها. تحت <bdi class="n">40</bdi> يأتي النعاس. ومن <bdi class="n">70</bdi> فما فوق يُفتح خيار ثالث حكيم.</li><li>ابتسامات: مقدار حب الزبائن لكشكك. السعر المعتدل والجودة الجيدة يرفعانها.</li><li>شريط الحصّالة يوضّح المسافة الباقية إلى الهدف.</li></ol></div><footer class="pn"><bdi class="n">20</bdi></footer></section>
+<section class="page manual" data-n="21">
+      <div class="kicker">الجزء الثاني · 3</div>
+      <h2>خطة الأسبوع</h2>
+      <div class="mrow "><div class="phone "><img src="../shots/ar-plan.webp" alt=""></div>
+        <ol class="steps"><li>نظرة إلى طقس يوم السوق. الأيام الحارة تجلب زبائن عصير أكثر، والمطر يقلّلهم.</li><li>اختيار السعر: رخيص أو معتدل أو غالٍ.</li><li>اختيار الكمية. وجدّو يتوقّع عدد الزبائن.</li><li>اختيار نشاط واحد: صنع ملصق، أو تدريب، أو مذاكرة، أو راحة ولعب.</li></ol></div><footer class="pn"><bdi class="n">21</bdi></footer></section>
+<section class="page manual" data-n="22">
+      <div class="kicker">الجزء الثاني · 4</div>
+      <h2>يوم السوق والنتيجة</h2>
+      <div class="mrow "><div class="phone "><img src="../shots/ar-results.webp" alt=""></div>
+        <ol class="steps"><li>مشاهدة الزبائن وهم يصلون، أو الضغط على «هيا نتخطّى».</li><li>قراءة النتيجة: نقود دخلت، ونقود صُرفت، والربح.</li><li>العصير والكيك يفسدان. أما الرسومات وعُدّة الغسيل فتُحفظ للأسبوع القادم.</li><li>إنفاق بعض النقود على شيء ممتع، أو ادّخارها في الحصّالة.</li></ol></div><footer class="pn"><bdi class="n">22</bdi></footer></section>
+<section class="page manual" data-n="23">
+      <div class="kicker">الجزء الثاني · 5</div>
+      <h2>المعضلات والباب الحكيم</h2>
+      <div class="mrow "><div class="phone "><img src="../shots/ar-door.webp" alt=""></div>
+        <ol class="steps"><li>أغلب الأسابيع تأتي بمعضلة صغيرة لها جوابان معقولان، ولكل منهما ثمن.</li><li>مع طاقة <bdi class="n">70</bdi> أو أكثر يُفتح باب ثالث: الباب الحكيم.</li><li>وبعد كل اختيار يشارك جدّو فكرة تدخل دفتر الملصقات.</li></ol></div><footer class="pn"><bdi class="n">23</bdi></footer></section>
+<section class="page manual" data-n="24">
+      <div class="kicker">الجزء الثاني · 6</div>
+      <h2>الصدى والواجبات والنعاس</h2>
+      <div class="mrow "><div class="phone "><img src="../shots/ar-echo.webp" alt=""></div>
+        <ol class="steps"><li>بعض الاختيارات تعود بعد أسابيع، ومعها رقم الأسبوع الذي جاءت منه.</li><li>المذاكرة مرة كل <bdi class="n">3</bdi> أسابيع على الأقل، وإلا أغلقت ماما أو بابا الكشك أسبوعًا.</li><li>تحت <bdi class="n">40</bdi> من الطاقة تتمايل الأرقام ويُحسب الباقي خطأً. والراحة تصلح ذلك.</li></ol></div><footer class="pn"><bdi class="n">24</bdi></footer></section>
+<section class="page manual" data-n="25">
+      <div class="kicker">الجزء الثاني · 7</div>
+      <h2>نهاية الصيف</h2>
+      <div class="mrow "><div class="phone "><img src="../shots/ar-report.webp" alt=""></div>
+        <ol class="steps"><li>الوصول إلى الهدف قبل نهاية الأسبوع <bdi class="n">12</bdi> يعني الفوز به.</li><li>بطاقة التقييم تعطي نجومًا للحساب والعملاء والتوازن والأمانة.</li><li>لا نهايات قاسية. وإذا لم يكتمل الهدف يلخّص جدّو ما تعلّمته ويعرض صيفًا آخر.</li></ol></div><footer class="pn"><bdi class="n">25</bdi></footer></section>
+<section class="page biz" data-n="26">
+    <h2>المشاريع الأربعة</h2>
+    <table><thead><tr><th>المشروع</th><th>تكلفة الواحدة</th><th>الأسعار</th><th>البقايا</th></tr></thead>
+    <tbody><tr><td class="nm"><img src="img/lemon.webp" alt="" class="" style=""><span>كشك العصير</span></td><td><bdi class="n">1</bdi></td><td><bdi class="n">2 · 3 · 5</bdi></td><td class="spoil">تفسد</td></tr><tr><td class="nm"><img src="img/artist_palette.webp" alt="" class="" style=""><span>رسومات وأساور</span></td><td><bdi class="n">2</bdi></td><td><bdi class="n">3 · 5 · 8</bdi></td><td class="kept">تُحفظ</td></tr><tr><td class="nm"><img src="img/bicycle.webp" alt="" class="" style=""><span>غسيل الدراجات وإصلاحها</span></td><td><bdi class="n">1</bdi></td><td><bdi class="n">2 · 3 · 5</bdi></td><td class="kept">تُحفظ</td></tr><tr><td class="nm"><img src="img/birthday_cake.webp" alt="" class="" style=""><span>كيك وكوكيز</span></td><td><bdi class="n">2</bdi></td><td><bdi class="n">3 · 5 · 8</bdi></td><td class="spoil">تفسد</td></tr></tbody></table>
+    <div class="tips"><div class="tips-h"><img src="img/old_man.webp" alt="" class="gp" style=""><h3>نصائح جدّو لصيف ناجح</h3></div><ul><li>صنع كمية قريبة من توقّع جدّو.</li><li>السعر المعتدل بداية جيدة.</li><li>الراحة قبل أن تنزل الطاقة تحت <bdi class="n">40</bdi>.</li><li>المذاكرة مرة كل <bdi class="n">3</bdi> أسابيع على الأقل.</li><li>الأشياء الممتعة جميلة، لكن ليس كل أسبوع.</li></ul></div><footer class="pn"><bdi class="n">26</bdi></footer></section>
+<section class="page glossary" data-n="27">
+    <h2>كلمات مهمة</h2>
+    <div class="words"><div class="word"><img src="img/coin.webp" alt="" class="" style=""><div><b>التكلفة</b><p>ما ندفعه لنصنع الشيء.</p></div></div><div class="word"><img src="img/placard.webp" alt="" class="" style=""><div><b>السعر</b><p>ما يدفعه الزبون مقابل الشيء.</p></div></div><div class="word"><img src="img/money_bag.webp" alt="" class="" style=""><div><b>الربح</b><p>النقود الداخلة ناقص النقود المصروفة.</p></div></div><div class="word"><img src="img/smiling_face_with_smiling_eyes.webp" alt="" class="" style=""><div><b>الزبون</b><p>من يشتري منك.</p></div></div><div class="word"><img src="img/grimacing_face.webp" alt="" class="" style=""><div><b>البقايا</b><p>ما صُنع ولم يُبع.</p></div></div><div class="word"><img src="img/pig_face.webp" alt="" class="" style=""><div><b>الادّخار</b><p>الاحتفاظ بالنقود الآن من أجل شيء أكبر لاحقًا.</p></div></div><div class="word"><img src="img/wrench.webp" alt="" class="" style=""><div><b>الاستثمار</b><p>إنفاق النقود على شيء يساعد على كسب المزيد.</p></div></div><div class="word"><img src="img/handshake.webp" alt="" class="" style=""><div><b>الشريك</b><p>من يشارك في العمل وفي الربح.</p></div></div></div><footer class="pn"><bdi class="n">27</bdi></footer></section>
+<section class="page back" data-n="28">
+    <p class="blurb">ملك ويوسف يريدان شراء هدية لماما قبل نهاية الصيف. ومع كشك عصير ودفتر وأفكار جدّو، يتعلّمان ما يعرفه كل صاحب مشروع: التكلفة والسعر والربح والادّخار والأمانة والراحة.</p>
+    <div class="qrbig"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 29 29" shape-rendering="crispEdges"><path stroke="#2B2140" d="M0 0.5h7m2 0h1m3 0h3m1 0h2m3 0h7M0 1.5h1m5 0h1m1 0h2m1 0h2m2 0h1m1 0h2m3 0h1m5 0h1M0 2.5h1m1 0h3m1 0h1m1 0h2m4 0h1m1 0h1m2 0h2m1 0h1m1 0h3m1 0h1M0 3.5h1m1 0h3m1 0h1m1 0h2m1 0h2m1 0h2m1 0h1m1 0h2m1 0h1m1 0h3m1 0h1M0 4.5h1m1 0h3m1 0h1m2 0h1m2 0h4m1 0h3m2 0h1m1 0h3m1 0h1M0 5.5h1m5 0h1m2 0h1m1 0h1m1 0h2m1 0h2m4 0h1m5 0h1M0 6.5h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7M8 7.5h1m2 0h3m5 0h1M0 8.5h1m5 0h1m1 0h2m2 0h1m1 0h2m1 0h1m1 0h4m2 0h3M1 9.5h1m1 0h1m1 0h1m2 0h2m1 0h2m1 0h1m2 0h3m4 0h1m1 0h2M1 10.5h3m1 0h3m2 0h1m1 0h1m7 0h1m1 0h3M1 11.5h4m2 0h1m2 0h2m2 0h3m5 0h2m1 0h1M0 12.5h3m1 0h3m5 0h3m1 0h1m1 0h3m1 0h2m4 0h1M0 13.5h4m4 0h2m1 0h1m1 0h2m2 0h4m1 0h3m2 0h2M0 14.5h7m1 0h1m4 0h5m3 0h1m1 0h4M1 15.5h1m3 0h1m1 0h1m2 0h1m2 0h3m4 0h3m1 0h1m1 0h1m1 0h1M0 16.5h1m3 0h4m1 0h1m1 0h1m2 0h1m2 0h1m1 0h1m5 0h2M0 17.5h2m1 0h3m4 0h2m3 0h1m1 0h4m1 0h3m1 0h3M0 18.5h3m1 0h3m1 0h1m2 0h5m1 0h1m1 0h3m1 0h3m2 0h1M0 19.5h1m2 0h1m1 0h1m2 0h1m1 0h3m1 0h1m1 0h1m1 0h1m1 0h1m2 0h2M0 20.5h1m2 0h1m2 0h1m5 0h1m2 0h1m1 0h1m2 0h5m1 0h3M8 21.5h2m2 0h2m1 0h1m1 0h2m1 0h1m3 0h2M0 22.5h7m2 0h1m3 0h3m2 0h3m1 0h1m1 0h3M0 23.5h1m5 0h1m2 0h3m1 0h1m2 0h1m2 0h2m3 0h1m2 0h1M0 24.5h1m1 0h3m1 0h1m3 0h1m1 0h2m2 0h1m2 0h7m1 0h2M0 25.5h1m1 0h3m1 0h1m3 0h1m4 0h2m2 0h1m1 0h1m3 0h2m1 0h1M0 26.5h1m1 0h3m1 0h1m2 0h2m3 0h2m3 0h1m1 0h7M0 27.5h1m5 0h1m2 0h1m1 0h4m3 0h1m2 0h1m1 0h4m1 0h1M0 28.5h7m1 0h1m2 0h2m2 0h3m1 0h1m4 0h1m1 0h1"/></svg>
+</div>
+    <p class="b1">اللعبة مجانية</p><p class="url">adam.ahmedhaz.com/little</p>
+    <p class="b2">بلا إعلانات · بلا حسابات · لا شيء للشراء</p>
+    <div class="back-art"><img src="img/lemon.webp" alt="" class="" style=""><img src="img/artist_palette.webp" alt="" class="" style=""><img src="img/bicycle.webp" alt="" class="" style=""><img src="img/birthday_cake.webp" alt="" class="" style=""></div></section>
+</div></div></main>
+<nav class="nav"><button class="prev" aria-label="السابق">→</button><span class="count" dir="ltr"><span class="cur">1</span> / 28</span><button class="next" aria-label="التالي">←</button></nav>
+<script>// Page-by-page reader. ?print shows every page for the PDF. #p5 opens page 5.
+(function () {
+  "use strict";
+  if (/[?&]print\b/.test(location.search)) { document.documentElement.classList.add("print"); return; }
+  var pages = Array.prototype.slice.call(document.querySelectorAll(".page"));
+  var rtl = document.documentElement.dir === "rtl";
+  var cur = document.querySelector(".cur"), prev = document.querySelector(".prev"), next = document.querySelector(".next");
+  var stage = document.querySelector(".stage"), bar = document.querySelector(".bar"), nav = document.querySelector(".nav");
+  var i = Math.min(pages.length - 1, Math.max(0, (parseInt((location.hash.match(/p(\d+)/) || [])[1], 10) || 1) - 1));
+
+  function fit() {
+    var px = pages[0].getBoundingClientRect ? 148 * 96 / 25.4 : 559;
+    var w = window.innerWidth - 20, h = window.innerHeight - bar.offsetHeight - nav.offsetHeight - 24;
+    var k = Math.min(w / px, h / (px * 210 / 148), 1.6);
+    stage.style.setProperty("--k", Math.max(0.3, k));
+    document.querySelector(".book").style.setProperty("--k", Math.max(0.3, k));
+  }
+  function show(n, back) {
+    if (n < 0 || n >= pages.length) return;
+    pages[i].classList.remove("current", "back-turn");
+    i = n;
+    pages[i].classList.add("current");
+    pages[i].classList.toggle("back-turn", !!back);
+    cur.textContent = i + 1;
+    prev.disabled = i === 0; next.disabled = i === pages.length - 1;
+    try { history.replaceState(null, "", "#p" + (i + 1)); } catch (e) { /* file:// */ }
+  }
+  prev.addEventListener("click", function () { show(i - 1, true); });
+  next.addEventListener("click", function () { show(i + 1); });
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "ArrowRight") show(rtl ? i - 1 : i + 1, rtl);
+    else if (e.key === "ArrowLeft") show(rtl ? i + 1 : i - 1, !rtl);
+    else if (e.key === "Home") show(0, true);
+    else if (e.key === "End") show(pages.length - 1);
+  });
+  // Swipe: towards the start of the line turns to the next page.
+  var x0 = null, y0 = null;
+  document.querySelector(".reader").addEventListener("touchstart", function (e) { x0 = e.touches[0].clientX; y0 = e.touches[0].clientY; }, { passive: true });
+  document.querySelector(".reader").addEventListener("touchend", function (e) {
+    if (x0 == null) return;
+    var dx = e.changedTouches[0].clientX - x0, dy = e.changedTouches[0].clientY - y0;
+    if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy)) { var fwd = rtl ? dx > 0 : dx < 0; show(fwd ? i + 1 : i - 1, !fwd); }
+    x0 = null;
+  });
+  window.addEventListener("resize", fit);
+  fit();
+  show(i);
+})();
+</script>
+</body>
+</html>

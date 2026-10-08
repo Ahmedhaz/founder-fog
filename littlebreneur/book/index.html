@@ -1,0 +1,420 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The Little Entrepreneur · The picture book</title>
+<meta name="description" content="Malak and Yousef want to buy Mum a gift by the end of summer. With a juice stand, a notebook and Grandpa's ideas, they learn what every business owner knows: cost, price, profit, saving, honesty and rest.">
+<link rel="canonical" href="https://adam.ahmedhaz.com/littlebreneur/book/">
+<link rel="alternate" hreflang="en" href="https://adam.ahmedhaz.com/littlebreneur/book/">
+<link rel="alternate" hreflang="ar" href="https://adam.ahmedhaz.com/littlebreneur/book/ar.html">
+<meta property="og:title" content="The Little Entrepreneur">
+<meta property="og:description" content="Malak and Yousef want to buy Mum a gift by the end of summer. With a juice stand, a notebook and Grandpa's ideas, they learn what every business owner knows: cost, price, profit, saving, honesty and rest.">
+<meta property="og:image" content="https://adam.ahmedhaz.com/littlebreneur/og-en.png">
+<link rel="icon" type="image/png" href="../../little/icons/icon-192.png">
+<style>@font-face { font-family: "Baloo Bhaijaan 2"; src: url(fonts/BalooBhaijaan2.ttf) format("truetype"); font-weight: 400 800; font-display: block; }
+:root {
+  --ink: #2B2140; --ink2: #5E5373; --ink3: #8E83A3; --paper: #FFFBF2; --cream: #FFF4DE; --line: #F1DFC0;
+  --orange: #FF7A1A; --yellow: #FFC93C; --green: #22A86B; --red: #E5484D; --purple: #8B5CF6; --pink: #FF5C8A; --blue: #3D8BFF;
+  --font: "Baloo Bhaijaan 2", system-ui, sans-serif;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body { font-family: var(--font); color: var(--ink); background: #EFE6D6; }
+bdi.n { unicode-bidi: isolate; direction: ltr; }
+img { display: block; }
+
+/* ───────── the page (A5) ───────── */
+@page { size: 148mm 210mm; margin: 0; }
+.page { width: 148mm; height: 210mm; position: relative; overflow: hidden; background: var(--paper); padding: 10mm 11mm 13mm;
+        display: flex; flex-direction: column; font-size: 11.6pt; line-height: 1.5; }
+.page h1 { font-size: 30pt; line-height: 1.05; margin: 0; font-weight: 800; }
+.page h2 { font-size: 20pt; line-height: 1.15; margin: 1mm 0 2.5mm; font-weight: 800; }
+.page h3 { font-size: 13pt; margin: 0 0 2mm; }
+.page p { margin: 0 0 2.6mm; }
+.kicker { color: var(--orange); font-weight: 800; font-size: 9pt; letter-spacing: .06em; text-transform: uppercase; }
+:lang(ar) .kicker { letter-spacing: 0; font-size: 10pt; }
+.lead { color: var(--ink2); }
+.pn { position: absolute; bottom: 5mm; left: 0; right: 0; text-align: center; font-size: 9pt; color: var(--ink3); font-weight: 700; }
+
+/* ───────── scenes ───────── */
+.scene { position: relative; height: 80mm; flex: none; border-radius: 6mm; overflow: hidden; margin-bottom: 4mm; border: .6mm solid var(--line); }
+.scene .it { position: absolute; height: auto; filter: drop-shadow(0 1.2mm 1.2mm rgba(43, 33, 64, .18)); }
+.bg-day { background: linear-gradient(#A9DCFF 0 62%, #93D47E 62% 100%); }
+.bg-hot { background: linear-gradient(#FFD08F 0 62%, #E9C86B 62% 100%); }
+.bg-rain { background: repeating-linear-gradient(105deg, transparent 0 7mm, rgba(255, 255, 255, .35) 7mm 7.4mm), linear-gradient(#A3B0C7 0 62%, #74A56F 62% 100%); }
+.bg-night { background: radial-gradient(circle at 80% 20%, #3B3680 0, transparent 40%), linear-gradient(#1E1B4B 0 62%, #3B2F5E 62% 100%); }
+.bg-room { background: radial-gradient(circle, rgba(255, 122, 26, .12) .7mm, transparent .8mm) 0 0 / 7mm 7mm, linear-gradient(#FFE9C7 0 66%, #E6BC85 66% 100%); }
+.stand { position: absolute; bottom: 8%; height: 58%; }
+.stand .awning { position: absolute; top: 0; left: -4%; right: -4%; height: 26%; z-index: 1; border-radius: 1.5mm 1.5mm 3mm 3mm;
+                 background: repeating-linear-gradient(90deg, var(--aw) 0 12%, #fff 12% 24%); box-shadow: 0 1mm 0 rgba(0, 0, 0, .1); }
+.stand .posts { position: absolute; top: 20%; bottom: 30%; left: 3%; right: 3%; z-index: 1; border-left: 1.4mm solid #B07A45; border-right: 1.4mm solid #B07A45; }
+.stand .counter { position: absolute; bottom: 0; left: 0; right: 0; height: 42%; z-index: 20; background: linear-gradient(#D69A5E, #B97B42); border-radius: 1.5mm;
+                  display: grid; place-items: center; box-shadow: 0 1mm 0 rgba(0, 0, 0, .12); }
+.stand .counter span { background: #fff; border-radius: 1.5mm; padding: .2mm 2.5mm; font-weight: 800; font-size: 9pt; white-space: nowrap; color: var(--ink); }
+
+/* ───────── idea box ───────── */
+.idea { margin-top: auto; display: flex; gap: 3mm; align-items: center; background: #FFF1C9; border: .6mm solid var(--yellow); border-radius: 4mm; padding: 2.5mm 3.5mm; }
+.idea .gp { width: 12mm; height: 12mm; flex: none; }
+.idea b { font-size: 9.5pt; color: #B06F00; }
+.idea p { margin: 0; font-weight: 700; font-size: 11pt; line-height: 1.35; }
+
+/* ───────── cover & back ───────── */
+.cover, .back { background: radial-gradient(circle at 25% 15%, #FFE08A, #FF9F45 55%, #FF7A1A); color: #fff; text-align: center; padding: 12mm 10mm; }
+.cover h1 { font-size: 36pt; text-shadow: 0 1mm 0 rgba(160, 60, 0, .25); margin-top: 3mm; }
+.cover .cover-sub { font-size: 13pt; font-weight: 700; margin: 3mm 6mm 6mm; }
+.cover .cover-top { display: flex; justify-content: center; }
+.cover .ages { background: #fff; color: var(--orange); border-radius: 99px; padding: .5mm 4mm; font-weight: 800; font-size: 10pt; }
+.cover .scene { height: 104mm; border: 1.2mm solid #fff; box-shadow: 0 3mm 6mm rgba(160, 60, 0, .25); }
+.cover .cover-foot { margin-top: auto; margin-bottom: 0; font-weight: 700; font-size: 9pt; opacity: .9; }
+.back .blurb { font-size: 12.5pt; font-weight: 600; line-height: 1.5; margin: 4mm 2mm 8mm; }
+.qrbig { width: 44mm; height: 44mm; margin: 0 auto; background: #fff; border-radius: 5mm; padding: 4mm; }
+.qrbig svg, .qr svg { width: 100%; height: 100%; display: block; }
+.back .b1 { font-size: 15pt; font-weight: 800; margin: 5mm 0 0; }
+.back .url { font-size: 12pt; font-weight: 700; margin: 0 0 2mm; direction: ltr; }
+.back .b2 { font-size: 10pt; opacity: .95; }
+.back-art { margin-top: auto; display: flex; justify-content: center; gap: 4mm; }
+.back-art img { width: 15mm; height: 15mm; }
+
+/* ───────── front matter ───────── */
+.titlepage { text-align: center; justify-content: center; }
+.tp-art { display: flex; justify-content: center; gap: 4mm; margin-bottom: 6mm; }
+.tp-art img { width: 18mm; height: 18mm; }
+.titlepage h1 { color: var(--orange); }
+.titlepage .alt { color: var(--ink2); font-size: 15pt; margin: 2mm 0 8mm; }
+.titlepage .lead { font-size: 12pt; margin: 0 6mm 3mm; }
+.titlepage .credits { margin-top: auto; font-size: 8.5pt; color: var(--ink3); }
+.titlepage .credits p { margin: 0 0 1mm; }
+.parents p { font-size: 12.4pt; }
+.toc { margin-top: auto; background: var(--cream); border-radius: 4mm; padding: 3.5mm 5mm; }
+.toc ol { list-style: none; margin: 0; padding: 0; }
+.toc li { display: flex; align-items: baseline; gap: 2mm; font-size: 10.5pt; font-weight: 700; padding: .6mm 0; }
+.toc li i { flex: 1; border-bottom: .4mm dotted var(--ink3); transform: translateY(-1mm); }
+
+/* ───────── story ───────── */
+.story .text { font-size: 14pt; line-height: 1.55; }
+:lang(ar) .story .text { font-size: 13.6pt; line-height: 1.6; }
+.equation .eq { display: flex; align-items: center; justify-content: center; gap: 2.5mm; margin: 2mm 0 4mm; }
+.eq .box { border-radius: 4mm; padding: 2mm 3mm; text-align: center; min-width: 30mm; background: #fff; border: .7mm solid var(--line); }
+.eq .box b { display: block; font-size: 26pt; line-height: 1.1; }
+.eq .box span { font-size: 9pt; color: var(--ink2); font-weight: 700; }
+.eq .in b { color: var(--green); } .eq .out b { color: var(--red); } .eq .pr { border-color: var(--orange); background: #FFF1E2; } .eq .pr b { color: var(--orange); }
+.eq i { font-style: normal; font-size: 22pt; font-weight: 800; color: var(--ink3); }
+.scene.mini { height: 44mm; }
+
+/* ───────── ideas recap ───────── */
+.stickers { display: grid; grid-template-columns: 1fr 1fr; gap: 2.4mm; flex: 1; align-content: start; }
+.sticker { background: #fff; border: .5mm solid var(--line); border-radius: 3.5mm; padding: 1.8mm 2.5mm; display: flex; gap: 2mm; align-items: center; transform: rotate(var(--r)); box-shadow: 0 .8mm 0 var(--line); }
+.sticker img { width: 9mm; height: 9mm; flex: none; }
+.sticker p { margin: 0; font-size: 8.4pt; line-height: 1.3; font-weight: 600; }
+
+/* ───────── worksheet ───────── */
+.field { display: flex; align-items: flex-end; gap: 3mm; margin: 2.8mm 0; font-weight: 700; font-size: 11pt; }
+.field span { white-space: nowrap; }
+.field .line { flex: 1; border-bottom: .5mm dashed var(--ink3); height: 8mm; position: relative; }
+.field .line em { position: absolute; inset-inline-end: 0; bottom: .5mm; font-style: normal; color: var(--ink3); font-size: 9pt; }
+.sumbox { background: var(--cream); border-radius: 4mm; padding: 3mm 4mm; margin: 3mm 0; }
+.sumbox p { font-weight: 700; margin: 0 0 2mm; }
+.sumrow { display: flex; align-items: center; justify-content: center; gap: 3mm; }
+.sumrow .blank { width: 24mm; height: 12mm; border: .6mm solid var(--ink3); border-radius: 3mm; background: #fff; }
+.sumrow .blank.big { width: 30mm; border-color: var(--orange); }
+.sumrow i { font-style: normal; font-size: 18pt; font-weight: 800; color: var(--ink3); }
+.field.goal .gimg { width: 10mm; height: 10mm; }
+.piggyrow { margin-top: auto; display: flex; align-items: center; gap: 2.2mm; justify-content: center; }
+.piggyrow img { width: 14mm; height: 14mm; }
+.piggyrow .dot { width: 7.5mm; height: 7.5mm; border-radius: 50%; border: .6mm dashed var(--yellow); }
+
+/* ───────── game guide ───────── */
+.manual-intro p { font-size: 12.6pt; }
+.mi-art { margin-top: auto; display: flex; align-items: flex-end; justify-content: center; gap: 8mm; }
+.phone { width: 60mm; aspect-ratio: 390 / 844; border-radius: 6mm; padding: 1.6mm; background: #2B2140; flex: none; box-shadow: 0 2mm 4mm rgba(43, 33, 64, .25); }
+.phone img { width: 100%; height: 100%; object-fit: cover; object-position: top; border-radius: 4.6mm; }
+.mi-art .phone { width: 46mm; }
+.qr { width: 34mm; text-align: center; font-size: 8pt; font-weight: 700; color: var(--ink2); }
+.qr svg { width: 34mm; height: 34mm; background: #fff; border-radius: 3mm; padding: 2mm; border: .5mm solid var(--line); margin-bottom: 1.5mm; }
+.mrow { display: flex; gap: 5mm; align-items: flex-start; flex: 1; }
+.mrow.stack { flex-direction: column; align-items: center; }
+.phone.crop-top { aspect-ratio: auto; width: 112mm; height: 58mm; border-radius: 7mm; }
+.mrow.stack .steps { width: 100%; margin-top: 2mm; }
+.steps { list-style: none; margin: 0; padding: 0; counter-reset: st; flex: 1; }
+.steps li { counter-increment: st; position: relative; padding-inline-start: 8.5mm; margin-bottom: 4.5mm; font-size: 12pt; line-height: 1.45; }
+.steps li::before { content: counter(st); position: absolute; inset-inline-start: 0; top: .2mm; width: 6mm; height: 6mm; border-radius: 50%; background: var(--orange); color: #fff; font-weight: 800; font-size: 9pt; display: grid; place-items: center; }
+.biz table { width: 100%; border-collapse: separate; border-spacing: 0 2.6mm; font-size: 11pt; }
+.biz th { font-size: 8.5pt; color: var(--ink2); text-align: start; padding: 0 1.5mm; }
+.biz td { background: #fff; padding: 1.8mm 1.5mm; border-top: .4mm solid var(--line); border-bottom: .4mm solid var(--line); font-weight: 700; }
+.biz td:first-child { border-inline-start: .4mm solid var(--line); border-start-start-radius: 3mm; border-end-start-radius: 3mm; }
+.biz td:last-child { border-inline-end: .4mm solid var(--line); border-start-end-radius: 3mm; border-end-end-radius: 3mm; }
+.biz .nm { display: flex; align-items: center; gap: 1.8mm; }
+.biz .nm img { width: 8mm; height: 8mm; flex: none; }
+.biz .spoil { color: var(--red); } .biz .kept { color: var(--green); }
+.tips { margin-top: auto; background: #FFF1C9; border: .6mm solid var(--yellow); border-radius: 4mm; padding: 3mm 4mm; }
+.tips-h { display: flex; align-items: center; gap: 2.5mm; }
+.tips-h .gp { width: 11mm; height: 11mm; }
+.tips-h h3 { margin: 0; }
+.tips ul { margin: 2mm 0 0; padding-inline-start: 5mm; font-size: 11.4pt; font-weight: 600; line-height: 1.6; }
+.words { display: grid; grid-template-columns: 1fr 1fr; gap: 4mm; margin-top: 3mm; }
+.word { display: flex; gap: 2.5mm; background: #fff; border: .5mm solid var(--line); border-radius: 3.5mm; padding: 2.5mm; }
+.word img { width: 11mm; height: 11mm; flex: none; }
+.word b { font-size: 12pt; color: var(--orange); }
+.word p { margin: 0; font-size: 10.6pt; line-height: 1.35; }
+
+/* ───────── screen reader ───────── */
+.bar { position: sticky; top: 0; z-index: 10; display: flex; align-items: center; gap: 8px; padding: 8px 12px; background: #FFF4DE; border-bottom: 2px solid var(--line); }
+.bar .home { display: flex; align-items: center; gap: 8px; margin-inline-end: auto; color: var(--ink); text-decoration: none; font-weight: 800; min-width: 0; }
+.bar .home img { width: 34px; height: 34px; border-radius: 9px; }
+.bar .home span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.chip { min-height: 44px; display: inline-flex; align-items: center; padding: 0 12px; border-radius: 12px; border: 2px solid var(--line); background: #fff; color: var(--ink); text-decoration: none; font-weight: 700; font-size: 15px; white-space: nowrap; }
+.chip.primary { background: var(--orange); border-color: #E2600A; color: #fff; }
+@media (max-width: 560px) { .bar .home span { display: none; } .chip { padding: 0 9px; font-size: 14px; } }
+.reader { display: flex; justify-content: center; padding: 14px 10px 86px; }
+.stage { width: calc(148mm * var(--k, 1)); height: calc(210mm * var(--k, 1)); position: relative; overflow: hidden; }
+.book { position: absolute; top: 0; left: 0; width: 148mm; height: 210mm; transform: scale(var(--k, 1)); transform-origin: top left; }
+.reader { overflow: hidden; }
+.reader .page { display: none; border-radius: 3mm; box-shadow: 0 6px 24px rgba(43, 33, 64, .18); }
+.reader .page.current { display: flex; animation: turn .35s ease; }
+.reader .page.current.back-turn { animation: turnback .35s ease; }
+@keyframes turn { from { opacity: 0; transform: translateX(calc(var(--d, 1) * 12mm)) rotateY(calc(var(--d, 1) * -8deg)); } }
+@keyframes turnback { from { opacity: 0; transform: translateX(calc(var(--d, 1) * -12mm)) rotateY(calc(var(--d, 1) * 8deg)); } }
+[dir="rtl"] { --d: -1; }
+.nav { position: fixed; bottom: 0; left: 0; right: 0; display: flex; align-items: center; justify-content: center; gap: 16px; padding: 10px 12px calc(10px + env(safe-area-inset-bottom)); background: linear-gradient(transparent, #EFE6D6 35%); }
+.nav button { width: 56px; height: 56px; border-radius: 50%; border: 2px solid var(--line); background: #fff; font-size: 24px; font-weight: 800; color: var(--ink); cursor: pointer; box-shadow: 0 3px 0 var(--line); font-family: var(--font); }
+.nav button:disabled { opacity: .35; cursor: default; }
+.nav .count { font-weight: 800; color: var(--ink2); min-width: 70px; text-align: center; }
+@media (prefers-reduced-motion: reduce) { .reader .page.current { animation: none !important; } }
+
+/* ───────── print / PDF: every page, one per sheet ───────── */
+html.print body, html.print .reader { background: none; padding: 0; display: block; }
+html.print .bar, html.print .nav { display: none; }
+html.print .stage, html.print .book { position: static; overflow: visible; width: auto; height: auto; transform: none; }
+html.print .reader { overflow: visible; }
+html.print .reader .page { display: flex; border-radius: 0; box-shadow: none; animation: none; break-after: page; }
+@media print {
+  .bar, .nav { display: none !important; }
+  body, .reader { background: none; padding: 0; display: block; }
+  .stage, .book { position: static !important; overflow: visible !important; width: auto !important; height: auto !important; transform: none !important; }
+  .reader { overflow: visible !important; }
+  .reader .page { display: flex !important; border-radius: 0; box-shadow: none; animation: none !important; break-after: page; }
+  * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+}
+</style>
+</head>
+<body>
+<header class="bar">
+  <a class="home" href="../"><img src="../../little/icons/icon-192.png" alt=""><span>The Little Entrepreneur</span></a>
+  <a class="chip" href="ar.html" lang="ar">العربية</a>
+  <a class="chip" href="the-little-entrepreneur-en.pdf" download>Download PDF</a>
+  <a class="chip primary" href="../../little/?lang=en">Play the game</a>
+</header>
+<main class="reader"><div class="stage"><div class="book">
+<section class="page cover" data-n="1">
+    <div class="cover-top"><span class="ages">For ages <bdi class="n">8</bdi> to <bdi class="n">12</bdi></span></div>
+    <h1>The Little Entrepreneur</h1>
+    <p class="cover-sub">A summer business story, and how to play the game</p>
+    <div class="scene bg-day cover-scene" dir="ltr"><div class="ground"></div><img src="img/sun.webp" alt="" class="it" style="left:80%;bottom:70%;width:15%;z-index:2"><div class="stand" style="left:28%;width:46%;--aw:#FFC93C"><div class="awning"></div><div class="posts"></div><div class="counter"><span dir="ltr">Lemonade · <bdi class="n">3</bdi></span></div></div><img src="img/girl.webp" alt="" class="it" style="left:34%;bottom:34%;width:15%;z-index:4"><img src="img/boy.webp" alt="" class="it" style="left:52%;bottom:34%;width:15%;transform:scaleX(-1);z-index:5"><img src="img/old_man.webp" alt="" class="it" style="left:2%;bottom:8%;width:24%;z-index:6"><img src="img/pig_face.webp" alt="" class="it" style="left:78%;bottom:8%;width:17%;z-index:7"><img src="img/coin.webp" alt="" class="it" style="left:82%;bottom:40%;width:8%;transform:rotate(20deg);z-index:8"><img src="img/lemon.webp" alt="" class="it" style="left:8%;bottom:66%;width:11%;transform:rotate(-15deg);z-index:9"></div>
+    <p class="cover-foot">adam.ahmedhaz.com/littlebreneur</p></section>
+<section class="page titlepage" data-n="2">
+    <div class="tp-art"><img src="img/lemon.webp" alt="" class="" style=""><img src="img/coin.webp" alt="" class="" style=""><img src="img/pig_face.webp" alt="" class="" style=""></div>
+    <h1>The Little Entrepreneur</h1>
+    <h2 class="alt">الانتربرونور الصغير</h2>
+    <p class="lead">A story about Malak, Yousef and Grandpa, and a guide to the free game.</p><p class="lead">Written for children aged <bdi class="n">8</bdi> to <bdi class="n">12</bdi> and the grown-ups who read with them.</p>
+    <div class="credits"><p>Pictures: Microsoft Fluent Emoji (MIT licence). Font: Baloo Bhaijaan <bdi class="n">2</bdi> (SIL Open Font Licence).</p><p>Free to print and share with family, friends and schools.</p><p>© <bdi class="n">2026</bdi> adam.ahmedhaz.com</p></div><footer class="pn"><bdi class="n">2</bdi></footer></section>
+<section class="page parents" data-n="3">
+    <h2>For the grown-ups</h2>
+    <p>This book has two parts. The story follows Malak and Yousef through one summer with a juice stand. Each scene ends with one of Grandpa's ideas about money: cost, price, profit, saving, honesty and rest.</p><p>The second part shows how to play The Little Entrepreneur, the free game the story comes from. It works in any browser and on phones, with no ads, no accounts and nothing to buy.</p><p>A good way to use it: read one scene together, talk about Grandpa's idea, then let your child try it in the game. At the end there is a page for planning a real tiny business.</p>
+    <div class="toc"><h3>Contents</h3><ol><li><span>Part 1: The story</span><i></i><bdi class="n">4</bdi></li><li><span>Grandpa's ideas</span><i></i><bdi class="n">16</bdi></li><li><span>Your turn: plan a tiny business</span><i></i><bdi class="n">17</bdi></li><li><span>Part 2: How to play The Little Entrepreneur</span><i></i><bdi class="n">18</bdi></li><li><span>The four businesses</span><i></i><bdi class="n">26</bdi></li><li><span>Words to know</span><i></i><bdi class="n">27</bdi></li></ol></div><footer class="pn"><bdi class="n">3</bdi></footer></section>
+<section class="page story" data-n="4">
+        <div class="scene bg-day " dir="ltr"><div class="ground"></div><img src="img/sun.webp" alt="" class="it" style="left:78%;bottom:70%;width:16%;z-index:2"><img src="img/deciduous_tree.webp" alt="" class="it" style="left:2%;bottom:18%;width:26%;z-index:3"><img src="img/old_man.webp" alt="" class="it" style="left:38%;bottom:16%;width:22%;z-index:4"><img src="img/hot_beverage.webp" alt="" class="it" style="left:57%;bottom:16%;width:10%;z-index:5"><img src="img/girl.webp" alt="" class="it" style="left:14%;bottom:12%;width:20%;z-index:6"><img src="img/boy.webp" alt="" class="it" style="left:68%;bottom:12%;width:20%;transform:scaleX(-1);z-index:7"><img src="img/coin.webp" alt="" class="it" style="left:86%;bottom:14%;width:8%;z-index:8"><img src="img/wrapped_gift.webp" alt="" class="it" style="left:26%;bottom:58%;width:12%;transform:rotate(-10deg);z-index:9"></div>
+        <div class="kicker">Part 1 · 1</div>
+        <h2>Summer begins</h2>
+        <p class="text">On the first day of summer, Malak and Yousef had a plan. &quot;Mum's birthday is at the end of summer,&quot; said Malak. &quot;We want to buy her a real gift.&quot; Yousef emptied his pockets: <bdi class="n">15</bdi> coins. &quot;That's not enough,&quot; he sighed. Grandpa put down his tea. &quot;Then let's earn the rest. What do people here want on a hot day?&quot; &quot;Something cold!&quot; they shouted together.</p>
+        <div class="idea"><img src="img/old_man.webp" alt="" class="gp" style=""><div><b>Grandpa's idea</b><p>A business starts with something people want.</p></div></div><footer class="pn"><bdi class="n">4</bdi></footer></section>
+<section class="page story" data-n="5">
+        <div class="scene bg-room " dir="ltr"><div class="ground"></div><img src="img/old_man.webp" alt="" class="it" style="left:40%;bottom:14%;width:22%;z-index:2"><img src="img/notebook.webp" alt="" class="it" style="left:44%;bottom:54%;width:14%;transform:rotate(-8deg);z-index:3"><img src="img/pencil.webp" alt="" class="it" style="left:60%;bottom:60%;width:9%;transform:rotate(20deg);z-index:4"><img src="img/girl.webp" alt="" class="it" style="left:10%;bottom:12%;width:21%;z-index:5"><img src="img/boy.webp" alt="" class="it" style="left:70%;bottom:12%;width:21%;transform:scaleX(-1);z-index:6"><img src="img/lemon.webp" alt="" class="it" style="left:22%;bottom:60%;width:11%;z-index:7"><img src="img/cup_with_straw.webp" alt="" class="it" style="left:76%;bottom:58%;width:11%;z-index:8"><img src="img/abacus.webp" alt="" class="it" style="left:2%;bottom:64%;width:13%;z-index:9"></div>
+        <div class="kicker">Part 1 · 2</div>
+        <h2>What does one cup cost?</h2>
+        <p class="text">Grandpa opened his old notebook. &quot;Lemons, sugar, water and a paper cup. Let's count.&quot; They added it all up and divided it by the number of cups. &quot;One cup costs us one coin to make,&quot; said Yousef. &quot;That is our cost,&quot; said Grandpa. &quot;We pay for every cup we make, even if nobody buys it.&quot;</p>
+        <div class="idea"><img src="img/old_man.webp" alt="" class="gp" style=""><div><b>Grandpa's idea</b><p>Cost is what you pay to make something.</p></div></div><footer class="pn"><bdi class="n">5</bdi></footer></section>
+<section class="page story" data-n="6">
+        <div class="scene bg-day " dir="ltr"><div class="ground"></div><div class="stand" style="left:30%;width:44%;--aw:#FFC93C"><div class="awning"></div><div class="posts"></div><div class="counter"><span dir="ltr">Lemonade · <bdi class="n">3</bdi></span></div></div><img src="img/girl.webp" alt="" class="it" style="left:6%;bottom:10%;width:20%;z-index:3"><img src="img/pencil.webp" alt="" class="it" style="left:21%;bottom:30%;width:8%;transform:rotate(-30deg);z-index:4"><img src="img/boy.webp" alt="" class="it" style="left:76%;bottom:10%;width:20%;transform:scaleX(-1);z-index:5"><img src="img/thinking_face.webp" alt="" class="it" style="left:84%;bottom:56%;width:11%;z-index:6"><img src="img/sun.webp" alt="" class="it" style="left:4%;bottom:72%;width:13%;z-index:7"></div>
+        <div class="kicker">Part 1 · 3</div>
+        <h2>Choosing a price</h2>
+        <p class="text">Two, <bdi class="n">3</bdi> or <bdi class="n">5</bdi> coins a cup? &quot;<bdi class="n">5</bdi>!&quot; said Yousef. &quot;More money!&quot; Malak shook her head. &quot;At <bdi class="n">5</bdi>, fewer people will stop. At two coins lots will come, but we only keep one coin from each cup.&quot; Grandpa smiled. &quot;Try <bdi class="n">3</bdi>. It is fair for them, and fair for you.&quot; They wrote it on the sign in big letters: <bdi class="n">3</bdi> coins.</p>
+        <div class="idea"><img src="img/old_man.webp" alt="" class="gp" style=""><div><b>Grandpa's idea</b><p>A high price brings fewer customers. A low price brings less profit per cup.</p></div></div><footer class="pn"><bdi class="n">6</bdi></footer></section>
+<section class="page story" data-n="7">
+        <div class="scene bg-hot " dir="ltr"><div class="ground"></div><div class="stand" style="left:52%;width:44%;--aw:#FFC93C"><div class="awning"></div><div class="posts"></div><div class="counter"><span dir="ltr">Lemonade · <bdi class="n">3</bdi></span></div></div><img src="img/girl.webp" alt="" class="it" style="left:60%;bottom:30%;width:15%;z-index:3"><img src="img/boy.webp" alt="" class="it" style="left:76%;bottom:30%;width:15%;transform:scaleX(-1);z-index:4"><img src="img/woman.webp" alt="" class="it" style="left:2%;bottom:8%;width:16%;z-index:5"><img src="img/child.webp" alt="" class="it" style="left:17%;bottom:8%;width:13%;z-index:6"><img src="img/old_woman.webp" alt="" class="it" style="left:30%;bottom:8%;width:15%;z-index:7"><img src="img/coin.webp" alt="" class="it" style="left:46%;bottom:60%;width:8%;transform:rotate(15deg);z-index:8"><img src="img/coin.webp" alt="" class="it" style="left:40%;bottom:70%;width:7%;transform:rotate(-20deg);z-index:9"><img src="img/sun.webp" alt="" class="it" style="left:4%;bottom:72%;width:14%;z-index:10"></div>
+        <div class="kicker">Part 1 · 4</div>
+        <h2>Market day!</h2>
+        <p class="text">On Saturday they made <bdi class="n">12</bdi> cups. The sun was out, and so were the neighbours. By noon, <bdi class="n">11</bdi> cups were gone. Yousef counted the coins twice: <bdi class="n">33</bdi> coins. &quot;We're rich!&quot; he cheered. &quot;Not so fast,&quot; said Grandpa. &quot;How much did the cups cost?&quot; &quot;<bdi class="n">12</bdi> coins.&quot; &quot;So what is left?&quot;</p>
+        <div class="idea"><img src="img/old_man.webp" alt="" class="gp" style=""><div><b>Grandpa's idea</b><p>Counting the coins that came in is only half of the story.</p></div></div><footer class="pn"><bdi class="n">7</bdi></footer></section>
+<section class="page story equation" data-n="8">
+        <div class="kicker">Part 1 · 5</div>
+        <h2>Profit</h2>
+        <div class="eq" dir="ltr">
+          <div class="box in"><b>33</b><span>coins in</span></div><i>−</i>
+          <div class="box out"><b>12</b><span>coins spent</span></div><i>=</i>
+          <div class="box pr"><b>21</b><span>profit</span></div>
+        </div>
+        <div class="scene bg-room mini" dir="ltr"><div class="ground"></div><img src="img/pig_face.webp" alt="" class="it" style="left:40%;bottom:14%;width:22%;z-index:2"><img src="img/coin.webp" alt="" class="it" style="left:46%;bottom:64%;width:9%;z-index:3"><img src="img/coin.webp" alt="" class="it" style="left:34%;bottom:76%;width:8%;transform:rotate(20deg);z-index:4"><img src="img/coin.webp" alt="" class="it" style="left:58%;bottom:80%;width:7%;transform:rotate(-25deg);z-index:5"></div>
+        <p class="text">Malak wrote it on the back of the sign. <bdi class="n">33</bdi> coins came in. <bdi class="n">12</bdi> coins went out. <bdi class="n">21</bdi> coins are profit. &quot;Profit is what's left after paying for everything,&quot; said Grandpa. Yousef put the <bdi class="n">21</bdi> coins in the piggy bank very slowly, one by one.</p>
+        <div class="idea"><img src="img/old_man.webp" alt="" class="gp" style=""><div><b>Grandpa's idea</b><p>Profit = coins in − coins spent.</p></div></div><footer class="pn"><bdi class="n">8</bdi></footer></section>
+<section class="page story" data-n="9">
+        <div class="scene bg-rain " dir="ltr"><div class="ground"></div><img src="img/cloud_with_rain.webp" alt="" class="it" style="left:6%;bottom:62%;width:22%;z-index:2"><img src="img/cloud_with_rain.webp" alt="" class="it" style="left:66%;bottom:66%;width:20%;z-index:3"><div class="stand" style="left:28%;width:44%;--aw:#FFC93C"><div class="awning"></div><div class="posts"></div><div class="counter"><span dir="ltr">Lemonade · <bdi class="n">3</bdi></span></div></div><img src="img/umbrella_with_rain_drops.webp" alt="" class="it" style="left:4%;bottom:14%;width:22%;z-index:5"><img src="img/grimacing_face.webp" alt="" class="it" style="left:76%;bottom:14%;width:15%;z-index:6"><img src="img/cup_with_straw.webp" alt="" class="it" style="left:36%;bottom:44%;width:9%;z-index:7"><img src="img/cup_with_straw.webp" alt="" class="it" style="left:46%;bottom:44%;width:9%;z-index:8"><img src="img/cup_with_straw.webp" alt="" class="it" style="left:56%;bottom:44%;width:9%;z-index:9"></div>
+        <div class="kicker">Part 1 · 6</div>
+        <h2>A rainy Saturday</h2>
+        <p class="text">The next Saturday they made <bdi class="n">20</bdi> cups. Then the clouds came. Only <bdi class="n">6</bdi> people stopped, and they wanted something warm. That evening, <bdi class="n">14</bdi> cups of juice went down the sink. &quot;We paid for those,&quot; said Yousef quietly. &quot;Next time,&quot; said Malak, &quot;we look at the sky first, and make about as many as people will buy.&quot;</p>
+        <div class="idea"><img src="img/old_man.webp" alt="" class="gp" style=""><div><b>Grandpa's idea</b><p>Leftovers that spoil are coins thrown in the bin. Making fewer is a skill.</p></div></div><footer class="pn"><bdi class="n">9</bdi></footer></section>
+<section class="page story" data-n="10">
+        <div class="scene bg-day " dir="ltr"><div class="ground"></div><div class="stand" style="left:46%;width:44%;--aw:#FFC93C"><div class="awning"></div><div class="posts"></div><div class="counter"><span dir="ltr">Lemonade · <bdi class="n">3</bdi></span></div></div><img src="img/man.webp" alt="" class="it" style="left:8%;bottom:10%;width:20%;z-index:3"><img src="img/lemon.webp" alt="" class="it" style="left:24%;bottom:46%;width:11%;transform:rotate(25deg);z-index:4"><img src="img/girl.webp" alt="" class="it" style="left:54%;bottom:30%;width:15%;z-index:5"><img src="img/boy.webp" alt="" class="it" style="left:70%;bottom:30%;width:15%;transform:scaleX(-1);z-index:6"><img src="img/thumbs_up.webp" alt="" class="it" style="left:30%;bottom:62%;width:10%;z-index:7"></div>
+        <div class="kicker">Part 1 · 7</div>
+        <h2>Too sour!</h2>
+        <p class="text">Uncle Saeed took one sip and made a face. &quot;Too sour!&quot; he said, loud enough for the whole line to hear. Yousef's cheeks went red. Malak poured a new cup with more sugar. &quot;Can you tell us if this one is better?&quot; He tried it, nodded, and told the line, &quot;Now it's perfect.&quot; That afternoon they changed the recipe for good.</p>
+        <div class="idea"><img src="img/old_man.webp" alt="" class="gp" style=""><div><b>Grandpa's idea</b><p>A complaint is free advice.</p></div></div><footer class="pn"><bdi class="n">10</bdi></footer></section>
+<section class="page story" data-n="11">
+        <div class="scene bg-day " dir="ltr"><div class="ground"></div><img src="img/deciduous_tree.webp" alt="" class="it" style="left:72%;bottom:18%;width:26%;z-index:2"><img src="img/woman.webp" alt="" class="it" style="left:56%;bottom:10%;width:20%;transform:scaleX(-1);z-index:3"><img src="img/basket.webp" alt="" class="it" style="left:70%;bottom:12%;width:11%;z-index:4"><img src="img/girl.webp" alt="" class="it" style="left:8%;bottom:8%;width:19%;z-index:5"><img src="img/boy.webp" alt="" class="it" style="left:26%;bottom:8%;width:19%;z-index:6"><img src="img/coin.webp" alt="" class="it" style="left:44%;bottom:40%;width:8%;z-index:7"><img src="img/heart_hands.webp" alt="" class="it" style="left:44%;bottom:62%;width:12%;z-index:8"></div>
+        <div class="kicker">Part 1 · 8</div>
+        <h2>6 extra coins</h2>
+        <p class="text">At closing time, the box had <bdi class="n">6</bdi> coins too many. &quot;The lady with the green basket paid too much,&quot; said Malak. &quot;Nobody will know,&quot; said Yousef. Malak looked at him. Yousef sighed, and they ran after her down the street. The lady laughed. &quot;Nobody has ever chased me to give money back!&quot; The next Saturday she came back with two friends.</p>
+        <div class="idea"><img src="img/old_man.webp" alt="" class="gp" style=""><div><b>Grandpa's idea</b><p>Trust is like savings: slow to build, quick to spend.</p></div></div><footer class="pn"><bdi class="n">11</bdi></footer></section>
+<section class="page story" data-n="12">
+        <div class="scene bg-day " dir="ltr"><div class="ground"></div><div class="stand" style="left:2%;width:44%;--aw:#FFC93C"><div class="awning"></div><div class="posts"></div><div class="counter"><span dir="ltr">Lemonade · <bdi class="n">3</bdi></span></div></div><div class="stand" style="left:54%;width:44%;--aw:#FF5C8A"><div class="awning"></div><div class="posts"></div><div class="counter"><span dir="ltr">Popcorn</span></div></div><img src="img/girl.webp" alt="" class="it" style="left:10%;bottom:30%;width:14%;z-index:4"><img src="img/boy.webp" alt="" class="it" style="left:26%;bottom:30%;width:14%;z-index:5"><img src="img/child.webp" alt="" class="it" style="left:68%;bottom:30%;width:14%;transform:scaleX(-1);z-index:6"><img src="img/popcorn.webp" alt="" class="it" style="left:82%;bottom:44%;width:10%;z-index:7"><img src="img/handshake.webp" alt="" class="it" style="left:44%;bottom:66%;width:12%;z-index:8"></div>
+        <div class="kicker">Part 1 · 9</div>
+        <h2>The stand next door</h2>
+        <p class="text">One morning a bigger boy called Karim set up a juice stand <bdi class="n">5</bdi> steps away. Same sign, same cups, same price. &quot;He copied us!&quot; said Yousef. Grandpa sipped his tea. &quot;Then ask yourselves what makes you different.&quot; Malak had an idea. She walked over and talked to Karim. Now Karim sells popcorn, they sell juice, and people buy both.</p>
+        <div class="idea"><img src="img/old_man.webp" alt="" class="gp" style=""><div><b>Grandpa's idea</b><p>When someone copies you, the question is: what makes you, you?</p></div></div><footer class="pn"><bdi class="n">12</bdi></footer></section>
+<section class="page story" data-n="13">
+        <div class="scene bg-night " dir="ltr"><div class="ground"></div><img src="img/crescent_moon.webp" alt="" class="it" style="left:76%;bottom:70%;width:14%;z-index:2"><img src="img/star.webp" alt="" class="it" style="left:60%;bottom:80%;width:6%;z-index:3"><img src="img/star.webp" alt="" class="it" style="left:90%;bottom:58%;width:5%;z-index:4"><img src="img/bed.webp" alt="" class="it" style="left:6%;bottom:10%;width:34%;z-index:5"><img src="img/sleeping_face.webp" alt="" class="it" style="left:14%;bottom:36%;width:13%;z-index:6"><img src="img/yawning_face.webp" alt="" class="it" style="left:50%;bottom:18%;width:16%;z-index:7"><img src="img/books.webp" alt="" class="it" style="left:70%;bottom:12%;width:13%;z-index:8"><img src="img/soccer_ball.webp" alt="" class="it" style="left:84%;bottom:10%;width:10%;z-index:9"></div>
+        <div class="kicker">Part 1 · 10</div>
+        <h2>Too tired to count</h2>
+        <p class="text">In week <bdi class="n">6</bdi>, Malak and Yousef stayed up late making <bdi class="n">30</bdi> cups. The next day their eyes kept closing. Yousef gave a customer <bdi class="n">5</bdi> coins change instead of two. Malak forgot the ice. &quot;Tired sellers make small mistakes,&quot; said Grandpa. &quot;Rest is part of the job.&quot; So on Sunday they played football, did their homework and slept early.</p>
+        <div class="idea"><img src="img/old_man.webp" alt="" class="gp" style=""><div><b>Grandpa's idea</b><p>Rest is part of the job.</p></div></div><footer class="pn"><bdi class="n">13</bdi></footer></section>
+<section class="page story" data-n="14">
+        <div class="scene bg-room " dir="ltr"><div class="ground"></div><img src="img/pig_face.webp" alt="" class="it" style="left:8%;bottom:12%;width:22%;z-index:2"><img src="img/video_game.webp" alt="" class="it" style="left:40%;bottom:50%;width:18%;transform:rotate(-8deg);z-index:3"><img src="img/thinking_face.webp" alt="" class="it" style="left:46%;bottom:14%;width:14%;z-index:4"><img src="img/framed_picture.webp" alt="" class="it" style="left:72%;bottom:54%;width:16%;z-index:5"><img src="img/wrapped_gift.webp" alt="" class="it" style="left:74%;bottom:12%;width:15%;z-index:6"></div>
+        <div class="kicker">Part 1 · 11</div>
+        <h2>The new game</h2>
+        <p class="text">The piggy bank was getting heavy. Then everyone at the summer club started talking about a new video game. It cost <bdi class="n">30</bdi> coins. &quot;We have enough,&quot; whispered Yousef. Malak looked at the piggy bank, then at Mum's photo on the fridge. They waited. <bdi class="n">3</bdi> weeks later, the same game was on sale for <bdi class="n">18</bdi> coins. They smiled, and kept saving.</p>
+        <div class="idea"><img src="img/old_man.webp" alt="" class="gp" style=""><div><b>Grandpa's idea</b><p>Saving means picking what you want most over what you want right now.</p></div></div><footer class="pn"><bdi class="n">14</bdi></footer></section>
+<section class="page story" data-n="15">
+        <div class="scene bg-room " dir="ltr"><div class="ground"></div><img src="img/party_popper.webp" alt="" class="it" style="left:4%;bottom:64%;width:14%;z-index:2"><img src="img/sparkles.webp" alt="" class="it" style="left:82%;bottom:70%;width:12%;z-index:3"><img src="img/woman.webp" alt="" class="it" style="left:38%;bottom:12%;width:22%;z-index:4"><img src="img/wrapped_gift.webp" alt="" class="it" style="left:42%;bottom:56%;width:14%;z-index:5"><img src="img/girl.webp" alt="" class="it" style="left:8%;bottom:10%;width:20%;z-index:6"><img src="img/boy.webp" alt="" class="it" style="left:62%;bottom:10%;width:19%;transform:scaleX(-1);z-index:7"><img src="img/old_man.webp" alt="" class="it" style="left:80%;bottom:10%;width:18%;transform:scaleX(-1);z-index:8"></div>
+        <div class="kicker">Part 1 · 12</div>
+        <h2>The last day of summer</h2>
+        <p class="text">On the last Saturday, Yousef opened the piggy bank. They counted every coin twice: <bdi class="n">236</bdi> coins. The gift for Mum cost <bdi class="n">220</bdi>. &quot;We did it!&quot; they cheered. Mum cried happy tears when she opened it. Grandpa gave them a sticker each. &quot;You didn't just earn coins,&quot; he said. &quot;You learned how a business works.&quot; Malak was already planning next summer.</p>
+        <div class="idea"><img src="img/old_man.webp" alt="" class="gp" style=""><div><b>Grandpa's idea</b><p>Every coin you don't spend today walks your goal one step closer.</p></div></div><footer class="pn"><bdi class="n">15</bdi></footer></section>
+<section class="page ideas" data-n="16">
+    <h2>Grandpa's ideas</h2><p class="lead">Every idea from the story, in one place. In the game, each one becomes a sticker.</p>
+    <div class="stickers"><div class="sticker" style="--r:-1deg"><img src="img/old_man.webp" alt="" class="" style=""><p>A business starts with something people want.</p></div><div class="sticker" style="--r:1.6deg"><img src="img/old_man.webp" alt="" class="" style=""><p>Cost is what you pay to make something.</p></div><div class="sticker" style="--r:-2.2deg"><img src="img/girl.webp" alt="" class="" style=""><p>A high price brings fewer customers. A low price brings less profit per cup.</p></div><div class="sticker" style="--r:1deg"><img src="img/girl.webp" alt="" class="" style=""><p>Counting the coins that came in is only half of the story.</p></div><div class="sticker" style="--r:-1.6deg"><img src="img/pig_face.webp" alt="" class="" style=""><p>Profit = coins in − coins spent.</p></div><div class="sticker" style="--r:2.2deg"><img src="img/umbrella_with_rain_drops.webp" alt="" class="" style=""><p>Leftovers that spoil are coins thrown in the bin. Making fewer is a skill.</p></div><div class="sticker" style="--r:-1deg"><img src="img/man.webp" alt="" class="" style=""><p>A complaint is free advice.</p></div><div class="sticker" style="--r:1.6deg"><img src="img/woman.webp" alt="" class="" style=""><p>Trust is like savings: slow to build, quick to spend.</p></div><div class="sticker" style="--r:-2.2deg"><img src="img/girl.webp" alt="" class="" style=""><p>When someone copies you, the question is: what makes you, you?</p></div><div class="sticker" style="--r:1deg"><img src="img/bed.webp" alt="" class="" style=""><p>Rest is part of the job.</p></div><div class="sticker" style="--r:-1.6deg"><img src="img/pig_face.webp" alt="" class="" style=""><p>Saving means picking what you want most over what you want right now.</p></div><div class="sticker" style="--r:2.2deg"><img src="img/party_popper.webp" alt="" class="" style=""><p>Every coin you don't spend today walks your goal one step closer.</p></div></div><footer class="pn"><bdi class="n">16</bdi></footer></section>
+<section class="page worksheet" data-n="17">
+    <h2>Your turn: plan a tiny business</h2><p class="lead">Fill this in with pencil. Plan it with a grown-up, and buy supplies together.</p>
+    <div class="field"><span>My business idea</span><div class="line"></div></div><div class="field"><span>What do people want?</span><div class="line"></div></div><div class="field"><span>Cost to make one</span><div class="line"><em>coins</em></div></div><div class="field"><span>My price for one</span><div class="line"><em>coins</em></div></div><div class="field"><span>How many I think I can sell</span><div class="line"></div></div>
+    <div class="sumbox"><p>Coins in − coins spent = profit</p><div class="sumrow" dir="ltr"><span class="blank"></span><i>−</i><span class="blank"></span><i>=</i><span class="blank big"></span></div></div>
+    <div class="field goal"><img src="img/wrapped_gift.webp" alt="" class="gimg" style=""><span>I am saving for</span><div class="line"><em>coins</em></div></div>
+    <div class="piggyrow"><img src="img/pig_face.webp" alt="" class="" style=""><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></div><footer class="pn"><bdi class="n">17</bdi></footer></section>
+<section class="page manual-intro" data-n="18">
+    <div class="kicker">Part 2</div>
+    <h2>How to play The Little Entrepreneur</h2>
+    <p>In the game you run your own tiny business for a <bdi class="n">12</bdi>-week summer, just like Malak and Yousef. Pick a business, set a savings goal, and make one plan a week.</p><p>Play free at adam.ahmedhaz.com/little in any browser. It works offline once opened, in Arabic and English. A summer takes about <bdi class="n">15</bdi> minutes.</p>
+    <div class="mi-art"><div class="phone"><img src="../shots/en-plan.webp" alt=""></div>
+      <div class="qr"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 29 29" shape-rendering="crispEdges"><path stroke="#2B2140" d="M0 0.5h7m2 0h1m3 0h3m1 0h2m3 0h7M0 1.5h1m5 0h1m1 0h2m1 0h2m2 0h1m1 0h2m3 0h1m5 0h1M0 2.5h1m1 0h3m1 0h1m1 0h2m4 0h1m1 0h1m2 0h2m1 0h1m1 0h3m1 0h1M0 3.5h1m1 0h3m1 0h1m1 0h2m1 0h2m1 0h2m1 0h1m1 0h2m1 0h1m1 0h3m1 0h1M0 4.5h1m1 0h3m1 0h1m2 0h1m2 0h4m1 0h3m2 0h1m1 0h3m1 0h1M0 5.5h1m5 0h1m2 0h1m1 0h1m1 0h2m1 0h2m4 0h1m5 0h1M0 6.5h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7M8 7.5h1m2 0h3m5 0h1M0 8.5h1m5 0h1m1 0h2m2 0h1m1 0h2m1 0h1m1 0h4m2 0h3M1 9.5h1m1 0h1m1 0h1m2 0h2m1 0h2m1 0h1m2 0h3m4 0h1m1 0h2M1 10.5h3m1 0h3m2 0h1m1 0h1m7 0h1m1 0h3M1 11.5h4m2 0h1m2 0h2m2 0h3m5 0h2m1 0h1M0 12.5h3m1 0h3m5 0h3m1 0h1m1 0h3m1 0h2m4 0h1M0 13.5h4m4 0h2m1 0h1m1 0h2m2 0h4m1 0h3m2 0h2M0 14.5h7m1 0h1m4 0h5m3 0h1m1 0h4M1 15.5h1m3 0h1m1 0h1m2 0h1m2 0h3m4 0h3m1 0h1m1 0h1m1 0h1M0 16.5h1m3 0h4m1 0h1m1 0h1m2 0h1m2 0h1m1 0h1m5 0h2M0 17.5h2m1 0h3m4 0h2m3 0h1m1 0h4m1 0h3m1 0h3M0 18.5h3m1 0h3m1 0h1m2 0h5m1 0h1m1 0h3m1 0h3m2 0h1M0 19.5h1m2 0h1m1 0h1m2 0h1m1 0h3m1 0h1m1 0h1m1 0h1m1 0h1m2 0h2M0 20.5h1m2 0h1m2 0h1m5 0h1m2 0h1m1 0h1m2 0h5m1 0h3M8 21.5h2m2 0h2m1 0h1m1 0h2m1 0h1m3 0h2M0 22.5h7m2 0h1m3 0h3m2 0h3m1 0h1m1 0h3M0 23.5h1m5 0h1m2 0h3m1 0h1m2 0h1m2 0h2m3 0h1m2 0h1M0 24.5h1m1 0h3m1 0h1m3 0h1m1 0h2m2 0h1m2 0h7m1 0h2M0 25.5h1m1 0h3m1 0h1m3 0h1m4 0h2m2 0h1m1 0h1m3 0h2m1 0h1M0 26.5h1m1 0h3m1 0h1m2 0h2m3 0h2m3 0h1m1 0h7M0 27.5h1m5 0h1m2 0h1m1 0h4m3 0h1m2 0h1m1 0h4m1 0h1M0 28.5h7m1 0h1m2 0h2m2 0h3m1 0h1m4 0h1m1 0h1"/></svg>
+<span>adam.ahmedhaz.com/little</span></div></div><footer class="pn"><bdi class="n">18</bdi></footer></section>
+<section class="page manual" data-n="19">
+      <div class="kicker">Part 2 · 1</div>
+      <h2>Start a summer</h2>
+      <div class="mrow "><div class="phone "><img src="../shots/en-setup.webp" alt=""></div>
+        <ol class="steps"><li>Type your first name. It stays on your device.</li><li>Pick your picture.</li><li>Pick a business: Juice stand, Drawings &amp; bracelets, Bike wash &amp; fix, or Cakes &amp; cookies.</li><li>Pick a goal: a football (<bdi class="n">100</bdi>), a book set (<bdi class="n">160</bdi>), a gift for Mum (<bdi class="n">220</bdi>) or a new bike (<bdi class="n">300</bdi>).</li></ol></div><footer class="pn"><bdi class="n">19</bdi></footer></section>
+<section class="page manual" data-n="20">
+      <div class="kicker">Part 2 · 2</div>
+      <h2>Your three meters</h2>
+      <div class="mrow stack"><div class="phone crop-top"><img src="../shots/en-plan.webp" alt=""></div>
+        <ol class="steps"><li>Coins: everything you have. Making things costs coins, selling brings them back.</li><li>Energy: selling and staying up late use it, rest brings it back. Under <bdi class="n">40</bdi> you get sleepy. At <bdi class="n">70</bdi> or more, a wise third choice opens.</li><li>Smiles: how much customers like your stand. Fair prices and good quality raise it.</li><li>The piggy bank bar shows how close you are to your goal.</li></ol></div><footer class="pn"><bdi class="n">20</bdi></footer></section>
+<section class="page manual" data-n="21">
+      <div class="kicker">Part 2 · 3</div>
+      <h2>Plan your week</h2>
+      <div class="mrow "><div class="phone "><img src="../shots/en-plan.webp" alt=""></div>
+        <ol class="steps"><li>Check the market day weather. Hot days bring more juice customers, rain brings fewer.</li><li>Choose a price: cheap, fair or high.</li><li>Choose how many to make. Grandpa guesses how many customers will come.</li><li>Choose one activity: Make a poster, Practise, Study, or Rest &amp; play.</li></ol></div><footer class="pn"><bdi class="n">21</bdi></footer></section>
+<section class="page manual" data-n="22">
+      <div class="kicker">Part 2 · 4</div>
+      <h2>Market day and results</h2>
+      <div class="mrow "><div class="phone "><img src="../shots/en-results.webp" alt=""></div>
+        <ol class="steps"><li>Watch the customers arrive, or tap Skip.</li><li>Read the results: coins in, coins spent, and the profit.</li><li>Juice and cakes spoil. Drawings and wash kits are kept for next week.</li><li>Spend a few coins on a treat, or save them in the piggy bank.</li></ol></div><footer class="pn"><bdi class="n">22</bdi></footer></section>
+<section class="page manual" data-n="23">
+      <div class="kicker">Part 2 · 5</div>
+      <h2>Dilemmas and the wise door</h2>
+      <div class="mrow "><div class="phone "><img src="../shots/en-door.webp" alt=""></div>
+        <ol class="steps"><li>Most weeks bring a small dilemma with two fair answers. Each one costs something.</li><li>With <bdi class="n">70</bdi> energy or more, a third door opens: the wise door.</li><li>After each choice, Grandpa shares an idea, and it goes into your sticker book.</li></ol></div><footer class="pn"><bdi class="n">23</bdi></footer></section>
+<section class="page manual" data-n="24">
+      <div class="kicker">Part 2 · 6</div>
+      <h2>Echoes, homework and sleepy days</h2>
+      <div class="mrow "><div class="phone "><img src="../shots/en-echo.webp" alt=""></div>
+        <ol class="steps"><li>Some choices come back weeks later, with the week they came from.</li><li>Study at least once every <bdi class="n">3</bdi> weeks, or Mum or Dad closes the stand for a week.</li><li>Under <bdi class="n">40</bdi> energy, the numbers wobble and change gets miscounted. Rest fixes it.</li></ol></div><footer class="pn"><bdi class="n">24</bdi></footer></section>
+<section class="page manual" data-n="25">
+      <div class="kicker">Part 2 · 7</div>
+      <h2>The end of summer</h2>
+      <div class="mrow "><div class="phone "><img src="../shots/en-report.webp" alt=""></div>
+        <ol class="steps"><li>Reach your goal by week <bdi class="n">12</bdi> to win it.</li><li>Your report card gives stars for Money, Customers, Balance and Honesty.</li><li>No harsh endings. If you don't make it, Grandpa sums up what you learned and offers another summer.</li></ol></div><footer class="pn"><bdi class="n">25</bdi></footer></section>
+<section class="page biz" data-n="26">
+    <h2>The four businesses</h2>
+    <table><thead><tr><th>Business</th><th>Cost to make one</th><th>Prices</th><th>Leftovers</th></tr></thead>
+    <tbody><tr><td class="nm"><img src="img/lemon.webp" alt="" class="" style=""><span>Juice stand</span></td><td><bdi class="n">1</bdi></td><td><bdi class="n">2 · 3 · 5</bdi></td><td class="spoil">spoil</td></tr><tr><td class="nm"><img src="img/artist_palette.webp" alt="" class="" style=""><span>Drawings &amp; bracelets</span></td><td><bdi class="n">2</bdi></td><td><bdi class="n">3 · 5 · 8</bdi></td><td class="kept">kept</td></tr><tr><td class="nm"><img src="img/bicycle.webp" alt="" class="" style=""><span>Bike wash &amp; fix</span></td><td><bdi class="n">1</bdi></td><td><bdi class="n">2 · 3 · 5</bdi></td><td class="kept">kept</td></tr><tr><td class="nm"><img src="img/birthday_cake.webp" alt="" class="" style=""><span>Cakes &amp; cookies</span></td><td><bdi class="n">2</bdi></td><td><bdi class="n">3 · 5 · 8</bdi></td><td class="spoil">spoil</td></tr></tbody></table>
+    <div class="tips"><div class="tips-h"><img src="img/old_man.webp" alt="" class="gp" style=""><h3>Grandpa's tips for a good summer</h3></div><ul><li>Make about as many as Grandpa guesses.</li><li>A fair price is a good place to start.</li><li>Rest before energy drops under <bdi class="n">40</bdi>.</li><li>Study at least once every <bdi class="n">3</bdi> weeks.</li><li>Treats are fine. Just not every week.</li></ul></div><footer class="pn"><bdi class="n">26</bdi></footer></section>
+<section class="page glossary" data-n="27">
+    <h2>Words to know</h2>
+    <div class="words"><div class="word"><img src="img/coin.webp" alt="" class="" style=""><div><b>Cost</b><p>What you pay to make something.</p></div></div><div class="word"><img src="img/placard.webp" alt="" class="" style=""><div><b>Price</b><p>What a customer pays you for it.</p></div></div><div class="word"><img src="img/money_bag.webp" alt="" class="" style=""><div><b>Profit</b><p>Coins in minus coins spent.</p></div></div><div class="word"><img src="img/smiling_face_with_smiling_eyes.webp" alt="" class="" style=""><div><b>Customer</b><p>Someone who buys from you.</p></div></div><div class="word"><img src="img/grimacing_face.webp" alt="" class="" style=""><div><b>Leftovers</b><p>Things you made but didn't sell.</p></div></div><div class="word"><img src="img/pig_face.webp" alt="" class="" style=""><div><b>Saving</b><p>Keeping coins now for something bigger later.</p></div></div><div class="word"><img src="img/wrench.webp" alt="" class="" style=""><div><b>Investing</b><p>Spending coins on something that helps you earn more.</p></div></div><div class="word"><img src="img/handshake.webp" alt="" class="" style=""><div><b>Partner</b><p>Someone who shares the work and the profit.</p></div></div></div><footer class="pn"><bdi class="n">27</bdi></footer></section>
+<section class="page back" data-n="28">
+    <p class="blurb">Malak and Yousef want to buy Mum a gift by the end of summer. With a juice stand, a notebook and Grandpa's ideas, they learn what every business owner knows: cost, price, profit, saving, honesty and rest.</p>
+    <div class="qrbig"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 29 29" shape-rendering="crispEdges"><path stroke="#2B2140" d="M0 0.5h7m2 0h1m3 0h3m1 0h2m3 0h7M0 1.5h1m5 0h1m1 0h2m1 0h2m2 0h1m1 0h2m3 0h1m5 0h1M0 2.5h1m1 0h3m1 0h1m1 0h2m4 0h1m1 0h1m2 0h2m1 0h1m1 0h3m1 0h1M0 3.5h1m1 0h3m1 0h1m1 0h2m1 0h2m1 0h2m1 0h1m1 0h2m1 0h1m1 0h3m1 0h1M0 4.5h1m1 0h3m1 0h1m2 0h1m2 0h4m1 0h3m2 0h1m1 0h3m1 0h1M0 5.5h1m5 0h1m2 0h1m1 0h1m1 0h2m1 0h2m4 0h1m5 0h1M0 6.5h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7M8 7.5h1m2 0h3m5 0h1M0 8.5h1m5 0h1m1 0h2m2 0h1m1 0h2m1 0h1m1 0h4m2 0h3M1 9.5h1m1 0h1m1 0h1m2 0h2m1 0h2m1 0h1m2 0h3m4 0h1m1 0h2M1 10.5h3m1 0h3m2 0h1m1 0h1m7 0h1m1 0h3M1 11.5h4m2 0h1m2 0h2m2 0h3m5 0h2m1 0h1M0 12.5h3m1 0h3m5 0h3m1 0h1m1 0h3m1 0h2m4 0h1M0 13.5h4m4 0h2m1 0h1m1 0h2m2 0h4m1 0h3m2 0h2M0 14.5h7m1 0h1m4 0h5m3 0h1m1 0h4M1 15.5h1m3 0h1m1 0h1m2 0h1m2 0h3m4 0h3m1 0h1m1 0h1m1 0h1M0 16.5h1m3 0h4m1 0h1m1 0h1m2 0h1m2 0h1m1 0h1m5 0h2M0 17.5h2m1 0h3m4 0h2m3 0h1m1 0h4m1 0h3m1 0h3M0 18.5h3m1 0h3m1 0h1m2 0h5m1 0h1m1 0h3m1 0h3m2 0h1M0 19.5h1m2 0h1m1 0h1m2 0h1m1 0h3m1 0h1m1 0h1m1 0h1m1 0h1m2 0h2M0 20.5h1m2 0h1m2 0h1m5 0h1m2 0h1m1 0h1m2 0h5m1 0h3M8 21.5h2m2 0h2m1 0h1m1 0h2m1 0h1m3 0h2M0 22.5h7m2 0h1m3 0h3m2 0h3m1 0h1m1 0h3M0 23.5h1m5 0h1m2 0h3m1 0h1m2 0h1m2 0h2m3 0h1m2 0h1M0 24.5h1m1 0h3m1 0h1m3 0h1m1 0h2m2 0h1m2 0h7m1 0h2M0 25.5h1m1 0h3m1 0h1m3 0h1m4 0h2m2 0h1m1 0h1m3 0h2m1 0h1M0 26.5h1m1 0h3m1 0h1m2 0h2m3 0h2m3 0h1m1 0h7M0 27.5h1m5 0h1m2 0h1m1 0h4m3 0h1m2 0h1m1 0h4m1 0h1M0 28.5h7m1 0h1m2 0h2m2 0h3m1 0h1m4 0h1m1 0h1"/></svg>
+</div>
+    <p class="b1">Play the game free</p><p class="url">adam.ahmedhaz.com/little</p>
+    <p class="b2">No ads · No accounts · Nothing to buy</p>
+    <div class="back-art"><img src="img/lemon.webp" alt="" class="" style=""><img src="img/artist_palette.webp" alt="" class="" style=""><img src="img/bicycle.webp" alt="" class="" style=""><img src="img/birthday_cake.webp" alt="" class="" style=""></div></section>
+</div></div></main>
+<nav class="nav"><button class="prev" aria-label="Back">←</button><span class="count" dir="ltr"><span class="cur">1</span> / 28</span><button class="next" aria-label="Next">→</button></nav>
+<script>// Page-by-page reader. ?print shows every page for the PDF. #p5 opens page 5.
+(function () {
+  "use strict";
+  if (/[?&]print\b/.test(location.search)) { document.documentElement.classList.add("print"); return; }
+  var pages = Array.prototype.slice.call(document.querySelectorAll(".page"));
+  var rtl = document.documentElement.dir === "rtl";
+  var cur = document.querySelector(".cur"), prev = document.querySelector(".prev"), next = document.querySelector(".next");
+  var stage = document.querySelector(".stage"), bar = document.querySelector(".bar"), nav = document.querySelector(".nav");
+  var i = Math.min(pages.length - 1, Math.max(0, (parseInt((location.hash.match(/p(\d+)/) || [])[1], 10) || 1) - 1));
+
+  function fit() {
+    var px = pages[0].getBoundingClientRect ? 148 * 96 / 25.4 : 559;
+    var w = window.innerWidth - 20, h = window.innerHeight - bar.offsetHeight - nav.offsetHeight - 24;
+    var k = Math.min(w / px, h / (px * 210 / 148), 1.6);
+    stage.style.setProperty("--k", Math.max(0.3, k));
+    document.querySelector(".book").style.setProperty("--k", Math.max(0.3, k));
+  }
+  function show(n, back) {
+    if (n < 0 || n >= pages.length) return;
+    pages[i].classList.remove("current", "back-turn");
+    i = n;
+    pages[i].classList.add("current");
+    pages[i].classList.toggle("back-turn", !!back);
+    cur.textContent = i + 1;
+    prev.disabled = i === 0; next.disabled = i === pages.length - 1;
+    try { history.replaceState(null, "", "#p" + (i + 1)); } catch (e) { /* file:// */ }
+  }
+  prev.addEventListener("click", function () { show(i - 1, true); });
+  next.addEventListener("click", function () { show(i + 1); });
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "ArrowRight") show(rtl ? i - 1 : i + 1, rtl);
+    else if (e.key === "ArrowLeft") show(rtl ? i + 1 : i - 1, !rtl);
+    else if (e.key === "Home") show(0, true);
+    else if (e.key === "End") show(pages.length - 1);
+  });
+  // Swipe: towards the start of the line turns to the next page.
+  var x0 = null, y0 = null;
+  document.querySelector(".reader").addEventListener("touchstart", function (e) { x0 = e.touches[0].clientX; y0 = e.touches[0].clientY; }, { passive: true });
+  document.querySelector(".reader").addEventListener("touchend", function (e) {
+    if (x0 == null) return;
+    var dx = e.changedTouches[0].clientX - x0, dy = e.changedTouches[0].clientY - y0;
+    if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy)) { var fwd = rtl ? dx > 0 : dx < 0; show(fwd ? i + 1 : i - 1, !fwd); }
+    x0 = null;
+  });
+  window.addEventListener("resize", fit);
+  fit();
+  show(i);
+})();
+</script>
+</body>
+</html>
