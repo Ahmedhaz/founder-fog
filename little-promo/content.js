@@ -48,7 +48,7 @@ module.exports = {
     },
     book: {
       title: { en: "The picture book", ar: "الكتاب المصوّر" },
-      lead: { en: "A 60-page book: four stories in needle-felted pictures, then a guide to the game and a page for planning a real tiny business.", ar: "كتاب من 60 صفحة: أربع حكايات برسومات من الصوف الملبّد، ثم دليل للعبة وصفحة لتخطيط مشروع صغير حقيقي." },
+      lead: { en: "A 60-page book: four stories about four tiny businesses, then a guide to the game and a page for planning a real one.", ar: "كتاب من 60 صفحة: أربع حكايات عن أربعة مشاريع صغيرة، ثم دليل للعبة وصفحة لتخطيط مشروع حقيقي." },
       points: [
         { en: "36 scenes, each ending with one of Grandpa's ideas", ar: "36 مشهدًا، وكل مشهد ينتهي بفكرة من أفكار جدّو" },
         { en: "Read it page by page online", ar: "للقراءة صفحة بعد صفحة على الإنترنت" },
@@ -93,8 +93,8 @@ module.exports = {
   },
   bookIn: {
     kicker: { en: "Inside the book", ar: "داخل الكتاب" },
-    h2: { en: "36 felted scenes and one idea each.", ar: "36 مشهدًا من الصوف الملبّد، وفكرة في كل مشهد." },
-    sub: { en: "Every picture was made in the same handmade wool style, so Malak, Yousef and Grandpa look the same on every page. The numbers in the story match the game.", ar: "كل الصور مصنوعة بأسلوب الصوف اليدوي نفسه، فيظهر ملك ويوسف وجدّو بالشكل نفسه في كل صفحة. وأرقام الحكاية تطابق أرقام اللعبة." },
+    h2: { en: "36 scenes, one business lesson in each.", ar: "36 مشهدًا، وفي كل مشهد درس في البيزنس." },
+    sub: { en: "From cost and price to investing and partners, every scene teaches one real idea in words children understand. And the numbers in the stories match the game.", ar: "من التكلفة والسعر إلى الاستثمار والشراكة، كل مشهد يعلّم فكرة حقيقية من عالم البيزنس بكلمات يفهمها الأطفال. وأرقام الحكايات تطابق أرقام اللعبة." },
     pages: [
       ["01", { en: "The cover", ar: "الغلاف" }], ["04", { en: "Story 1: The juice stand", ar: "الحكاية 1: كشك العصير" }], ["17", { en: "Story 2: Drawings and bracelets", ar: "الحكاية 2: رسومات وأساور" }],
       ["27", { en: "Story 3: Bike wash and fix", ar: "الحكاية 3: غسيل الدراجات" }], ["37", { en: "Story 4: Cakes and cookies", ar: "الحكاية 4: كيك وكوكيز" }], ["59", { en: "The certificate", ar: "الشهادة" }],
