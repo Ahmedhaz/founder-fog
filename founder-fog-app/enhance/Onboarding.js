@@ -104,15 +104,10 @@ function (g, r, i, a, m, _e, d) {
           children: [
             jsxs(View, {
               style: st.heroArt,
-              children: [
-                jsx(View, { style: [st.orbit, { top: 6, left: 4 }], dataSet: { ff: "float" }, children: jsx(Pic, { e: "🌫️", size: 50 }) }),
-                jsx(View, { style: [st.orbit, { top: 0, right: 10 }], dataSet: { ff: "float2" }, children: jsx(Pic, { e: "💰", size: 40 }) }),
-                jsx(View, { style: [st.orbit, { bottom: 18, left: 0 }], dataSet: { ff: "float2" }, children: jsx(Pic, { e: "🧠", size: 38 }) }),
-                jsx(View, { style: [st.orbit, { bottom: 10, right: 0 }], dataSet: { ff: "float" }, children: jsx(Pic, { e: "📈", size: 40 }) }),
-                jsx(View, { dataSet: { ff: "float" }, children: jsx(Pic, { e: "🚀", size: 150 }) }),
-              ],
+              // The book's cover in an arch-topped frame (styled by [data-ff="cover"] in build.py)
+              children: [jsx(View, { style: saved ? st.coverArchSm : st.coverArch, dataSet: { ff: "cover" } })],
             }),
-            jsx(Text, { style: st.logo, children: "FOUNDER FOG" }),
+            jsx(Text, { style: st.logo, children: "Founder Fog" }),
             jsx(Text, { style: st.logoTag, children: "Build a company. Keep your head clear.\nYou will not always be able to read the numbers." }),
           ],
         }),
@@ -503,7 +498,9 @@ function (g, r, i, a, m, _e, d) {
     metaBtn: { flex: 1, alignItems: "center", backgroundColor: "#FFFFFF", borderRadius: 16, paddingVertical: 10, borderWidth: 1, borderColor: COLOR.line },
     metaTxt: { fontFamily: "Archivo_600SemiBold", fontSize: 14.5, color: COLOR.text, marginTop: 4 },
     metaSub: { fontFamily: "Archivo_500Medium", fontSize: 12, color: COLOR.text3, marginTop: 1 },
-    heroArt: { width: 260, height: 210, alignItems: "center", justifyContent: "center" },
+    heroArt: { width: 260, alignItems: "center", justifyContent: "center", marginTop: 16 },
+    coverArch: { width: 214, height: 250 },
+    coverArchSm: { width: 150, height: 176 },
     orbit: { position: "absolute" },
     heroFog: { position: "absolute", left: -40, right: -40, bottom: 20, height: 70 },
     rule2: { flexDirection: "row", alignItems: "flex-start", gap: 6, marginTop: 10, backgroundColor: COLOR.panel2, borderRadius: 10, padding: 8 },
@@ -526,7 +523,7 @@ function (g, r, i, a, m, _e, d) {
     titleFog: { position: "absolute", left: 0, right: 0, top: 0, bottom: 0 },
     titleCenter: { flex: 1, justifyContent: "center", alignItems: "center", gap: 10 },
     logoMark: { fontSize: 64, textAlign: "center" },
-    logo: { fontFamily: "AzeretMono_600SemiBold", fontSize: 26, letterSpacing: 4, color: COLOR.text, textAlign: "center" },
+    logo: { fontFamily: "Archivo_600SemiBold", fontSize: 34, letterSpacing: -0.4, color: COLOR.accent, textAlign: "center", marginTop: 6 },
     logoTag: { ...TYPE.body, fontSize: 14, lineHeight: 21, color: COLOR.text2, textAlign: "center", maxWidth: 300 },
     langSwitch: { direction: "ltr", flexDirection: "row", alignSelf: "center", marginTop: 8, padding: 3, borderRadius: 999, backgroundColor: COLOR.panel, borderWidth: 1, borderColor: COLOR.lineHot, zIndex: 5 },
     langOpt: { minWidth: 64, paddingHorizontal: 14, paddingVertical: 8, borderRadius: 999, alignItems: "center" },

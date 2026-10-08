@@ -43,6 +43,69 @@ BADGE_COLORS = {"'#3b2d00'": "'#FFF4CC'", '"#3b2d00"': '"#FFF4CC"', '"#0b3318"':
                 '"#3d1210"': '"#FDE2E0"', '"#2b164a"': '"#EEE3FF"', '"#8c1d18"': '"#FDE2E0"',
                 '"#fbbc04"': '"#B07D00"', '"#34a853"': '"#1E8E3E"', '"#f28b82"': '"#C5221F"', '"#a479e2"': '"#7B4FD0"'}
 
+# Book look (v5): the palette of the Founder Fog and Little Entrepreneur picture books (fog-book/,
+# little-book/): warm ivory and sand, Deep Teal for actions, bronze accents, muted greens and terracotta.
+# Applied last, to the whole page, so the theme module, the rewritten screens and the original
+# screens all follow it. Keys are upper-case hex; matching ignores case.
+BOOK_REMAP = {
+    # grounds and lines
+    "#EEF2F7": "#F8F6F1", "#F4F6FA": "#F3EFE8", "#F7F9FC": "#FBFAF9", "#F2F5FA": "#F3EFE8", "#F1F3F7": "#F1ECE4",
+    "#EEF1F6": "#ECE6DC", "#E3E8EF": "#E4DDD2", "#C9D3E0": "#CFC5B5", "#F4EEF2": "#F1ECE6", "#D9D0BF": "#DDD5C9",
+    "#F1ECE2": "#EEE9E2",
+    # ink
+    "#1C2430": "#12292B", "#4E5A6B": "#4F6264", "#8C97A6": "#8A9696", "#2B3A55": "#12292B", "#66727F": "#6B7A7A",
+    "#93A1B0": "#9AA3A1", "#1B1712": "#1E1A15",
+    # blues become Deep Teal and its tints
+    "#2D7FF9": "#15595A", "#1F5FD1": "#0D3F3F", "#2F6FD0": "#15595A", "#5B8DD6": "#4F8A86", "#004A77": "#0D3F3F",
+    "#DCEBFF": "#E1ECE9", "#E3EEFF": "#E6EEEB", "#E5EEFF": "#E6EEEB", "#E8F0FF": "#EAF1EE", "#E9F0FF": "#E6EEEB",
+    "#EAF2FF": "#EEF3F0", "#EEF4FF": "#EEF3F0", "#CFE3FF": "#DCE7E3", "#B9D2FB": "#BFD3CE",
+    # the orange call to action and the green +1 Week button become Deep Teal
+    "#FF5A36": "#0D3F3F", "#EC3013": "#0D3F3F", "#34C759": "#0D3F3F",
+    # greens, muted
+    "#22A559": "#3F7A5A", "#1F9D55": "#3F7A5A", "#1E8E3E": "#356B4E", "#1F8A52": "#356B4E", "#1F7A4A": "#2F5F45",
+    "#34A853": "#3F7A5A", "#5FB98A": "#6E9C80", "#0B3318": "#1E3A2B", "#A8E0BE": "#C7DCCD", "#DDF5E5": "#E7F0EA",
+    "#E2F6EA": "#E7F0EA", "#E3F7EA": "#E7F0EA", "#EFFAF3": "#F0F5F1",
+    # ambers and golds become bronze and sand
+    "#E38A00": "#A9782F", "#E0A33E": "#B8904F", "#FFB020": "#C49A55", "#C28F00": "#A9822F", "#B07D00": "#8C6D45",
+    "#8A6400": "#7A5C35", "#8A5A00": "#7A5C35", "#C9A227": "#B8904F", "#FBBC04": "#B8904F", "#F1D27A": "#E3CDA0",
+    "#F3C77A": "#DCC08E", "#EBD9A8": "#E6D7B8", "#FFF4D6": "#F6EFE0", "#FFF6D6": "#F6EFE0", "#FFF4CC": "#F4ECDA",
+    "#FFF2C7": "#F4ECDA", "#FFF1DB": "#F5EDE1", "#FFF8E8": "#FAF5EC", "#FFF8E6": "#FAF5EC", "#3B2D00": "#3A2E1C",
+    "#3B2F1A": "#3A2E1C", "#4B4236": "#4A3F33", "#6B6152": "#6B5E4E", "#8A6D3B": "#8C6D45", "#9B8F7C": "#9A8D7A",
+    "#FFF4EF": "#F6EFE6", "#FFE8E1": "#F3E9DF", "#FFE3DA": "#F1E3D8", "#FFC9B8": "#E6CDB8", "#FFF6F2": "#FAF4EE",
+    # reds become terracotta
+    "#E5484D": "#A94A3B", "#FF453A": "#B4473A", "#D93A30": "#A94A3B", "#B33A2A": "#9A3F31", "#A23B1D": "#8F3B2A",
+    "#C5221F": "#9A3F31", "#8C1D18": "#7E3226", "#F28B82": "#C98A7E", "#D9695F": "#B86A5E", "#3D1210": "#3A1F19",
+    "#FDE2E0": "#F6E6E1", "#FDE7E7": "#F6E8E4", "#FDECEC": "#F8EDE9", "#FFE7E5": "#F6E6E1", "#F6B8B8": "#E6C3BA",
+    # purples, softened
+    "#7B4FD0": "#6E5A7E", "#A479E2": "#8C7A9A", "#A77BF3": "#8C7A9A", "#2B164A": "#2E2638", "#EEE3FF": "#EEE8EC",
+    "#F1E8FF": "#EFEAEE",
+}
+BOOK_RGBA = {"24,34,48": "18,41,43", "16, 21, 26": "18, 41, 43", "255, 90, 54": "13, 63, 63", "236,48,19": "13,63,63",
+             "214,222,230": "221,213,201", "214,220,228": "221,213,201", "170,180,192": "190,180,165", "160,172,186": "180,170,155"}
+
+
+def book_colors(text):
+    """Swap every bright-theme colour for its book-palette twin (hex in any case, and a few rgba bases)."""
+    text = re.sub(r"#[0-9A-Fa-f]{6}\b", lambda m: BOOK_REMAP.get(m.group(0).upper(), m.group(0)), text)
+    for old, new in BOOK_RGBA.items():
+        text = text.replace(f"rgba({old},", f"rgba({new},")
+    return text
+
+
+# Book fonts: Manrope replaces Archivo and Azeret Mono in the font modules the engine loads
+# (static instances in fonts/, one weight step heavier because Manrope is lighter); Arabic gets Readex Pro.
+FONT_MODULES = {227: 500, 228: 600, 229: 700, 248: 600, 249: 700, 250: 800}
+
+
+def swap_fonts(bundle):
+    for mod_id, weight in FONT_MODULES.items():
+        b64 = base64.b64encode((HERE / "fonts" / f"manrope-{weight}.ttf").read_bytes()).decode()
+        m = re.compile(r'__d\(function\(g,r,i,a,m,e,d\)\{m\.exports="data:font/ttf;base64,[A-Za-z0-9+/=]+"\},%d,\[\]\);' % mod_id).search(bundle)
+        assert m, f"font module {mod_id} not found"
+        bundle = bundle[: m.start()] + '__d(function(g,r,i,a,m,e,d){m.exports="data:font/ttf;base64,%s"},%d,[]);' % (b64, mod_id) + bundle[m.end():]
+    return bundle
+
+
 ENGINE_PATCHES = [
     (
         "a first log line a new player can use (no raw sector data, no Arabic in the English game)",
@@ -235,6 +298,11 @@ HEAD = """<!doctype html>
   [data-ff="glow"] { animation: ff-glow 1.6s ease-in-out infinite; }
   [data-ff="float"] { animation: ff-float 5s ease-in-out infinite; }
   [data-ff="float2"] { animation: ff-float 6.5s ease-in-out -2s infinite; }
+  /* Book look: the cover in an arch-topped frame on the title screen, felted pictures in round badges */
+  [data-ff="cover"] { background: #EEE9E2 url(img/cover.jpg) center 30% / cover no-repeat; border-radius: 116px 116px 14px 14px / 96px 96px 14px 14px; box-shadow: 0 3px 0 #E4DDD2, 0 18px 40px rgba(18, 41, 43, .14); }
+  [data-ff="mentor"] { background: #F3EEE6 url(img/mentor.jpg) center 20% / cover no-repeat; }
+  [data-pic] { border-radius: 50%; background-size: cover !important; background-color: #F3EEE6; }
+  [data-pic^="avatar"] { border-radius: 46% 46% 14% 14%; }
   [data-ff="sky"] { background: linear-gradient(180deg, #CFE3FF 0%, #EAF2FF 45%, #F7F9FC 100%) !important; }
 
   /* the fog: drifting haze that blurs whatever is under it */
@@ -299,9 +367,11 @@ def main():
         assert n == 1, f"patch '{why}' matched {n} times"
         bundle = bundle.replace(old, new)
     bundle = splice_targets(bundle)
+    bundle = book_colors(swap_fonts(bundle))
 
     global HEAD
     HEAD = HEAD.replace("</style>", "  /* 3D pictures */\n" + pics_css() + "\n</style>", 1)
+    HEAD = book_colors(HEAD)
     OUT.write_text(HEAD + bundle + TAIL, encoding="utf-8")
     print(f"wrote {OUT} ({OUT.stat().st_size:,} bytes)")
 
@@ -323,13 +393,13 @@ def splice_targets(bundle):
 
 
 def arabic_head():
-    """The English head, switched to Arabic/RTL, with IBM Plex Sans Arabic embedded for Arabic glyphs."""
+    """The English head, switched to Arabic/RTL, with Readex Pro embedded for Arabic glyphs."""
     fonts = HERE / "fonts"
     urange = (fonts / "plex-unicode-range.txt").read_text().strip()
     faces = []
     for family, weight in [("Archivo_400Regular", 400), ("Archivo_500Medium", 500), ("Archivo_600SemiBold", 600),
                            ("AzeretMono_400Regular", 400), ("AzeretMono_500Medium", 500), ("AzeretMono_600SemiBold", 600)]:
-        b64 = base64.b64encode((fonts / f"plex-ar-{weight}.woff2").read_bytes()).decode()
+        b64 = base64.b64encode((fonts / f"readex-ar-{weight}.woff2").read_bytes()).decode()
         faces.append(f'  @font-face {{ font-family: "{family}"; src: url(data:font/woff2;base64,{b64}) format("woff2"); unicode-range: {urange}; }}')
     rtl_css = "\n".join(faces) + """
   /* letter-spacing breaks Arabic letter joining */

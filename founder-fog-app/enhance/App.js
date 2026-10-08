@@ -613,7 +613,8 @@ function (g, r, i, a, m, _e, d) {
 
     // ---------- BitLife-style home ----------
     const mood = S.mentalClarity >= 70 ? "😎" : S.mentalClarity >= 50 ? "🙂" : S.mentalClarity >= 40 ? "😐" : S.mentalClarity >= 20 ? "😵‍💫" : "🥴";
-    const barColor = (v) => (v >= 60 ? "#34C759" : v >= 30 ? "#FFB020" : "#FF453A");
+    // Book palette tints: sage, sand-gold, soft terracotta, light enough to read the value on top
+    const barColor = (v) => (v >= 60 ? "#8DB39B" : v >= 30 ? "#D9BE8E" : "#D29A8D");
 
     const header = jsxs(View, {
       style: st.header,
@@ -1378,7 +1379,7 @@ function (g, r, i, a, m, _e, d) {
 
     // ---- BitLife-style home ----
     header: { flexDirection: "row", alignItems: "center", gap: 12, paddingHorizontal: 14, paddingTop: 12, paddingBottom: 12, backgroundColor: "#FFFFFF", borderBottomLeftRadius: 22, borderBottomRightRadius: 22, shadowColor: "#2B3A55", shadowOpacity: 0.08, shadowRadius: 14, shadowOffset: { width: 0, height: 4 }, zIndex: 2, overflow: "hidden" },
-    avatarWrap: { width: 66, height: 66, borderRadius: 33, backgroundColor: "#E9F0FF", alignItems: "center", justifyContent: "center", borderWidth: 3, borderColor: "#FFFFFF", shadowColor: "#2D7FF9", shadowOpacity: 0.25, shadowRadius: 8, shadowOffset: { width: 0, height: 2 } },
+    avatarWrap: { width: 66, height: 66, borderTopLeftRadius: 33, borderTopRightRadius: 33, borderBottomLeftRadius: 12, borderBottomRightRadius: 12, backgroundColor: "#E9F0FF", alignItems: "center", justifyContent: "center", borderWidth: 3, borderColor: "#FFFFFF", shadowColor: "#2D7FF9", shadowOpacity: 0.25, shadowRadius: 8, shadowOffset: { width: 0, height: 2 } },
     moodBadge: { position: "absolute", right: -6, bottom: -4, width: 30, height: 30, borderRadius: 15, backgroundColor: "#FFFFFF", alignItems: "center", justifyContent: "center", shadowColor: "#000", shadowOpacity: 0.15, shadowRadius: 4, shadowOffset: { width: 0, height: 1 } },
     hName: { fontFamily: "Archivo_600SemiBold", fontSize: 19, letterSpacing: -0.4, color: COLOR.text },
     hSub: { fontFamily: "Archivo_500Medium", fontSize: 12.5, color: COLOR.text2, marginTop: 1 },
@@ -1395,7 +1396,7 @@ function (g, r, i, a, m, _e, d) {
     langBtn: { borderRadius: 999, paddingHorizontal: 9, paddingVertical: 4, backgroundColor: "#F1F3F7" },
     langBtnTxt: { fontFamily: "Archivo_600SemiBold", fontSize: 11, color: COLOR.text2 },
     tiles: { paddingHorizontal: 12, paddingVertical: 12, gap: 10 },
-    tile: { width: 112, borderRadius: 20, padding: 12, gap: 4, shadowColor: "#2B3A55", shadowOpacity: 0.06, shadowRadius: 8, shadowOffset: { width: 0, height: 3 } },
+    tile: { width: 112, borderRadius: 16, padding: 12, gap: 4, shadowColor: "#2B3A55", shadowOpacity: 0.06, shadowRadius: 8, shadowOffset: { width: 0, height: 3 } },
     tileLabel: { fontFamily: "Archivo_600SemiBold", fontSize: 13.5, color: COLOR.text, marginTop: 6 },
     tileSub: { fontFamily: "Archivo_500Medium", fontSize: 11.5, color: COLOR.text2 },
     tileBadge: { position: "absolute", top: 8, right: 8, minWidth: 22, height: 22, borderRadius: 11, paddingHorizontal: 6, backgroundColor: "#FF453A", alignItems: "center", justifyContent: "center" },
@@ -1426,7 +1427,7 @@ function (g, r, i, a, m, _e, d) {
     navLabel: { fontFamily: "Archivo_600SemiBold", fontSize: 11, color: COLOR.text3, marginTop: 2 },
     navLabelOn: { color: "#1F5FD1" },
     navCenter: { flex: 1.2, alignItems: "center" },
-    ageBtn: { width: 76, height: 76, borderRadius: 38, marginTop: -30, backgroundColor: "#34C759", alignItems: "center", justifyContent: "center", borderWidth: 5, borderColor: "#FFFFFF", shadowColor: "#1E8E3E", shadowOpacity: 0.45, shadowRadius: 12, shadowOffset: { width: 0, height: 5 } },
+    ageBtn: { width: 76, height: 76, borderRadius: 38, marginTop: -30, backgroundColor: "#34C759", alignItems: "center", justifyContent: "center", borderWidth: 5, borderColor: "#FFFFFF", shadowColor: "#0D3F3F", shadowOpacity: 0.45, shadowRadius: 12, shadowOffset: { width: 0, height: 5 } },
     agePlus: { fontFamily: "Archivo_600SemiBold", fontSize: 30, lineHeight: 30, color: "#FFFFFF", marginTop: -2 },
     ageTxt: { fontFamily: "Archivo_600SemiBold", fontSize: 11, color: "#FFFFFF", marginTop: -1 },
     ageHint: { fontFamily: "Archivo_500Medium", fontSize: 10.5, marginTop: 4, maxWidth: 96, textAlign: "center" },

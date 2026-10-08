@@ -121,9 +121,25 @@ maps emoji → file; drawn via CSS on `[data-pic]`), a header with your avatar
 and a mood face that follows your clarity, "this week" tiles, a life-log feed,
 BitLife stat bars and a round **+1 Week** button. Avatar is picked at setup.
 
+### Look (v5, the book)
+The game now shares the look of the Founder Fog and Little Entrepreneur picture books
+(`fog-book/`, `little-book/`):
+
+- **Palette:** `BOOK_REMAP` in `build.py` swaps every bright-theme colour for its book twin
+  (warm ivory and sand grounds, Deep Teal `#0D3F3F` for actions and the +1 Week button,
+  bronze, sage and terracotta). It runs last over the whole page, so new screens follow it
+  as long as they use the bright-theme colours or `COLOR.*`
+- **Fonts:** Manrope replaces Archivo and Azeret Mono inside the font modules the engine
+  loads (`FONT_MODULES`, static instances in `fonts/manrope-*.ttf`); Arabic uses Readex Pro
+  (`fonts/readex-ar-*.woff2`, Arabic-only subsets)
+- **Pictures:** the 93 pictures in `../founder-fog/img/` are needle-felted wool, shown in
+  round sand badges; avatars sit in arch-topped frames
+- **Title screen:** the book's cover in an arch frame; the mentor note is a Deep Teal panel
+  with the mentor's felted portrait, like the book's "The fog lifts" box
+
 ### Arabic version
-`../founder-fog/ar.html` is the same game in Arabic, right-to-left, with IBM Plex
-Sans Arabic embedded. The title screen has an English / العربية switch; the
+`../founder-fog/ar.html` is the same game in Arabic, right-to-left, with Readex Pro
+embedded. The title screen has an English / العربية switch; the
 choice is remembered, and first launch follows the device language.
 
 - `enhance/ar.json` maps `"<module>|<English string>"` → Arabic (`null` = code,
