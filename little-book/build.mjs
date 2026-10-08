@@ -21,21 +21,12 @@ const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&l
 // Numbers stay readable in Arabic: each one sits in its own LTR isolate.
 const nums = (s) => s.replace(/[+−-]?\d+(?:[.,]\d+)?%?/g, (m) => `<bdi class="n">${m}</bdi>`);
 const T = (o, lang) => nums(esc(o[lang]));
-const img = (n, cls = "", style = "") => `<img src="img/${n}.webp" alt="" class="${cls}" style="${style}">`;
-
-function scene(sc, lang, cls = "") {
-  const items = sc.items.map((it, k) => {
-    if (it.stand) {
-      return `<div class="stand" style="left:${it.x}%;width:${it.w}%;--aw:${it.color || "#FFC93C"}"><div class="awning"></div><div class="posts"></div><div class="counter"><span dir="${lang === "ar" ? "rtl" : "ltr"}">${nums(esc(it.sign[lang]))}</span></div></div>`;
-    }
-    const tf = [it.flip ? "scaleX(-1)" : "", it.rot ? `rotate(${it.rot}deg)` : ""].join(" ").trim();
-    return img(it.i, "it", `left:${it.x}%;bottom:${it.y}%;width:${it.w}%;${tf ? `transform:${tf};` : ""}z-index:${it.z || 2 + k}`);
-  }).join("");
-  return `<div class="scene bg-${sc.bg} ${cls}" dir="ltr"><div class="ground"></div>${items}</div>`;
-}
+// All pictures are the book's own needle-felted art in art/ (scenes sNN, objects o_*, grandpa).
+const img = (n, cls = "", style = "") => `<img src="art/${n}.jpg" alt="" class="${cls}" style="${style}">`;
+const arch = (name, cls = "") => `<figure class="arch ${cls}"><img src="art/${name}.jpg" alt=""></figure>`;
 
 function ideaBox(o, lang) {
-  return `<div class="idea">${img("old_man", "gp")}<div><b>${esc(C.ui.idea[lang])}</b><p>${T(o, lang)}</p></div></div>`;
+  return `<div class="idea">${img("grandpa", "gp")}<div><b>${esc(C.ui.idea[lang])}</b><p>${T(o, lang)}</p></div></div>`;
 }
 
 function pages(lang) {
@@ -47,15 +38,11 @@ function pages(lang) {
     <div class="cover-top"><span class="ages">${T(m.ages, lang)}</span></div>
     <h1>${esc(m.title[lang])}</h1>
     <p class="cover-sub">${esc(m.subtitle[lang])}</p>
-    ${scene({ bg: "day", items: [
-      { i: "sun", x: 80, y: 70, w: 15 }, { stand: true, x: 28, w: 46, sign: { en: "Lemonade · 3", ar: "ليموناضة · 3" } },
-      { i: "girl", x: 34, y: 34, w: 15 }, { i: "boy", x: 52, y: 34, w: 15, flip: true },
-      { i: "old_man", x: 2, y: 8, w: 24 }, { i: "pig_face", x: 78, y: 8, w: 17 }, { i: "coin", x: 82, y: 40, w: 8, rot: 20 },
-      { i: "lemon", x: 8, y: 66, w: 11, rot: -15 } ] }, lang, "cover-scene")}
+    ${arch("cover", "cover-art")}
     <p class="cover-foot">adam.ahmedhaz.com/littlebreneur</p>` });
   // 2. Title page
   P.push({ cls: "titlepage", html: `
-    <div class="tp-art">${img("lemon")}${img("coin")}${img("pig_face")}</div>
+    <div class="tp-art">${img("o_lemon")}${img("o_coin")}${img("o_piggy")}</div>
     <h1>${esc(m.title[lang])}</h1>
     <h2 class="alt">${esc(m.title[ar ? "en" : "ar"])}</h2>
     ${C.title.lines.map((l) => `<p class="lead">${T(l, lang)}</p>`).join("")}
@@ -78,12 +65,12 @@ function pages(lang) {
           <div class="box out"><b>${e.b}</b><span>${esc(e.lb[lang])}</span></div><i>=</i>
           <div class="box pr"><b>${e.c}</b><span>${esc(e.lc[lang])}</span></div>
         </div>
-        ${scene(s.scene, lang, "mini")}
+        ${arch(s.art, "mini")}
         <p class="text">${T(s.text, lang)}</p>
         ${ideaBox(s.idea, lang)}` });
     } else {
       P.push({ cls: "story", html: `
-        ${scene(s.scene, lang)}
+        ${arch(s.art)}
         <div class="kicker">${esc(C.ui.partOne[lang])} · ${i + 1}</div>
         <h2>${esc(s.title[lang])}</h2>
         <p class="text">${T(s.text, lang)}</p>
@@ -93,15 +80,15 @@ function pages(lang) {
   // Grandpa's ideas recap
   P.push({ cls: "ideas", html: `
     <h2>${esc(C.ideasPage.title[lang])}</h2><p class="lead">${T(C.ideasPage.intro, lang)}</p>
-    <div class="stickers">${C.story.map((s, i) => `<div class="sticker" style="--r:${(i % 2 ? 1 : -1) * (1 + (i % 3) * 0.6)}deg">${img(s.scene.items.find((x) => x.i && !["sun", "deciduous_tree", "cloud_with_rain", "crescent_moon", "star"].includes(x.i))?.i || "glowing_star")}<p>${T(s.idea, lang)}</p></div>`).join("")}</div>` });
+    <div class="stickers">${C.story.map((s, i) => `<div class="sticker" style="--r:${(i % 2 ? 1 : -1) * (1 + (i % 3) * 0.6)}deg">${img(s.art, "thumb")}<p>${T(s.idea, lang)}</p></div>`).join("")}</div>` });
   // Worksheet
   const W = C.worksheet;
   P.push({ cls: "worksheet", html: `
     <h2>${esc(W.title[lang])}</h2><p class="lead">${T(W.intro, lang)}</p>
     ${W.fields.map((f) => `<div class="field"><span>${esc(f[lang])}</span><div class="line">${f.unit ? `<em>${esc(W.coins[lang])}</em>` : ""}</div></div>`).join("")}
     <div class="sumbox"><p>${esc(W.sum[lang])}</p><div class="sumrow" dir="ltr"><span class="blank"></span><i>−</i><span class="blank"></span><i>=</i><span class="blank big"></span></div></div>
-    <div class="field goal">${img("wrapped_gift", "gimg")}<span>${esc(W.goal[lang])}</span><div class="line"><em>${esc(W.coins[lang])}</em></div></div>
-    <div class="piggyrow">${img("pig_face")}${Array.from({ length: 10 }, () => '<span class="dot"></span>').join("")}</div>` });
+    <div class="field goal">${img("o_gift", "gimg")}<span>${esc(W.goal[lang])}</span><div class="line"><em>${esc(W.coins[lang])}</em></div></div>
+    <div class="piggyrow">${img("o_piggy")}${Array.from({ length: 10 }, () => '<span class="dot"></span>').join("")}</div>` });
   // Part 2: the game guide
   const manualStart = P.length + 1;
   P.push({ cls: "manual-intro", html: `
@@ -122,7 +109,7 @@ function pages(lang) {
     <h2>${esc(B.title[lang])}</h2>
     <table><thead><tr>${B.head.map((h) => `<th>${esc(h[lang])}</th>`).join("")}</tr></thead>
     <tbody>${B.rows.map((r) => `<tr><td class="nm">${img(r.img)}<span>${esc(r.name[lang])}</span></td><td><bdi class="n">${r.cost}</bdi></td><td><bdi class="n">${r.prices}</bdi></td><td class="${r.left.en}">${esc(r.left[lang])}</td></tr>`).join("")}</tbody></table>
-    <div class="tips"><div class="tips-h">${img("old_man", "gp")}<h3>${esc(B.tipsTitle[lang])}</h3></div><ul>${B.tips.map((t) => `<li>${T(t, lang)}</li>`).join("")}</ul></div>` });
+    <div class="tips"><div class="tips-h">${img("grandpa", "gp")}<h3>${esc(B.tipsTitle[lang])}</h3></div><ul>${B.tips.map((t) => `<li>${T(t, lang)}</li>`).join("")}</ul></div>` });
   P.push({ cls: "glossary", html: `
     <h2>${esc(C.glossary.title[lang])}</h2>
     <div class="words">${C.glossary.words.map((w) => `<div class="word">${img(w.img)}<div><b>${esc(w.w[lang])}</b><p>${T(w.d, lang)}</p></div></div>`).join("")}</div>` });
@@ -131,7 +118,7 @@ function pages(lang) {
     <div class="qrbig">${QR}</div>
     <p class="b1">${esc(C.back.lines[0][lang])}</p><p class="url">adam.ahmedhaz.com/little</p>
     <p class="b2">${esc(C.back.lines[1][lang])}</p>
-    <div class="back-art">${img("lemon")}${img("artist_palette")}${img("bicycle")}${img("birthday_cake")}</div>` });
+    <div class="back-art">${img("o_lemon")}${img("o_palette")}${img("o_bike")}${img("o_cake")}</div>` });
 
   const toc = [
     [C.ui.partOne[lang] + ": " + (ar ? "الحكاية" : "The story"), storyStart],
