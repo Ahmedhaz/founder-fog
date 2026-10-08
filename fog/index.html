@@ -296,6 +296,56 @@
   .dmentor { background: #0D3F3F; color: #F8F6F1; padding: 14px 16px; border-radius: 16px; align-items: center; }
   .dmentor img { width: 42px; height: 42px; flex: 0 0 42px; border-radius: 50%; border: 2px solid #F8F6F1; object-fit: cover; }
 
+
+  /* ───── Elegance: calmer, roomier, closer to the printed book ───── */
+  /* quieter motion: no shine sweep, aurora, bouncing or spinning pictures */
+  .btn-primary::after, .aurora, .par, .orbit-wrap, .pulse { display: none !important; }
+  .phone-float, .demo-art { animation: none; }
+  .card:hover img, .ticks li:hover img { transform: none; }
+  .ticks li:hover, [dir="rtl"] .ticks li:hover { transform: none; }
+  .card::before { display: none; }
+  /* type: lighter weights, more air */
+  body { line-height: 1.65; }
+  h1 { font-weight: 600; letter-spacing: -.03em; line-height: 1.04; }
+  h2 { font-weight: 600; letter-spacing: -.02em; }
+  [dir="rtl"] h1, [dir="rtl"] h2 { font-weight: 600; }
+  .kicker { font-size: 12px; letter-spacing: .2em; display: flex; align-items: center; gap: 12px; }
+  .kicker::before { content: ""; width: 28px; height: 1px; background: currentColor; opacity: .7; }
+  .hero .kicker { background: none; border: 0; padding: 0; }
+  .hero .kicker::before { display: block; }
+  .finale .kicker::before { display: none; }
+  .lead, .sub { color: var(--ink2); font-weight: 400; }
+  .card h3 { font-weight: 600; font-size: 18px; }
+  /* space */
+  section { padding-top: 128px; }
+  .band { margin-top: 128px; padding: 96px 0; }
+  .finale { margin-top: 128px; padding: 140px 0; }
+  .hero { padding: 72px 0 104px; background: linear-gradient(180deg, var(--sky2), var(--bg) 70%); }
+  /* surfaces: hairlines and soft shadows instead of heavy cards */
+  .card, .ticks li, details, .stat, .dcard { box-shadow: none; border-color: var(--line); }
+  .card { border-radius: 18px; padding: 30px 28px; background: transparent; }
+  .card:hover, .stat:hover { transform: none; box-shadow: none; border-color: color-mix(in srgb, var(--gold) 45%, var(--line)); }
+  .ticks li { background: transparent; border-radius: 14px; padding: 16px 18px; }
+  .ticks li:hover { box-shadow: none; border-color: color-mix(in srgb, var(--gold) 45%, var(--line)); }
+  .stats { gap: 0; border: 1px solid var(--line); border-radius: 18px; background: var(--panel); overflow: hidden; }
+  .stat { border: 0; border-radius: 0; background: transparent; padding: 24px 14px; }
+  .stat + .stat { border-inline-start: 1px solid var(--line); }
+  @media (max-width: 719px) { .stat + .stat { border-inline-start: 0; } .stat { border-top: 1px solid var(--line); } .stat:first-child, .stat:nth-child(2) { border-top: 0; } .stat:nth-child(even) { border-inline-start: 1px solid var(--line); } }
+  .stat b { background: none; -webkit-text-fill-color: var(--accent); color: var(--accent); font-weight: 600; font-size: 34px; }
+  .dcard { border-top: 1px solid var(--line); border-radius: 22px; box-shadow: 0 24px 60px rgba(18, 41, 43, .08); }
+  .btn { border-radius: 999px; font-weight: 600; }
+  .btn-primary { box-shadow: none; }
+  .btn-primary:hover { box-shadow: 0 10px 24px rgba(13, 63, 63, .18); }
+  .ticker { background: transparent; }
+  .tk { font-weight: 500; color: var(--ink3); }
+  details { background: transparent; border-radius: 0; border: 0; border-bottom: 1px solid var(--line); padding: 20px 4px; margin: 0; }
+  details[open] { box-shadow: none; border-color: var(--line); }
+  details:first-of-type { border-top: 1px solid var(--line); }
+  summary { font-weight: 500; }
+  .progress { height: 2px; background: var(--gold); }
+  header { background: color-mix(in srgb, var(--bg) 88%, transparent); }
+  .finale { background: var(--bg); }
+
   footer { border-top: 1px solid var(--line); padding: 26px 0 40px; color: var(--ink3); font-size: 14px; }
   footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; }
 
