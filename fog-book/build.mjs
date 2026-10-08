@@ -67,10 +67,12 @@ function pages(lang) {
       const kicker = `<div class="kicker">${label} · <bdi class="n">${i + 1}</bdi></div>`;
       if (s.type === "equation") {
         const e = s.eq;
+        // Long numbers (like 250,000) get a smaller size so the three boxes stay on one line.
+        const long = [e.a, e.b, e.c].some((x) => String(x).length > 5) ? " long" : "";
         P.push({ cls: "story equation", html: `
           ${kicker}
           <h2>${T(s.title, lang)}</h2>
-          <div class="eq" dir="ltr">
+          <div class="eq${long}" dir="ltr">
             <div class="box in"><b>${e.a}</b><span>${esc(e.la[lang])}</span></div><i>${e.op || "−"}</i>
             <div class="box out"><b>${e.b}</b><span>${esc(e.lb[lang])}</span></div><i>=</i>
             <div class="box pr"><b>${e.c}</b><span>${esc(e.lc[lang])}</span></div>
@@ -87,17 +89,19 @@ function pages(lang) {
           ${liftBox(s.lift, lang)}` });
       }
     });
+    // Tools page: calc (a op b = c), checks, lines to write on, or a tally of circles.
     const t = ch.tools;
+    const sec = (x) => {
+      const h = `<h3>${T(x.title, lang)}</h3>`;
+      if (x.type === "calc") return h + `<div class="sumbox"><div class="sumrow" dir="ltr"><span class="blank lab"><em>${esc(x.a[lang])}</em></span><i>${x.op}</i><span class="blank lab"><em>${esc(x.b[lang])}</em></span><i>=</i><span class="blank big lab"><em>${esc(x.c[lang])}</em></span></div></div>`;
+      if (x.type === "checks") return h + `<ul class="checks">${x.items.map((q) => `<li><i class="tick"></i><span>${T(q, lang)}</span></li>`).join("")}</ul>`;
+      if (x.type === "tally") return h + (x.note ? `<p class="lead small">${T(x.note, lang)}</p>` : "") + `<div class="tally">${Array.from({ length: x.n }, (_, k) => `<span class="dot"><bdi class="n">${k + 1}</bdi></span>`).join("")}</div>`;
+      return h + `<div class="wlines">${'<div class="wl"></div>'.repeat(x.n)}</div>`;
+    };
     P.push({ cls: "worksheet tools", html: `
       <div class="kicker">${label}</div>
       <h2>${T(t.title, lang)}</h2>
-      <h3>${T(t.runway.t, lang)}</h3>
-      <div class="sumbox"><div class="sumrow" dir="ltr"><span class="blank lab"><em>${esc(t.runway.a[lang])}</em></span><i>÷</i><span class="blank lab"><em>${esc(t.runway.b[lang])}</em></span><i>=</i><span class="blank big lab"><em>${esc(t.runway.c[lang])}</em></span></div></div>
-      <h3>${T(t.agreeTitle, lang)}</h3>
-      <ul class="checks">${t.agree.map((q) => `<li><i class="tick"></i><span>${T(q, lang)}</span></li>`).join("")}</ul>
-      <h3>${T(t.talksTitle, lang)}</h3>
-      <p class="lead small">${T(t.talksNote, lang)}</p>
-      <div class="tally">${Array.from({ length: 20 }, (_, k) => `<span class="dot"><bdi class="n">${k + 1}</bdi></span>`).join("")}</div>` });
+      ${t.sections.map(sec).join("\n")}` });
   });
 
   P.push({ cls: "back", html: `

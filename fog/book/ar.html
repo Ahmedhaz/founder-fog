@@ -268,6 +268,14 @@ html.bleed .reader .page { width: 154mm; height: 216mm; border: 3mm solid transp
 .tally .dot { aspect-ratio: 1; border-radius: 50%; border: .4mm dashed var(--bronze); display: grid; place-items: center; font-size: 6.5pt; color: var(--grey); }
 .fogcover { background: linear-gradient(180deg, var(--ivory) 60%, #E6E8E4 100%); }
 .tp-art img, .back-art img { object-position: center 20%; }
+.wlines .wl { border-bottom: .4mm dashed var(--bronze); height: 8mm; }
+.eq.long .box { min-width: 0; flex: 1; padding: 2.5mm 1.5mm; }
+.eq.long .box b { font-size: 19pt; }
+.eq.long { gap: 1.5mm; }
+.tools .sumbox { padding-bottom: 11mm; }
+.tools .sumrow .blank { width: 27mm; }
+.tools .sumrow .blank.big { width: 30mm; }
+.sumrow .lab em { font-size: 7pt; line-height: 1.25; }
 </style>
 </head>
 <body>
@@ -289,11 +297,11 @@ html.bleed .reader .page { width: 154mm; height: 216mm; border: 3mm solid transp
     <h1>ضباب المؤسس</h1>
     <h2 class="alt">Founder Fog</h2>
     <p class="lead">حكاية عن سلمى وطارق وهشام، وعن العام الأول في عمر شركة.</p><p class="lead">مكتوبة لمن يبدأ شركة، ولكل من يفكّر في ذلك.</p>
-    <div class="credits"><p>الصور: رسومات صوف ملبّد صُنعت لهذا الكتاب. الخطوط: Manrope و Readex Pro (رخصة SIL المفتوحة).</p><p>فصل تجريبي. والكتاب الكامل قيد الكتابة.</p><p>© <bdi class="n">2026</bdi> adam.ahmedhaz.com</p></div><footer class="pn"><bdi class="n">2</bdi></footer></section>
+    <div class="credits"><p>الصور: رسومات صوف ملبّد صُنعت لهذا الكتاب. الخطوط: Manrope و Readex Pro (رخصة SIL المفتوحة).</p><p>الأفكار والمصادر من «دليل المؤسس» في اللعبة، وليست نصيحة مالية أو قانونية.</p><p>© <bdi class="n">2026</bdi> adam.ahmedhaz.com</p></div><footer class="pn"><bdi class="n">2</bdi></footer></section>
 <section class="page parents" data-n="3">
     <h2>قبل أن تبدأ</h2>
     <p>كل مؤسس يعمل وسط ضباب. لا يرى السوق بوضوح، والأرقام تصل متأخرة، ومع التعب يزداد الضباب كثافة. يتبع هذا الكتاب سلمى خلال العام الأول من شركة تساعد المحلات الصغيرة على تحصيل أموالها في موعدها.</p><p>وينتهي كل مشهد بصندوق اسمه «الضباب ينقشع»: فكرة واحدة بكلمات بسيطة، ومصدرها. وفي آخر كل فصل صفحة أدوات للاستخدام في شركتك هذا الأسبوع.</p><p>خرجت الحكاية من «ضباب المؤسس»، لعبة مجانية تدير فيها شركة ناشئة أسبوعًا بأسبوع. فصل للقراءة، ثم عام كامل للّعب.</p>
-    <div class="toc"><h3>المحتويات</h3><ol><li><span>الفصل 1: القفزة</span><i></i><bdi class="n">4</bdi></li></ol></div><footer class="pn"><bdi class="n">3</bdi></footer></section>
+    <div class="toc"><h3>المحتويات</h3><ol><li><span>الفصل 1: القفزة</span><i></i><bdi class="n">4</bdi></li><li><span>الفصل 2: البحث عن التوافق</span><i></i><bdi class="n">10</bdi></li><li><span>الفصل 3: المستثمرة الملاك</span><i></i><bdi class="n">16</bdi></li><li><span>الفصل 4: العميل الكبير</span><i></i><bdi class="n">22</bdi></li><li><span>الفصل 5: أربعة أيام بلا نوم</span><i></i><bdi class="n">28</bdi></li><li><span>الفصل 6: الساعة</span><i></i><bdi class="n">34</bdi></li><li><span>الفصل 7: المنافس</span><i></i><bdi class="n">40</bdi></li><li><span>الفصل 8: رمضان</span><i></i><bdi class="n">46</bdi></li><li><span>الفصل 9: أول مندوب مبيعات</span><i></i><bdi class="n">52</bdi></li><li><span>الفصل 10: الترخيص والعائلة</span><i></i><bdi class="n">58</bdi></li><li><span>الفصل 11: التحوّل</span><i></i><bdi class="n">64</bdi></li><li><span>الفصل 12: بعد عام</span><i></i><bdi class="n">70</bdi></li></ol></div><footer class="pn"><bdi class="n">3</bdi></footer></section>
 <section class="page opener" data-n="4">
       <div class="kicker">الفصل <bdi class="n">1</bdi> · الأسبوع <bdi class="n">0</bdi></div>
       <h1>القفزة</h1>
@@ -304,7 +312,7 @@ html.bleed .reader .page { width: 154mm; height: 216mm; border: 3mm solid transp
 <section class="page story equation" data-n="5">
           <div class="kicker">الفصل <bdi class="n">1</bdi> · <bdi class="n">1</bdi></div>
           <h2><bdi class="n">12</bdi> شهرًا</h2>
-          <div class="eq" dir="ltr">
+          <div class="eq long" dir="ltr">
             <div class="box in"><b>18,000</b><span>المدّخرات ($)</span></div><i>÷</i>
             <div class="box out"><b>1,500</b><span>للعيش شهريًا</span></div><i>=</i>
             <div class="box pr"><b>12</b><span>شهرًا</span></div>
@@ -317,7 +325,7 @@ html.bleed .reader .page { width: 154mm; height: 216mm; border: 3mm solid transp
           <div class="kicker">الفصل <bdi class="n">1</bdi> · <bdi class="n">2</bdi></div>
           <h2>نصف بنصف على منديل</h2>
           <p class="text">كان طارق قد بنى تطبيقين لم يستخدمهما أحد، وأراد أن يكون هذا مختلفًا. وفي مقهى قرب التحرير رسما خطًا في منتصف منديل ورقي: نصف لسلمى، ونصف لطارق. قال طارق: «اتفقنا؟» فوضع هشام فنجانه وقال: «تخيّلا أننا في الشهر <bdi class="n">8</bdi>، وأحدكما يريد الرحيل. من يحتفظ بالنصف؟» ساد الصمت. وفي تلك الليلة اتفقا على الاستحقاق التدريجي للحصص: تُكتسب على <bdi class="n">4</bdi> سنوات، ولا شيء قبل نهاية السنة الأولى. بدا الأمر بلا رومانسية، لكنه كان ألطف ما فعلاه طوال العام.</p>
-          <div class="idea lift"><img src="art/hisham.jpg" alt="" class="gp"><div><b>الضباب ينقشع · الاستحقاق التدريجي للحصص</b><p>تُكتسب حصص المؤسسين مع الوقت، عادةً على <bdi class="n">4</bdi> سنوات مع فترة انتظار مدتها سنة. هذا يحمي من يبقى، والمستثمرون سيطلبونه على أي حال.</p><small>نوام واسرمان، The Founder's Dilemmas (2012)</small></div></div><footer class="pn"><bdi class="n">6</bdi></footer></section>
+          <div class="idea lift"><img src="art/hisham.jpg" alt="" class="gp"><div><b>الضباب ينقشع · الاستحقاق التدريجي للحصص</b><p>تُكتسب حصص المؤسسين مع الوقت، عادةً على <bdi class="n">4</bdi> سنوات مع فترة انتظار مدتها سنة. هذا يحمي من يبقى، والمستثمرون سيطلبونه على أي حال.</p><small>براد فيلد وجيسون مندلسون، Venture Deals</small></div></div><footer class="pn"><bdi class="n">6</bdi></footer></section>
 <section class="page story" data-n="7">
           <figure class="arch "><img src="art/c1s3.jpg" alt=""></figure>
           <div class="kicker">الفصل <bdi class="n">1</bdi> · <bdi class="n">3</bdi></div>
@@ -329,18 +337,440 @@ html.bleed .reader .page { width: 154mm; height: 216mm; border: 3mm solid transp
           <div class="kicker">الفصل <bdi class="n">1</bdi> · <bdi class="n">4</bdi></div>
           <h2>الضباب الأول</h2>
           <p class="text">بعد <bdi class="n">3</bdi> أسابيع كانت سلمى تنام <bdi class="n">5</bdi> ساعات في الليلة. لم تعد ملاحظاتها مفهومة، وقرأت البريد نفسه <bdi class="n">4</bdi> مرات ثم أجابت عن السؤال الخطأ. اتصل هشام في منتصف الليل وسمع ذلك في صوتها، وقال: «في شركتي الأولى ظننت أن التعب دليل على أنني أهتم. لم يكن إلا الضباب. يخفي الأرقام أولًا، ثم الناس.» فأغلقت الحاسوب. وفي اليوم التالي نامت <bdi class="n">8</bdi> ساعات، ومشت على النيل، ووجدت الخطأ في جدولها خلال <bdi class="n">10</bdi> دقائق.</p>
-          <div class="idea lift"><img src="art/hisham.jpg" alt="" class="gp"><div><b>الضباب ينقشع · الوضوح</b><p>المؤسس هو أول موارد الشركة. النوم والرياضة وأمسية حرّة كل أسبوع هي ما يُبقي القرارات الجيدة ممكنة.</p><small>مايكل فريمان وزملاؤه، بحث عن الصحة النفسية للمؤسسين (2015)</small></div></div><footer class="pn"><bdi class="n">8</bdi></footer></section>
+          <div class="idea lift"><img src="art/hisham.jpg" alt="" class="gp"><div><b>الضباب ينقشع · الوضوح</b><p>المؤسس هو أول موارد الشركة. النوم والرياضة وأمسية حرّة كل أسبوع هي ما يُبقي القرارات الجيدة ممكنة.</p><small>مايكل فريمان وزملاؤه، Are Entrepreneurs Touched with Fire? (2015)</small></div></div><footer class="pn"><bdi class="n">8</bdi></footer></section>
 <section class="page worksheet tools" data-n="9">
       <div class="kicker">الفصل <bdi class="n">1</bdi></div>
       <h2>أدوات الأسبوع <bdi class="n">0</bdi></h2>
-      <h3><bdi class="n">1</bdi>. مدة الصمود الشخصية</h3>
-      <div class="sumbox"><div class="sumrow" dir="ltr"><span class="blank lab"><em>المدّخرات</em></span><i>÷</i><span class="blank lab"><em>للعيش شهريًا</em></span><i>=</i><span class="blank big lab"><em>شهور</em></span></div></div>
-      <h3><bdi class="n">2</bdi>. حديث الشركاء: خمسة أسئلة لهذا الشهر</h3>
-      <ul class="checks"><li><i class="tick"></i><span>من يقرّر ماذا، ومن يحسم الخلاف؟</span></li><li><i class="tick"></i><span>كيف تُقسم الحصص، وهل تُستحق تدريجيًا؟</span></li><li><i class="tick"></i><span>ماذا يحدث إذا رحل أحد الشركاء؟</span></li><li><i class="tick"></i><span>كم يحتاج كل شريك ليعيش؟</span></li><li><i class="tick"></i><span>كيف نختلف دون أن ننفصل؟</span></li></ul>
-      <h3><bdi class="n">3</bdi>. عشرون محادثة، قبل أي سطر برمجة</h3>
-      <p class="lead small">دائرة لكل محادثة عمّا فعله شخص ما الشهر الماضي.</p>
-      <div class="tally"><span class="dot"><bdi class="n">1</bdi></span><span class="dot"><bdi class="n">2</bdi></span><span class="dot"><bdi class="n">3</bdi></span><span class="dot"><bdi class="n">4</bdi></span><span class="dot"><bdi class="n">5</bdi></span><span class="dot"><bdi class="n">6</bdi></span><span class="dot"><bdi class="n">7</bdi></span><span class="dot"><bdi class="n">8</bdi></span><span class="dot"><bdi class="n">9</bdi></span><span class="dot"><bdi class="n">10</bdi></span><span class="dot"><bdi class="n">11</bdi></span><span class="dot"><bdi class="n">12</bdi></span><span class="dot"><bdi class="n">13</bdi></span><span class="dot"><bdi class="n">14</bdi></span><span class="dot"><bdi class="n">15</bdi></span><span class="dot"><bdi class="n">16</bdi></span><span class="dot"><bdi class="n">17</bdi></span><span class="dot"><bdi class="n">18</bdi></span><span class="dot"><bdi class="n">19</bdi></span><span class="dot"><bdi class="n">20</bdi></span></div><footer class="pn"><bdi class="n">9</bdi></footer></section>
-<section class="page back" data-n="10">
+      <h3><bdi class="n">1</bdi>. مدة الصمود الشخصية</h3><div class="sumbox"><div class="sumrow" dir="ltr"><span class="blank lab"><em>المدّخرات</em></span><i>÷</i><span class="blank lab"><em>للعيش شهريًا</em></span><i>=</i><span class="blank big lab"><em>شهور</em></span></div></div>
+<h3><bdi class="n">2</bdi>. حديث الشركاء: خمسة أسئلة لهذا الشهر</h3><ul class="checks"><li><i class="tick"></i><span>من يقرّر ماذا، ومن يحسم الخلاف؟</span></li><li><i class="tick"></i><span>كيف تُقسم الحصص، وهل تُستحق تدريجيًا؟</span></li><li><i class="tick"></i><span>ماذا يحدث إذا رحل أحد الشركاء؟</span></li><li><i class="tick"></i><span>كم يحتاج كل شريك ليعيش؟</span></li><li><i class="tick"></i><span>كيف نختلف دون أن ننفصل؟</span></li></ul>
+<h3><bdi class="n">3</bdi>. عشرون محادثة، قبل أي سطر برمجة</h3><p class="lead small">دائرة لكل محادثة عمّا فعله شخص ما الشهر الماضي.</p><div class="tally"><span class="dot"><bdi class="n">1</bdi></span><span class="dot"><bdi class="n">2</bdi></span><span class="dot"><bdi class="n">3</bdi></span><span class="dot"><bdi class="n">4</bdi></span><span class="dot"><bdi class="n">5</bdi></span><span class="dot"><bdi class="n">6</bdi></span><span class="dot"><bdi class="n">7</bdi></span><span class="dot"><bdi class="n">8</bdi></span><span class="dot"><bdi class="n">9</bdi></span><span class="dot"><bdi class="n">10</bdi></span><span class="dot"><bdi class="n">11</bdi></span><span class="dot"><bdi class="n">12</bdi></span><span class="dot"><bdi class="n">13</bdi></span><span class="dot"><bdi class="n">14</bdi></span><span class="dot"><bdi class="n">15</bdi></span><span class="dot"><bdi class="n">16</bdi></span><span class="dot"><bdi class="n">17</bdi></span><span class="dot"><bdi class="n">18</bdi></span><span class="dot"><bdi class="n">19</bdi></span><span class="dot"><bdi class="n">20</bdi></span></div><footer class="pn"><bdi class="n">9</bdi></footer></section>
+<section class="page opener" data-n="10">
+      <div class="kicker">الفصل <bdi class="n">2</bdi> · الأسبوع <bdi class="n">2</bdi></div>
+      <h1>البحث عن التوافق</h1>
+      <figure class="arch mini"><img src="art/c2open.jpg" alt=""></figure>
+      <p class="lead big">الفكرة تخمين. والأسابيع الأولى في عمر شركة هي لمعرفة الجزء الخاطئ من هذا التخمين، بأقل تكلفة ممكنة.</p>
+      <blockquote>لا تقعوا في حب التطبيق. بل في حب علبة أحذية أم هاني.<cite>هشام</cite></blockquote>
+      <div class="inthis"><h3>في هذا الفصل</h3><ul><li><img src="art/c2s1.jpg" alt="" class="thumb"><span>أجرِ تجارب صغيرة</span></li><li><img src="art/c2s2.jpg" alt="" class="thumb"><span>افعل ما لا يتوسّع</span></li><li><img src="art/c2s3.jpg" alt="" class="thumb"><span>مؤشرات الغرور</span></li><li><img src="art/c2s4.jpg" alt="" class="thumb"><span>التوافق مع السوق</span></li></ul></div><footer class="pn"><bdi class="n">10</bdi></footer></section>
+<section class="page story" data-n="11">
+          <figure class="arch "><img src="art/c2s1.jpg" alt=""></figure>
+          <div class="kicker">الفصل <bdi class="n">2</bdi> · <bdi class="n">1</bdi></div>
+          <h2>جدول وهاتف</h2>
+          <p class="text">أراد طارق <bdi class="n">3</bdi> أشهر لبناء التطبيق. فأعطاهما هشام أسبوعًا واحدًا، بلا برمجة. فصنعا جدولًا بما يُستحق لـ<bdi class="n">10</bdi> محلات، وأرسلت سلمى كل تذكير بالدفع بيدها من هاتفها، بأدب، مع المبلغ والتاريخ. وحصلت أم هاني على أموالها في <bdi class="n">12</bdi> يومًا بدلًا من <bdi class="n">40</bdi>. لم يرَ أحد تطبيقًا. وظل طارق ينظر إلى الجدول طويلًا، ثم قال: «إذن هذا هو المنتج.» فقال هشام: «حتى الآن.»</p>
+          <div class="idea lift"><img src="art/hisham.jpg" alt="" class="gp"><div><b>الضباب ينقشع · أجرِ تجارب صغيرة</b><p>ابنِ أصغر شيء يمكن أن يثبت خطأك، وقِس ما يفعله الناس فعلًا، وتعلّم. المهم سرعة كل دورة.</p><small>إريك ريس، The Lean Startup (2011)</small></div></div><footer class="pn"><bdi class="n">11</bdi></footer></section>
+<section class="page story" data-n="12">
+          <figure class="arch "><img src="art/c2s2.jpg" alt=""></figure>
+          <div class="kicker">الفصل <bdi class="n">2</bdi> · <bdi class="n">2</bdi></div>
+          <h2>السابعة صباحًا</h2>
+          <p class="text">المحلات تفتح مبكرًا، فصارت سلمى تبدأ مبكرًا أيضًا. كل محل جديد كان يحصل على زيارة في السابعة صباحًا، وكوب شاي، و<bdi class="n">20</bdi> دقيقة من وقتها. كانت تُعدّ قائمتهم بنفسها، وتكتب كل سؤال يطرحونه. وفي آخر الشهر كان في دفترها <bdi class="n">63</bdi> سؤالًا، يتكرر منها <bdi class="n">5</bdi> مرة بعد مرة. فبنى طارق إجابات لهذه الـ<bdi class="n">5</bdi>، ولا شيء غيرها.</p>
+          <div class="idea lift"><img src="art/hisham.jpg" alt="" class="gp"><div><b>الضباب ينقشع · افعل ما لا يتوسّع</b><p>اكسب المستخدمين الأوائل بيدك، واحدًا تلو الآخر. هذا لا يتوسّع، وهنا الفكرة: تتعلّم ما يحتاجونه قبل أن تؤتمته.</p><small>بول غراهام، Do Things That Don't Scale (2013)</small></div></div><footer class="pn"><bdi class="n">12</bdi></footer></section>
+<section class="page story equation" data-n="13">
+          <div class="kicker">الفصل <bdi class="n">2</bdi> · <bdi class="n">3</bdi></div>
+          <h2><bdi class="n">500</bdi> تسجيل</h2>
+          <div class="eq" dir="ltr">
+            <div class="box in"><b>9</b><span>عادوا</span></div><i>÷</i>
+            <div class="box out"><b>500</b><span>سجّلوا</span></div><i>=</i>
+            <div class="box pr"><b>1.8%</b><span>نسبة العودة</span></div>
+          </div>
+          <figure class="arch mini"><img src="art/c2s3.jpg" alt=""></figure>
+          <p class="text">نشر طارق مقطعًا قصيرًا على الإنترنت، وفي الصباح كان <bdi class="n">500</bdi> محل قد سجّل. التقط صورة للرقم وأرسلها لكل من يعرف. أما هشام فسأل سؤالًا آخر: «كم محلًا استخدمه مرتين؟» راجعت سلمى: <bdi class="n">9</bdi>. أما الـ<bdi class="n">491</bdi> الباقون فنظروا مرة ورحلوا. قال هشام: «<bdi class="n">500</bdi> رقم جميل. لكن <bdi class="n">9</bdi> هو الرقم الذي يخبرك بما يجب فعله.»</p>
+          <div class="idea lift"><img src="art/hisham.jpg" alt="" class="gp"><div><b>الضباب ينقشع · مؤشرات الغرور</b><p>إجمالي التسجيلات والتنزيلات يرتفع دائمًا ويُشعر بالرضا. الأهم أرقام تغيّر خطوتك التالية، مثل من يعودون.</p><small>إريك ريس، The Lean Startup (2011)</small></div></div><footer class="pn"><bdi class="n">13</bdi></footer></section>
+<section class="page story" data-n="14">
+          <figure class="arch "><img src="art/c2s4.jpg" alt=""></figure>
+          <div class="kicker">الفصل <bdi class="n">2</bdi> · <bdi class="n">4</bdi></div>
+          <h2>خيبة أمل كبيرة</h2>
+          <p class="text">في الأسبوع <bdi class="n">6</bdi> سألت سلمى الـ<bdi class="n">25</bdi> محلًا التي تستخدم «دفتر» كل أسبوع سؤالًا واحدًا: كيف سيكون شعوركم لو لم يعد بإمكانكم استخدامه؟ قال <bdi class="n">11</bdi> منهم: خيبة أمل كبيرة. أي <bdi class="n">44%</bdi>. وقالتها أم هاني بصوت أعلى من الجميع: «إياكم أن تفعلوا!» ثم ضحكت. هزّ هشام رأسه ببطء: «فوق <bdi class="n">40%</bdi> علامة. ليست وعدًا، بل علامة.» ولأول مرة تحرّك الضباب قليلًا.</p>
+          <div class="idea lift"><img src="art/hisham.jpg" alt="" class="gp"><div><b>الضباب ينقشع · التوافق مع السوق</b><p>اسأل المستخدمين عن شعورهم دون منتجك. إذا قال <bdi class="n">40%</bdi> أو أكثر «خيبة أمل كبيرة»، فقد تكون قريبًا من التوافق.</p><small>اختبار الـ40% لشون إليس</small></div></div><footer class="pn"><bdi class="n">14</bdi></footer></section>
+<section class="page worksheet tools" data-n="15">
+      <div class="kicker">الفصل <bdi class="n">2</bdi></div>
+      <h2>أدوات الأسبوع <bdi class="n">2</bdi></h2>
+      <h3><bdi class="n">1</bdi>. أخطر تخمين لدينا</h3><div class="wlines"><div class="wl"></div><div class="wl"></div></div>
+<h3><bdi class="n">2</bdi>. أصغر تجربة هذا الأسبوع، والنتيجة التي ستغيّر رأينا</h3><div class="wlines"><div class="wl"></div><div class="wl"></div><div class="wl"></div></div>
+<h3><bdi class="n">3</bdi>. سؤال الـ<bdi class="n">40%</bdi></h3><div class="sumbox"><div class="sumrow" dir="ltr"><span class="blank lab"><em>خيبة أمل كبيرة</em></span><i>÷</i><span class="blank lab"><em>عدد من سُئلوا</em></span><i>=</i><span class="blank big lab"><em>%</em></span></div></div><footer class="pn"><bdi class="n">15</bdi></footer></section>
+<section class="page opener" data-n="16">
+      <div class="kicker">الفصل <bdi class="n">3</bdi> · الأسبوع <bdi class="n">5</bdi></div>
+      <h1>المستثمرة الملاك</h1>
+      <figure class="arch mini"><img src="art/c3open.jpg" alt=""></figure>
+      <p class="lead big">أول مال من الخارج يبدو دائمًا كهدية. لكنه صفقة، وكل سطر فيها يستحق القراءة.</p>
+      <blockquote>التقييم هو الرقم الذي يتحدث عنه الجميع. أما التحكّم فهو ما يؤلم لاحقًا.<cite>هشام</cite></blockquote>
+      <div class="inthis"><h3>في هذا الفصل</h3><ul><li><img src="art/c3s1.jpg" alt="" class="thumb"><span>تخفيف الحصة</span></li><li><img src="art/c3s2.jpg" alt="" class="thumb"><span>متى تجمع التمويل</span></li><li><img src="art/c3s3.jpg" alt="" class="thumb"><span>قراءة ورقة الشروط</span></li><li><img src="art/c3s4.jpg" alt="" class="thumb"><span>تحديثات المستثمرين</span></li></ul></div><footer class="pn"><bdi class="n">16</bdi></footer></section>
+<section class="page story equation" data-n="17">
+          <div class="kicker">الفصل <bdi class="n">3</bdi> · <bdi class="n">1</bdi></div>
+          <h2><bdi class="n">50,000</bdi> دولار مقابل <bdi class="n">20%</bdi></h2>
+          <div class="eq long" dir="ltr">
+            <div class="box in"><b>50,000</b><span>أموالها ($)</span></div><i>÷</i>
+            <div class="box out"><b>250,000</b><span>القيمة بعدها ($)</span></div><i>=</i>
+            <div class="box pr"><b>20%</b><span>من الشركة</span></div>
+          </div>
+          <figure class="arch mini"><img src="art/c3s1.jpg" alt=""></figure>
+          <p class="text">أدارت ليلى فهمي قسم المشروعات الصغيرة في بنك طوال <bdi class="n">20</bdi> عامًا. وقد سمعت عن «دفتر» من أخي أم هاني تحديدًا. وعلى فنجان قهوة قدّمت عرضًا: <bdi class="n">50,000</bdi> دولار مقابل <bdi class="n">20%</bdi> من الشركة. أجرى طارق الحساب على منديل: أي أن الشركة كلها تساوي <bdi class="n">250,000</bdi> دولار بعد أموالها. وقبل شهر لم تكن تساوي شيئًا. لم تقل سلمى نعم، بل قالت: «هل نفكّر أسبوعًا؟»</p>
+          <div class="idea lift"><img src="art/hisham.jpg" alt="" class="gp"><div><b>الضباب ينقشع · تخفيف الحصة</b><p>كل جولة تبيع جزءًا من الشركة. وتخفيف الحصة مقبول حين تنمو الشركة أسرع مما تتقلص حصتك.</p><small>براد فيلد وجيسون مندلسون، Venture Deals</small></div></div><footer class="pn"><bdi class="n">17</bdi></footer></section>
+<section class="page story" data-n="18">
+          <figure class="arch "><img src="art/c3s2.jpg" alt=""></figure>
+          <div class="kicker">الفصل <bdi class="n">3</bdi> · <bdi class="n">2</bdi></div>
+          <h2>لماذا الآن؟</h2>
+          <p class="text">سأل طارق: «ألا ننتظر حتى نكبر؟ سنحصل على سعر أفضل.» هزّ هشام رأسه: «اجمعا التمويل حين يكون لديكما شيء يتحرك، وأشهر متبقية. لا حين تكونان في ضيق.» كان لديهما <bdi class="n">44%</bdi> من المحلات يقولون «خيبة أمل كبيرة»، وما زال لدى سلمى مدّخرات تكفي <bdi class="n">9</bdi> أشهر. والجولة تستغرق عادةً أشهرًا حتى تُغلق. ولو انتظرا حتى ينفد المال، لفاوضا من موقع الخوف.</p>
+          <div class="idea lift"><img src="art/hisham.jpg" alt="" class="gp"><div><b>الضباب ينقشع · متى تجمع التمويل</b><p>اجمع التمويل ومعك زخم ومدة صمود <bdi class="n">6</bdi> أشهر على الأقل. الجولة تستغرق من <bdi class="n">3</bdi> إلى <bdi class="n">6</bdi> أشهر، فالموعد الحقيقي أبكر مما يبدو.</p><small>بول غراهام، How to Raise Money (2013)</small></div></div><footer class="pn"><bdi class="n">18</bdi></footer></section>
+<section class="page story" data-n="19">
+          <figure class="arch "><img src="art/c3s3.jpg" alt=""></figure>
+          <div class="kicker">الفصل <bdi class="n">3</bdi> · <bdi class="n">3</bdi></div>
+          <h2>الشروط الصغيرة</h2>
+          <p class="text">كانت ورقة الشروط <bdi class="n">3</bdi> صفحات. السعر في الصفحة <bdi class="n">1</bdi>. وفي الصفحة <bdi class="n">3</bdi>، بخط صغير، حق اعتراض لليلى على كل توظيف وعلى أي إنفاق يزيد عن <bdi class="n">2,000</bdi> دولار. وضع هشام إصبعه عليه: «هذا البند ليس عن المال، بل عمّن يدير الشركة.» فاتصلت سلمى بليلى وطلبت حذفه بوضوح. ابتسمت ليلى: «أردت أن أرى هل ستقرئينه.» حُذف حق الاعتراض، وبقي السعر.</p>
+          <div class="idea lift"><img src="art/hisham.jpg" alt="" class="gp"><div><b>الضباب ينقشع · قراءة ورقة الشروط</b><p>في ورقة الشروط بنود اقتصادية (التقييم، الأفضلية) وبنود تحكّم (مقاعد المجلس، حق الاعتراض). المؤسسون ينشغلون بالسعر ويتنازلون عن التحكّم.</p><small>براد فيلد وجيسون مندلسون، Venture Deals</small></div></div><footer class="pn"><bdi class="n">19</bdi></footer></section>
+<section class="page story" data-n="20">
+          <figure class="arch "><img src="art/c3s4.jpg" alt=""></figure>
+          <div class="kicker">الفصل <bdi class="n">3</bdi> · <bdi class="n">4</bdi></div>
+          <h2>التحديث الأول</h2>
+          <p class="text">في أول يوم من كل شهر كانت سلمى ترسل إلى ليلى رسالة قصيرة واحدة من <bdi class="n">4</bdi> أجزاء: الأرقام، والإنجازات، والمشكلات، وطلب واحد. وكانت أول مشكلة كتبتها محرجة: <bdi class="n">3</bdi> محلات رحلت لأن التذكيرات خرجت في اليوم الخطأ. ردّت ليلى خلال ساعة. لم تلُمها، بل عرّفتها على تاجر جملة اسمه عمر صبري، يبيع لـ<bdi class="n">300</bdi> محل بالآجل.</p>
+          <div class="idea lift"><img src="art/hisham.jpg" alt="" class="gp"><div><b>الضباب ينقشع · تحديثات المستثمرين</b><p>تحديث شهري قصير: أرقام وإنجازات ومشكلات وطلب محدد. المستثمر الذي يسمع الأخبار السيئة مبكرًا يميل إلى المساعدة.</p><small>براد فيلد وجيسون مندلسون، Venture Deals</small></div></div><footer class="pn"><bdi class="n">20</bdi></footer></section>
+<section class="page worksheet tools" data-n="21">
+      <div class="kicker">الفصل <bdi class="n">3</bdi></div>
+      <h2>أدوات الأسبوع <bdi class="n">5</bdi></h2>
+      <h3><bdi class="n">1</bdi>. أي حصة نبيع؟</h3><div class="sumbox"><div class="sumrow" dir="ltr"><span class="blank lab"><em>الاستثمار</em></span><i>÷</i><span class="blank lab"><em>القيمة بعده</em></span><i>=</i><span class="blank big lab"><em>% مباعة</em></span></div></div>
+<h3><bdi class="n">2</bdi>. ورقة الشروط: علامة على كل بند يسمح لغيرك بقول لا</h3><ul class="checks"><li><i class="tick"></i><span>التقييم ومجمع خيارات الأسهم</span></li><li><i class="tick"></i><span>أفضلية التصفية</span></li><li><i class="tick"></i><span>مقاعد مجلس الإدارة</span></li><li><i class="tick"></i><span>حق الاعتراض على التوظيف أو الإنفاق أو الجولات الجديدة</span></li></ul>
+<h3><bdi class="n">3</bdi>. تحديث هذا الشهر</h3><ul class="checks"><li><i class="tick"></i><span>الأرقام</span></li><li><i class="tick"></i><span>الإنجازات</span></li><li><i class="tick"></i><span>المشكلات</span></li><li><i class="tick"></i><span>طلب واحد محدد</span></li></ul><footer class="pn"><bdi class="n">21</bdi></footer></section>
+<section class="page opener" data-n="22">
+      <div class="kicker">الفصل <bdi class="n">4</bdi> · الأسبوع <bdi class="n">7</bdi></div>
+      <h1>العميل الكبير</h1>
+      <figure class="arch mini"><img src="art/c4open.jpg" alt=""></figure>
+      <p class="lead big">العميل الكبير قد يصنع عامك. وقد يستولي على خطتك بهدوء.</p>
+      <blockquote>كل نعم لعميل واحد هي لا لكل الآخرين. فقُلها وعيناك مفتوحتان.<cite>هشام</cite></blockquote>
+      <div class="inthis"><h3>في هذا الفصل</h3><ul><li><img src="art/c4s1.jpg" alt="" class="thumb"><span>عمل مخصص لعميل واحد</span></li><li><img src="art/c4s2.jpg" alt="" class="thumb"><span>التسعير</span></li><li><img src="art/c4s3.jpg" alt="" class="thumb"><span>الدين التقني</span></li><li><img src="art/c4s4.jpg" alt="" class="thumb"><span>الأمان ميزة</span></li></ul></div><footer class="pn"><bdi class="n">22</bdi></footer></section>
+<section class="page story" data-n="23">
+          <figure class="arch "><img src="art/c4s1.jpg" alt=""></figure>
+          <div class="kicker">الفصل <bdi class="n">4</bdi> · <bdi class="n">1</bdi></div>
+          <h2>ميزة واحدة فقط</h2>
+          <p class="text">كان مخزن عمر صبري تفوح منه رائحة الأرز والكرتون. أعجبه «دفتر»، وكان مستعدًا لوضع محلاته الـ<bdi class="n">300</bdi> كلها عليه، بشرط أن يبنيا له أولًا شاشة خاصة: حدود ائتمان لكل محل، وألوانه، وتقاريره. شهر عمل للمؤسسَين معًا. لمعت عينا طارق. أما سلمى فسألت: «هل سيستخدم هذه الشاشة أي عميل آخر؟» لم يستطع أحد أن يسمّي عميلًا. فرفضا الشاشة الخاصة، وعرضا المنتج الموجود.</p>
+          <div class="idea lift"><img src="art/hisham.jpg" alt="" class="gp"><div><b>الضباب ينقشع · عمل مخصص لعميل واحد</b><p>طلب العميل الكبير المخصص هدية وفخ معًا. يجلب المال الآن، ويضع اسمه على خطتك.</p><small>مارتي كاغان، Inspired</small></div></div><footer class="pn"><bdi class="n">23</bdi></footer></section>
+<section class="page story" data-n="24">
+          <figure class="arch "><img src="art/c4s2.jpg" alt=""></figure>
+          <div class="kicker">الفصل <bdi class="n">4</bdi> · <bdi class="n">2</bdi></div>
+          <h2><bdi class="n">5</bdi> دولارات رخيصة جدًا</h2>
+          <p class="text">قبل أن يودّعهما سأل عمر عن السعر. قالت سلمى: «<bdi class="n">5</bdi> دولارات شهريًا لكل محل.» فضحك: «محلاتي تخسر أكثر من ذلك في يوم واحد من الملاحقة.» وفي تلك الليلة جرّبا شيئًا مخيفًا: عرضا على المحلات الـ<bdi class="n">10</bdi> التالية سعر <bdi class="n">8</bdi> دولارات. وافق <bdi class="n">9</bdi> منها. لم يعترض أحد على <bdi class="n">5</bdi> دولارات لأنها كانت أقل من اللازم. والدولارات الـ<bdi class="n">3</bdi> الإضافية، مضروبة في كل محل، ذهبت إلى الربح تقريبًا كما هي.</p>
+          <div class="idea lift"><img src="art/hisham.jpg" alt="" class="gp"><div><b>الضباب ينقشع · التسعير</b><p>معظم المؤسسين يسعّرون بأقل من القيمة خوفًا من سماع «لا». إذا لم يعترض أحد على سعرك أبدًا، فهو منخفض.</p><small>مادهافان راماناجام وجورج تاكي، Monetizing Innovation (2016)</small></div></div><footer class="pn"><bdi class="n">24</bdi></footer></section>
+<section class="page story" data-n="25">
+          <figure class="arch "><img src="art/c4s3.jpg" alt=""></figure>
+          <div class="kicker">الفصل <bdi class="n">4</bdi> · <bdi class="n">3</bdi></div>
+          <h2>سريع وفوضوي</h2>
+          <p class="text">ليتحرك بسرعة، اختصر طارق الطريق في كل مكان. والآن صار كل تغيير صغير يكسر شيئين آخرين. تعديل موعد التذكير استغرق أسبوعًا بدلًا من بعد ظهر واحد. قال طارق: «كأننا اقترضنا وقتًا، والآن ندفع الفائدة.» فوضعا قاعدة: كل خميس بعد الظهر، لا ميزات جديدة، بل تنظيف فقط. بدا الخميس الأول ضائعًا. وبحلول الخميس الرابع عادت التغييرات سريعة.</p>
+          <div class="idea lift"><img src="art/hisham.jpg" alt="" class="gp"><div><b>الضباب ينقشع · الدين التقني</b><p>الإطلاق السريع اقتراض، والكود الفوضوي يفرض فائدة على كل تغيير لاحق. بعض الدين ذكي، إن سُدّد عن قصد.</p><small>وارد كننغهام، The WyCash Portfolio Management System (1992)</small></div></div><footer class="pn"><bdi class="n">25</bdi></footer></section>
+<section class="page story" data-n="26">
+          <figure class="arch "><img src="art/c4s4.jpg" alt=""></figure>
+          <div class="kicker">الفصل <bdi class="n">4</bdi> · <bdi class="n">4</bdi></div>
+          <h2>ماذا لو تسرّبت؟</h2>
+          <p class="text">بعد <bdi class="n">6</bdi> أسابيع عاد عمر واتصل. سيجرّب المنتج العادي مع <bdi class="n">40</bdi> محلًا. لكن مدير التقنية لديه كان عنده سؤال أولًا: أين بيانات المحلات، ومن يستطيع رؤيتها؟ لم يكن لديهما جواب جيد. أسماء وأرقام هواتف وديون لعائلات حقيقية. فقضيا أسبوعين في ذلك: نسخ احتياطية، وصلاحيات لمن يحتاجها فقط، وصفحة قصيرة تشرح كل شيء بكلمات بسيطة. قرأها المدير مرتين، ثم وقّع.</p>
+          <div class="idea lift"><img src="art/hisham.jpg" alt="" class="gp"><div><b>الضباب ينقشع · الأمان ميزة</b><p>الشركات الناشئة تؤجل الأمان، حتى يُنهي تسريب واحد عقدًا. والعميل يشتري الثقة قبل أن يشتري الميزات.</p><small>IBM، Cost of a Data Breach Report</small></div></div><footer class="pn"><bdi class="n">26</bdi></footer></section>
+<section class="page worksheet tools" data-n="27">
+      <div class="kicker">الفصل <bdi class="n">4</bdi></div>
+      <h2>أدوات الأسبوع <bdi class="n">7</bdi></h2>
+      <h3><bdi class="n">1</bdi>. قبل الموافقة على عمل مخصص</h3><ul class="checks"><li><i class="tick"></i><span>هل سيستخدمه <bdi class="n">3</bdi> عملاء آخرون؟</span></li><li><i class="tick"></i><span>من سيرعاه بعد عام؟</span></li><li><i class="tick"></i><span>ما الذي سنتوقف عنه لبنائه؟</span></li><li><i class="tick"></i><span>هل يغطي السعر كل ذلك؟</span></li></ul>
+<h3><bdi class="n">2</bdi>. اختبار سعر لأول <bdi class="n">10</bdi> عملاء قادمين</h3><div class="sumbox"><div class="sumrow" dir="ltr"><span class="blank lab"><em>سعر اليوم</em></span><i>×</i><span class="blank lab"><em>1.2</em></span><i>=</i><span class="blank big lab"><em>سعر الاختبار</em></span></div></div>
+<h3><bdi class="n">3</bdi>. أسوأ <bdi class="n">3</bdi> اختصارات لدينا، للتنظيف أيام الخميس</h3><div class="wlines"><div class="wl"></div><div class="wl"></div><div class="wl"></div></div><footer class="pn"><bdi class="n">27</bdi></footer></section>
+<section class="page opener" data-n="28">
+      <div class="kicker">الفصل <bdi class="n">5</bdi> · الأسبوع <bdi class="n">9</bdi></div>
+      <h1>أربعة أيام بلا نوم</h1>
+      <figure class="arch mini"><img src="art/c5open.jpg" alt=""></figure>
+      <p class="lead big">نادرًا ما تموت الشركات بقرار سيئ واحد. الأغلب أن ينفد صبر المؤسسين على بعضهم، أو على أنفسهم.</p>
+      <blockquote>الشريك المؤسس زواج معه جدول حسابات. تحدّثا قبل أن تحتاجا.<cite>هشام</cite></blockquote>
+      <div class="inthis"><h3>في هذا الفصل</h3><ul><li><img src="art/c5s1.jpg" alt="" class="thumb"><span>الاحتراق</span></li><li><img src="art/c5s2.jpg" alt="" class="thumb"><span>العلاقة مع الشريك المؤسس</span></li><li><img src="art/c5s3.jpg" alt="" class="thumb"><span>فوّض النتائج لا المهام</span></li><li><img src="art/c5s4.jpg" alt="" class="thumb"><span>قل الحقيقة للفريق</span></li></ul></div><footer class="pn"><bdi class="n">28</bdi></footer></section>
+<section class="page story" data-n="29">
+          <figure class="arch "><img src="art/c5s1.jpg" alt=""></figure>
+          <div class="kicker">الفصل <bdi class="n">5</bdi> · <bdi class="n">1</bdi></div>
+          <h2>الثالثة فجرًا</h2>
+          <p class="text">تعطّل إطلاق يوم الأحد، فسهر طارق لإصلاحه. ثم الاثنين، ثم الثلاثاء. وبحلول الأربعاء لم يكن قد نام نومًا حقيقيًا منذ <bdi class="n">4</bdi> أيام. وفي اجتماع الفريق انفجر في سلمى بسبب لون زر. نظر الجميع إلى الطاولة. وبعد الاجتماع جلس على الدرج ورأسه بين يديه، وقال قبل أن تسأله: «أنا بخير.» لم يكن بخير. كان في الضباب، ولا يراه.</p>
+          <div class="idea lift"><img src="art/hisham.jpg" alt="" class="gp"><div><b>الضباب ينقشع · الاحتراق</b><p>الاحتراق تسرّب بطيء لا انهيار مفاجئ: ليالٍ قصيرة، ولا رياضة، وكل مساء في العمل. والمؤسس المتعب يتخذ قرارات أسوأ ويُخفي ذلك جيدًا.</p><small>مايكل فريمان وزملاؤه، Are Entrepreneurs Touched with Fire? (2015)</small></div></div><footer class="pn"><bdi class="n">29</bdi></footer></section>
+<section class="page story" data-n="30">
+          <figure class="arch "><img src="art/c5s2.jpg" alt=""></figure>
+          <div class="kicker">الفصل <bdi class="n">5</bdi> · <bdi class="n">2</bdi></div>
+          <h2>الحديث الذي أجّلاه</h2>
+          <p class="text">أخذهما هشام إلى الغداء ولم يسمح لهما بالحديث عن المنتج. من يقرّر ماذا يُبنى؟ سلمى، بعد الاستماع إلى العملاء. ومن يقرّر كيف؟ طارق، دائمًا. وماذا يحدث عند الخلاف؟ ينامان على الأمر، ثم تحسم سلمى ما يخص العملاء، ويحسم طارق ما يخص الكود. استغرق ذلك ساعتين، وكان يجب أن يحدث في الأسبوع <bdi class="n">1</bdi>. وفي طريق العودة قال طارق: «ظننتكِ لا تثقين بعملي.» فقالت سلمى: «وظننتك لا تثق بحكمي.» وكان كلاهما مخطئًا.</p>
+          <div class="idea lift"><img src="art/hisham.jpg" alt="" class="gp"><div><b>الضباب ينقشع · العلاقة مع الشريك المؤسس</b><p>مشكلات فريق التأسيس تقف وراء نحو <bdi class="n">65%</bdi> من حالات فشل الشركات الواعدة. اتفقوا مبكرًا على الأدوار، ومن يقرّر ماذا، وماذا يحدث إذا رحل أحد.</p><small>نوام واسرمان، The Founder's Dilemmas (2012)</small></div></div><footer class="pn"><bdi class="n">30</bdi></footer></section>
+<section class="page story" data-n="31">
+          <figure class="arch "><img src="art/c5s3.jpg" alt=""></figure>
+          <div class="kicker">الفصل <bdi class="n">5</bdi> · <bdi class="n">3</bdi></div>
+          <h2>التخلّي عن المفاتيح</h2>
+          <p class="text">بأموال ليلى وظّفا مطوّرَين: منى وحسن. لكن كل إطلاق ظل يمر عبر طارق، ليلًا. سأله هشام عمّا يريده من الإطلاق. قال: «ألا يصل أي محل تذكير خاطئ.» فقال هشام: «إذن أعطِ منى هذه النتيجة. لا الخطوات، بل النتيجة.» كتبت منى قائمة فحص خاصة بها، أفضل من قائمته. ونام طارق <bdi class="n">8</bdi> ساعات ذلك الخميس، ولم يتعطّل شيء.</p>
+          <div class="idea lift"><img src="art/hisham.jpg" alt="" class="gp"><div><b>الضباب ينقشع · فوّض النتائج لا المهام</b><p>مع نمو الفريق يصبح إنتاجك هو إنتاج فريقك. سلّم النتيجة المطلوبة، ودع الناس يملكون طريقة الوصول إليها.</p><small>آندي غروف، High Output Management (1983)</small></div></div><footer class="pn"><bdi class="n">31</bdi></footer></section>
+<section class="page story" data-n="32">
+          <figure class="arch "><img src="art/c5s4.jpg" alt=""></figure>
+          <div class="kicker">الفصل <bdi class="n">5</bdi> · <bdi class="n">4</bdi></div>
+          <h2>ما كان الفريق يعرفه</h2>
+          <p class="text">يوم الأحد جمعت سلمى الأربعة. أخبرتهم بما حدث بوضوح: الإطلاق المعطّل، والأسبوع السيئ، والصراخ، والقواعد الجديدة. لم يتفاجأ أحد. قالت منى: «ظننا الأمر أسوأ. ظننا أن المال نفد.» فالصمت جعلهم يتخيّلون ما هو أشد قتامة من الحقيقة. وبعد الاجتماع سأل حسن إن كان يستطيع تولّي جدول التذكيرات. وبالطبع كان يستطيع.</p>
+          <div class="idea lift"><img src="art/hisham.jpg" alt="" class="gp"><div><b>الضباب ينقشع · قل الحقيقة للفريق</b><p>حين تسوء الأمور يشعر الفريق بذلك غالبًا. والصمت يجعلهم يتخيّلون الأسوأ. والمؤسس الذي يقول الحقيقة يكسب الثقة.</p><small>بن هوروويتز، The Hard Thing About Hard Things (2014)</small></div></div><footer class="pn"><bdi class="n">32</bdi></footer></section>
+<section class="page worksheet tools" data-n="33">
+      <div class="kicker">الفصل <bdi class="n">5</bdi></div>
+      <h2>أدوات الأسبوع <bdi class="n">9</bdi></h2>
+      <h3><bdi class="n">1</bdi>. لقاء الشركاء الأسبوعي، <bdi class="n">30</bdi> دقيقة، بلا حديث عن المنتج</h3><ul class="checks"><li><i class="tick"></i><span>ما الذي أحبطنا هذا الأسبوع؟</span></li><li><i class="tick"></i><span>هل يحمل أحدنا أكثر من طاقته؟</span></li><li><i class="tick"></i><span>هل هناك قرار نتجنّبه؟</span></li><li><i class="tick"></i><span>كيف نومنا؟</span></li></ul>
+<h3><bdi class="n">2</bdi>. نتيجة واحدة تُسلَّم هذا الشهر، ولمن</h3><div class="wlines"><div class="wl"></div><div class="wl"></div></div>
+<h3><bdi class="n">3</bdi>. ليالٍ بنوم <bdi class="n">7</bdi> ساعات هذا الأسبوع</h3><div class="tally"><span class="dot"><bdi class="n">1</bdi></span><span class="dot"><bdi class="n">2</bdi></span><span class="dot"><bdi class="n">3</bdi></span><span class="dot"><bdi class="n">4</bdi></span><span class="dot"><bdi class="n">5</bdi></span><span class="dot"><bdi class="n">6</bdi></span><span class="dot"><bdi class="n">7</bdi></span></div><footer class="pn"><bdi class="n">33</bdi></footer></section>
+<section class="page opener" data-n="34">
+      <div class="kicker">الفصل <bdi class="n">6</bdi> · الأسبوع <bdi class="n">12</bdi></div>
+      <h1>الساعة</h1>
+      <figure class="arch mini"><img src="art/c6open.jpg" alt=""></figure>
+      <p class="lead big">لكل شركة ساعة: النقد مقسومًا على الحرق. معظم المؤسسين يعرفون الوقت المتبقي تقريبًا. أما من يصمدون فيعرفونه بالضبط.</p>
+      <blockquote>مدة الصمود هي الرقم الوحيد الذي يخبرك بقدر الشجاعة الذي تستطيع تحمّله.<cite>هشام</cite></blockquote>
+      <div class="inthis"><h3>في هذا الفصل</h3><ul><li><img src="art/c6s1.jpg" alt="" class="thumb"><span>مدة الصمود</span></li><li><img src="art/c6s2.jpg" alt="" class="thumb"><span>اقتصاديات الوحدة</span></li><li><img src="art/c6s3.jpg" alt="" class="thumb"><span>مضاعف الحرق</span></li><li><img src="art/c6s4.jpg" alt="" class="thumb"><span>حيّ افتراضيًا</span></li></ul></div><footer class="pn"><bdi class="n">34</bdi></footer></section>
+<section class="page story equation" data-n="35">
+          <div class="kicker">الفصل <bdi class="n">6</bdi> · <bdi class="n">1</bdi></div>
+          <h2><bdi class="n">8</bdi> أشهر</h2>
+          <div class="eq long" dir="ltr">
+            <div class="box in"><b>64,000</b><span>النقد ($)</span></div><i>÷</i>
+            <div class="box out"><b>8,000</b><span>الحرق الشهري ($)</span></div><i>=</i>
+            <div class="box pr"><b>8</b><span>أشهر</span></div>
+          </div>
+          <figure class="arch mini"><img src="art/c6s1.jpg" alt=""></figure>
+          <p class="text">في الأسبوع <bdi class="n">12</bdi> كتبت سلمى الأرقام الحقيقية على السبورة. النقد في البنك: <bdi class="n">64,000</bdi> دولار. وما يخرج كل شهر بعد ما يدخل: <bdi class="n">8,000</bdi> دولار. أي <bdi class="n">8</bdi> أشهر. ثم سأل هشام عن التوظيفين المخطط لهما في الربع القادم. معهما يصبح الحرق <bdi class="n">12,000</bdi> دولار، وتهبط الساعة إلى ما يزيد قليلًا على <bdi class="n">5</bdi> أشهر. صمت طارق. قال هشام: «احسبا الخطة دائمًا، لا اليوم فقط.»</p>
+          <div class="idea lift"><img src="art/hisham.jpg" alt="" class="gp"><div><b>الضباب ينقشع · مدة الصمود</b><p>النقد مقسومًا على صافي الحرق الشهري. أدخِل التوظيفات المخطط لها، وتذكّر أن الجولة تستغرق أشهرًا، فالموعد الحقيقي أبكر.</p><small>بول غراهام، Startups in 13 Sentences (2009)</small></div></div><footer class="pn"><bdi class="n">35</bdi></footer></section>
+<section class="page story" data-n="36">
+          <figure class="arch "><img src="art/c6s2.jpg" alt=""></figure>
+          <div class="kicker">الفصل <bdi class="n">6</bdi> · <bdi class="n">2</bdi></div>
+          <h2>كم يساوي المحل</h2>
+          <p class="text">كم يكلّف كسب محل واحد؟ جمعت سلمى صباحاتها والمنشورات المطبوعة والشاي: نحو <bdi class="n">40</bdi> دولارًا. وكم يساوي المحل؟ <bdi class="n">8</bdi> دولارات شهريًا، والمحلات تبقى نحو <bdi class="n">18</bdi> شهرًا. أي <bdi class="n">144</bdi> دولارًا. قال طارق: «إذن كل محل يعيد أكثر من <bdi class="n">3</bdi> أضعاف تكلفته.» قال هشام: «جيد. والآن راجعاه كل شهر. هذا الرقم يتحرك حين لا تنظران.»</p>
+          <div class="idea lift"><img src="art/hisham.jpg" alt="" class="gp"><div><b>الضباب ينقشع · اقتصاديات الوحدة</b><p>يجب أن يساوي كل عميل أكثر مما كلّف كسبه. والقاعدة الشائعة: قيمة العميل طوال عمره <bdi class="n">3</bdi> أضعاف تكلفة اكتسابه على الأقل.</p><small>ديفيد سكوك، SaaS Metrics 2.0</small></div></div><footer class="pn"><bdi class="n">36</bdi></footer></section>
+<section class="page story" data-n="37">
+          <figure class="arch "><img src="art/c6s3.jpg" alt=""></figure>
+          <div class="kicker">الفصل <bdi class="n">6</bdi> · <bdi class="n">3</bdi></div>
+          <h2>حرق من أجل النمو</h2>
+          <p class="text">في الربع الماضي حرقا <bdi class="n">24,000</bdi> دولار. وخلال المدة نفسها نما الإيراد السنوي بمقدار <bdi class="n">9,600</bdi> دولار. قسم طارق الأول على الثاني: <bdi class="n">2.5</bdi>. «هل هذا جيد؟» أمال هشام يده: «أقل من <bdi class="n">1</bdi> ممتاز. وفوق <bdi class="n">3</bdi> مشكلة. أما <bdi class="n">2.5</bdi> فيعني أن كل دولار إيراد جديد غالٍ.» فنظرا إلى أين ذهب المال. الإعلانات على الإنترنت جلبت تسجيلات، لا محلات. فأوقفاها صباح اليوم التالي.</p>
+          <div class="idea lift"><img src="art/hisham.jpg" alt="" class="gp"><div><b>الضباب ينقشع · مضاعف الحرق</b><p>صافي الحرق مقسومًا على صافي الإيراد السنوي الجديد. أقل من <bdi class="n">1</bdi> ممتاز، وفوق <bdi class="n">3</bdi> سيئ. يكشف إن كان النمو يُشترى بأي ثمن.</p><small>ديفيد ساكس، The Burn Multiple (2020)</small></div></div><footer class="pn"><bdi class="n">37</bdi></footer></section>
+<section class="page story" data-n="38">
+          <figure class="arch "><img src="art/c6s4.jpg" alt=""></figure>
+          <div class="kicker">الفصل <bdi class="n">6</bdi> · <bdi class="n">4</bdi></div>
+          <h2>خطّان</h2>
+          <p class="text">رسم هشام خطّين على السبورة. الأول للتكاليف، يصعد ببطء. والثاني للإيراد، يصعد أسرع. لو لم يتغيّر شيء، يتقاطع الخطان في الشهر <bdi class="n">15</bdi>. لكن المال ينفد في الشهر <bdi class="n">8</bdi>. قال بهدوء: «أنتما الآن ميّتان افتراضيًا. هذا ليس حكمًا، بل قائمة مهام.» فكتبت سلمى <bdi class="n">3</bdi> أشياء تحت الخطّين: رفع الأسعار، وإيقاف الإعلانات، وتشغيل محلات عمر الـ<bdi class="n">40</bdi>.</p>
+          <div class="idea lift"><img src="art/hisham.jpg" alt="" class="gp"><div><b>الضباب ينقشع · حيّ افتراضيًا</b><p>لو بقيت التكاليف ونمو الإيراد على حالها، هل تصل إلى الربح قبل نفاد المال؟ إن لم يكن، فأنت تحتاج خطة لا أملًا.</p><small>بول غراهام، Default Alive or Default Dead? (2015)</small></div></div><footer class="pn"><bdi class="n">38</bdi></footer></section>
+<section class="page worksheet tools" data-n="39">
+      <div class="kicker">الفصل <bdi class="n">6</bdi></div>
+      <h2>أدوات الأسبوع <bdi class="n">12</bdi></h2>
+      <h3><bdi class="n">1</bdi>. مدة صمود الشركة، مع توظيفات الربع القادم</h3><div class="sumbox"><div class="sumrow" dir="ltr"><span class="blank lab"><em>النقد</em></span><i>÷</i><span class="blank lab"><em>صافي الحرق الشهري</em></span><i>=</i><span class="blank big lab"><em>أشهر</em></span></div></div>
+<h3><bdi class="n">2</bdi>. اقتصاديات الوحدة</h3><div class="sumbox"><div class="sumrow" dir="ltr"><span class="blank lab"><em>قيمة العميل</em></span><i>÷</i><span class="blank lab"><em>تكلفة كسبه</em></span><i>=</i><span class="blank big lab"><em>الهدف 3 أو أكثر</em></span></div></div>
+<h3><bdi class="n">3</bdi>. مضاعف الحرق للربع الماضي</h3><div class="sumbox"><div class="sumrow" dir="ltr"><span class="blank lab"><em>صافي الحرق</em></span><i>÷</i><span class="blank lab"><em>الإيراد السنوي الجديد</em></span><i>=</i><span class="blank big lab"><em>أقل من 1 ممتاز</em></span></div></div><footer class="pn"><bdi class="n">39</bdi></footer></section>
+<section class="page opener" data-n="40">
+      <div class="kicker">الفصل <bdi class="n">7</bdi> · الأسبوع <bdi class="n">14</bdi></div>
+      <h1>المنافس</h1>
+      <figure class="arch mini"><img src="art/c7open.jpg" alt=""></figure>
+      <p class="lead big">عاجلًا أو آجلًا يرى غيرك المشكلة نفسها، ومعه مال أكثر. وما تفعله في الشهر التالي أهم مما أعلنه.</p>
+      <blockquote>أموالهم مشكلتهم. وعملاؤك مسؤوليتك.<cite>هشام</cite></blockquote>
+      <div class="inthis"><h3>في هذا الفصل</h3><ul><li><img src="art/c7s1.jpg" alt="" class="thumb"><span>التمويل بلا رأس مال جريء</span></li><li><img src="art/c7s2.jpg" alt="" class="thumb"><span>التسرّب</span></li><li><img src="art/c7s3.jpg" alt="" class="thumb"><span>اعثر على قناة واحدة تنجح</span></li><li><img src="art/c7s4.jpg" alt="" class="thumb"><span>الأخلاق تحت الضغط</span></li></ul></div><footer class="pn"><bdi class="n">40</bdi></footer></section>
+<section class="page story" data-n="41">
+          <figure class="arch "><img src="art/c7s1.jpg" alt=""></figure>
+          <div class="kicker">الفصل <bdi class="n">7</bdi> · <bdi class="n">1</bdi></div>
+          <h2><bdi class="n">5</bdi> ملايين دولار</h2>
+          <p class="text">جاء الخبر يوم ثلاثاء: منافس جمع <bdi class="n">5</bdi> ملايين دولار ليفعل ما يفعله «دفتر». قرأه طارق <bdi class="n">3</bdi> مرات. وبدأ هاتف سلمى يرنّ بأناس يسألون إن كانوا قد انتهوا. أما هشام فكان هادئًا: «معظم المشاريع الجيدة لا تأخذ مالًا كهذا أبدًا. محلاتكما تدفع لكما كل شهر، وهذا تمويل أيضًا.» كان لديهما <bdi class="n">140</bdi> محلًا يدفع. وكان لدى المنافس بيان صحفي.</p>
+          <div class="idea lift"><img src="art/hisham.jpg" alt="" class="gp"><div><b>الضباب ينقشع · التمويل بلا رأس مال جريء</b><p>رأس المال الجريء يناسب شركات تستطيع النمو <bdi class="n">10</bdi> أضعاف في سنوات قليلة. وكثير من المشاريع الجيدة لا تستطيع، فتنمو بإيراد عملائها.</p><small>جيسون فرايد وديفيد هاينماير هانسون، Rework (2010)</small></div></div><footer class="pn"><bdi class="n">41</bdi></footer></section>
+<section class="page story" data-n="42">
+          <figure class="arch "><img src="art/c7s2.jpg" alt=""></figure>
+          <div class="kicker">الفصل <bdi class="n">7</bdi> · <bdi class="n">2</bdi></div>
+          <h2>مجانًا <bdi class="n">6</bdi> أشهر</h2>
+          <p class="text">عرض المنافس على المحلات <bdi class="n">6</bdi> أشهر مجانًا. وخلال أسبوعين رحل <bdi class="n">12</bdi> محلًا من محلات «دفتر». اتصلت سلمى بكل واحد منها، لا لتجادل، بل لتسأل عن السبب. قال أغلبهم الشيء نفسه: المجاني مجاني. وبعد شهر عاد <bdi class="n">7</bdi> منها، لأن تذكيرات المنافس كانت تخرج ليلًا وتزعج زبائنهم. ومع ذلك كتبت سلمى الدرس: <bdi class="n">12</bdi> من <bdi class="n">140</bdi> في شهر يعني أكثر من <bdi class="n">8%</bdi>. وبهذه الوتيرة يرحل نصف المحلات خلال عام.</p>
+          <div class="idea lift"><img src="art/hisham.jpg" alt="" class="gp"><div><b>الضباب ينقشع · التسرّب</b><p>نسبة العملاء الذين يغادرون كل شهر. <bdi class="n">5%</bdi> شهريًا تبدو قليلة، لكنها تعني خسارة نحو <bdi class="n">46%</bdi> من عملائك خلال عام.</p><small>ديفيد سكوك، SaaS Metrics 2.0</small></div></div><footer class="pn"><bdi class="n">42</bdi></footer></section>
+<section class="page story" data-n="43">
+          <figure class="arch "><img src="art/c7s3.jpg" alt=""></figure>
+          <div class="kicker">الفصل <bdi class="n">7</bdi> · <bdi class="n">3</bdi></div>
+          <h2>القناة الواحدة</h2>
+          <p class="text">كتبا كل ما جرّباه للعثور على محلات: إعلانات الإنترنت، والمنشورات، وجناح في معرض تجاري، والمقاطع القصيرة، وصباحات سلمى الباكرة. ثم كتبا بجانب كل واحدة عدد المحلات الدافعة التي جلبتها. برز سطر واحد: محلات عمر الـ<bdi class="n">40</bdi> جاءت من محادثة واحدة مع تاجر جملة واحد. فتجّار الجملة يملكون المحلات والثقة أصلًا. فأوقفا كل شيء تقريبًا، وذهبا لمقابلة <bdi class="n">5</bdi> تجّار جملة آخرين.</p>
+          <div class="idea lift"><img src="art/hisham.jpg" alt="" class="gp"><div><b>الضباب ينقشع · اعثر على قناة واحدة تنجح</b><p>طرق النمو كثيرة، من الإعلانات إلى الشراكات، ومعظم الشركات الناشئة تنمو عبر قناة رئيسية واحدة. اعثر عليها، ثم ضع جهدك فيها.</p><small>غابرييل واينبرغ وجاستن ميريس، Traction (2014)</small></div></div><footer class="pn"><bdi class="n">43</bdi></footer></section>
+<section class="page story" data-n="44">
+          <figure class="arch "><img src="art/c7s4.jpg" alt=""></figure>
+          <div class="kicker">الفصل <bdi class="n">7</bdi> · <bdi class="n">4</bdi></div>
+          <h2>قرّبي الرقم فقط</h2>
+          <p class="text">أراد مستثمر رؤية أرقامهما قبل مكالمة. قال طارق متعبًا: «لنحسب كل محل سجّل في أي وقت. الجميع يفعل ذلك.» سيصبح الرقم <bdi class="n">600</bdi> لا <bdi class="n">140</bdi>. فكّرت سلمى في أم هاني التي ائتمنتهما على مال عائلتها، وفي ليلى التي تقرأ كل سطر. وأرسلت <bdi class="n">140</bdi>، مع نسبة التسرّب، وملاحظة عن المنافس. لم يستثمر الرجل. لكنه بعد شهرين أرسل إليهما تاجر جملة.</p>
+          <div class="idea lift"><img src="art/hisham.jpg" alt="" class="gp"><div><b>الضباب ينقشع · الأخلاق تحت الضغط</b><p>المبالغات الصغيرة تصبح عادات، والعادات تصبح احتيالًا. الضغط حقيقي، والخط الفاصل حقيقي أيضًا. أبلغ عن الرقم الذي ستدافع عنه بعد عام.</p><small>جون كاريرو، Bad Blood (2018)</small></div></div><footer class="pn"><bdi class="n">44</bdi></footer></section>
+<section class="page worksheet tools" data-n="45">
+      <div class="kicker">الفصل <bdi class="n">7</bdi></div>
+      <h2>أدوات الأسبوع <bdi class="n">14</bdi></h2>
+      <h3><bdi class="n">1</bdi>. التسرّب الشهري</h3><div class="sumbox"><div class="sumrow" dir="ltr"><span class="blank lab"><em>العملاء المفقودون</em></span><i>÷</i><span class="blank lab"><em>العملاء في البداية</em></span><i>=</i><span class="blank big lab"><em>% شهريًا</em></span></div></div>
+<h3><bdi class="n">2</bdi>. القنوات المجرّبة، والعملاء الدافعون من كل منها</h3><ul class="checks"><li><i class="tick"></i><span>الإعلانات</span></li><li><i class="tick"></i><span>الشركاء</span></li><li><i class="tick"></i><span>الفعاليات</span></li><li><i class="tick"></i><span>المحتوى</span></li><li><i class="tick"></i><span>البيع المباشر</span></li><li><i class="tick"></i><span>التوصيات</span></li></ul>
+<h3><bdi class="n">3</bdi>. أرقام لن نقرّبها أبدًا</h3><div class="wlines"><div class="wl"></div><div class="wl"></div></div><footer class="pn"><bdi class="n">45</bdi></footer></section>
+<section class="page opener" data-n="46">
+      <div class="kicker">الفصل <bdi class="n">8</bdi> · الأسبوع <bdi class="n">21</bdi></div>
+      <h1>رمضان</h1>
+      <figure class="arch mini"><img src="art/c8open.jpg" alt=""></figure>
+      <p class="lead big">للمنطقة تقويمها الخاص، وطرقها الخاصة في الدفع، وفكرتها الخاصة عمّا تدين به الشركة الجيدة لناسها.</p>
+      <blockquote>مستخدموك يعيشون في تقويم. ابنِ له، لا لقالب من مكان آخر.<cite>هشام</cite></blockquote>
+      <div class="inthis"><h3>في هذا الفصل</h3><ul><li><img src="art/c8s1.jpg" alt="" class="thumb"><span>رمضان وتقويم المنطقة</span></li><li><img src="art/c8s2.jpg" alt="" class="thumb"><span>إدارة الأزمة</span></li><li><img src="art/c8s3.jpg" alt="" class="thumb"><span>المدفوعات في المنطقة</span></li><li><img src="art/c8s4.jpg" alt="" class="thumb"><span>الثقافة هي ما تفعله</span></li></ul></div><footer class="pn"><bdi class="n">46</bdi></footer></section>
+<section class="page story" data-n="47">
+          <figure class="arch "><img src="art/c8s1.jpg" alt=""></figure>
+          <div class="kicker">الفصل <bdi class="n">8</bdi> · <bdi class="n">1</bdi></div>
+          <h2>بعد الإفطار</h2>
+          <p class="text">في رمضان تحرّك كل شيء. المحلات تفتح متأخرة وتغلق بعد منتصف الليل، ونصف بيعها بعد الإفطار. أما تذكيرات «دفتر» فظلت تخرج في العاشرة صباحًا، حين لا أحد مستيقظ ليدفع. فنقلها حسن إلى التاسعة مساءً، فارتفعت المدفوعات بمقدار الثلث. وتغيّر الفريق أيضًا: أيام أقصر، ولا اجتماعات قبل الظهر، ومائدة إفطار طويلة معًا كل خميس.</p>
+          <div class="idea lift"><img src="art/hisham.jpg" alt="" class="gp"><div><b>الضباب ينقشع · رمضان وتقويم المنطقة</b><p>يبلغ الاستخدام ذروته بعد الإفطار، ويتباطأ البيع للشركات، وينتظر الفريق وقتًا ومكافأة العيد. خطّط العام حول تقويم المنطقة.</p><small>ممارسة شائعة في المنطقة</small></div></div><footer class="pn"><bdi class="n">47</bdi></footer></section>
+<section class="page story" data-n="48">
+          <figure class="arch "><img src="art/c8s2.jpg" alt=""></figure>
+          <div class="kicker">الفصل <bdi class="n">8</bdi> · <bdi class="n">2</bdi></div>
+          <h2>مُجمَّد</h2>
+          <p class="text">في الليلة <bdi class="n">15</bdi> من رمضان جمّد مزوّد الدفع تحويلات «دفتر» للمراجعة. <bdi class="n">3</bdi> أيام، وربما أكثر. والمحلات تنتظر أموالها قبل العيد. لم تختبئ سلمى. اتصلت بأكبر <bdi class="n">20</bdi> محلًا بنفسها، وأرسلت إلى كل محل رسالة قصيرة كل <bdi class="n">6</bdi> ساعات، وقالت بالضبط ما تعرفه وما لا تعرفه. وفي اليوم الرابع تحرّك المال. لم يرحل محل واحد. وأرسلت أم هاني علبة حلوى.</p>
+          <div class="idea lift"><img src="art/hisham.jpg" alt="" class="gp"><div><b>الضباب ينقشع · إدارة الأزمة</b><p>في الأزمة تتفوّق السرعة والصدق على التجميل. قل ما حدث، وما تفعله، ومتى التحديث التالي، ثم أوفِ بالوعد.</p><small>بن هوروويتز، The Hard Thing About Hard Things (2014)</small></div></div><footer class="pn"><bdi class="n">48</bdi></footer></section>
+<section class="page story" data-n="49">
+          <figure class="arch "><img src="art/c8s3.jpg" alt=""></figure>
+          <div class="kicker">الفصل <bdi class="n">8</bdi> · <bdi class="n">3</bdi></div>
+          <h2>الدفع عند الاستلام</h2>
+          <p class="text">نصف ما يُستحق للمحلات لن يصل أبدًا بالبطاقة. فزبائنهم يدفعون نقدًا، عند الباب، أو حين يأتي الراتب. وكان طارق قد بنى «دفتر» للدفع بالبطاقة فقط. فأضافا أبسط شيء: زر لتسجيل الدين مدفوعًا نقدًا، مع صورة الإيصال إن أراد المحل. لم يكن أنيقًا، لكنه كان طريقة عمل الشارع فعلًا، فتضاعف الاستخدام.</p>
+          <div class="idea lift"><img src="art/hisham.jpg" alt="" class="gp"><div><b>الضباب ينقشع · المدفوعات في المنطقة</b><p>الدفع عند الاستلام، والمتأخرون في السداد، ومزوّدو الدفع الذين يجمّدون الأموال، أمور عادية هنا. ابنِ لطريقة الدفع الحقيقية.</p><small>ممارسة شائعة في المنطقة</small></div></div><footer class="pn"><bdi class="n">49</bdi></footer></section>
+<section class="page story" data-n="50">
+          <figure class="arch "><img src="art/c8s4.jpg" alt=""></figure>
+          <div class="kicker">الفصل <bdi class="n">8</bdi> · <bdi class="n">4</bdi></div>
+          <h2>مكافأة العيد</h2>
+          <p class="text">بعد التجميد ضاق النقد، والعيد قادم. وكان الفريق ينتظر مكافأة، كما تفعل كل شركة في القاهرة. اقترح طارق تخطّيها هذا العام. أما سلمى ففكّرت فيما سيتذكره الفريق. فدفعا نصف المكافأة المعتادة، وشرحا السبب في رسالة قصيرة صادقة، ولم يأخذ المؤسسان شيئًا. وقالت منى لأمها إنها أفضل شركة عملت فيها.</p>
+          <div class="idea lift"><img src="art/hisham.jpg" alt="" class="gp"><div><b>الضباب ينقشع · الثقافة هي ما تفعله</b><p>الثقافة ليست القيم المعلّقة على الجدار، بل كيف يتصرف الناس حين لا يراقبهم أحد، وتصنعها أفعال المؤسسين الحقيقية.</p><small>بن هوروويتز، What You Do Is Who You Are (2019)</small></div></div><footer class="pn"><bdi class="n">50</bdi></footer></section>
+<section class="page worksheet tools" data-n="51">
+      <div class="kicker">الفصل <bdi class="n">8</bdi></div>
+      <h2>أدوات الأسبوع <bdi class="n">21</bdi></h2>
+      <h3><bdi class="n">1</bdi>. عامنا، في تقويم المنطقة</h3><ul class="checks"><li><i class="tick"></i><span>رمضان</span></li><li><i class="tick"></i><span>عيد الفطر</span></li><li><i class="tick"></i><span>عيد الأضحى</span></li><li><i class="tick"></i><span>إجازة الصيف</span></li><li><i class="tick"></i><span>العودة إلى المدارس</span></li><li><i class="tick"></i><span>نهاية العام</span></li></ul>
+<h3><bdi class="n">2</bdi>. رسالة أزمة: ما حدث، وما نفعله، ومتى التحديث التالي</h3><div class="wlines"><div class="wl"></div><div class="wl"></div><div class="wl"></div></div><footer class="pn"><bdi class="n">51</bdi></footer></section>
+<section class="page opener" data-n="52">
+      <div class="kicker">الفصل <bdi class="n">9</bdi> · الأسبوع <bdi class="n">26</bdi></div>
+      <h1>أول مندوب مبيعات</h1>
+      <figure class="arch mini"><img src="art/c9open.jpg" alt=""></figure>
+      <p class="lead big">أوائل الموظفين يشكّلون الشركة أكثر من أي خطة. وظّف ببطء، وكن صادقًا بسرعة حين لا ينجح الأمر.</p>
+      <blockquote>لا يمكنك أن توظّف شخصًا لعمل لم تقم به أنت أبدًا.<cite>هشام</cite></blockquote>
+      <div class="inthis"><h3>في هذا الفصل</h3><ul><li><img src="art/c9s1.jpg" alt="" class="thumb"><span>المؤسس يبيع أولًا</span></li><li><img src="art/c9s2.jpg" alt="" class="thumb"><span>لا مكان للعبقري المؤذي</span></li><li><img src="art/c9s3.jpg" alt="" class="thumb"><span>وظّف ببطء وافترق بسرعة</span></li><li><img src="art/c9s4.jpg" alt="" class="thumb"><span>العمل مع مجلس الإدارة</span></li></ul></div><footer class="pn"><bdi class="n">52</bdi></footer></section>
+<section class="page story" data-n="53">
+          <figure class="arch "><img src="art/c9s1.jpg" alt=""></figure>
+          <div class="kicker">الفصل <bdi class="n">9</bdi> · <bdi class="n">1</bdi></div>
+          <h2>من يبيع؟</h2>
+          <p class="text">تعبت سلمى من البيع. وافق <bdi class="n">5</bdi> تجّار جملة على لقاء، وأرادت أن يذهب غيرها. فطلب منها هشام أن تقوم بأول <bdi class="n">5</bdi> لقاءات بنفسها: «اعرفي ماذا يسألون، وما يجعلهم يقولون نعم، وما يجعلهم يترددون. اكتبي ذلك. هذا هو الوصف الوظيفي.» فذهبت. ووقّع <bdi class="n">3</bdi>. وصارت ملاحظاتها نصًا من صفحة واحدة، وعندها فقط بدآ البحث عن مندوب مبيعات.</p>
+          <div class="idea lift"><img src="art/hisham.jpg" alt="" class="gp"><div><b>الضباب ينقشع · المؤسس يبيع أولًا</b><p>في البداية يبيع المؤسسون. هكذا تتعلّم ما يحتاجه العملاء، وهي الطريقة الوحيدة لمعرفة شكل مندوب المبيعات الجيد.</p><small>بول غراهام، Do Things That Don't Scale (2013)</small></div></div><footer class="pn"><bdi class="n">53</bdi></footer></section>
+<section class="page story" data-n="54">
+          <figure class="arch "><img src="art/c9s2.jpg" alt=""></figure>
+          <div class="kicker">الفصل <bdi class="n">9</bdi> · <bdi class="n">2</bdi></div>
+          <h2>زياد</h2>
+          <p class="text">كان لزياد مصافحة رائعة، وعرض تقديمي أروع. حجز <bdi class="n">6</bdi> لقاءات في أسبوعه الأول، وامتلأت لوحة المتابعة بالصفقات. وفي الأسبوع <bdi class="n">4</bdi>، أمام الفريق، وصف تصميم منى للتذكيرات بأنه «مشروع طالب». فتوقفت منى عن الكلام في الاجتماعات، وبدأ حسن يبحث عن وظائف أخرى. كان زياد يجلب اللقاءات، وكان أيضًا يُفرغ الغرفة.</p>
+          <div class="idea lift"><img src="art/hisham.jpg" alt="" class="gp"><div><b>الضباب ينقشع · لا مكان للعبقري المؤذي</b><p>الموهوب الذي يحتقر الآخرين يكلّف أكثر مما يقدّم: يتوقف الجيدون عن الكلام، ثم يرحلون.</p><small>Netflix Culture: Freedom &amp; Responsibility (2009)</small></div></div><footer class="pn"><bdi class="n">54</bdi></footer></section>
+<section class="page story" data-n="55">
+          <figure class="arch "><img src="art/c9s3.jpg" alt=""></figure>
+          <div class="kicker">الفصل <bdi class="n">9</bdi> · <bdi class="n">3</bdi></div>
+          <h2>صفقات من هواء</h2>
+          <p class="text">بعد <bdi class="n">8</bdi> أسابيع أظهرت اللوحة صفقات بقيمة <bdi class="n">90,000</bdi> دولار. اتصلت سلمى بـ<bdi class="n">5</bdi> منها. <bdi class="n">2</bdi> لم يسمعا بـ«دفتر» قط، و<bdi class="n">3</bdi> قالوا «ربما لاحقًا». لم يُغلق شيء. كانت تعرف منذ أسابيع، وظلت تأمل. وفي صباح يوم أحد أخبرت زيادًا، بلطف ووضوح، أن الأمر لا ينجح، ودفعت له بإنصاف، وشكرته. ثم أخبرت الفريق بالسبب. وتكلّمت منى في الاجتماع التالي.</p>
+          <div class="idea lift"><img src="art/hisham.jpg" alt="" class="gp"><div><b>الضباب ينقشع · وظّف ببطء وافترق بسرعة</b><p>التوظيف الخاطئ المبكر يكلّف أكثر بكثير من راتب: أشهر من العمل الضائع وفريق يعوّض. والحديث الذي تؤجّله يزداد كلفة.</p><small>بن هوروويتز، The Hard Thing About Hard Things (2014)</small></div></div><footer class="pn"><bdi class="n">55</bdi></footer></section>
+<section class="page story" data-n="56">
+          <figure class="arch "><img src="art/c9s4.jpg" alt=""></figure>
+          <div class="kicker">الفصل <bdi class="n">9</bdi> · <bdi class="n">4</bdi></div>
+          <h2>الخبر السيئ في الصفحة <bdi class="n">1</bdi></h2>
+          <p class="text">صارت ليلى عضوًا في مجلس صغير مع سلمى وطارق. وقبل الاجتماع الأول فعلت سلمى ما قاله هشام: أرسلت الأوراق قبل <bdi class="n">3</bdi> أيام، ووضعت الخبر السيئ في الصفحة <bdi class="n">1</bdi>. زياد، والصفقات الفارغة، وما كلّفته. قرأت ليلى كل شيء قبل الاجتماع، فلم يكن الاجتماع مفاجأة، بل حديثًا عمّا يجب فعله بعد ذلك. واستغرق <bdi class="n">40</bdi> دقيقة.</p>
+          <div class="idea lift"><img src="art/hisham.jpg" alt="" class="gp"><div><b>الضباب ينقشع · العمل مع مجلس الإدارة</b><p>عامل المجلس كمجموعة تقودها، لا كامتحان تجلس له. أرسل المواد قبل <bdi class="n">3</bdi> أيام، وضع الأخبار السيئة في الصفحة الأولى.</p><small>براد فيلد وماهيندرا رامسينغاني، Startup Boards (2014)</small></div></div><footer class="pn"><bdi class="n">56</bdi></footer></section>
+<section class="page worksheet tools" data-n="57">
+      <div class="kicker">الفصل <bdi class="n">9</bdi></div>
+      <h2>أدوات الأسبوع <bdi class="n">26</bdi></h2>
+      <h3><bdi class="n">1</bdi>. قبل أي توظيف</h3><ul class="checks"><li><i class="tick"></i><span>عيّنة عمل حقيقية، لا مقابلة فقط</span></li><li><i class="tick"></i><span>مكالمتان مع مراجع وجدناها بأنفسنا</span></li><li><i class="tick"></i><span>وقت مع الفريق كله</span></li><li><i class="tick"></i><span>كيف يتحدّث عن زملائه السابقين؟</span></li></ul>
+<h3><bdi class="n">2</bdi>. نص البيع: ماذا يسأل العملاء، وما يجعلهم يقولون نعم</h3><div class="wlines"><div class="wl"></div><div class="wl"></div><div class="wl"></div></div>
+<h3><bdi class="n">3</bdi>. الصفحة <bdi class="n">1</bdi> من أوراق المجلس القادمة: الخبر السيئ</h3><div class="wlines"><div class="wl"></div><div class="wl"></div></div><footer class="pn"><bdi class="n">57</bdi></footer></section>
+<section class="page opener" data-n="58">
+      <div class="kicker">الفصل <bdi class="n">10</bdi> · الأسبوع <bdi class="n">30</bdi></div>
+      <h1>الترخيص والعائلة</h1>
+      <figure class="arch mini"><img src="art/c10open.jpg" alt=""></figure>
+      <p class="lead big">بعض أصعب لحظات العام تحدث بعيدًا عن المنتج: في مكتب جهة تنظيمية، وفي بنك، وعلى مائدة العشاء العائلية.</p>
+      <blockquote>القواعد بطيئة. وكسرها أبطأ.<cite>هشام</cite></blockquote>
+      <div class="inthis"><h3>في هذا الفصل</h3><ul><li><img src="art/c10s1.jpg" alt="" class="thumb"><span>التنظيم في المنطقة</span></li><li><img src="art/c10s2.jpg" alt="" class="thumb"><span>العلاقات والواسطة</span></li><li><img src="art/c10s3.jpg" alt="" class="thumb"><span>الضمان الشخصي</span></li><li><img src="art/c10s4.jpg" alt="" class="thumb"><span>العائلة والشريك</span></li></ul></div><footer class="pn"><bdi class="n">58</bdi></footer></section>
+<section class="page story" data-n="59">
+          <figure class="arch "><img src="art/c10s1.jpg" alt=""></figure>
+          <div class="kicker">الفصل <bdi class="n">10</bdi> · <bdi class="n">1</bdi></div>
+          <h2>خطاب من الجهة التنظيمية</h2>
+          <p class="text">في الأسبوع <bdi class="n">30</bdi> وصل خطاب. فلأن «دفتر» صار ينقل أموال المحلات، فهو يحتاج إذنًا من البنك المركزي، أو مكانًا في برنامجه التجريبي للشركات الناشئة. والإجراءات ستستغرق أشهرًا. أراد طارق الاستمرار والتعامل مع الأمر لاحقًا. فهزّ هشام رأسه: «في المدفوعات، لاحقًا هي الطريقة التي تختفي بها الشركات.» فتقدّما للبرنامج التجريبي في الأسبوع التالي، وبدأت سلمى ملفًا صار سميكًا جدًا.</p>
+          <div class="idea lift"><img src="art/hisham.jpg" alt="" class="gp"><div><b>الضباب ينقشع · التنظيم في المنطقة</b><p>المدفوعات والصحة والتعليم قطاعات منظّمة. البرامج التجريبية للبنوك المركزية والتراخيص وقواعد البيانات تستغرق أشهرًا. ابدأ مبكرًا وخطّط حولها.</p><small>ممارسة شائعة في المنطقة</small></div></div><footer class="pn"><bdi class="n">59</bdi></footer></section>
+<section class="page story" data-n="60">
+          <figure class="arch "><img src="art/c10s2.jpg" alt=""></figure>
+          <div class="kicker">الفصل <bdi class="n">10</bdi> · <bdi class="n">2</bdi></div>
+          <h2>خال يستطيع إجراء مكالمة</h2>
+          <p class="text">في غداء عائلي سمع خال سلمى عن الملف، فقال: «أعرف شخصًا. مكالمة واحدة وينتهي الأمر في أسبوع.» كان العرض مغريًا. ونصيحة هشام كانت بسيطة: خذي التعارف، لا الخدمة. فشرح صديق خالها أي مكتب يتولّى ملفهما، وأي الأوراق ناقصة. ففعلت سلمى كل شيء بالطريقة المعتادة، لكن مع خريطة. واستغرق الأمر <bdi class="n">3</bdi> أشهر رغم ذلك. ولم يستطع أحد يومًا أن يقول إنهما اختصرا الطريق.</p>
+          <div class="idea lift"><img src="art/hisham.jpg" alt="" class="gp"><div><b>الضباب ينقشع · العلاقات والواسطة</b><p>العلاقات تفتح الأبواب هنا. استخدمها للتعارف والنصيحة، لا لتجاوز القواعد. فالاختصار قد يصبح الخطر الذي ينهيك.</p><small>ممارسة شائعة في المنطقة</small></div></div><footer class="pn"><bdi class="n">60</bdi></footer></section>
+<section class="page story" data-n="61">
+          <figure class="arch "><img src="art/c10s3.jpg" alt=""></figure>
+          <div class="kicker">الفصل <bdi class="n">10</bdi> · <bdi class="n">3</bdi></div>
+          <h2>وقّعي هنا</h2>
+          <p class="text">للصمود حتى يأتي الترخيص عرض البنك قرضًا بـ<bdi class="n">40,000</bdi> دولار. وفي الصفحة الأخيرة أراد البنك ضمانًا شخصيًا من سلمى: إن لم يستطع «دفتر» السداد، فشقتها ستسدّد. أمسكت القلم طويلًا، ثم وضعته. وأخذا قرضًا أصغر بـ<bdi class="n">15,000</bdi> دولار، مقابل الإيراد الشهري للشركة، بلا ضمان شخصي، وألغيا توظيفين مخططًا لهما بدلًا من ذلك. وبقيت الشقة لها.</p>
+          <div class="idea lift"><img src="art/hisham.jpg" alt="" class="gp"><div><b>الضباب ينقشع · الضمان الشخصي</b><p>القرض يجب أن يُسدّد مهما حدث للشركة. والضمان الشخصي يضع بيتك خلفه. اعرف بالضبط على ماذا توقّع.</p></div></div><footer class="pn"><bdi class="n">61</bdi></footer></section>
+<section class="page story" data-n="62">
+          <figure class="arch "><img src="art/c10s4.jpg" alt=""></figure>
+          <div class="kicker">الفصل <bdi class="n">10</bdi> · <bdi class="n">4</bdi></div>
+          <h2>وظيفة حقيقية</h2>
+          <p class="text">في الأسبوع <bdi class="n">38</bdi>، على عشاء الجمعة، سألتها أمها أخيرًا: «متى ستحصلين على وظيفة حقيقية؟ ابنة خالتك ترقّت للتو في البنك.» سكتت المائدة. لم تجادل سلمى. أخرجت هاتفها وأرت أمها مدة الصمود، والمحلات، ورسالة أم هاني. ثم وعدت بشيء واحد: أمسيات الجمعة ستبقى للعائلة، بلا حاسوب. لم تفهم أمها الأرقام. لكنها فهمت الوعد.</p>
+          <div class="idea lift"><img src="art/hisham.jpg" alt="" class="gp"><div><b>الضباب ينقشع · العائلة والشريك</b><p>من في البيت يحملون جزءًا من المخاطرة. أخبرهم بالأرقام الحقيقية، واحمِ وقتًا قليلًا يخصّهم وحدهم.</p><small>براد فيلد وإيمي باتشلور، Startup Life (2013)</small></div></div><footer class="pn"><bdi class="n">62</bdi></footer></section>
+<section class="page worksheet tools" data-n="63">
+      <div class="kicker">الفصل <bdi class="n">10</bdi></div>
+      <h2>أدوات الأسبوع <bdi class="n">30</bdi></h2>
+      <h3><bdi class="n">1</bdi>. قبل توقيع أي قرض</h3><ul class="checks"><li><i class="tick"></i><span>هل يوجد ضمان شخصي؟ وعلى ماذا؟</span></li><li><i class="tick"></i><span>ماذا يحدث إذا فاتنا قسطان؟</span></li><li><i class="tick"></i><span>هل يمكن خفض التكاليف بدلًا من ذلك؟</span></li><li><i class="tick"></i><span>هل قرأه محامٍ؟</span></li></ul>
+<h3><bdi class="n">2</bdi>. أي القواعد والتراخيص تنطبق على مشروعنا؟</h3><div class="wlines"><div class="wl"></div><div class="wl"></div></div>
+<h3><bdi class="n">3</bdi>. من في البيت يجب أن يعرف مدة صمودنا، وأي أمسية لهم؟</h3><div class="wlines"><div class="wl"></div><div class="wl"></div></div><footer class="pn"><bdi class="n">63</bdi></footer></section>
+<section class="page opener" data-n="64">
+      <div class="kicker">الفصل <bdi class="n">11</bdi> · الأسبوع <bdi class="n">44</bdi></div>
+      <h1>التحوّل</h1>
+      <figure class="arch mini"><img src="art/c11open.jpg" alt=""></figure>
+      <p class="lead big">أحيانًا تشير البيانات إلى مكان لم تخطط للذهاب إليه. الصعب ليس أن تراه، بل أن تقوله بصوت عالٍ.</p>
+      <blockquote>التحوّل ليس بداية من الصفر. إنه انعطاف، وكل ما تعلّمته معك في السيارة.<cite>هشام</cite></blockquote>
+      <div class="inthis"><h3>في هذا الفصل</h3><ul><li><img src="art/c11s1.jpg" alt="" class="thumb"><span>النقد ليس الربح</span></li><li><img src="art/c11s2.jpg" alt="" class="thumb"><span>التحوّل أم الاستمرار</span></li><li><img src="art/c11s3.jpg" alt="" class="thumb"><span>أفضلية التصفية</span></li><li><img src="art/c11s4.jpg" alt="" class="thumb"><span>قُل الخطة في جملة واحدة</span></li></ul></div><footer class="pn"><bdi class="n">64</bdi></footer></section>
+<section class="page story" data-n="65">
+          <figure class="arch "><img src="art/c11s1.jpg" alt=""></figure>
+          <div class="kicker">الفصل <bdi class="n">11</bdi> · <bdi class="n">1</bdi></div>
+          <h2><bdi class="n">90</bdi> يومًا</h2>
+          <p class="text">بحلول الأسبوع <bdi class="n">44</bdi> كانت شركة عمر مدينة لـ«دفتر» بـ<bdi class="n">12,000</bdi> دولار، ومتأخرة <bdi class="n">90</bdi> يومًا. على الورق كان هذا أفضل ربع في تاريخ «دفتر». وفي البنك لم يكن هناك شيء تقريبًا. وفهمت سلمى أخيرًا علبة أحذية أم هاني من الداخل. قال طارق: «نحن رابحون ومفلسون.» هزّ هشام رأسه: «الربح رأي. والنقد حقيقة.» فقادت سلمى سيارتها إلى مخزن عمر، ومعها كشف حساب مطبوع، وفنجان من قهوته المفضّلة.</p>
+          <div class="idea lift"><img src="art/hisham.jpg" alt="" class="gp"><div><b>الضباب ينقشع · النقد ليس الربح</b><p>البيع الذي لم يُدفع ثمنه وعد لا مال. راقب المدة التي يستغرقها العملاء للدفع، وطالب بها بالجدية التي تبيع بها.</p></div></div><footer class="pn"><bdi class="n">65</bdi></footer></section>
+<section class="page story" data-n="66">
+          <figure class="arch "><img src="art/c11s2.jpg" alt=""></figure>
+          <div class="kicker">الفصل <bdi class="n">11</bdi> · <bdi class="n">2</bdi></div>
+          <h2>الميزة التي لم يطلبها أحد</h2>
+          <p class="text">قبل أشهر أضاف طارق زرًا صغيرًا: احصل على أموالك مبكرًا. يدفع «دفتر» للمحل ما يُستحق له اليوم، مقابل رسوم <bdi class="n">2%</bdi>، ثم يحصّل لاحقًا. لم يستخدمه أحد تقريبًا. ثم نظرت منى في البيانات: المحلات الـ<bdi class="n">30</bdi> التي استخدمته نمت أسرع بـ<bdi class="n">3</bdi> أضعاف، ولم يرحل منها أحد. لم تكن المحلات تريد التذكيرات أساسًا، بل أرادت أموالها الآن. وانقشع الضباب أمام الشركة دفعة واحدة.</p>
+          <div class="idea lift"><img src="art/hisham.jpg" alt="" class="gp"><div><b>الضباب ينقشع · التحوّل أم الاستمرار</b><p>التحوّل يغيّر جزءًا واحدًا من الخطة، كالعميل أو المشكلة أو المنتج، مع الاحتفاظ بما تعلّمته.</p><small>إريك ريس، The Lean Startup (2011)</small></div></div><footer class="pn"><bdi class="n">66</bdi></footer></section>
+<section class="page story" data-n="67">
+          <figure class="arch "><img src="art/c11s3.jpg" alt=""></figure>
+          <div class="kicker">الفصل <bdi class="n">11</bdi> · <bdi class="n">3</bdi></div>
+          <h2>ضعفان</h2>
+          <p class="text">لتدفع للمحلات مبكرًا احتاجت إلى مال تُقرضه، وصار المستثمرون مهتمين الآن. جاء عرض بتقييم جميل وسطر صغير واحد: أفضلية تصفية بضعفين مع مشاركة. رسمها هشام على السبورة: لو بيع «دفتر» يومًا بـ<bdi class="n">3</bdi> ملايين دولار، يسترد ذلك المستثمر ضعف أمواله أولًا، ثم يأخذ حصة من الباقي. وسيحصل المؤسسان على أقل بكثير مما يوحي به التقييم. فقبلا تقييمًا أقل مع أفضلية نظيفة بضعف واحد.</p>
+          <div class="idea lift"><img src="art/hisham.jpg" alt="" class="gp"><div><b>الضباب ينقشع · أفضلية التصفية</b><p>تحدد من يُدفع له أولًا عند بيع الشركة. احسب حصتك عند سعر بيع منخفض ومتوسط ومرتفع قبل أن توقّع.</p><small>براد فيلد وجيسون مندلسون، Venture Deals</small></div></div><footer class="pn"><bdi class="n">67</bdi></footer></section>
+<section class="page story" data-n="68">
+          <figure class="arch "><img src="art/c11s4.jpg" alt=""></figure>
+          <div class="kicker">الفصل <bdi class="n">11</bdi> · <bdi class="n">4</bdi></div>
+          <h2>جملة واحدة</h2>
+          <p class="text">قبل إخبار أي أحد أصرّت سلمى على كتابة الخطة الجديدة في جملة واحدة. استغرق ذلك أمسيتين: «دفتر يدفع للمحلات الصغيرة اليوم ما يدين به زبائنها، ويحصّله لاحقًا بلطف.» أخبرا الفريق أولًا، ثم ليلى، ثم عمر، ثم أم هاني. وفهمها كل واحد من أول مرة. وسألت أم هاني سؤالًا واحدًا فقط: «هل يمكن أن آخذ أموالي أيام الخميس؟»</p>
+          <div class="idea lift"><img src="art/hisham.jpg" alt="" class="gp"><div><b>الضباب ينقشع · قُل الخطة في جملة واحدة</b><p>إن لم تتسع الخطة لجملة واحدة، سيحمل كل فرد في الفريق نسخة مختلفة منها. اكتبها، ثم قُلها بالطريقة نفسها للجميع.</p></div></div><footer class="pn"><bdi class="n">68</bdi></footer></section>
+<section class="page worksheet tools" data-n="69">
+      <div class="kicker">الفصل <bdi class="n">11</bdi></div>
+      <h2>أدوات الأسبوع <bdi class="n">44</bdi></h2>
+      <h3><bdi class="n">1</bdi>. أشهر من الإيراد تنتظر السداد</h3><div class="sumbox"><div class="sumrow" dir="ltr"><span class="blank lab"><em>المستحق لنا</em></span><i>÷</i><span class="blank lab"><em>الإيراد الشهري</em></span><i>=</i><span class="blank big lab"><em>أشهر</em></span></div></div>
+<h3><bdi class="n">2</bdi>. ماذا يفعل أفضل عملائنا ولا يفعله الآخرون؟</h3><div class="wlines"><div class="wl"></div><div class="wl"></div></div>
+<h3><bdi class="n">3</bdi>. خطتنا في جملة واحدة</h3><div class="wlines"><div class="wl"></div><div class="wl"></div></div><footer class="pn"><bdi class="n">69</bdi></footer></section>
+<section class="page opener" data-n="70">
+      <div class="kicker">الفصل <bdi class="n">12</bdi> · الأسبوع <bdi class="n">52</bdi></div>
+      <h1>بعد عام</h1>
+      <figure class="arch mini"><img src="art/c12open.jpg" alt=""></figure>
+      <p class="lead big">الضباب لا ينقشع تمامًا أبدًا. بعد عام، الفرق ليس أنك ترى كل شيء، بل أنك تعرف كيف تنظر.</p>
+      <blockquote>لا تهزم الضباب. بل تتعلّم قراءته.<cite>هشام</cite></blockquote>
+      <div class="inthis"><h3>في هذا الفصل</h3><ul><li><img src="art/c12s1.jpg" alt="" class="thumb"><span>حيّ افتراضيًا</span></li><li><img src="art/c12s2.jpg" alt="" class="thumb"><span>التخارج</span></li><li><img src="art/c12s3.jpg" alt="" class="thumb"><span>التوسع إلى سوق جديدة</span></li><li><img src="art/c12s4.jpg" alt="" class="thumb"><span>الوضوح، بعد عام</span></li></ul></div><footer class="pn"><bdi class="n">70</bdi></footer></section>
+<section class="page story equation" data-n="71">
+          <div class="kicker">الفصل <bdi class="n">12</bdi> · <bdi class="n">1</bdi></div>
+          <h2>يتقاطع الخطّان</h2>
+          <div class="eq long" dir="ltr">
+            <div class="box in"><b>21,000</b><span>الإيراد الشهري ($)</span></div><i>−</i>
+            <div class="box out"><b>19,500</b><span>التكاليف الشهرية ($)</span></div><i>=</i>
+            <div class="box pr"><b>1,500</b><span>الفائض ($)</span></div>
+          </div>
+          <figure class="arch mini"><img src="art/c12s1.jpg" alt=""></figure>
+          <p class="text">في الأسبوع <bdi class="n">52</bdi> أعادت سلمى رسم خطّي هشام على السبورة نفسها. رسوم الدفع المبكر غيّرت كل شيء. الإيراد الشهري: <bdi class="n">21,000</bdi> دولار. والتكاليف الشهرية: <bdi class="n">19,500</bdi> دولار. ولأول مرة تقاطع الخطّان. صار «دفتر» قادرًا على الاستمرار حتى لو لم يتصل أي مستثمر مرة أخرى. والتقط طارق صورة للسبورة. وهذه المرة كان الرقم هو الرقم الصحيح.</p>
+          <div class="idea lift"><img src="art/hisham.jpg" alt="" class="gp"><div><b>الضباب ينقشع · حيّ افتراضيًا</b><p>أن تكون حيًا افتراضيًا شيء تكسبه: إيراد يغطي التكاليف، فتقرر الشركة مستقبلها، لا الجولة القادمة.</p><small>بول غراهام، Default Alive or Default Dead? (2015)</small></div></div><footer class="pn"><bdi class="n">71</bdi></footer></section>
+<section class="page story" data-n="72">
+          <figure class="arch "><img src="art/c12s2.jpg" alt=""></figure>
+          <div class="kicker">الفصل <bdi class="n">12</bdi> · <bdi class="n">2</bdi></div>
+          <h2>عرض</h2>
+          <p class="text">اتصلت شركة إقليمية كبيرة. أرادت شراء «دفتر». كان الرقم أكبر مما تخيّلته سلمى يومًا، وأقل مما صارت تؤمن أن الشركة قد تصبحه. أخبرهما هشام كيف جرى بيع شركته: السعر، والسنوات الـ<bdi class="n">3</bdi> التي اضطر للبقاء فيها، والفريق الذي خسره. وقال: «البيع نهاية جيدة. فقط تأكّدا أنها النهاية التي اخترتماها.» فقالا: ليس الآن، وأبقيا الباب مفتوحًا.</p>
+          <div class="idea lift"><img src="art/hisham.jpg" alt="" class="gp"><div><b>الضباب ينقشع · التخارج</b><p>بيع الشركة نهاية حقيقية، لها شروطها ومواعيدها وناسها. اعرف ما تريده قبل أن يصل العرض.</p><small>التغطية العامة لاستحواذ Uber على Careem (2019)</small></div></div><footer class="pn"><bdi class="n">72</bdi></footer></section>
+<section class="page story" data-n="73">
+          <figure class="arch "><img src="art/c12s3.jpg" alt=""></figure>
+          <div class="kicker">الفصل <bdi class="n">12</bdi> · <bdi class="n">3</bdi></div>
+          <h2>الرياض؟</h2>
+          <p class="text">رأت ليلى أن الخطوة التالية هي الرياض: محلات أكثر، وطلبات أكبر، وتجّار جملة يعرفون عمر أصلًا. أُغريت سلمى. لكن الرياض تعني جهة تنظيمية مختلفة، وعادات دفع مختلفة، وفريقًا لا يعرف أحدًا هناك. فوضعا خطة أبطأ: تاجر جملة شريك أولًا، وطلب ترخيص، وأسبوعًا كل شهر تقضيه سلمى هناك، تشرب الشاي في المحلات في السابعة صباحًا، من جديد.</p>
+          <div class="idea lift"><img src="art/hisham.jpg" alt="" class="gp"><div><b>الضباب ينقشع · التوسع إلى سوق جديدة</b><p>البلد الجديد شركة جديدة من نواحٍ كثيرة: قواعد جديدة، وعادات دفع جديدة، وعلاقات جديدة. ابدأ بشريك واحد وتعلّم قبل أن تتوسع.</p><small>ممارسة شائعة في المنطقة</small></div></div><footer class="pn"><bdi class="n">73</bdi></footer></section>
+<section class="page story" data-n="74">
+          <figure class="arch "><img src="art/c12s4.jpg" alt=""></figure>
+          <div class="kicker">الفصل <bdi class="n">12</bdi> · <bdi class="n">4</bdi></div>
+          <h2>الضباب، بعد عام</h2>
+          <p class="text">في آخر مساء من العام وقفت سلمى عند نافذة المكتب الصغير. كان الشارع في الخارج ضبابيًا من جديد، وسيظل كذلك دائمًا. لكنها صارت تعرف مدة صمودها بالأسبوع، وتنام <bdi class="n">7</bdi> ساعات، وتقول لفريقها الحقيقة، وتكتب كل رقم. ودخل هشام بفنجاني قهوة، وقال: «العام القادم سيكون أصعب.» فقالت سلمى: «جيد. صرت أرى أبعد قليلًا.»</p>
+          <div class="idea lift"><img src="art/hisham.jpg" alt="" class="gp"><div><b>الضباب ينقشع · الوضوح، بعد عام</b><p>الضباب لا ينقشع تمامًا أبدًا. المؤسسون الذين يصمدون يتعلّمون العمل وسطه: أرقام مكتوبة، ونوم محمي، وحقيقة تُقال للناس.</p></div></div><footer class="pn"><bdi class="n">74</bdi></footer></section>
+<section class="page worksheet tools" data-n="75">
+      <div class="kicker">الفصل <bdi class="n">12</bdi></div>
+      <h2>عامك</h2>
+      <h3><bdi class="n">1</bdi>. ثلاثة أشياء بدّدت الضباب عنّا هذا العام</h3><div class="wlines"><div class="wl"></div><div class="wl"></div><div class="wl"></div></div>
+<h3><bdi class="n">2</bdi>. رقم واحد سنراجعه كل أسبوع دون استثناء</h3><div class="wlines"><div class="wl"></div></div>
+<h3><bdi class="n">3</bdi>. ما سنفعله بطريقة مختلفة العام القادم</h3><div class="wlines"><div class="wl"></div><div class="wl"></div><div class="wl"></div></div><footer class="pn"><bdi class="n">75</bdi></footer></section>
+<section class="page back" data-n="76">
     <p class="blurb">لدى سلمى مدّخرات تكفي <bdi class="n">12</bdi> شهرًا، وشريك، ومرشد، ومشكلة تستحق الحل. أما ما ينقصها فهو الرؤية الواضحة. حكاية عن العام الأول في عمر شركة، وعن الضباب الذي يعمل وسطه كل مؤسس، والأفكار التي تساعده على الانقشاع.</p>
     <div class="qrbig"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 29 29" shape-rendering="crispEdges"><path stroke="#0D3F3F" d="M0 0.5h7m4 0h2m3 0h1m1 0h3m1 0h7M0 1.5h1m5 0h1m2 0h1m1 0h8m3 0h1m5 0h1M0 2.5h1m1 0h3m1 0h1m1 0h1m1 0h1m3 0h1m1 0h1m2 0h2m1 0h1m1 0h3m1 0h1M0 3.5h1m1 0h3m1 0h1m1 0h6m3 0h1m1 0h1m2 0h1m1 0h3m1 0h1M0 4.5h1m1 0h3m1 0h1m1 0h1m2 0h1m1 0h1m2 0h4m2 0h1m1 0h3m1 0h1M0 5.5h1m5 0h1m1 0h2m2 0h4m1 0h1m4 0h1m5 0h1M0 6.5h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7M8 7.5h1m5 0h1m1 0h1m2 0h1M0 8.5h1m1 0h5m2 0h3m3 0h1m1 0h1m1 0h2m1 0h5M0 9.5h1m1 0h1m2 0h1m1 0h4m1 0h2m2 0h7m1 0h1m3 0h1M0 10.5h2m3 0h2m4 0h1m1 0h4m3 0h1m1 0h3M0 11.5h1m1 0h1m2 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h2m4 0h3m1 0h1m1 0h1M2 12.5h1m2 0h4m5 0h1m2 0h2m6 0h2M1 13.5h5m2 0h1m1 0h1m1 0h1m4 0h8m3 0h1M1 14.5h1m3 0h2m1 0h3m1 0h1m2 0h1m1 0h1m3 0h1m1 0h4M0 15.5h1m1 0h2m3 0h1m3 0h1m2 0h1m9 0h1m2 0h1M2 16.5h1m1 0h1m1 0h2m2 0h3m2 0h3m1 0h1m5 0h2M0 17.5h6m1 0h1m1 0h6m1 0h1m1 0h7m1 0h1m1 0h1M0 18.5h1m1 0h16m3 0h2m1 0h1m1 0h1M0 19.5h1m1 0h2m4 0h2m1 0h3m1 0h2m1 0h1m1 0h2m1 0h2m2 0h1M0 20.5h1m1 0h1m2 0h2m1 0h1m2 0h1m2 0h2m1 0h1m2 0h5m1 0h3M8 21.5h1m2 0h2m3 0h3m1 0h1m3 0h5M0 22.5h7m2 0h1m1 0h2m2 0h1m1 0h1m1 0h2m1 0h1m1 0h3M0 23.5h1m5 0h1m1 0h2m1 0h1m2 0h3m2 0h2m3 0h1m2 0h2M0 24.5h1m1 0h3m1 0h1m1 0h2m5 0h1m1 0h1m2 0h5m1 0h1M0 25.5h1m1 0h3m1 0h1m1 0h1m1 0h1m1 0h3m1 0h1m2 0h1m5 0h4M0 26.5h1m1 0h3m1 0h1m1 0h1m1 0h1m2 0h1m1 0h1m3 0h1m1 0h7M0 27.5h1m5 0h1m3 0h3m3 0h1m3 0h1m1 0h4m1 0h1M0 28.5h7m1 0h2m1 0h2m1 0h1m2 0h1m1 0h1m4 0h1m1 0h1"/></svg>
 </div>
@@ -348,7 +778,7 @@ html.bleed .reader .page { width: 154mm; height: 216mm; border: 3mm solid transp
     <p class="b2">بالعربية والإنجليزية · بلا حساب</p>
     <div class="back-art"><img src="art/salma.jpg" alt="" class=""><img src="art/tariq.jpg" alt="" class=""><img src="art/hisham.jpg" alt="" class=""></div></section>
 </div></div></main>
-<nav class="nav"><button class="prev" aria-label="السابق">→</button><span class="count" dir="ltr"><span class="cur">1</span> / 10</span><button class="next" aria-label="التالي">←</button></nav>
+<nav class="nav"><button class="prev" aria-label="السابق">→</button><span class="count" dir="ltr"><span class="cur">1</span> / 76</span><button class="next" aria-label="التالي">←</button></nav>
 <script>// Page-by-page reader. ?print shows every page for the PDF. #p5 opens page 5.
 (function () {
   "use strict";

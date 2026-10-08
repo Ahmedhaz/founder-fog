@@ -255,3 +255,11 @@ html.bleed .reader .page { width: 154mm; height: 216mm; border: 3mm solid transp
 .tally .dot { aspect-ratio: 1; border-radius: 50%; border: .4mm dashed var(--bronze); display: grid; place-items: center; font-size: 6.5pt; color: var(--grey); }
 .fogcover { background: linear-gradient(180deg, var(--ivory) 60%, #E6E8E4 100%); }
 .tp-art img, .back-art img { object-position: center 20%; }
+.wlines .wl { border-bottom: .4mm dashed var(--bronze); height: 8mm; }
+.eq.long .box { min-width: 0; flex: 1; padding: 2.5mm 1.5mm; }
+.eq.long .box b { font-size: 19pt; }
+.eq.long { gap: 1.5mm; }
+.tools .sumbox { padding-bottom: 11mm; }
+.tools .sumrow .blank { width: 27mm; }
+.tools .sumrow .blank.big { width: 30mm; }
+.sumrow .lab em { font-size: 7pt; line-height: 1.25; }

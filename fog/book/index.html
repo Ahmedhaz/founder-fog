@@ -268,6 +268,14 @@ html.bleed .reader .page { width: 154mm; height: 216mm; border: 3mm solid transp
 .tally .dot { aspect-ratio: 1; border-radius: 50%; border: .4mm dashed var(--bronze); display: grid; place-items: center; font-size: 6.5pt; color: var(--grey); }
 .fogcover { background: linear-gradient(180deg, var(--ivory) 60%, #E6E8E4 100%); }
 .tp-art img, .back-art img { object-position: center 20%; }
+.wlines .wl { border-bottom: .4mm dashed var(--bronze); height: 8mm; }
+.eq.long .box { min-width: 0; flex: 1; padding: 2.5mm 1.5mm; }
+.eq.long .box b { font-size: 19pt; }
+.eq.long { gap: 1.5mm; }
+.tools .sumbox { padding-bottom: 11mm; }
+.tools .sumrow .blank { width: 27mm; }
+.tools .sumrow .blank.big { width: 30mm; }
+.sumrow .lab em { font-size: 7pt; line-height: 1.25; }
 </style>
 </head>
 <body>
@@ -289,11 +297,11 @@ html.bleed .reader .page { width: 154mm; height: 216mm; border: 3mm solid transp
     <h1>Founder Fog</h1>
     <h2 class="alt">ضباب المؤسس</h2>
     <p class="lead">A story about Salma, Tariq and Hisham, and the first year of a company.</p><p class="lead">Written for people starting a company, and for anyone thinking about it.</p>
-    <div class="credits"><p>Pictures: needle-felted art made for this book. Fonts: Manrope and Readex Pro (SIL Open Font Licence).</p><p>A sample chapter. The full book is in progress.</p><p>© <bdi class="n">2026</bdi> adam.ahmedhaz.com</p></div><footer class="pn"><bdi class="n">2</bdi></footer></section>
+    <div class="credits"><p>Pictures: needle-felted art made for this book. Fonts: Manrope and Readex Pro (SIL Open Font Licence).</p><p>Ideas and sources follow the Founder Playbook in the game. Not financial or legal advice.</p><p>© <bdi class="n">2026</bdi> adam.ahmedhaz.com</p></div><footer class="pn"><bdi class="n">2</bdi></footer></section>
 <section class="page parents" data-n="3">
     <h2>Before you start</h2>
     <p>Every founder works in a fog. You cannot see the market clearly, the numbers arrive late, and when you are tired the fog gets thicker. This book follows Salma through the first year of a company that helps small shops get paid on time.</p><p>Each scene ends with a box called The fog lifts: one idea, in plain words, with where it comes from. At the end of each chapter there is a page of tools to use in your own company this week.</p><p>The story comes from Founder Fog, a free game where you run a startup week by week. Play a chapter, then play the year.</p>
-    <div class="toc"><h3>Contents</h3><ol><li><span>Chapter 1: The jump</span><i></i><bdi class="n">4</bdi></li></ol></div><footer class="pn"><bdi class="n">3</bdi></footer></section>
+    <div class="toc"><h3>Contents</h3><ol><li><span>Chapter 1: The jump</span><i></i><bdi class="n">4</bdi></li><li><span>Chapter 2: Looking for fit</span><i></i><bdi class="n">10</bdi></li><li><span>Chapter 3: The angel</span><i></i><bdi class="n">16</bdi></li><li><span>Chapter 4: The big customer</span><i></i><bdi class="n">22</bdi></li><li><span>Chapter 5: Four days without sleep</span><i></i><bdi class="n">28</bdi></li><li><span>Chapter 6: The clock</span><i></i><bdi class="n">34</bdi></li><li><span>Chapter 7: The rival</span><i></i><bdi class="n">40</bdi></li><li><span>Chapter 8: Ramadan</span><i></i><bdi class="n">46</bdi></li><li><span>Chapter 9: The first salesperson</span><i></i><bdi class="n">52</bdi></li><li><span>Chapter 10: The licence and the family</span><i></i><bdi class="n">58</bdi></li><li><span>Chapter 11: The pivot</span><i></i><bdi class="n">64</bdi></li><li><span>Chapter 12: A year later</span><i></i><bdi class="n">70</bdi></li></ol></div><footer class="pn"><bdi class="n">3</bdi></footer></section>
 <section class="page opener" data-n="4">
       <div class="kicker">Chapter <bdi class="n">1</bdi> · Week <bdi class="n">0</bdi></div>
       <h1>The jump</h1>
@@ -304,43 +312,465 @@ html.bleed .reader .page { width: 154mm; height: 216mm; border: 3mm solid transp
 <section class="page story equation" data-n="5">
           <div class="kicker">Chapter <bdi class="n">1</bdi> · <bdi class="n">1</bdi></div>
           <h2><bdi class="n">12</bdi> months</h2>
-          <div class="eq" dir="ltr">
+          <div class="eq long" dir="ltr">
             <div class="box in"><b>18,000</b><span>savings ($)</span></div><i>÷</i>
             <div class="box out"><b>1,500</b><span>to live, a month</span></div><i>=</i>
             <div class="box pr"><b>12</b><span>months</span></div>
           </div>
           <figure class="arch mini"><img src="art/c1s1.jpg" alt=""></figure>
-          <p class="text">For six years Salma managed products at a bank in Cairo. Every month she watched small shops wait weeks to get paid, and borrow to cover the gap. Before she handed in her notice, she did one sum. Savings: <bdi class="n">$18,000</bdi>. Rent, food and bills: <bdi class="n">$1,500</bdi> a month. That gave her <bdi class="n">12</bdi> months, if nothing went wrong. Hisham, who had sold his first company, called it her personal runway. &quot;Write it on the wall,&quot; he said. &quot;Not to scare you. So you always know.&quot;</p>
+          <p class="text">For six years Salma managed products at a bank in Cairo. Every month she watched small shops wait weeks to get paid, and borrow to cover the gap. Before she handed in her notice, she did one sum. Savings: <bdi class="n">$18,000</bdi>. Rent, food and bills: <bdi class="n">$1,500</bdi> a month. That gave her <bdi class="n">12</bdi> months, if nothing went wrong. Hisham, who had sold his first company, called it her personal runway. “Write it on the wall,” he said. “Not to scare you. So you always know.”</p>
           <div class="idea lift"><img src="art/hisham.jpg" alt="" class="gp"><div><b>The fog lifts · Personal runway</b><p>Savings divided by what you need to live each month. It is the clock that starts the day you quit, and founders who know it make calmer decisions.</p></div></div><footer class="pn"><bdi class="n">5</bdi></footer></section>
 <section class="page story" data-n="6">
           <figure class="arch "><img src="art/c1s2.jpg" alt=""></figure>
           <div class="kicker">Chapter <bdi class="n">1</bdi> · <bdi class="n">2</bdi></div>
           <h2>Half and half on a napkin</h2>
-          <p class="text">Tariq had built two apps nobody used, and he wanted this one to be different. In a café near Tahrir they drew a line down a paper napkin. Half for Salma, half for Tariq. &quot;Deal?&quot; said Tariq. Hisham put down his coffee. &quot;Imagine it is month <bdi class="n">8,</bdi> and one of you wants to leave. Who keeps the half?&quot; Nobody spoke. That night they agreed on vesting: shares earned over <bdi class="n">4</bdi> years, and nothing until the end of year one. It felt unromantic. It was the kindest thing they did all year.</p>
-          <div class="idea lift"><img src="art/hisham.jpg" alt="" class="gp"><div><b>The fog lifts · Vesting</b><p>Founder shares are earned over time, usually <bdi class="n">4</bdi> years with a <bdi class="n">1</bdi>-year cliff. It protects whoever stays, and investors will ask for it anyway.</p><small>Noam Wasserman, The Founder's Dilemmas (2012)</small></div></div><footer class="pn"><bdi class="n">6</bdi></footer></section>
+          <p class="text">Tariq had built two apps nobody used, and he wanted this one to be different. In a café near Tahrir they drew a line down a paper napkin. Half for Salma, half for Tariq. “Deal?” said Tariq. Hisham put down his coffee. “Imagine it is month <bdi class="n">8,</bdi> and one of you wants to leave. Who keeps the half?” Nobody spoke. That night they agreed on vesting: shares earned over <bdi class="n">4</bdi> years, and nothing until the end of year one. It felt unromantic. It was the kindest thing they did all year.</p>
+          <div class="idea lift"><img src="art/hisham.jpg" alt="" class="gp"><div><b>The fog lifts · Vesting</b><p>Founder shares are earned over time, usually <bdi class="n">4</bdi> years with a <bdi class="n">1</bdi>-year cliff. It protects whoever stays, and investors will ask for it anyway.</p><small>Brad Feld and Jason Mendelson, Venture Deals</small></div></div><footer class="pn"><bdi class="n">6</bdi></footer></section>
 <section class="page story" data-n="7">
           <figure class="arch "><img src="art/c1s3.jpg" alt=""></figure>
           <div class="kicker">Chapter <bdi class="n">1</bdi> · <bdi class="n">3</bdi></div>
           <h2>Don't build yet</h2>
-          <p class="text">Tariq wanted to start coding on Monday. Hisham asked for <bdi class="n">20</bdi> conversations first, with one rule: never ask if they like the idea. So Salma sat on a stool in Umm Hany's grocery shop and asked about last month instead. How many customers paid later? How long did she wait? What did she do while she waited? Umm Hany pulled out a shoebox of paper receipts. &quot;<bdi class="n">40</bdi> days, sometimes,&quot; she said. &quot;I borrow from my brother.&quot; Nobody said the word app. Salma filled <bdi class="n">6</bdi> pages.</p>
+          <p class="text">Tariq wanted to start coding on Monday. Hisham asked for <bdi class="n">20</bdi> conversations first, with one rule: never ask if they like the idea. So Salma sat on a stool in Umm Hany's grocery shop and asked about last month instead. How many customers paid later? How long did she wait? What did she do while she waited? Umm Hany pulled out a shoebox of paper receipts. “<bdi class="n">40</bdi> days, sometimes,” she said. “I borrow from my brother.” Nobody said the word app. Salma filled <bdi class="n">6</bdi> pages.</p>
           <div class="idea lift"><img src="art/hisham.jpg" alt="" class="gp"><div><b>The fog lifts · The Mom Test</b><p>Ask about what people did, not about your idea. Opinions are polite. What they did last month is data.</p><small>Rob Fitzpatrick, The Mom Test (2013)</small></div></div><footer class="pn"><bdi class="n">7</bdi></footer></section>
 <section class="page story" data-n="8">
           <figure class="arch "><img src="art/c1s4.jpg" alt=""></figure>
           <div class="kicker">Chapter <bdi class="n">1</bdi> · <bdi class="n">4</bdi></div>
           <h2>The first fog</h2>
-          <p class="text"><bdi class="n">3</bdi> weeks in, Salma was sleeping <bdi class="n">5</bdi> hours a night. Her notes stopped making sense. She read the same email <bdi class="n">4</bdi> times and answered the wrong question. Hisham called at midnight and heard it in her voice. &quot;In my first company I thought being tired proved I cared,&quot; he said. &quot;It was just the fog. It hides the numbers first, then the people.&quot; She closed the laptop. The next day she slept <bdi class="n">8</bdi> hours, walked by the Nile, and found the mistake in her spreadsheet in <bdi class="n">10</bdi> minutes.</p>
-          <div class="idea lift"><img src="art/hisham.jpg" alt="" class="gp"><div><b>The fog lifts · Clarity</b><p>The founder is the company's first resource. Sleep, exercise and one evening off a week are how good decisions keep coming.</p><small>Michael Freeman and colleagues, research on founders' mental health (2015)</small></div></div><footer class="pn"><bdi class="n">8</bdi></footer></section>
+          <p class="text"><bdi class="n">3</bdi> weeks in, Salma was sleeping <bdi class="n">5</bdi> hours a night. Her notes stopped making sense. She read the same email <bdi class="n">4</bdi> times and answered the wrong question. Hisham called at midnight and heard it in her voice. “In my first company I thought being tired proved I cared,” he said. “It was just the fog. It hides the numbers first, then the people.” She closed the laptop. The next day she slept <bdi class="n">8</bdi> hours, walked by the Nile, and found the mistake in her spreadsheet in <bdi class="n">10</bdi> minutes.</p>
+          <div class="idea lift"><img src="art/hisham.jpg" alt="" class="gp"><div><b>The fog lifts · Clarity</b><p>The founder is the company's first resource. Sleep, exercise and one evening off a week are how good decisions keep coming.</p><small>Michael A. Freeman et al., Are Entrepreneurs Touched with Fire? (2015)</small></div></div><footer class="pn"><bdi class="n">8</bdi></footer></section>
 <section class="page worksheet tools" data-n="9">
       <div class="kicker">Chapter <bdi class="n">1</bdi></div>
       <h2>Tools for week <bdi class="n">0</bdi></h2>
-      <h3><bdi class="n">1</bdi>. Personal runway</h3>
-      <div class="sumbox"><div class="sumrow" dir="ltr"><span class="blank lab"><em>savings</em></span><i>÷</i><span class="blank lab"><em>to live, a month</em></span><i>=</i><span class="blank big lab"><em>months</em></span></div></div>
-      <h3><bdi class="n">2</bdi>. The co-founder talk: five questions for this month</h3>
-      <ul class="checks"><li><i class="tick"></i><span>Who decides what, and who breaks a tie?</span></li><li><i class="tick"></i><span>How is the equity split, and does it vest?</span></li><li><i class="tick"></i><span>What happens if one of us leaves?</span></li><li><i class="tick"></i><span>How much does each of us need to live on?</span></li><li><i class="tick"></i><span>How do we disagree without breaking up?</span></li></ul>
-      <h3><bdi class="n">3</bdi>. Twenty conversations, before any code</h3>
-      <p class="lead small">One circle per conversation about what someone did last month.</p>
-      <div class="tally"><span class="dot"><bdi class="n">1</bdi></span><span class="dot"><bdi class="n">2</bdi></span><span class="dot"><bdi class="n">3</bdi></span><span class="dot"><bdi class="n">4</bdi></span><span class="dot"><bdi class="n">5</bdi></span><span class="dot"><bdi class="n">6</bdi></span><span class="dot"><bdi class="n">7</bdi></span><span class="dot"><bdi class="n">8</bdi></span><span class="dot"><bdi class="n">9</bdi></span><span class="dot"><bdi class="n">10</bdi></span><span class="dot"><bdi class="n">11</bdi></span><span class="dot"><bdi class="n">12</bdi></span><span class="dot"><bdi class="n">13</bdi></span><span class="dot"><bdi class="n">14</bdi></span><span class="dot"><bdi class="n">15</bdi></span><span class="dot"><bdi class="n">16</bdi></span><span class="dot"><bdi class="n">17</bdi></span><span class="dot"><bdi class="n">18</bdi></span><span class="dot"><bdi class="n">19</bdi></span><span class="dot"><bdi class="n">20</bdi></span></div><footer class="pn"><bdi class="n">9</bdi></footer></section>
-<section class="page back" data-n="10">
+      <h3><bdi class="n">1</bdi>. Personal runway</h3><div class="sumbox"><div class="sumrow" dir="ltr"><span class="blank lab"><em>savings</em></span><i>÷</i><span class="blank lab"><em>to live, a month</em></span><i>=</i><span class="blank big lab"><em>months</em></span></div></div>
+<h3><bdi class="n">2</bdi>. The co-founder talk: five questions for this month</h3><ul class="checks"><li><i class="tick"></i><span>Who decides what, and who breaks a tie?</span></li><li><i class="tick"></i><span>How is the equity split, and does it vest?</span></li><li><i class="tick"></i><span>What happens if one of us leaves?</span></li><li><i class="tick"></i><span>How much does each of us need to live on?</span></li><li><i class="tick"></i><span>How do we disagree without breaking up?</span></li></ul>
+<h3><bdi class="n">3</bdi>. Twenty conversations, before any code</h3><p class="lead small">One circle per conversation about what someone did last month.</p><div class="tally"><span class="dot"><bdi class="n">1</bdi></span><span class="dot"><bdi class="n">2</bdi></span><span class="dot"><bdi class="n">3</bdi></span><span class="dot"><bdi class="n">4</bdi></span><span class="dot"><bdi class="n">5</bdi></span><span class="dot"><bdi class="n">6</bdi></span><span class="dot"><bdi class="n">7</bdi></span><span class="dot"><bdi class="n">8</bdi></span><span class="dot"><bdi class="n">9</bdi></span><span class="dot"><bdi class="n">10</bdi></span><span class="dot"><bdi class="n">11</bdi></span><span class="dot"><bdi class="n">12</bdi></span><span class="dot"><bdi class="n">13</bdi></span><span class="dot"><bdi class="n">14</bdi></span><span class="dot"><bdi class="n">15</bdi></span><span class="dot"><bdi class="n">16</bdi></span><span class="dot"><bdi class="n">17</bdi></span><span class="dot"><bdi class="n">18</bdi></span><span class="dot"><bdi class="n">19</bdi></span><span class="dot"><bdi class="n">20</bdi></span></div><footer class="pn"><bdi class="n">9</bdi></footer></section>
+<section class="page opener" data-n="10">
+      <div class="kicker">Chapter <bdi class="n">2</bdi> · Week <bdi class="n">2</bdi></div>
+      <h1>Looking for fit</h1>
+      <figure class="arch mini"><img src="art/c2open.jpg" alt=""></figure>
+      <p class="lead big">An idea is a guess. The first weeks of a company are about finding out, as cheaply as possible, which part of the guess is wrong.</p>
+      <blockquote>Don't fall in love with the app. Fall in love with Umm Hany's shoebox.<cite>Hisham</cite></blockquote>
+      <div class="inthis"><h3>In this chapter</h3><ul><li><img src="art/c2s1.jpg" alt="" class="thumb"><span>Run small experiments</span></li><li><img src="art/c2s2.jpg" alt="" class="thumb"><span>Do things that don't scale</span></li><li><img src="art/c2s3.jpg" alt="" class="thumb"><span>Vanity metrics</span></li><li><img src="art/c2s4.jpg" alt="" class="thumb"><span>Product-market fit</span></li></ul></div><footer class="pn"><bdi class="n">10</bdi></footer></section>
+<section class="page story" data-n="11">
+          <figure class="arch "><img src="art/c2s1.jpg" alt=""></figure>
+          <div class="kicker">Chapter <bdi class="n">2</bdi> · <bdi class="n">1</bdi></div>
+          <h2>A spreadsheet and a phone</h2>
+          <p class="text">Tariq wanted <bdi class="n">3</bdi> months to build the app. Hisham gave them one week and no code. So they made a spreadsheet of what <bdi class="n">10</bdi> shops were owed, and Salma sent every payment reminder by hand from her own phone, politely, with the amount and the date. Umm Hany was paid in <bdi class="n">12</bdi> days instead of <bdi class="n">40</bdi>. Nobody had seen an app. Tariq looked at the spreadsheet for a long time. “So this is the product,” he said. “For now,” said Hisham.</p>
+          <div class="idea lift"><img src="art/hisham.jpg" alt="" class="gp"><div><b>The fog lifts · Run small experiments</b><p>Build the smallest thing that can prove you wrong, measure what people actually do, and learn. What matters is how fast each loop goes.</p><small>Eric Ries, The Lean Startup (2011)</small></div></div><footer class="pn"><bdi class="n">11</bdi></footer></section>
+<section class="page story" data-n="12">
+          <figure class="arch "><img src="art/c2s2.jpg" alt=""></figure>
+          <div class="kicker">Chapter <bdi class="n">2</bdi> · <bdi class="n">2</bdi></div>
+          <h2><bdi class="n">7</bdi> in the morning</h2>
+          <p class="text">Shops open early, so Salma did too. Every new shop got a visit at <bdi class="n">7</bdi> in the morning, a cup of tea, and <bdi class="n">20</bdi> minutes of her time. She set up their list herself and wrote down every question they asked. By the end of the month her notebook held <bdi class="n">63</bdi> questions. The same <bdi class="n">5</bdi> came up again and again. Tariq built answers to those <bdi class="n">5,</bdi> and nothing else.</p>
+          <div class="idea lift"><img src="art/hisham.jpg" alt="" class="gp"><div><b>The fog lifts · Do things that don't scale</b><p>Win the first users by hand, one at a time. It doesn't scale, and that is the point: you learn what they need before you automate it.</p><small>Paul Graham, Do Things That Don't Scale (2013)</small></div></div><footer class="pn"><bdi class="n">12</bdi></footer></section>
+<section class="page story equation" data-n="13">
+          <div class="kicker">Chapter <bdi class="n">2</bdi> · <bdi class="n">3</bdi></div>
+          <h2><bdi class="n">500</bdi> sign-ups</h2>
+          <div class="eq" dir="ltr">
+            <div class="box in"><b>9</b><span>came back</span></div><i>÷</i>
+            <div class="box out"><b>500</b><span>signed up</span></div><i>=</i>
+            <div class="box pr"><b>1.8%</b><span>came back</span></div>
+          </div>
+          <figure class="arch mini"><img src="art/c2s3.jpg" alt=""></figure>
+          <p class="text">Tariq posted a short video online, and by morning <bdi class="n">500</bdi> shops had signed up. He took a screenshot of the number and sent it to everyone he knew. Hisham asked a different question. “How many used it twice?” Salma checked. <bdi class="n">9</bdi>. The other <bdi class="n">491</bdi> had looked once and left. “<bdi class="n">500</bdi> is a nice number,” said Hisham. “<bdi class="n">9</bdi> is the one that tells you what to do.”</p>
+          <div class="idea lift"><img src="art/hisham.jpg" alt="" class="gp"><div><b>The fog lifts · Vanity metrics</b><p>Total sign-ups and downloads only go up and feel good. Watch the numbers that change what you do next, like people who come back.</p><small>Eric Ries, The Lean Startup (2011)</small></div></div><footer class="pn"><bdi class="n">13</bdi></footer></section>
+<section class="page story" data-n="14">
+          <figure class="arch "><img src="art/c2s4.jpg" alt=""></figure>
+          <div class="kicker">Chapter <bdi class="n">2</bdi> · <bdi class="n">4</bdi></div>
+          <h2>Very disappointed</h2>
+          <p class="text">In week <bdi class="n">6</bdi> Salma asked the <bdi class="n">25</bdi> shops that used Daftar every week one question: how would you feel if you could no longer use it? <bdi class="n">11</bdi> said very disappointed. That is <bdi class="n">44%</bdi>. Umm Hany said it louder than anyone. “Don't you dare,” she said, and laughed. Hisham nodded slowly. “Above <bdi class="n">40%</bdi> is a sign. Not a promise. A sign.” For the first time, the fog moved a little.</p>
+          <div class="idea lift"><img src="art/hisham.jpg" alt="" class="gp"><div><b>The fog lifts · Product-market fit</b><p>Ask users how they would feel without your product. If <bdi class="n">40%</bdi> or more say very disappointed, you may be close to fit.</p><small>Sean Ellis's 40% test</small></div></div><footer class="pn"><bdi class="n">14</bdi></footer></section>
+<section class="page worksheet tools" data-n="15">
+      <div class="kicker">Chapter <bdi class="n">2</bdi></div>
+      <h2>Tools for week <bdi class="n">2</bdi></h2>
+      <h3><bdi class="n">1</bdi>. Our riskiest guess</h3><div class="wlines"><div class="wl"></div><div class="wl"></div></div>
+<h3><bdi class="n">2</bdi>. The smallest test this week, and the result that would change our mind</h3><div class="wlines"><div class="wl"></div><div class="wl"></div><div class="wl"></div></div>
+<h3><bdi class="n">3</bdi>. The <bdi class="n">40%</bdi> question</h3><div class="sumbox"><div class="sumrow" dir="ltr"><span class="blank lab"><em>very disappointed</em></span><i>÷</i><span class="blank lab"><em>asked</em></span><i>=</i><span class="blank big lab"><em>%</em></span></div></div><footer class="pn"><bdi class="n">15</bdi></footer></section>
+<section class="page opener" data-n="16">
+      <div class="kicker">Chapter <bdi class="n">3</bdi> · Week <bdi class="n">5</bdi></div>
+      <h1>The angel</h1>
+      <figure class="arch mini"><img src="art/c3open.jpg" alt=""></figure>
+      <p class="lead big">The first money from outside always feels like a gift. It is a trade, and it is worth reading every line of it.</p>
+      <blockquote>Valuation is the number everyone talks about. Control is the one that hurts later.<cite>Hisham</cite></blockquote>
+      <div class="inthis"><h3>In this chapter</h3><ul><li><img src="art/c3s1.jpg" alt="" class="thumb"><span>Dilution</span></li><li><img src="art/c3s2.jpg" alt="" class="thumb"><span>When to raise</span></li><li><img src="art/c3s3.jpg" alt="" class="thumb"><span>Reading a term sheet</span></li><li><img src="art/c3s4.jpg" alt="" class="thumb"><span>Investor updates</span></li></ul></div><footer class="pn"><bdi class="n">16</bdi></footer></section>
+<section class="page story equation" data-n="17">
+          <div class="kicker">Chapter <bdi class="n">3</bdi> · <bdi class="n">1</bdi></div>
+          <h2><bdi class="n">$50,000</bdi> for <bdi class="n">20%</bdi></h2>
+          <div class="eq long" dir="ltr">
+            <div class="box in"><b>50,000</b><span>her money ($)</span></div><i>÷</i>
+            <div class="box out"><b>250,000</b><span>value after ($)</span></div><i>=</i>
+            <div class="box pr"><b>20%</b><span>of the company</span></div>
+          </div>
+          <figure class="arch mini"><img src="art/c3s1.jpg" alt=""></figure>
+          <p class="text">Layla Fahmy had run a bank's small business desk for <bdi class="n">20</bdi> years. She had heard about Daftar from Umm Hany's brother, of all people. Over coffee she made an offer: <bdi class="n">$50,000</bdi> for <bdi class="n">20%</bdi> of the company. Tariq did the sum on a napkin. That meant the whole company was worth <bdi class="n">$250,000</bdi> after her money. Last month it had been worth nothing. Salma didn't say yes. She said, “Can we think about it for a week?”</p>
+          <div class="idea lift"><img src="art/hisham.jpg" alt="" class="gp"><div><b>The fog lifts · Dilution</b><p>Every round sells part of the company. Dilution is fine when the company grows faster than your share shrinks.</p><small>Brad Feld and Jason Mendelson, Venture Deals</small></div></div><footer class="pn"><bdi class="n">17</bdi></footer></section>
+<section class="page story" data-n="18">
+          <figure class="arch "><img src="art/c3s2.jpg" alt=""></figure>
+          <div class="kicker">Chapter <bdi class="n">3</bdi> · <bdi class="n">2</bdi></div>
+          <h2>Why now?</h2>
+          <p class="text">“Shouldn't we wait until we're bigger?” asked Tariq. “Then we'd get a better price.” Hisham shook his head. “Raise when you have something moving and months left. Not when you're desperate.” They had <bdi class="n">44%</bdi> of shops saying very disappointed, and Salma still had <bdi class="n">9</bdi> months of savings. A round usually takes months to close. If they waited until the money ran low, they would be negotiating from fear.</p>
+          <div class="idea lift"><img src="art/hisham.jpg" alt="" class="gp"><div><b>The fog lifts · When to raise</b><p>Raise with momentum and at least <bdi class="n">6</bdi> months of runway. A round takes <bdi class="n">3</bdi> to <bdi class="n">6</bdi> months, so the real deadline is earlier than it looks.</p><small>Paul Graham, How to Raise Money (2013)</small></div></div><footer class="pn"><bdi class="n">18</bdi></footer></section>
+<section class="page story" data-n="19">
+          <figure class="arch "><img src="art/c3s3.jpg" alt=""></figure>
+          <div class="kicker">Chapter <bdi class="n">3</bdi> · <bdi class="n">3</bdi></div>
+          <h2>The small print</h2>
+          <p class="text">The term sheet was <bdi class="n">3</bdi> pages. The price was on page <bdi class="n">1</bdi>. On page <bdi class="n">3,</bdi> in small letters, Layla would have a veto on every hire and on any spending above <bdi class="n">$2,000</bdi>. Hisham put his finger on it. “This one is not about money. It is about who runs the company.” Salma called Layla and asked, plainly, to drop it. Layla smiled. “I wanted to see if you'd read it.” The veto went. The price stayed.</p>
+          <div class="idea lift"><img src="art/hisham.jpg" alt="" class="gp"><div><b>The fog lifts · Reading a term sheet</b><p>A term sheet has economics (valuation, preference) and control (board seats, vetoes). Founders fixate on the price and sign away control.</p><small>Brad Feld and Jason Mendelson, Venture Deals</small></div></div><footer class="pn"><bdi class="n">19</bdi></footer></section>
+<section class="page story" data-n="20">
+          <figure class="arch "><img src="art/c3s4.jpg" alt=""></figure>
+          <div class="kicker">Chapter <bdi class="n">3</bdi> · <bdi class="n">4</bdi></div>
+          <h2>The first update</h2>
+          <p class="text">On the first day of every month, Salma sent Layla one short email. <bdi class="n">4</bdi> parts: the numbers, the wins, the problems, and one thing she needed. The first problem she wrote about was embarrassing: <bdi class="n">3</bdi> shops had left because reminders went out on the wrong day. Layla replied in an hour. She didn't scold. She introduced them to a wholesaler called Omar Sabry, who sold to <bdi class="n">300</bdi> shops on credit.</p>
+          <div class="idea lift"><img src="art/hisham.jpg" alt="" class="gp"><div><b>The fog lifts · Investor updates</b><p>A short monthly update: numbers, wins, problems and a specific ask. Investors who hear bad news early tend to help.</p><small>Brad Feld and Jason Mendelson, Venture Deals</small></div></div><footer class="pn"><bdi class="n">20</bdi></footer></section>
+<section class="page worksheet tools" data-n="21">
+      <div class="kicker">Chapter <bdi class="n">3</bdi></div>
+      <h2>Tools for week <bdi class="n">5</bdi></h2>
+      <h3><bdi class="n">1</bdi>. What share are we selling?</h3><div class="sumbox"><div class="sumrow" dir="ltr"><span class="blank lab"><em>investment</em></span><i>÷</i><span class="blank lab"><em>value after</em></span><i>=</i><span class="blank big lab"><em>% sold</em></span></div></div>
+<h3><bdi class="n">2</bdi>. Term sheet: mark every line that lets someone else say no</h3><ul class="checks"><li><i class="tick"></i><span>Valuation and option pool</span></li><li><i class="tick"></i><span>Liquidation preference</span></li><li><i class="tick"></i><span>Board seats</span></li><li><i class="tick"></i><span>Vetoes on hiring, spending or new rounds</span></li></ul>
+<h3><bdi class="n">3</bdi>. This month's update</h3><ul class="checks"><li><i class="tick"></i><span>The numbers</span></li><li><i class="tick"></i><span>The wins</span></li><li><i class="tick"></i><span>The problems</span></li><li><i class="tick"></i><span>One specific ask</span></li></ul><footer class="pn"><bdi class="n">21</bdi></footer></section>
+<section class="page opener" data-n="22">
+      <div class="kicker">Chapter <bdi class="n">4</bdi> · Week <bdi class="n">7</bdi></div>
+      <h1>The big customer</h1>
+      <figure class="arch mini"><img src="art/c4open.jpg" alt=""></figure>
+      <p class="lead big">A big customer can make your year. It can also quietly take over your roadmap.</p>
+      <blockquote>Every yes to one customer is a no to all the others. Say it with your eyes open.<cite>Hisham</cite></blockquote>
+      <div class="inthis"><h3>In this chapter</h3><ul><li><img src="art/c4s1.jpg" alt="" class="thumb"><span>Custom work for one customer</span></li><li><img src="art/c4s2.jpg" alt="" class="thumb"><span>Pricing</span></li><li><img src="art/c4s3.jpg" alt="" class="thumb"><span>Tech debt</span></li><li><img src="art/c4s4.jpg" alt="" class="thumb"><span>Security is a feature</span></li></ul></div><footer class="pn"><bdi class="n">22</bdi></footer></section>
+<section class="page story" data-n="23">
+          <figure class="arch "><img src="art/c4s1.jpg" alt=""></figure>
+          <div class="kicker">Chapter <bdi class="n">4</bdi> · <bdi class="n">1</bdi></div>
+          <h2>Just one feature</h2>
+          <p class="text">Omar Sabry's warehouse smelled of rice and cardboard. He liked Daftar. He would put all <bdi class="n">300</bdi> of his shops on it, but only if they first built a special screen for him: credit limits per shop, his colours, his reports. A month of work for both founders. Tariq's eyes lit up. Salma asked, “Would any other customer use this screen?” Nobody could name one. They said no to the custom screen, and offered the product they had.</p>
+          <div class="idea lift"><img src="art/hisham.jpg" alt="" class="gp"><div><b>The fog lifts · Custom work for one customer</b><p>A big customer's custom request is a gift and a trap. It brings money now, and puts their name on your roadmap.</p><small>Marty Cagan, Inspired</small></div></div><footer class="pn"><bdi class="n">23</bdi></footer></section>
+<section class="page story" data-n="24">
+          <figure class="arch "><img src="art/c4s2.jpg" alt=""></figure>
+          <div class="kicker">Chapter <bdi class="n">4</bdi> · <bdi class="n">2</bdi></div>
+          <h2><bdi class="n">$5</bdi> is too cheap</h2>
+          <p class="text">Before he walked them out, Omar asked the price. “<bdi class="n">$5</bdi> a month per shop,” said Salma. He laughed. “My shops lose more than that in a day of chasing.” That night they tried something frightening. The next <bdi class="n">10</bdi> shops were quoted <bdi class="n">$8</bdi>. <bdi class="n">9</bdi> said yes. Nobody had pushed back on <bdi class="n">$5</bdi> because <bdi class="n">$5</bdi> was too low. The <bdi class="n">3</bdi> extra dollars, times every shop, went almost straight to profit.</p>
+          <div class="idea lift"><img src="art/hisham.jpg" alt="" class="gp"><div><b>The fog lifts · Pricing</b><p>Most founders underprice because they fear hearing no. If nobody ever pushes back on your price, it is too low.</p><small>Madhavan Ramanujam and Georg Tacke, Monetizing Innovation (2016)</small></div></div><footer class="pn"><bdi class="n">24</bdi></footer></section>
+<section class="page story" data-n="25">
+          <figure class="arch "><img src="art/c4s3.jpg" alt=""></figure>
+          <div class="kicker">Chapter <bdi class="n">4</bdi> · <bdi class="n">3</bdi></div>
+          <h2>Fast and messy</h2>
+          <p class="text">To move fast, Tariq had taken shortcuts everywhere. Now every small change broke <bdi class="n">2</bdi> other things. A new reminder time took a week instead of an afternoon. “It's like we borrowed time,” Tariq said, “and now we're paying interest.” They made a rule: every Thursday afternoon, no new features. Only cleaning up. The first Thursday felt wasted. By the fourth, changes were fast again.</p>
+          <div class="idea lift"><img src="art/hisham.jpg" alt="" class="gp"><div><b>The fog lifts · Tech debt</b><p>Shipping fast is borrowing. Messy code charges interest on every future change. Some debt is smart, if you pay it back on purpose.</p><small>Ward Cunningham, The WyCash Portfolio Management System (1992)</small></div></div><footer class="pn"><bdi class="n">25</bdi></footer></section>
+<section class="page story" data-n="26">
+          <figure class="arch "><img src="art/c4s4.jpg" alt=""></figure>
+          <div class="kicker">Chapter <bdi class="n">4</bdi> · <bdi class="n">4</bdi></div>
+          <h2>What if it leaks?</h2>
+          <p class="text"><bdi class="n">6</bdi> weeks later Omar called back. He would try the normal product with <bdi class="n">40</bdi> shops. But his IT manager had one question first: where is the shops' data, and who can see it? They had no good answer. Names, phone numbers and debts, for real families. They spent <bdi class="n">2</bdi> weeks on it: backups, access only for those who need it, and a short page explaining it all in plain words. Omar's manager read it twice and signed.</p>
+          <div class="idea lift"><img src="art/hisham.jpg" alt="" class="gp"><div><b>The fog lifts · Security is a feature</b><p>Startups treat security as a later problem, until one leak ends a contract. Customers buy trust before they buy features.</p><small>IBM, Cost of a Data Breach Report</small></div></div><footer class="pn"><bdi class="n">26</bdi></footer></section>
+<section class="page worksheet tools" data-n="27">
+      <div class="kicker">Chapter <bdi class="n">4</bdi></div>
+      <h2>Tools for week <bdi class="n">7</bdi></h2>
+      <h3><bdi class="n">1</bdi>. Before saying yes to custom work</h3><ul class="checks"><li><i class="tick"></i><span>Would <bdi class="n">3</bdi> other customers use it?</span></li><li><i class="tick"></i><span>Who looks after it a year from now?</span></li><li><i class="tick"></i><span>What do we stop doing to build it?</span></li><li><i class="tick"></i><span>Does the price cover all of that?</span></li></ul>
+<h3><bdi class="n">2</bdi>. A price test for the next <bdi class="n">10</bdi> customers</h3><div class="sumbox"><div class="sumrow" dir="ltr"><span class="blank lab"><em>today's price</em></span><i>×</i><span class="blank lab"><em>1.2</em></span><i>=</i><span class="blank big lab"><em>test price</em></span></div></div>
+<h3><bdi class="n">3</bdi>. Our <bdi class="n">3</bdi> worst shortcuts, to clean up on Thursdays</h3><div class="wlines"><div class="wl"></div><div class="wl"></div><div class="wl"></div></div><footer class="pn"><bdi class="n">27</bdi></footer></section>
+<section class="page opener" data-n="28">
+      <div class="kicker">Chapter <bdi class="n">5</bdi> · Week <bdi class="n">9</bdi></div>
+      <h1>Four days without sleep</h1>
+      <figure class="arch mini"><img src="art/c5open.jpg" alt=""></figure>
+      <p class="lead big">Companies rarely die from one bad decision. More often the founders run out of patience with each other, or with themselves.</p>
+      <blockquote>A co-founder is a marriage with a spreadsheet. Talk before you need to.<cite>Hisham</cite></blockquote>
+      <div class="inthis"><h3>In this chapter</h3><ul><li><img src="art/c5s1.jpg" alt="" class="thumb"><span>Burnout</span></li><li><img src="art/c5s2.jpg" alt="" class="thumb"><span>The co-founder relationship</span></li><li><img src="art/c5s3.jpg" alt="" class="thumb"><span>Delegate outcomes, not tasks</span></li><li><img src="art/c5s4.jpg" alt="" class="thumb"><span>Tell the team the truth</span></li></ul></div><footer class="pn"><bdi class="n">28</bdi></footer></section>
+<section class="page story" data-n="29">
+          <figure class="arch "><img src="art/c5s1.jpg" alt=""></figure>
+          <div class="kicker">Chapter <bdi class="n">5</bdi> · <bdi class="n">1</bdi></div>
+          <h2><bdi class="n">3</bdi> in the morning</h2>
+          <p class="text">A release went wrong on Sunday, and Tariq stayed up to fix it. And Monday. And Tuesday. By Wednesday he hadn't really slept in <bdi class="n">4</bdi> days. In the team meeting he snapped at Salma over a button colour. Everyone looked at the table. Afterwards he sat on the stairs with his head in his hands. “I'm fine,” he said, before she could ask. He was not fine. He was in the fog, and he could not see it.</p>
+          <div class="idea lift"><img src="art/hisham.jpg" alt="" class="gp"><div><b>The fog lifts · Burnout</b><p>Burnout is a slow leak, not a single crash: short nights, no exercise, every evening at work. A tired founder makes worse decisions and hides it well.</p><small>Michael A. Freeman et al., Are Entrepreneurs Touched with Fire? (2015)</small></div></div><footer class="pn"><bdi class="n">29</bdi></footer></section>
+<section class="page story" data-n="30">
+          <figure class="arch "><img src="art/c5s2.jpg" alt=""></figure>
+          <div class="kicker">Chapter <bdi class="n">5</bdi> · <bdi class="n">2</bdi></div>
+          <h2>The talk they skipped</h2>
+          <p class="text">Hisham took them both to lunch and did not let them talk about the product. Who decides what gets built? Salma, after listening to customers. Who decides how? Tariq, always. What happens when they disagree? They sleep on it, then Salma breaks the tie on customers and Tariq on code. It took <bdi class="n">2</bdi> hours. It should have taken place in week <bdi class="n">1</bdi>. Walking back, Tariq said, “I thought you didn't trust my work.” “I thought you didn't trust my judgement,” said Salma. Both were wrong.</p>
+          <div class="idea lift"><img src="art/hisham.jpg" alt="" class="gp"><div><b>The fog lifts · The co-founder relationship</b><p>Problems inside the founding team cause about <bdi class="n">65%</bdi> of failures in high-potential startups. Agree early on roles, who decides what, and what happens if someone leaves.</p><small>Noam Wasserman, The Founder's Dilemmas (2012)</small></div></div><footer class="pn"><bdi class="n">30</bdi></footer></section>
+<section class="page story" data-n="31">
+          <figure class="arch "><img src="art/c5s3.jpg" alt=""></figure>
+          <div class="kicker">Chapter <bdi class="n">5</bdi> · <bdi class="n">3</bdi></div>
+          <h2>Letting go of the keys</h2>
+          <p class="text">With Layla's money they had hired <bdi class="n">2</bdi> developers, Mona and Hassan. But every release still went through Tariq, at night. Hisham asked Tariq what he wanted from a release. “No shop gets a wrong reminder,” he said. “Then give Mona that,” said Hisham. “Not the steps. The result.” Mona wrote her own checklist, better than his. Tariq slept <bdi class="n">8</bdi> hours that Thursday, and nothing broke.</p>
+          <div class="idea lift"><img src="art/hisham.jpg" alt="" class="gp"><div><b>The fog lifts · Delegate outcomes, not tasks</b><p>As the team grows, your output is your team's output. Hand over the result you need, and let people own how they get there.</p><small>Andy Grove, High Output Management (1983)</small></div></div><footer class="pn"><bdi class="n">31</bdi></footer></section>
+<section class="page story" data-n="32">
+          <figure class="arch "><img src="art/c5s4.jpg" alt=""></figure>
+          <div class="kicker">Chapter <bdi class="n">5</bdi> · <bdi class="n">4</bdi></div>
+          <h2>What the team already knew</h2>
+          <p class="text">On Sunday Salma gathered the <bdi class="n">4</bdi> of them. She told them what had happened, plainly: the broken release, the bad week, the shouting, and the new rules. Nobody was surprised. Mona said, “We thought it was worse. We thought the money was gone.” Silence had made them imagine something darker than the truth. After the meeting, Hassan asked if he could own the reminders schedule. Of course he could.</p>
+          <div class="idea lift"><img src="art/hisham.jpg" alt="" class="gp"><div><b>The fog lifts · Tell the team the truth</b><p>When things go wrong, the team usually senses it already. Silence makes them imagine something worse. A founder who tells the truth earns trust.</p><small>Ben Horowitz, The Hard Thing About Hard Things (2014)</small></div></div><footer class="pn"><bdi class="n">32</bdi></footer></section>
+<section class="page worksheet tools" data-n="33">
+      <div class="kicker">Chapter <bdi class="n">5</bdi></div>
+      <h2>Tools for week <bdi class="n">9</bdi></h2>
+      <h3><bdi class="n">1</bdi>. The weekly co-founder check-in, <bdi class="n">30</bdi> minutes, no product talk</h3><ul class="checks"><li><i class="tick"></i><span>What frustrated each of us this week?</span></li><li><i class="tick"></i><span>Is anyone carrying too much?</span></li><li><i class="tick"></i><span>Any decision we are avoiding?</span></li><li><i class="tick"></i><span>How are we sleeping?</span></li></ul>
+<h3><bdi class="n">2</bdi>. One result to hand over this month, and to whom</h3><div class="wlines"><div class="wl"></div><div class="wl"></div></div>
+<h3><bdi class="n">3</bdi>. Nights with <bdi class="n">7</bdi> hours of sleep this week</h3><div class="tally"><span class="dot"><bdi class="n">1</bdi></span><span class="dot"><bdi class="n">2</bdi></span><span class="dot"><bdi class="n">3</bdi></span><span class="dot"><bdi class="n">4</bdi></span><span class="dot"><bdi class="n">5</bdi></span><span class="dot"><bdi class="n">6</bdi></span><span class="dot"><bdi class="n">7</bdi></span></div><footer class="pn"><bdi class="n">33</bdi></footer></section>
+<section class="page opener" data-n="34">
+      <div class="kicker">Chapter <bdi class="n">6</bdi> · Week <bdi class="n">12</bdi></div>
+      <h1>The clock</h1>
+      <figure class="arch mini"><img src="art/c6open.jpg" alt=""></figure>
+      <p class="lead big">Every company has a clock: cash divided by burn. Most founders know roughly how much time is left. The ones who last know exactly.</p>
+      <blockquote>Runway is the only number that tells you how much courage you can afford.<cite>Hisham</cite></blockquote>
+      <div class="inthis"><h3>In this chapter</h3><ul><li><img src="art/c6s1.jpg" alt="" class="thumb"><span>Runway</span></li><li><img src="art/c6s2.jpg" alt="" class="thumb"><span>Unit economics</span></li><li><img src="art/c6s3.jpg" alt="" class="thumb"><span>Burn multiple</span></li><li><img src="art/c6s4.jpg" alt="" class="thumb"><span>Default alive</span></li></ul></div><footer class="pn"><bdi class="n">34</bdi></footer></section>
+<section class="page story equation" data-n="35">
+          <div class="kicker">Chapter <bdi class="n">6</bdi> · <bdi class="n">1</bdi></div>
+          <h2><bdi class="n">8</bdi> months</h2>
+          <div class="eq long" dir="ltr">
+            <div class="box in"><b>64,000</b><span>cash ($)</span></div><i>÷</i>
+            <div class="box out"><b>8,000</b><span>burn a month ($)</span></div><i>=</i>
+            <div class="box pr"><b>8</b><span>months</span></div>
+          </div>
+          <figure class="arch mini"><img src="art/c6s1.jpg" alt=""></figure>
+          <p class="text">In week <bdi class="n">12</bdi> Salma put the real numbers on the whiteboard. Cash in the bank: <bdi class="n">$64,000</bdi>. What went out each month, after what came in: <bdi class="n">$8,000</bdi>. <bdi class="n">8</bdi> months. Then Hisham asked about the <bdi class="n">2</bdi> hires they had planned for next quarter. With them, the burn became <bdi class="n">$12,000,</bdi> and the clock dropped to just over <bdi class="n">5</bdi> months. Tariq went quiet. “Always count the plan,” said Hisham. “Not just today.”</p>
+          <div class="idea lift"><img src="art/hisham.jpg" alt="" class="gp"><div><b>The fog lifts · Runway</b><p>Cash divided by net monthly burn. Include planned hires, and remember a round takes months to close, so the real deadline is earlier.</p><small>Paul Graham, Startups in 13 Sentences (2009)</small></div></div><footer class="pn"><bdi class="n">35</bdi></footer></section>
+<section class="page story" data-n="36">
+          <figure class="arch "><img src="art/c6s2.jpg" alt=""></figure>
+          <div class="kicker">Chapter <bdi class="n">6</bdi> · <bdi class="n">2</bdi></div>
+          <h2>What a shop is worth</h2>
+          <p class="text">How much did it cost to win one shop? Salma added up her mornings, the printed flyers and the tea: about <bdi class="n">$40</bdi>. And what was a shop worth? <bdi class="n">$8</bdi> a month, and shops stayed about <bdi class="n">18</bdi> months. <bdi class="n">$144</bdi>. “So each shop brings back more than <bdi class="n">3</bdi> times what it costs,” said Tariq. “Good,” said Hisham. “Now check it every month. That number moves when you are not looking.”</p>
+          <div class="idea lift"><img src="art/hisham.jpg" alt="" class="gp"><div><b>The fog lifts · Unit economics</b><p>Every customer should be worth more than they cost to win. A common rule: lifetime value at least <bdi class="n">3</bdi> times the cost to acquire.</p><small>David Skok, SaaS Metrics 2.0</small></div></div><footer class="pn"><bdi class="n">36</bdi></footer></section>
+<section class="page story" data-n="37">
+          <figure class="arch "><img src="art/c6s3.jpg" alt=""></figure>
+          <div class="kicker">Chapter <bdi class="n">6</bdi> · <bdi class="n">3</bdi></div>
+          <h2>Burning for growth</h2>
+          <p class="text">Last quarter they had burned <bdi class="n">$24,000</bdi>. In that time, yearly revenue grew by <bdi class="n">$9,600</bdi>. Tariq divided one by the other: <bdi class="n">2.5</bdi>. “Is that good?” Hisham tilted his hand. “Under <bdi class="n">1</bdi> is excellent. Over <bdi class="n">3</bdi> is trouble. <bdi class="n">2.5</bdi> means every new dollar of revenue is expensive.” They looked at where the money went. The online ads had brought sign-ups, not shops. They switched them off the next morning.</p>
+          <div class="idea lift"><img src="art/hisham.jpg" alt="" class="gp"><div><b>The fog lifts · Burn multiple</b><p>Net burn divided by net new yearly revenue. Under <bdi class="n">1</bdi> is amazing, above <bdi class="n">3</bdi> is bad. It shows whether growth is being bought at any price.</p><small>David Sacks, The Burn Multiple (2020)</small></div></div><footer class="pn"><bdi class="n">37</bdi></footer></section>
+<section class="page story" data-n="38">
+          <figure class="arch "><img src="art/c6s4.jpg" alt=""></figure>
+          <div class="kicker">Chapter <bdi class="n">6</bdi> · <bdi class="n">4</bdi></div>
+          <h2>Two lines</h2>
+          <p class="text">Hisham drew <bdi class="n">2</bdi> lines on the whiteboard. One was costs, going up slowly. The other was revenue, going up faster. If nothing changed, the lines would cross in month <bdi class="n">15</bdi>. But the money ran out in month <bdi class="n">8</bdi>. “Right now you are default dead,” he said, calmly. “That's not a verdict. It's a to-do list.” Salma wrote <bdi class="n">3</bdi> things under the lines: raise prices, cut the ads, and get Omar's <bdi class="n">40</bdi> shops live.</p>
+          <div class="idea lift"><img src="art/hisham.jpg" alt="" class="gp"><div><b>The fog lifts · Default alive</b><p>If costs and revenue growth stay as they are, do you reach profit before the money runs out? If not, you need a plan, not hope.</p><small>Paul Graham, Default Alive or Default Dead? (2015)</small></div></div><footer class="pn"><bdi class="n">38</bdi></footer></section>
+<section class="page worksheet tools" data-n="39">
+      <div class="kicker">Chapter <bdi class="n">6</bdi></div>
+      <h2>Tools for week <bdi class="n">12</bdi></h2>
+      <h3><bdi class="n">1</bdi>. Company runway, with next quarter's hires</h3><div class="sumbox"><div class="sumrow" dir="ltr"><span class="blank lab"><em>cash</em></span><i>÷</i><span class="blank lab"><em>net burn a month</em></span><i>=</i><span class="blank big lab"><em>months</em></span></div></div>
+<h3><bdi class="n">2</bdi>. Unit economics</h3><div class="sumbox"><div class="sumrow" dir="ltr"><span class="blank lab"><em>value of a customer</em></span><i>÷</i><span class="blank lab"><em>cost to win one</em></span><i>=</i><span class="blank big lab"><em>aim for 3+</em></span></div></div>
+<h3><bdi class="n">3</bdi>. Burn multiple, last quarter</h3><div class="sumbox"><div class="sumrow" dir="ltr"><span class="blank lab"><em>net burn</em></span><i>÷</i><span class="blank lab"><em>new yearly revenue</em></span><i>=</i><span class="blank big lab"><em>under 1 is great</em></span></div></div><footer class="pn"><bdi class="n">39</bdi></footer></section>
+<section class="page opener" data-n="40">
+      <div class="kicker">Chapter <bdi class="n">7</bdi> · Week <bdi class="n">14</bdi></div>
+      <h1>The rival</h1>
+      <figure class="arch mini"><img src="art/c7open.jpg" alt=""></figure>
+      <p class="lead big">Sooner or later someone else sees the same problem, with more money. What you do in the next month matters more than what they announced.</p>
+      <blockquote>Their money is their problem. Your customers are yours.<cite>Hisham</cite></blockquote>
+      <div class="inthis"><h3>In this chapter</h3><ul><li><img src="art/c7s1.jpg" alt="" class="thumb"><span>Funding without VCs</span></li><li><img src="art/c7s2.jpg" alt="" class="thumb"><span>Churn</span></li><li><img src="art/c7s3.jpg" alt="" class="thumb"><span>Find one channel that works</span></li><li><img src="art/c7s4.jpg" alt="" class="thumb"><span>Ethics under pressure</span></li></ul></div><footer class="pn"><bdi class="n">40</bdi></footer></section>
+<section class="page story" data-n="41">
+          <figure class="arch "><img src="art/c7s1.jpg" alt=""></figure>
+          <div class="kicker">Chapter <bdi class="n">7</bdi> · <bdi class="n">1</bdi></div>
+          <h2><bdi class="n">$5</bdi> million</h2>
+          <p class="text">The news came on a Tuesday: a rival had raised <bdi class="n">$5</bdi> million to do what Daftar did. Tariq read it <bdi class="n">3</bdi> times. Salma's phone started ringing with people asking if they were finished. Hisham was calm. “Most good businesses never take that kind of money. Your shops pay you every month. That is funding too.” They had <bdi class="n">140</bdi> paying shops. The rival had a press release.</p>
+          <div class="idea lift"><img src="art/hisham.jpg" alt="" class="gp"><div><b>The fog lifts · Funding without VCs</b><p>Venture capital suits companies that can grow <bdi class="n">10</bdi> times in a few years. Many good businesses can't, and grow on customer revenue instead.</p><small>Jason Fried and David Heinemeier Hansson, Rework (2010)</small></div></div><footer class="pn"><bdi class="n">41</bdi></footer></section>
+<section class="page story" data-n="42">
+          <figure class="arch "><img src="art/c7s2.jpg" alt=""></figure>
+          <div class="kicker">Chapter <bdi class="n">7</bdi> · <bdi class="n">2</bdi></div>
+          <h2>Free for <bdi class="n">6</bdi> months</h2>
+          <p class="text">The rival offered shops <bdi class="n">6</bdi> months free. In <bdi class="n">2</bdi> weeks, <bdi class="n">12</bdi> of Daftar's shops left. Salma called every one of them, not to argue, just to ask why. Most said the same thing: free is free. A month later, <bdi class="n">7</bdi> came back. The rival's reminders went out at night and annoyed their customers. Salma wrote down the lesson anyway. <bdi class="n">12</bdi> out of <bdi class="n">140</bdi> in a month was more than <bdi class="n">8%</bdi>. At that pace, half the shops would be gone in a year.</p>
+          <div class="idea lift"><img src="art/hisham.jpg" alt="" class="gp"><div><b>The fog lifts · Churn</b><p>The share of customers who leave each month. <bdi class="n">5%</bdi> a month sounds small, but it means losing about <bdi class="n">46%</bdi> of your customers in a year.</p><small>David Skok, SaaS Metrics 2.0</small></div></div><footer class="pn"><bdi class="n">42</bdi></footer></section>
+<section class="page story" data-n="43">
+          <figure class="arch "><img src="art/c7s3.jpg" alt=""></figure>
+          <div class="kicker">Chapter <bdi class="n">7</bdi> · <bdi class="n">3</bdi></div>
+          <h2>The one channel</h2>
+          <p class="text">They listed everything they had tried to find shops: online ads, flyers, a stand at a trade fair, short videos, Salma's early mornings. Then they wrote next to each one how many paying shops it had brought. One line stood out. Omar's <bdi class="n">40</bdi> shops had come from one conversation with one wholesaler. Wholesalers already had the shops, and the trust. They stopped almost everything else and went to see <bdi class="n">5</bdi> more wholesalers.</p>
+          <div class="idea lift"><img src="art/hisham.jpg" alt="" class="gp"><div><b>The fog lifts · Find one channel that works</b><p>There are many ways to grow, from ads to partnerships, and most startups grow through one main channel. Find it, then put your effort there.</p><small>Gabriel Weinberg and Justin Mares, Traction (2014)</small></div></div><footer class="pn"><bdi class="n">43</bdi></footer></section>
+<section class="page story" data-n="44">
+          <figure class="arch "><img src="art/c7s4.jpg" alt=""></figure>
+          <div class="kicker">Chapter <bdi class="n">7</bdi> · <bdi class="n">4</bdi></div>
+          <h2>Just round it up</h2>
+          <p class="text">An investor wanted to see their numbers before a call. “Let's count every shop that ever signed up,” said Tariq, tired. “Everyone does it.” That would be <bdi class="n">600,</bdi> not <bdi class="n">140</bdi>. Salma thought about Umm Hany, who trusted them with her family's money, and about Layla, who read every line. She sent <bdi class="n">140,</bdi> with churn, and a note on the rival. The investor didn't invest. But <bdi class="n">2</bdi> months later he sent them a wholesaler.</p>
+          <div class="idea lift"><img src="art/hisham.jpg" alt="" class="gp"><div><b>The fog lifts · Ethics under pressure</b><p>Small exaggerations become habits, and habits become fraud. The pressure is real, and so is the line. Report the number you would defend in a year.</p><small>John Carreyrou, Bad Blood (2018)</small></div></div><footer class="pn"><bdi class="n">44</bdi></footer></section>
+<section class="page worksheet tools" data-n="45">
+      <div class="kicker">Chapter <bdi class="n">7</bdi></div>
+      <h2>Tools for week <bdi class="n">14</bdi></h2>
+      <h3><bdi class="n">1</bdi>. Monthly churn</h3><div class="sumbox"><div class="sumrow" dir="ltr"><span class="blank lab"><em>customers lost</em></span><i>÷</i><span class="blank lab"><em>customers at start</em></span><i>=</i><span class="blank big lab"><em>% a month</em></span></div></div>
+<h3><bdi class="n">2</bdi>. Channels tried, and paying customers from each</h3><ul class="checks"><li><i class="tick"></i><span>Ads</span></li><li><i class="tick"></i><span>Partners</span></li><li><i class="tick"></i><span>Events</span></li><li><i class="tick"></i><span>Content</span></li><li><i class="tick"></i><span>Direct sales</span></li><li><i class="tick"></i><span>Referrals</span></li></ul>
+<h3><bdi class="n">3</bdi>. Numbers we will never round up</h3><div class="wlines"><div class="wl"></div><div class="wl"></div></div><footer class="pn"><bdi class="n">45</bdi></footer></section>
+<section class="page opener" data-n="46">
+      <div class="kicker">Chapter <bdi class="n">8</bdi> · Week <bdi class="n">21</bdi></div>
+      <h1>Ramadan</h1>
+      <figure class="arch mini"><img src="art/c8open.jpg" alt=""></figure>
+      <p class="lead big">The region has its own calendar, its own ways to pay, and its own idea of what a good company owes its people.</p>
+      <blockquote>Your users live in a calendar. Build for theirs, not for a template from somewhere else.<cite>Hisham</cite></blockquote>
+      <div class="inthis"><h3>In this chapter</h3><ul><li><img src="art/c8s1.jpg" alt="" class="thumb"><span>Ramadan and the regional calendar</span></li><li><img src="art/c8s2.jpg" alt="" class="thumb"><span>Managing a crisis</span></li><li><img src="art/c8s3.jpg" alt="" class="thumb"><span>Payments in the region</span></li><li><img src="art/c8s4.jpg" alt="" class="thumb"><span>Culture is what you do</span></li></ul></div><footer class="pn"><bdi class="n">46</bdi></footer></section>
+<section class="page story" data-n="47">
+          <figure class="arch "><img src="art/c8s1.jpg" alt=""></figure>
+          <div class="kicker">Chapter <bdi class="n">8</bdi> · <bdi class="n">1</bdi></div>
+          <h2>After iftar</h2>
+          <p class="text">In Ramadan everything moved. Shops opened late, closed after midnight, and did half their business after iftar. Daftar's reminders still went out at <bdi class="n">10</bdi> in the morning, when nobody was awake to pay. Hassan moved them to <bdi class="n">9</bdi> at night. Payments went up by a third. The team changed too: shorter days, no meetings before noon, and a long table for iftar together on Thursdays.</p>
+          <div class="idea lift"><img src="art/hisham.jpg" alt="" class="gp"><div><b>The fog lifts · Ramadan and the regional calendar</b><p>Usage peaks after iftar, B<bdi class="n">2</bdi>B slows down, and the team expects time and an Eid bonus. Plan the year around the region's calendar.</p><small>Common practice in the region</small></div></div><footer class="pn"><bdi class="n">47</bdi></footer></section>
+<section class="page story" data-n="48">
+          <figure class="arch "><img src="art/c8s2.jpg" alt=""></figure>
+          <div class="kicker">Chapter <bdi class="n">8</bdi> · <bdi class="n">2</bdi></div>
+          <h2>Frozen</h2>
+          <p class="text">On the <bdi class="n">15</bdi>th night of Ramadan the payment provider froze Daftar's payouts for a review. <bdi class="n">3</bdi> days, maybe more. Shops were waiting for their money before Eid. Salma did not hide. She called the <bdi class="n">20</bdi> biggest shops herself, sent every shop a short message every <bdi class="n">6</bdi> hours, and said exactly what she knew and didn't know. On the fourth day the money moved. Not one shop left. Umm Hany sent a box of sweets.</p>
+          <div class="idea lift"><img src="art/hisham.jpg" alt="" class="gp"><div><b>The fog lifts · Managing a crisis</b><p>In a crisis, speed and honesty beat polish. Say what happened, what you are doing, and when the next update comes, then keep that promise.</p><small>Ben Horowitz, The Hard Thing About Hard Things (2014)</small></div></div><footer class="pn"><bdi class="n">48</bdi></footer></section>
+<section class="page story" data-n="49">
+          <figure class="arch "><img src="art/c8s3.jpg" alt=""></figure>
+          <div class="kicker">Chapter <bdi class="n">8</bdi> · <bdi class="n">3</bdi></div>
+          <h2>Cash on delivery</h2>
+          <p class="text">Half of what shops were owed would never arrive by card. Their customers paid in cash, at the door, or when the salary came. Tariq had built Daftar for card payments only. So they added the simplest thing: a button to mark a debt as paid in cash, with a photo of the receipt if the shop wanted. It was not elegant. It was how the street actually worked, and usage doubled.</p>
+          <div class="idea lift"><img src="art/hisham.jpg" alt="" class="gp"><div><b>The fog lifts · Payments in the region</b><p>Cash on delivery, late payers and payment providers that freeze funds are normal here. Build for how people really pay.</p><small>Common practice in the region</small></div></div><footer class="pn"><bdi class="n">49</bdi></footer></section>
+<section class="page story" data-n="50">
+          <figure class="arch "><img src="art/c8s4.jpg" alt=""></figure>
+          <div class="kicker">Chapter <bdi class="n">8</bdi> · <bdi class="n">4</bdi></div>
+          <h2>The Eid bonus</h2>
+          <p class="text">After the freeze, cash was tight, and Eid was coming. The team expected a bonus, as every company in Cairo gave one. Tariq suggested skipping it this year. Salma thought about what the team would remember. They paid half the usual bonus, explained why in a short honest note, and the <bdi class="n">2</bdi> founders took none. Mona told her mother it was the best company she had worked for.</p>
+          <div class="idea lift"><img src="art/hisham.jpg" alt="" class="gp"><div><b>The fog lifts · Culture is what you do</b><p>Culture is not the values on the wall. It is how people behave when nobody is watching, and it is set by what the founders actually do.</p><small>Ben Horowitz, What You Do Is Who You Are (2019)</small></div></div><footer class="pn"><bdi class="n">50</bdi></footer></section>
+<section class="page worksheet tools" data-n="51">
+      <div class="kicker">Chapter <bdi class="n">8</bdi></div>
+      <h2>Tools for week <bdi class="n">21</bdi></h2>
+      <h3><bdi class="n">1</bdi>. Our year, in the region's calendar</h3><ul class="checks"><li><i class="tick"></i><span>Ramadan</span></li><li><i class="tick"></i><span>Eid al-Fitr</span></li><li><i class="tick"></i><span>Eid al-Adha</span></li><li><i class="tick"></i><span>Summer holidays</span></li><li><i class="tick"></i><span>Back to school</span></li><li><i class="tick"></i><span>Year end</span></li></ul>
+<h3><bdi class="n">2</bdi>. A crisis message: what happened, what we are doing, when the next update comes</h3><div class="wlines"><div class="wl"></div><div class="wl"></div><div class="wl"></div></div><footer class="pn"><bdi class="n">51</bdi></footer></section>
+<section class="page opener" data-n="52">
+      <div class="kicker">Chapter <bdi class="n">9</bdi> · Week <bdi class="n">26</bdi></div>
+      <h1>The first salesperson</h1>
+      <figure class="arch mini"><img src="art/c9open.jpg" alt=""></figure>
+      <p class="lead big">The first hires shape the company more than any plan. Hire slowly, and be honest quickly when it isn't working.</p>
+      <blockquote>You can't hire someone to do a job you've never done yourself.<cite>Hisham</cite></blockquote>
+      <div class="inthis"><h3>In this chapter</h3><ul><li><img src="art/c9s1.jpg" alt="" class="thumb"><span>The founder sells first</span></li><li><img src="art/c9s2.jpg" alt="" class="thumb"><span>No brilliant jerks</span></li><li><img src="art/c9s3.jpg" alt="" class="thumb"><span>Hire slowly, part ways quickly</span></li><li><img src="art/c9s4.jpg" alt="" class="thumb"><span>Working with a board</span></li></ul></div><footer class="pn"><bdi class="n">52</bdi></footer></section>
+<section class="page story" data-n="53">
+          <figure class="arch "><img src="art/c9s1.jpg" alt=""></figure>
+          <div class="kicker">Chapter <bdi class="n">9</bdi> · <bdi class="n">1</bdi></div>
+          <h2>Who sells?</h2>
+          <p class="text">Salma was tired of selling. <bdi class="n">5</bdi> wholesalers had said yes to a meeting, and she wanted someone else to go. Hisham asked her to do the first <bdi class="n">5</bdi> herself. “Find out what they ask, what makes them say yes, and what makes them hesitate. Write it down. That's the job description.” She went. <bdi class="n">3</bdi> signed. Her notes became a <bdi class="n">1</bdi>-page script, and only then did they start looking for a salesperson.</p>
+          <div class="idea lift"><img src="art/hisham.jpg" alt="" class="gp"><div><b>The fog lifts · The founder sells first</b><p>Early on, the founders sell. It is how you learn what customers need, and it is the only way to know what a good salesperson looks like.</p><small>Paul Graham, Do Things That Don't Scale (2013)</small></div></div><footer class="pn"><bdi class="n">53</bdi></footer></section>
+<section class="page story" data-n="54">
+          <figure class="arch "><img src="art/c9s2.jpg" alt=""></figure>
+          <div class="kicker">Chapter <bdi class="n">9</bdi> · <bdi class="n">2</bdi></div>
+          <h2>Ziad</h2>
+          <p class="text">Ziad had a great handshake and a better slide deck. He booked <bdi class="n">6</bdi> meetings in his first week, and the dashboard filled with deals. In week <bdi class="n">4,</bdi> in front of the team, he called Mona's reminder design “a student project.” Mona stopped talking in meetings. Hassan started looking at other jobs. Ziad was bringing in meetings. He was also emptying the room.</p>
+          <div class="idea lift"><img src="art/hisham.jpg" alt="" class="gp"><div><b>The fog lifts · No brilliant jerks</b><p>A talented person who belittles others costs more than they deliver: good people stop speaking up, then they leave.</p><small>Netflix Culture: Freedom &amp; Responsibility (2009)</small></div></div><footer class="pn"><bdi class="n">54</bdi></footer></section>
+<section class="page story" data-n="55">
+          <figure class="arch "><img src="art/c9s3.jpg" alt=""></figure>
+          <div class="kicker">Chapter <bdi class="n">9</bdi> · <bdi class="n">3</bdi></div>
+          <h2>A pipeline of air</h2>
+          <p class="text">After <bdi class="n">8</bdi> weeks the dashboard showed <bdi class="n">$90,000</bdi> of deals. Salma called <bdi class="n">5</bdi> of them. <bdi class="n">2</bdi> had never heard of Daftar. <bdi class="n">3</bdi> had said “maybe later.” Nothing had closed. She had known for weeks and kept hoping. On a Sunday morning she told Ziad, kindly and clearly, that it was not working, paid him fairly, and thanked him. Then she told the team why. Mona spoke in the next meeting.</p>
+          <div class="idea lift"><img src="art/hisham.jpg" alt="" class="gp"><div><b>The fog lifts · Hire slowly, part ways quickly</b><p>A bad early hire costs far more than a salary: months of lost work and a team that has to compensate. The conversation you postpone gets more expensive.</p><small>Ben Horowitz, The Hard Thing About Hard Things (2014)</small></div></div><footer class="pn"><bdi class="n">55</bdi></footer></section>
+<section class="page story" data-n="56">
+          <figure class="arch "><img src="art/c9s4.jpg" alt=""></figure>
+          <div class="kicker">Chapter <bdi class="n">9</bdi> · <bdi class="n">4</bdi></div>
+          <h2>Bad news on page <bdi class="n">1</bdi></h2>
+          <p class="text">Layla now sat on a small board with Salma and Tariq. Before the first meeting Salma did what Hisham had told her: she sent the papers <bdi class="n">3</bdi> days early, and put the bad news on page <bdi class="n">1</bdi>. Ziad, the empty pipeline, and what it had cost. Layla read it before the meeting, so the meeting was not a surprise. It was a conversation about what to do next. It took <bdi class="n">40</bdi> minutes.</p>
+          <div class="idea lift"><img src="art/hisham.jpg" alt="" class="gp"><div><b>The fog lifts · Working with a board</b><p>Treat the board as a group you lead, not an exam you sit. Send materials <bdi class="n">3</bdi> days early and put bad news on the first page.</p><small>Brad Feld and Mahendra Ramsinghani, Startup Boards (2014)</small></div></div><footer class="pn"><bdi class="n">56</bdi></footer></section>
+<section class="page worksheet tools" data-n="57">
+      <div class="kicker">Chapter <bdi class="n">9</bdi></div>
+      <h2>Tools for week <bdi class="n">26</bdi></h2>
+      <h3><bdi class="n">1</bdi>. Before any hire</h3><ul class="checks"><li><i class="tick"></i><span>A real work sample, not just an interview</span></li><li><i class="tick"></i><span><bdi class="n">2</bdi> reference calls we found ourselves</span></li><li><i class="tick"></i><span>Time with the whole team</span></li><li><i class="tick"></i><span>How do they talk about past colleagues?</span></li></ul>
+<h3><bdi class="n">2</bdi>. The sales script: what customers ask, and what makes them say yes</h3><div class="wlines"><div class="wl"></div><div class="wl"></div><div class="wl"></div></div>
+<h3><bdi class="n">3</bdi>. Page <bdi class="n">1</bdi> of the next board pack: the bad news</h3><div class="wlines"><div class="wl"></div><div class="wl"></div></div><footer class="pn"><bdi class="n">57</bdi></footer></section>
+<section class="page opener" data-n="58">
+      <div class="kicker">Chapter <bdi class="n">10</bdi> · Week <bdi class="n">30</bdi></div>
+      <h1>The licence and the family</h1>
+      <figure class="arch mini"><img src="art/c10open.jpg" alt=""></figure>
+      <p class="lead big">Some of the hardest parts of the year happen far from the product: in a regulator's office, at a bank, and at the family dinner table.</p>
+      <blockquote>The rules are slow. Breaking them is slower.<cite>Hisham</cite></blockquote>
+      <div class="inthis"><h3>In this chapter</h3><ul><li><img src="art/c10s1.jpg" alt="" class="thumb"><span>Regulation in the region</span></li><li><img src="art/c10s2.jpg" alt="" class="thumb"><span>Relationships and wasta</span></li><li><img src="art/c10s3.jpg" alt="" class="thumb"><span>A personal guarantee</span></li><li><img src="art/c10s4.jpg" alt="" class="thumb"><span>Family and partner</span></li></ul></div><footer class="pn"><bdi class="n">58</bdi></footer></section>
+<section class="page story" data-n="59">
+          <figure class="arch "><img src="art/c10s1.jpg" alt=""></figure>
+          <div class="kicker">Chapter <bdi class="n">10</bdi> · <bdi class="n">1</bdi></div>
+          <h2>A letter from the regulator</h2>
+          <p class="text">In week <bdi class="n">30</bdi> a letter arrived. Because Daftar now moved shops' money, it needed permission from the central bank, or a place in its test programme for young companies. The process would take months. Tariq wanted to keep going and deal with it later. Hisham shook his head. “In payments, later is how companies disappear.” They applied to the test programme the next week, and Salma started a folder that grew very thick.</p>
+          <div class="idea lift"><img src="art/hisham.jpg" alt="" class="gp"><div><b>The fog lifts · Regulation in the region</b><p>Payments, health and education are regulated. Central-bank test programmes, licences and data rules take months. Start early and plan around them.</p><small>Common practice in the region</small></div></div><footer class="pn"><bdi class="n">59</bdi></footer></section>
+<section class="page story" data-n="60">
+          <figure class="arch "><img src="art/c10s2.jpg" alt=""></figure>
+          <div class="kicker">Chapter <bdi class="n">10</bdi> · <bdi class="n">2</bdi></div>
+          <h2>An uncle who can make a call</h2>
+          <p class="text">At a family lunch Salma's uncle heard about the folder. “I know someone,” he said. “One call, and it's done in a week.” It was tempting. Hisham's advice was simple: take the introduction, not the favour. Her uncle's friend explained which office handled their file and which papers were missing. Salma did everything the normal way, just with a map. It still took <bdi class="n">3</bdi> months. Nobody could ever say they had cut a corner.</p>
+          <div class="idea lift"><img src="art/hisham.jpg" alt="" class="gp"><div><b>The fog lifts · Relationships and wasta</b><p>Relationships open doors here. Use them for introductions and advice, not for skipping the rules. A shortcut can become the risk that ends you.</p><small>Common practice in the region</small></div></div><footer class="pn"><bdi class="n">60</bdi></footer></section>
+<section class="page story" data-n="61">
+          <figure class="arch "><img src="art/c10s3.jpg" alt=""></figure>
+          <div class="kicker">Chapter <bdi class="n">10</bdi> · <bdi class="n">3</bdi></div>
+          <h2>Sign here</h2>
+          <p class="text">To hold on until the licence came, the bank offered a <bdi class="n">$40,000</bdi> loan. On the last page, the bank wanted Salma's personal guarantee: if Daftar could not pay, her flat would. She held the pen for a long time. Then she put it down. They took a smaller loan of <bdi class="n">$15,000,</bdi> against the company's monthly revenue, with no guarantee, and cut <bdi class="n">2</bdi> planned hires instead. The flat stayed hers.</p>
+          <div class="idea lift"><img src="art/hisham.jpg" alt="" class="gp"><div><b>The fog lifts · A personal guarantee</b><p>A loan must be repaid whatever happens to the company. A personal guarantee puts your home behind it. Know exactly what you are signing.</p></div></div><footer class="pn"><bdi class="n">61</bdi></footer></section>
+<section class="page story" data-n="62">
+          <figure class="arch "><img src="art/c10s4.jpg" alt=""></figure>
+          <div class="kicker">Chapter <bdi class="n">10</bdi> · <bdi class="n">4</bdi></div>
+          <h2>A real job</h2>
+          <p class="text">In week <bdi class="n">38,</bdi> at Friday dinner, Salma's mother finally asked. “When will you get a real job? Your cousin just got promoted at the bank.” The table went quiet. Salma did not argue. She took out her phone and showed her mother the runway, the shops, and Umm Hany's message. Then she promised one thing: Friday evenings would stay family time, no laptop. Her mother did not understand the numbers. She understood the promise.</p>
+          <div class="idea lift"><img src="art/hisham.jpg" alt="" class="gp"><div><b>The fog lifts · Family and partner</b><p>The people at home carry part of the risk. Tell them the real numbers, and protect a little time that belongs only to them.</p><small>Brad Feld and Amy Batchelor, Startup Life (2013)</small></div></div><footer class="pn"><bdi class="n">62</bdi></footer></section>
+<section class="page worksheet tools" data-n="63">
+      <div class="kicker">Chapter <bdi class="n">10</bdi></div>
+      <h2>Tools for week <bdi class="n">30</bdi></h2>
+      <h3><bdi class="n">1</bdi>. Before signing any loan</h3><ul class="checks"><li><i class="tick"></i><span>Is there a personal guarantee? On what?</span></li><li><i class="tick"></i><span>What happens if we miss <bdi class="n">2</bdi> payments?</span></li><li><i class="tick"></i><span>Could we cut costs instead?</span></li><li><i class="tick"></i><span>Has a lawyer read it?</span></li></ul>
+<h3><bdi class="n">2</bdi>. Which rules and licences apply to our business?</h3><div class="wlines"><div class="wl"></div><div class="wl"></div></div>
+<h3><bdi class="n">3</bdi>. Who at home should know our runway, and which evening is theirs?</h3><div class="wlines"><div class="wl"></div><div class="wl"></div></div><footer class="pn"><bdi class="n">63</bdi></footer></section>
+<section class="page opener" data-n="64">
+      <div class="kicker">Chapter <bdi class="n">11</bdi> · Week <bdi class="n">44</bdi></div>
+      <h1>The pivot</h1>
+      <figure class="arch mini"><img src="art/c11open.jpg" alt=""></figure>
+      <p class="lead big">Sometimes the data points somewhere you did not plan to go. The hard part is not seeing it. It is saying it out loud.</p>
+      <blockquote>A pivot is not starting over. It is turning, with everything you learned in the car.<cite>Hisham</cite></blockquote>
+      <div class="inthis"><h3>In this chapter</h3><ul><li><img src="art/c11s1.jpg" alt="" class="thumb"><span>Cash is not profit</span></li><li><img src="art/c11s2.jpg" alt="" class="thumb"><span>Pivot or persevere</span></li><li><img src="art/c11s3.jpg" alt="" class="thumb"><span>Liquidation preference</span></li><li><img src="art/c11s4.jpg" alt="" class="thumb"><span>Say the plan in one sentence</span></li></ul></div><footer class="pn"><bdi class="n">64</bdi></footer></section>
+<section class="page story" data-n="65">
+          <figure class="arch "><img src="art/c11s1.jpg" alt=""></figure>
+          <div class="kicker">Chapter <bdi class="n">11</bdi> · <bdi class="n">1</bdi></div>
+          <h2><bdi class="n">90</bdi> days</h2>
+          <p class="text">By week <bdi class="n">44</bdi> Omar's company owed Daftar <bdi class="n">$12,000,</bdi> and it was <bdi class="n">90</bdi> days late. On paper, Daftar had its best quarter ever. In the bank, there was almost nothing. Salma finally understood Umm Hany's shoebox from the inside. “We're profitable and broke,” said Tariq. Hisham nodded. “Profit is an opinion. Cash is a fact.” Salma drove to Omar's warehouse with a printed statement and a cup of his favourite coffee.</p>
+          <div class="idea lift"><img src="art/hisham.jpg" alt="" class="gp"><div><b>The fog lifts · Cash is not profit</b><p>A sale you have not been paid for is a promise, not money. Watch how long customers take to pay, and chase it as hard as you sell.</p></div></div><footer class="pn"><bdi class="n">65</bdi></footer></section>
+<section class="page story" data-n="66">
+          <figure class="arch "><img src="art/c11s2.jpg" alt=""></figure>
+          <div class="kicker">Chapter <bdi class="n">11</bdi> · <bdi class="n">2</bdi></div>
+          <h2>The feature nobody asked for</h2>
+          <p class="text">Months ago Tariq had added a small button: get paid early. Daftar would pay a shop what it was owed today, for a <bdi class="n">2%</bdi> fee, and collect later. Almost nobody used it. Then Mona looked at the data. The <bdi class="n">30</bdi> shops that did use it grew <bdi class="n">3</bdi> times faster, and none of them had left. Shops did not mainly want reminders. They wanted their money now. The fog in front of the company thinned, all at once.</p>
+          <div class="idea lift"><img src="art/hisham.jpg" alt="" class="gp"><div><b>The fog lifts · Pivot or persevere</b><p>A pivot changes one part of the plan, such as the customer, the problem or the product, while keeping what you have learned.</p><small>Eric Ries, The Lean Startup (2011)</small></div></div><footer class="pn"><bdi class="n">66</bdi></footer></section>
+<section class="page story" data-n="67">
+          <figure class="arch "><img src="art/c11s3.jpg" alt=""></figure>
+          <div class="kicker">Chapter <bdi class="n">11</bdi> · <bdi class="n">3</bdi></div>
+          <h2><bdi class="n">2</bdi>x</h2>
+          <p class="text">To pay shops early they needed money to lend, and investors were interested now. One offer came with a beautiful valuation and one small line: a <bdi class="n">2</bdi>x participating preference. Hisham modelled it on the whiteboard. If Daftar sold one day for <bdi class="n">$3</bdi> million, that investor would take back twice their money first, and then a share of the rest. The founders would get far less than the valuation suggested. They took a lower valuation with a clean <bdi class="n">1</bdi>x preference.</p>
+          <div class="idea lift"><img src="art/hisham.jpg" alt="" class="gp"><div><b>The fog lifts · Liquidation preference</b><p>It decides who gets paid first when the company is sold. Model your share at a low, medium and high sale price before you sign.</p><small>Brad Feld and Jason Mendelson, Venture Deals</small></div></div><footer class="pn"><bdi class="n">67</bdi></footer></section>
+<section class="page story" data-n="68">
+          <figure class="arch "><img src="art/c11s4.jpg" alt=""></figure>
+          <div class="kicker">Chapter <bdi class="n">11</bdi> · <bdi class="n">4</bdi></div>
+          <h2>One sentence</h2>
+          <p class="text">Before telling anyone, Salma made them write the new plan in one sentence. It took <bdi class="n">2</bdi> evenings. “Daftar pays small shops today for what their customers owe them, and collects it kindly later.” They told the team first, then Layla, then Omar, then Umm Hany. Each one understood it in one hearing. Umm Hany asked only one question: “Can I have mine on Thursdays?”</p>
+          <div class="idea lift"><img src="art/hisham.jpg" alt="" class="gp"><div><b>The fog lifts · Say the plan in one sentence</b><p>If the plan doesn't fit in one sentence, the team will each carry a different version of it. Write it, then say it the same way to everyone.</p></div></div><footer class="pn"><bdi class="n">68</bdi></footer></section>
+<section class="page worksheet tools" data-n="69">
+      <div class="kicker">Chapter <bdi class="n">11</bdi></div>
+      <h2>Tools for week <bdi class="n">44</bdi></h2>
+      <h3><bdi class="n">1</bdi>. Months of revenue waiting to be paid</h3><div class="sumbox"><div class="sumrow" dir="ltr"><span class="blank lab"><em>owed to us</em></span><i>÷</i><span class="blank lab"><em>revenue a month</em></span><i>=</i><span class="blank big lab"><em>months</em></span></div></div>
+<h3><bdi class="n">2</bdi>. What do our best customers do that the others don't?</h3><div class="wlines"><div class="wl"></div><div class="wl"></div></div>
+<h3><bdi class="n">3</bdi>. Our plan in one sentence</h3><div class="wlines"><div class="wl"></div><div class="wl"></div></div><footer class="pn"><bdi class="n">69</bdi></footer></section>
+<section class="page opener" data-n="70">
+      <div class="kicker">Chapter <bdi class="n">12</bdi> · Week <bdi class="n">52</bdi></div>
+      <h1>A year later</h1>
+      <figure class="arch mini"><img src="art/c12open.jpg" alt=""></figure>
+      <p class="lead big">The fog never fully lifts. A year in, the difference is not that you can see everything. It is that you know how to look.</p>
+      <blockquote>You don't beat the fog. You learn to read it.<cite>Hisham</cite></blockquote>
+      <div class="inthis"><h3>In this chapter</h3><ul><li><img src="art/c12s1.jpg" alt="" class="thumb"><span>Default alive</span></li><li><img src="art/c12s2.jpg" alt="" class="thumb"><span>Exits</span></li><li><img src="art/c12s3.jpg" alt="" class="thumb"><span>Expanding to a new market</span></li><li><img src="art/c12s4.jpg" alt="" class="thumb"><span>Clarity, a year later</span></li></ul></div><footer class="pn"><bdi class="n">70</bdi></footer></section>
+<section class="page story equation" data-n="71">
+          <div class="kicker">Chapter <bdi class="n">12</bdi> · <bdi class="n">1</bdi></div>
+          <h2>The lines cross</h2>
+          <div class="eq long" dir="ltr">
+            <div class="box in"><b>21,000</b><span>revenue a month ($)</span></div><i>−</i>
+            <div class="box out"><b>19,500</b><span>costs a month ($)</span></div><i>=</i>
+            <div class="box pr"><b>1,500</b><span>left over ($)</span></div>
+          </div>
+          <figure class="arch mini"><img src="art/c12s1.jpg" alt=""></figure>
+          <p class="text">In week <bdi class="n">52</bdi> Salma redrew Hisham's <bdi class="n">2</bdi> lines on the same whiteboard. The early-payment fees had changed everything. Monthly revenue: <bdi class="n">$21,000</bdi>. Monthly costs: <bdi class="n">$19,500</bdi>. For the first time the lines had crossed. Daftar could keep going even if no investor ever called again. Tariq took a photo of the whiteboard. This time it was the right number.</p>
+          <div class="idea lift"><img src="art/hisham.jpg" alt="" class="gp"><div><b>The fog lifts · Default alive</b><p>Default alive is something you earn: revenue that covers costs, so the company decides its future, not the next round.</p><small>Paul Graham, Default Alive or Default Dead? (2015)</small></div></div><footer class="pn"><bdi class="n">71</bdi></footer></section>
+<section class="page story" data-n="72">
+          <figure class="arch "><img src="art/c12s2.jpg" alt=""></figure>
+          <div class="kicker">Chapter <bdi class="n">12</bdi> · <bdi class="n">2</bdi></div>
+          <h2>An offer</h2>
+          <p class="text">A big regional company called. They wanted to buy Daftar. The number was more money than Salma had ever imagined, and less than she now believed the company could become. Hisham told them how his own sale had gone: the price, the <bdi class="n">3</bdi> years he had to stay, the team he lost. “Selling is a fine ending,” he said. “Just make sure it's the ending you chose.” They said not now, and kept the door open.</p>
+          <div class="idea lift"><img src="art/hisham.jpg" alt="" class="gp"><div><b>The fog lifts · Exits</b><p>Selling a company is a real ending, with its own terms, timelines and people. Know what you want before the offer arrives.</p><small>Public reporting on Uber's acquisition of Careem (2019)</small></div></div><footer class="pn"><bdi class="n">72</bdi></footer></section>
+<section class="page story" data-n="73">
+          <figure class="arch "><img src="art/c12s3.jpg" alt=""></figure>
+          <div class="kicker">Chapter <bdi class="n">12</bdi> · <bdi class="n">3</bdi></div>
+          <h2>Riyadh?</h2>
+          <p class="text">Layla thought the next step was Riyadh. More shops, bigger orders, and wholesalers who already knew Omar. Salma was tempted. But Riyadh meant a different regulator, different payment habits, and a team that knew nobody there. They made a slower plan: one partner wholesaler first, a licence application, and Salma spending <bdi class="n">1</bdi> week a month there, drinking tea in shops at <bdi class="n">7</bdi> in the morning, again.</p>
+          <div class="idea lift"><img src="art/hisham.jpg" alt="" class="gp"><div><b>The fog lifts · Expanding to a new market</b><p>A new country is a new company in many ways: new rules, new payment habits, new relationships. Start with one partner and learn before you scale.</p><small>Common practice in the region</small></div></div><footer class="pn"><bdi class="n">73</bdi></footer></section>
+<section class="page story" data-n="74">
+          <figure class="arch "><img src="art/c12s4.jpg" alt=""></figure>
+          <div class="kicker">Chapter <bdi class="n">12</bdi> · <bdi class="n">4</bdi></div>
+          <h2>The fog, a year later</h2>
+          <p class="text">On the last evening of the year Salma stood at the window of the small office. The street outside was foggy again. It always would be. But she knew her runway to the week, she slept <bdi class="n">7</bdi> hours, she told her team the truth, and she wrote every number down. Hisham came in with <bdi class="n">2</bdi> coffees. “Next year will be harder,” he said. “Good,” said Salma. “I can see a little further now.”</p>
+          <div class="idea lift"><img src="art/hisham.jpg" alt="" class="gp"><div><b>The fog lifts · Clarity, a year later</b><p>The fog never fully lifts. Founders who last learn to work in it: numbers written down, sleep protected, people told the truth.</p></div></div><footer class="pn"><bdi class="n">74</bdi></footer></section>
+<section class="page worksheet tools" data-n="75">
+      <div class="kicker">Chapter <bdi class="n">12</bdi></div>
+      <h2>Your year</h2>
+      <h3><bdi class="n">1</bdi>. Three things that lifted the fog for us this year</h3><div class="wlines"><div class="wl"></div><div class="wl"></div><div class="wl"></div></div>
+<h3><bdi class="n">2</bdi>. One number we will check every single week</h3><div class="wlines"><div class="wl"></div></div>
+<h3><bdi class="n">3</bdi>. What we will do differently next year</h3><div class="wlines"><div class="wl"></div><div class="wl"></div><div class="wl"></div></div><footer class="pn"><bdi class="n">75</bdi></footer></section>
+<section class="page back" data-n="76">
     <p class="blurb">Salma has <bdi class="n">12</bdi> months of savings, a co-founder, a mentor and a problem worth solving. What she does not have is a clear view. A story about the first year of a company, the fog every founder works in, and the ideas that help it lift.</p>
     <div class="qrbig"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 29 29" shape-rendering="crispEdges"><path stroke="#0D3F3F" d="M0 0.5h7m4 0h2m3 0h1m1 0h3m1 0h7M0 1.5h1m5 0h1m2 0h1m1 0h8m3 0h1m5 0h1M0 2.5h1m1 0h3m1 0h1m1 0h1m1 0h1m3 0h1m1 0h1m2 0h2m1 0h1m1 0h3m1 0h1M0 3.5h1m1 0h3m1 0h1m1 0h6m3 0h1m1 0h1m2 0h1m1 0h3m1 0h1M0 4.5h1m1 0h3m1 0h1m1 0h1m2 0h1m1 0h1m2 0h4m2 0h1m1 0h3m1 0h1M0 5.5h1m5 0h1m1 0h2m2 0h4m1 0h1m4 0h1m5 0h1M0 6.5h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7M8 7.5h1m5 0h1m1 0h1m2 0h1M0 8.5h1m1 0h5m2 0h3m3 0h1m1 0h1m1 0h2m1 0h5M0 9.5h1m1 0h1m2 0h1m1 0h4m1 0h2m2 0h7m1 0h1m3 0h1M0 10.5h2m3 0h2m4 0h1m1 0h4m3 0h1m1 0h3M0 11.5h1m1 0h1m2 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h2m4 0h3m1 0h1m1 0h1M2 12.5h1m2 0h4m5 0h1m2 0h2m6 0h2M1 13.5h5m2 0h1m1 0h1m1 0h1m4 0h8m3 0h1M1 14.5h1m3 0h2m1 0h3m1 0h1m2 0h1m1 0h1m3 0h1m1 0h4M0 15.5h1m1 0h2m3 0h1m3 0h1m2 0h1m9 0h1m2 0h1M2 16.5h1m1 0h1m1 0h2m2 0h3m2 0h3m1 0h1m5 0h2M0 17.5h6m1 0h1m1 0h6m1 0h1m1 0h7m1 0h1m1 0h1M0 18.5h1m1 0h16m3 0h2m1 0h1m1 0h1M0 19.5h1m1 0h2m4 0h2m1 0h3m1 0h2m1 0h1m1 0h2m1 0h2m2 0h1M0 20.5h1m1 0h1m2 0h2m1 0h1m2 0h1m2 0h2m1 0h1m2 0h5m1 0h3M8 21.5h1m2 0h2m3 0h3m1 0h1m3 0h5M0 22.5h7m2 0h1m1 0h2m2 0h1m1 0h1m1 0h2m1 0h1m1 0h3M0 23.5h1m5 0h1m1 0h2m1 0h1m2 0h3m2 0h2m3 0h1m2 0h2M0 24.5h1m1 0h3m1 0h1m1 0h2m5 0h1m1 0h1m2 0h5m1 0h1M0 25.5h1m1 0h3m1 0h1m1 0h1m1 0h1m1 0h3m1 0h1m2 0h1m5 0h4M0 26.5h1m1 0h3m1 0h1m1 0h1m1 0h1m2 0h1m1 0h1m3 0h1m1 0h7M0 27.5h1m5 0h1m3 0h3m3 0h1m3 0h1m1 0h4m1 0h1M0 28.5h7m1 0h2m1 0h2m1 0h1m2 0h1m1 0h1m4 0h1m1 0h1"/></svg>
 </div>
@@ -348,7 +778,7 @@ html.bleed .reader .page { width: 154mm; height: 216mm; border: 3mm solid transp
     <p class="b2">English and Arabic · No account</p>
     <div class="back-art"><img src="art/salma.jpg" alt="" class=""><img src="art/tariq.jpg" alt="" class=""><img src="art/hisham.jpg" alt="" class=""></div></section>
 </div></div></main>
-<nav class="nav"><button class="prev" aria-label="Back">←</button><span class="count" dir="ltr"><span class="cur">1</span> / 10</span><button class="next" aria-label="Next">→</button></nav>
+<nav class="nav"><button class="prev" aria-label="Back">←</button><span class="count" dir="ltr"><span class="cur">1</span> / 76</span><button class="next" aria-label="Next">→</button></nav>
 <script>// Page-by-page reader. ?print shows every page for the PDF. #p5 opens page 5.
 (function () {
   "use strict";
