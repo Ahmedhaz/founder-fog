@@ -48,7 +48,7 @@ module.exports = {
     },
     book: {
       title: { en: "The picture book", ar: "الكتاب المصوّر" },
-      lead: { en: "A 60-page book: four stories in needle-felted pictures, then a guide to the game and a page for planning a real tiny business.", ar: "كتاب من 60 صفحة: أربع حكايات برسومات من الصوف الملبّد، ثم دليل للعبة وصفحة لتخطيط مشروع صغير حقيقي." },
+      lead: { en: "A 60-page book: four stories about four tiny businesses, then a guide to the game and a page for planning a real one.", ar: "كتاب من 60 صفحة: أربع حكايات عن أربعة مشاريع صغيرة، ثم دليل للعبة وصفحة لتخطيط مشروع حقيقي." },
       points: [
         { en: "36 scenes, each ending with one of Grandpa's ideas", ar: "36 مشهدًا، وكل مشهد ينتهي بفكرة من أفكار جدّو" },
         { en: "Read it page by page online", ar: "للقراءة صفحة بعد صفحة على الإنترنت" },
@@ -93,8 +93,8 @@ module.exports = {
   },
   bookIn: {
     kicker: { en: "Inside the book", ar: "داخل الكتاب" },
-    h2: { en: "36 felted scenes and one idea each.", ar: "36 مشهدًا من الصوف الملبّد، وفكرة في كل مشهد." },
-    sub: { en: "Every picture was made in the same handmade wool style, so Malak, Yousef and Grandpa look the same on every page. The numbers in the story match the game.", ar: "كل الصور مصنوعة بأسلوب الصوف اليدوي نفسه، فيظهر ملك ويوسف وجدّو بالشكل نفسه في كل صفحة. وأرقام الحكاية تطابق أرقام اللعبة." },
+    h2: { en: "36 scenes, one business lesson in each.", ar: "36 مشهدًا، وفي كل مشهد درس في البيزنس." },
+    sub: { en: "From cost and price to investing and partners, every scene teaches one real idea in words children understand. And the numbers in the stories match the game.", ar: "من التكلفة والسعر إلى الاستثمار والشراكة، كل مشهد يعلّم فكرة حقيقية من عالم البيزنس بكلمات يفهمها الأطفال. وأرقام الحكايات تطابق أرقام اللعبة." },
     pages: [
       ["01", { en: "The cover", ar: "الغلاف" }], ["04", { en: "Summer begins", ar: "الصيف يبدأ" }], ["08", { en: "Profit", ar: "الربح" }],
       ["09", { en: "A rainy Saturday", ar: "سبت ماطر" }], ["17", { en: "Your turn", ar: "دورك" }], ["22", { en: "The game guide", ar: "دليل اللعبة" }],
@@ -157,6 +157,6 @@ module.exports = {
   },
   foot: {
     line: { en: "The Little Entrepreneur · a sister to Founder Fog", ar: "الانتربرونور الصغير · مشروع شقيق لـ«ضباب المؤسس»" },
-    credit: { en: "Needle-felted pictures made for this project. Fonts: Manrope and Readex Pro (OFL). No cookies, no tracking.", ar: "رسومات الصوف الملبّد صُنعت لهذا المشروع. الخطوط: Manrope و Readex Pro (رخصة OFL). بلا ملفات تعريف ارتباط ولا تتبّع." },
+    credit: { en: "Pictures made for this project. Fonts: Manrope and Readex Pro (OFL). No cookies, no tracking.", ar: "رسومات صُنعت لهذا المشروع. الخطوط: Manrope و Readex Pro (رخصة OFL). بلا ملفات تعريف ارتباط ولا تتبّع." },
   },
 };
