@@ -6811,7 +6811,8 @@ __d(function (g, r, i, a, m, _e, d) {
     if (s.daily && !META.daily[s.daily.day]) {
       const score = dailyScore(s);
       META.daily[s.daily.day] = { score: score, weeks: s.week, outcome: outcome };
-      post("ff_daily_scores", { day: s.daily.day, device: ffDevice(), name: String(s.founderName || "Founder").slice(0, 24) || "Founder", company: String(s.companyName || "Company").slice(0, 32) || "Company", score: score, weeks: Math.min(60, s.week), outcome: outcome, lang: IS_AR ? "ar" : "en" });
+      // names never leave the device: the public board shows "You" and anonymous founders only
+      post("ff_daily_scores", { day: s.daily.day, device: ffDevice(), name: "Founder", company: "Company", score: score, weeks: Math.min(60, s.week), outcome: outcome, lang: IS_AR ? "ar" : "en" });
     }
     saveMeta();
     sfx(s.victory ? "win" : "lose");
@@ -6853,7 +6854,7 @@ __d(function (g, r, i, a, m, _e, d) {
             style: [xst.row, r.device === me && xst.rowMe],
             children: [
               jsx(Text, { style: xst.rank, children: i < 3 ? ["🥇", "🥈", "🥉"][i] : String(i + 1) }),
-              jsxs(View, { style: { flex: 1 }, children: [jsx(Text, { style: xst.who, numberOfLines: 1, children: r.device === me ? "You · " + r.company : r.name + " · " + r.company }), jsx(Text, { style: xst.how, children: r.outcome === "survived" ? `Survived ${r.weeks} weeks` : `Ended at week ${r.weeks}` })] }),
+              jsxs(View, { style: { flex: 1 }, children: [jsx(Text, { style: xst.who, numberOfLines: 1, children: r.device === me ? "You" : "Founder #" + String(r.device || "").slice(-4).toUpperCase() }), jsx(Text, { style: xst.how, children: r.outcome === "survived" ? `Survived ${r.weeks} weeks` : `Ended at week ${r.weeks}` })] }),
               jsx(Text, { style: xst.score, children: r.score > 0 ? compact(r.score) : "—" }),
             ],
           },
