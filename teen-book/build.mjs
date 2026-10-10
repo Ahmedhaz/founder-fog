@@ -155,7 +155,7 @@ function html(lang) {
 </head>
 <body>
 <header class="bar">
-  <a class="home" href="../../teen/${ar ? "?lang=ar" : "?lang=en"}"><img src="../../teen/icons/icon-192.png" alt=""><span>${esc(C.meta.title[lang])}</span></a>
+  <a class="home" href="../${ar ? "ar.html" : ""}"><img src="../../teen/icons/icon-192.png" alt=""><span>${esc(C.meta.title[lang])}</span></a>
   <a class="chip" href="${ar ? "./" : "ar.html"}" lang="${other}">${esc(C.ui.lang[lang])}</a>
   <a class="chip" href="${PDF(lang)}" download>${esc(C.ui[FULL ? "pdf" : "sample"][lang])}</a>
   <a class="chip primary" href="../../teen/${ar ? "?lang=ar" : "?lang=en"}">${esc(C.ui.play[lang])}</a>
