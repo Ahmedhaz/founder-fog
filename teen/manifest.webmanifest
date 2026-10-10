@@ -1,0 +1,17 @@
+{
+  "name": "تينبرونور · Teenpreneur",
+  "short_name": "Teenpreneur",
+  "description": "Run a side hustle for one school year: a free business game for ages 13 to 17, in Arabic and English.",
+  "id": "./",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#F8F6F1",
+  "theme_color": "#F8F6F1",
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
