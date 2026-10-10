@@ -1,0 +1,442 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>تينبرونور · الكتاب المصوّر</title>
+<meta name="description" content="تحتاج ليلى إلى 18,000 جنيه قبل نهاية العام الدراسي. لديها دفتر رسم، وصديق يصلح الهواتف، وخالة لها آراء، وأمّ وقّعت عقدًا معلّقًا على الثلاجة. حكاية عن تسعير الوقت، وقول «لا»، والأمان، والحفاظ على الدرجات، وأول مال يُكسب بالجهد الشخصي.">
+<link rel="canonical" href="https://adam.ahmedhaz.com/teenpreneur/book/ar.html">
+<link rel="alternate" hreflang="en" href="https://adam.ahmedhaz.com/teenpreneur/book/">
+<link rel="alternate" hreflang="ar" href="https://adam.ahmedhaz.com/teenpreneur/book/ar.html">
+<meta property="og:title" content="تينبرونور">
+<meta property="og:description" content="تحتاج ليلى إلى 18,000 جنيه قبل نهاية العام الدراسي. لديها دفتر رسم، وصديق يصلح الهواتف، وخالة لها آراء، وأمّ وقّعت عقدًا معلّقًا على الثلاجة. حكاية عن تسعير الوقت، وقول «لا»، والأمان، والحفاظ على الدرجات، وأول مال يُكسب بالجهد الشخصي.">
+<link rel="icon" type="image/png" href="../../teen/icons/icon-192.png">
+<style>/* Teenpreneur book. Same visual system as the Little Entrepreneur and Founder Fog books:
+   warm ivory and sand fields, Deep Teal for focus, Bronze accents, Manrope (EN) / Readex Pro (AR),
+   arch-topped frames, needle-felted art. Additions at the end: chapter openers, Nour's notes,
+   and tools pages. */
+@font-face { font-family: "Manrope"; src: url(fonts/Manrope.ttf) format("truetype"); font-weight: 200 800; font-display: block; }
+@font-face { font-family: "Readex Pro"; src: url(fonts/ReadexPro.ttf) format("truetype"); font-weight: 160 700; font-display: block; }
+:root {
+  --teal: #0D3F3F; --ink: #12292B; --ivory: #F8F6F1; --soft: #FBFAF9; --sand: #EEE9E2; --sand2: #E4DDD2;
+  --bronze: #8C6D45; --white: #FFFFFF; --grey: #5C6F70; --line: #DDD5C9;
+  --font: "Manrope", "Readex Pro", system-ui, sans-serif;
+}
+:lang(ar) { --font: "Readex Pro", "Manrope", system-ui, sans-serif; }
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body { font-family: var(--font); color: var(--ink); background: var(--sand); }
+bdi.n { unicode-bidi: isolate; direction: ltr; font-variant-numeric: tabular-nums; }
+img { display: block; }
+
+/* ───────── the page (A5) ───────── */
+@page { size: 148mm 210mm; margin: 0; }
+.page { width: 148mm; height: 210mm; position: relative; overflow: hidden; background: var(--soft); padding: 11mm 12mm 14mm;
+        display: flex; flex-direction: column; font-size: 11.4pt; line-height: 1.6; font-weight: 400; font-family: var(--font); }
+.page h1 { font-size: 30pt; line-height: 1.08; margin: 0; font-weight: 700; color: var(--teal); letter-spacing: -.01em; }
+.page h2 { font-size: 19pt; line-height: 1.2; margin: 1mm 0 3mm; font-weight: 700; color: var(--teal); letter-spacing: -.01em; }
+.page h3 { font-size: 12.5pt; margin: 0 0 2mm; font-weight: 700; color: var(--teal); }
+.page p { margin: 0 0 2.8mm; }
+:lang(ar) .page h1, :lang(ar) .page h2, :lang(ar) .page h3 { letter-spacing: 0; font-weight: 600; }
+.kicker { color: var(--bronze); font-weight: 700; font-size: 7.6pt; letter-spacing: .16em; text-transform: uppercase; }
+:lang(ar) .kicker { letter-spacing: 0; font-size: 9pt; font-weight: 500; }
+.lead { color: var(--grey); }
+.pn { position: absolute; bottom: 6mm; left: 0; right: 0; text-align: center; font-size: 8pt; color: var(--grey); letter-spacing: .1em; }
+
+/* ───────── the threshold: arch-topped frames ───────── */
+.arch { margin: 0 0 5mm; flex: none; height: 82mm; overflow: hidden; background: var(--sand);
+        border-radius: 62mm 62mm 3mm 3mm / 30mm 30mm 3mm 3mm; box-shadow: 0 .8mm 0 var(--sand2); }
+.arch img { width: 100%; height: 100%; object-fit: cover; }
+.arch.mini { height: 50mm; border-radius: 62mm 62mm 3mm 3mm / 22mm 22mm 3mm 3mm; }
+
+/* ───────── Grandpa's idea: a contained Deep Teal panel ───────── */
+.idea { margin-top: auto; display: flex; gap: 3.5mm; align-items: center; background: var(--teal); color: var(--ivory); border-radius: 4mm; padding: 3.2mm 4.5mm; }
+.idea .gp { width: 13mm; height: 13mm; flex: none; border-radius: 50%; object-fit: cover; border: .6mm solid var(--ivory); }
+.idea b { font-size: 7.4pt; color: #D2B48A; letter-spacing: .14em; text-transform: uppercase; font-weight: 700; }
+:lang(ar) .idea b { letter-spacing: 0; font-size: 8.6pt; font-weight: 500; }
+.idea p { margin: .5mm 0 0; font-weight: 500; font-size: 11pt; line-height: 1.45; }
+
+/* ───────── cover & back ───────── */
+.cover { background: var(--ivory); text-align: center; padding: 12mm 12mm 10mm; }
+.cover .cover-top { display: flex; justify-content: center; margin-bottom: 4mm; }
+.cover .ages { border: .4mm solid var(--bronze); color: var(--bronze); border-radius: 99px; padding: .4mm 4mm; font-weight: 600; font-size: 8.5pt; letter-spacing: .08em; }
+:lang(ar) .cover .ages { letter-spacing: 0; }
+.cover h1 { font-size: 32pt; }
+.cover .cover-sub { color: var(--grey); font-size: 11.5pt; margin: 2.5mm 4mm 6mm; }
+.arch.cover-art { height: 138mm; border-radius: 62mm 62mm 4mm 4mm / 50mm 50mm 4mm 4mm; }
+.cover .cover-foot { margin-top: auto; margin-bottom: 0; font-size: 8pt; color: var(--grey); letter-spacing: .1em; }
+.back { background: var(--teal); color: var(--ivory); text-align: center; padding: 16mm 14mm 12mm; }
+.back .blurb { font-size: 12.5pt; line-height: 1.6; margin: 0 2mm 9mm; font-weight: 400; }
+.qrbig { width: 44mm; height: 44mm; margin: 0 auto; background: var(--ivory); border-radius: 22mm 22mm 4mm 4mm / 14mm 14mm 4mm 4mm; padding: 6mm 5mm 4mm; }
+.qrbig svg, .qr svg { width: 100%; height: 100%; display: block; }
+.back .b1 { font-size: 14pt; font-weight: 700; margin: 6mm 0 0; }
+.back .url { font-size: 11pt; margin: 0 0 2mm; direction: ltr; color: #D2B48A; }
+.back .b2 { font-size: 9pt; opacity: .85; }
+.back-art { margin-top: auto; display: flex; justify-content: center; gap: 4mm; }
+.back-art img { width: 15mm; height: 15mm; border-radius: 50%; object-fit: cover; border: .5mm solid rgba(248, 246, 241, .5); }
+
+/* ───────── front matter ───────── */
+.titlepage { text-align: center; justify-content: center; background: var(--ivory); }
+.tp-art { display: flex; justify-content: center; gap: 4mm; margin-bottom: 8mm; }
+.tp-art img { width: 18mm; height: 18mm; border-radius: 50%; object-fit: cover; }
+.titlepage .alt { color: var(--bronze); font-size: 14pt; font-weight: 500; margin: 2mm 0 9mm; }
+.titlepage .lead { font-size: 11.5pt; margin: 0 6mm 3mm; }
+.titlepage .credits { margin-top: auto; font-size: 7.6pt; color: var(--grey); }
+.titlepage .credits p { margin: 0 0 1mm; }
+.parents p { font-size: 11.8pt; }
+.toc { margin-top: auto; background: var(--sand); border-radius: 4mm; padding: 4mm 5mm; }
+.toc ol { list-style: none; margin: 0; padding: 0; }
+.toc li { display: flex; align-items: baseline; gap: 2mm; font-size: 10pt; font-weight: 600; padding: .7mm 0; color: var(--ink); }
+.toc li i { flex: 1; border-bottom: .3mm dotted var(--bronze); transform: translateY(-1mm); }
+.toc li bdi { color: var(--teal); }
+
+/* ───────── story ───────── */
+.story .text { font-size: 13.4pt; line-height: 1.6; }
+:lang(ar) .story .text { font-size: 12.6pt; line-height: 1.8; }
+.equation .eq { display: flex; align-items: center; justify-content: center; gap: 2.5mm; margin: 1mm 0 5mm; }
+.eq .box { border-radius: 4mm; padding: 2.5mm 3mm; text-align: center; min-width: 30mm; background: var(--white); border: .4mm solid var(--line); }
+.eq .box b { display: block; font-size: 28pt; line-height: 1.1; font-weight: 700; color: var(--teal); font-family: "Manrope", sans-serif; }
+.eq .box span { font-size: 8.5pt; color: var(--grey); font-weight: 500; }
+.eq .out b { color: var(--bronze); }
+.eq .pr { background: var(--teal); border-color: var(--teal); } .eq .pr b, .eq .pr span { color: var(--ivory); }
+.eq i { font-style: normal; font-size: 20pt; font-weight: 500; color: var(--grey); }
+
+/* ───────── ideas recap ───────── */
+.stickers { display: grid; grid-template-columns: 1fr 1fr; gap: 2.4mm; flex: 1; align-content: start; }
+.sticker { background: var(--white); border: .3mm solid var(--line); border-radius: 3.5mm; padding: 2mm 2.5mm; display: flex; gap: 2.4mm; align-items: center; }
+.sticker .thumb { width: 11mm; height: 11mm; flex: none; border-radius: 5.5mm 5.5mm 1.5mm 1.5mm; object-fit: cover; }
+.sticker p { margin: 0; font-size: 8.2pt; line-height: 1.35; font-weight: 500; }
+
+/* ───────── worksheet ───────── */
+.field { display: flex; align-items: flex-end; gap: 3mm; margin: 3mm 0; font-weight: 600; font-size: 10.6pt; color: var(--teal); }
+.field span { white-space: nowrap; }
+.field .line { flex: 1; border-bottom: .4mm dashed var(--bronze); height: 8mm; position: relative; }
+.field .line em { position: absolute; inset-inline-end: 0; bottom: .5mm; font-style: normal; color: var(--grey); font-size: 8.5pt; font-weight: 400; }
+.sumbox { background: var(--sand); border-radius: 4mm; padding: 3.5mm 4mm; margin: 3mm 0; }
+.sumbox p { font-weight: 600; margin: 0 0 2.5mm; color: var(--teal); }
+.sumrow { display: flex; align-items: center; justify-content: center; gap: 3mm; }
+.sumrow .blank { width: 24mm; height: 12mm; border: .4mm solid var(--line); border-radius: 3mm; background: var(--white); }
+.sumrow .blank.big { width: 30mm; border: .6mm solid var(--teal); }
+.sumrow i { font-style: normal; font-size: 16pt; color: var(--grey); }
+.field.goal .gimg { width: 11mm; height: 11mm; border-radius: 50%; object-fit: cover; }
+.piggyrow { margin-top: auto; display: flex; align-items: center; gap: 2.2mm; justify-content: center; }
+.piggyrow img { width: 15mm; height: 15mm; border-radius: 50%; object-fit: cover; }
+.piggyrow .dot { width: 7.5mm; height: 7.5mm; border-radius: 50%; border: .4mm dashed var(--bronze); }
+
+/* ───────── price it (after the bracelet story) ───────── */
+.priceit h3 { margin: 3mm 0 1.5mm; }
+.ptab { width: 100%; border-collapse: separate; border-spacing: 0 1.6mm; font-size: 10.4pt; }
+.ptab th { font-size: 7.6pt; color: var(--bronze); text-align: start; padding: 0 1.5mm; letter-spacing: .1em; text-transform: uppercase; font-weight: 700; }
+:lang(ar) .ptab th { letter-spacing: 0; font-size: 8.6pt; font-weight: 500; }
+.ptab td { background: var(--white); padding: 1.4mm 1.8mm; border-top: .3mm solid var(--line); border-bottom: .3mm solid var(--line); font-weight: 600; }
+.ptab td:first-child { border-inline-start: .3mm solid var(--line); border-start-start-radius: 3mm; border-end-start-radius: 3mm; }
+.ptab td:last-child { border-inline-end: .3mm solid var(--line); border-start-end-radius: 3mm; border-end-end-radius: 3mm; }
+.ptab .nm { display: flex; align-items: center; gap: 2mm; color: var(--teal); }
+.ptab .nm img { width: 8mm; height: 8mm; flex: none; border-radius: 50%; object-fit: cover; }
+.priceit .blank { display: inline-block; width: 14mm; height: 7mm; border: .4mm dashed var(--bronze); border-radius: 2mm; vertical-align: middle; }
+.keeps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2mm; }
+.kitem { background: var(--white); border: .3mm solid var(--line); border-radius: 3mm; padding: 2mm 1.5mm; text-align: center; font-size: 8.6pt; }
+.kitem img { width: 11mm; height: 11mm; border-radius: 50%; object-fit: cover; margin: 0 auto 1mm; }
+.kitem b { display: block; color: var(--teal); font-size: 9.6pt; margin-bottom: 1mm; }
+.kitem span { display: flex; align-items: center; gap: 1.5mm; justify-content: center; color: var(--grey); line-height: 1.7; }
+.tick { width: 3.4mm; height: 3.4mm; border: .35mm solid var(--bronze); border-radius: .8mm; flex: none; }
+.boxq { display: flex; align-items: center; gap: 3mm; background: var(--sand); border-radius: 4mm; padding: 2.5mm 3.5mm; }
+.boxq img { width: 12mm; height: 12mm; border-radius: 50%; object-fit: cover; flex: none; }
+.boxq p { margin: 0; flex: 1; font-size: 10pt; line-height: 1.45; }
+.boxq .blank { flex: none; }
+.answers { margin: auto 0 0 !important; transform: rotate(180deg); text-align: center; font-size: 8pt; color: var(--grey); }
+
+.wlines .wl { border-bottom: .4mm dashed var(--bronze); height: 8.5mm; }
+
+/* ───────── talk + certificate ───────── */
+.tq { display: flex; gap: 3mm; align-items: flex-start; background: var(--white); border: .3mm solid var(--line); border-radius: 3.5mm; padding: 2.6mm 3mm; margin-bottom: 2.6mm; }
+.tq .thumb { width: 16mm; height: 16mm; flex: none; border-radius: 8mm 8mm 2mm 2mm; object-fit: cover; }
+.tq b { font-size: 8pt; color: var(--bronze); letter-spacing: .08em; text-transform: uppercase; }
+:lang(ar) .tq b { letter-spacing: 0; font-size: 9pt; font-weight: 500; }
+.tq ul { margin: 1mm 0 0; padding-inline-start: 4.5mm; font-size: 10.2pt; line-height: 1.5; }
+.tq li::marker { color: var(--bronze); }
+.cert { background: var(--ivory); padding: 9mm; }
+.cert-in { flex: 1; display: flex; flex-direction: column; align-items: center; text-align: center; border: .6mm solid var(--teal); outline: .3mm solid var(--bronze); outline-offset: -2.4mm;
+           border-radius: 60mm 60mm 4mm 4mm / 26mm 26mm 4mm 4mm; padding: 16mm 10mm 8mm; }
+.cert-in h2 { font-size: 24pt; margin-bottom: 4mm; }
+.cert-gp { width: 26mm; height: 26mm; border-radius: 50%; object-fit: cover; margin-bottom: 4mm; }
+.cert-in .lead { margin: 0 4mm 5mm; }
+.cert-in .field { width: 100%; }
+.cert-in .tp-art { margin: auto 0 0; }
+
+/* ───────── game guide ───────── */
+.manual-intro p { font-size: 12pt; }
+.mi-art { margin-top: auto; display: flex; align-items: flex-end; justify-content: center; gap: 8mm; }
+.phone { width: 60mm; aspect-ratio: 390 / 844; border-radius: 6mm; padding: 1.4mm; background: var(--ink); flex: none; box-shadow: 0 1.5mm 4mm rgba(18, 41, 43, .18); }
+.phone img { width: 100%; height: 100%; object-fit: cover; object-position: top; border-radius: 4.8mm; }
+.mi-art .phone { width: 46mm; }
+.qr { width: 34mm; text-align: center; font-size: 7.6pt; color: var(--grey); }
+.qr svg { width: 34mm; height: 34mm; background: var(--white); border-radius: 3mm; padding: 2mm; border: .3mm solid var(--line); margin-bottom: 1.5mm; }
+.mrow { display: flex; gap: 5mm; align-items: flex-start; flex: 1; }
+.mrow.stack { flex-direction: column; align-items: center; }
+.phone.crop-top { aspect-ratio: auto; width: 112mm; height: 58mm; border-radius: 7mm; }
+.mrow.stack .steps { width: 100%; margin-top: 2mm; }
+.steps { list-style: none; margin: 0; padding: 0; counter-reset: st; flex: 1; }
+.steps li { counter-increment: st; position: relative; padding-inline-start: 9mm; margin-bottom: 4.5mm; font-size: 11pt; line-height: 1.5; }
+.steps li::before { content: counter(st); position: absolute; inset-inline-start: 0; top: .2mm; width: 6mm; height: 6mm; border-radius: 50%; background: var(--teal); color: var(--ivory); font-weight: 700; font-size: 8.5pt; display: grid; place-items: center; font-family: "Manrope", sans-serif; }
+.biz table { width: 100%; border-collapse: separate; border-spacing: 0 2.4mm; font-size: 10.4pt; }
+.biz th { font-size: 7.6pt; color: var(--bronze); text-align: start; padding: 0 1.5mm; letter-spacing: .1em; text-transform: uppercase; font-weight: 700; }
+:lang(ar) .biz th { letter-spacing: 0; font-size: 8.6pt; font-weight: 500; }
+.biz td { background: var(--white); padding: 1.8mm 1.8mm; border-top: .3mm solid var(--line); border-bottom: .3mm solid var(--line); font-weight: 600; }
+.biz td:first-child { border-inline-start: .3mm solid var(--line); border-start-start-radius: 3mm; border-end-start-radius: 3mm; }
+.biz td:last-child { border-inline-end: .3mm solid var(--line); border-start-end-radius: 3mm; border-end-end-radius: 3mm; }
+.biz .nm { display: flex; align-items: center; gap: 2mm; color: var(--teal); }
+.biz .nm img { width: 9mm; height: 9mm; flex: none; border-radius: 50%; object-fit: cover; }
+.biz .spoil { color: var(--bronze); } .biz .kept { color: var(--teal); }
+.tips { margin-top: auto; background: var(--sand); border-radius: 4mm; padding: 3.5mm 4.5mm; }
+.tips-h { display: flex; align-items: center; gap: 3mm; }
+.tips-h .gp { width: 12mm; height: 12mm; border-radius: 50%; object-fit: cover; }
+.tips-h h3 { margin: 0; }
+.tips ul { margin: 2mm 0 0; padding-inline-start: 5mm; font-size: 10.6pt; line-height: 1.7; }
+.tips li::marker { color: var(--bronze); }
+.words { display: grid; grid-template-columns: 1fr 1fr; gap: 3.5mm; margin-top: 3mm; }
+.word { display: flex; gap: 2.8mm; align-items: flex-start; background: var(--white); border: .3mm solid var(--line); border-radius: 3.5mm; padding: 2.6mm; }
+.word img { width: 12mm; height: 12mm; flex: none; border-radius: 50%; object-fit: cover; }
+.word b { font-size: 11.5pt; color: var(--teal); }
+.word p { margin: 0; font-size: 9.6pt; line-height: 1.4; color: var(--grey); }
+
+/* ───────── screen reader ───────── */
+.bar { position: sticky; top: 0; z-index: 10; display: flex; align-items: center; gap: 8px; padding: 8px 12px; background: var(--ivory); border-bottom: 1px solid var(--line); }
+.bar .home { display: flex; align-items: center; gap: 8px; margin-inline-end: auto; color: var(--teal); text-decoration: none; font-weight: 700; min-width: 0; }
+.bar .home img { width: 34px; height: 34px; border-radius: 9px; }
+.bar .home span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.chip { min-height: 44px; display: inline-flex; align-items: center; padding: 0 14px; border-radius: 999px; border: 1px solid var(--line); background: var(--white); color: var(--teal); text-decoration: none; font-weight: 600; font-size: 15px; white-space: nowrap; }
+.chip.primary { background: var(--teal); border-color: var(--teal); color: var(--ivory); }
+@media (max-width: 560px) { .bar .home span { display: none; } .chip { padding: 0 10px; font-size: 14px; } }
+.reader { display: flex; justify-content: center; padding: 16px 10px 88px; overflow: hidden; }
+.stage { width: calc(148mm * var(--k, 1)); height: calc(210mm * var(--k, 1)); position: relative; overflow: hidden; }
+.book { position: absolute; top: 0; left: 0; width: 148mm; height: 210mm; transform: scale(var(--k, 1)); transform-origin: top left; }
+.reader .page { display: none; border-radius: 2mm; box-shadow: 0 8px 28px rgba(18, 41, 43, .14); }
+.reader .page.current { display: flex; animation: turn .45s ease; }
+.reader .page.current.back-turn { animation: turnback .45s ease; }
+@keyframes turn { from { opacity: 0; transform: translateX(calc(var(--d, 1) * 8mm)); } }
+@keyframes turnback { from { opacity: 0; transform: translateX(calc(var(--d, 1) * -8mm)); } }
+[dir="rtl"] { --d: -1; }
+.nav { position: fixed; bottom: 0; left: 0; right: 0; display: flex; align-items: center; justify-content: center; gap: 16px; padding: 10px 12px calc(10px + env(safe-area-inset-bottom)); background: linear-gradient(transparent, var(--sand) 35%); }
+.nav button { width: 54px; height: 54px; border-radius: 50%; border: 1px solid var(--line); background: var(--white); font-size: 22px; color: var(--teal); cursor: pointer; font-family: var(--font); }
+.nav button:disabled { opacity: .35; cursor: default; }
+.nav .count { font-weight: 600; color: var(--grey); min-width: 70px; text-align: center; font-family: "Manrope", sans-serif; }
+@media (prefers-reduced-motion: reduce) { .reader .page.current { animation: none !important; } }
+
+/* ───────── print / PDF: every page, one per sheet ───────── */
+html.print body, html.print .reader { background: none; padding: 0; display: block; overflow: visible; }
+html.print .bar, html.print .nav { display: none; }
+html.print .stage, html.print .book { position: static; overflow: visible; width: auto; height: auto; transform: none; }
+html.print .reader .page { display: flex; border-radius: 0; box-shadow: none; animation: none; break-after: page; }
+/* Print-shop edition: 3 mm bleed on every side (see little-book/book.css). */
+html.bleed .reader .page { width: 154mm; height: 216mm; border: 3mm solid transparent; }
+@media print {
+  .bar, .nav { display: none !important; }
+  body, .reader { background: none; padding: 0; display: block; overflow: visible !important; }
+  .stage, .book { position: static !important; overflow: visible !important; width: auto !important; height: auto !important; transform: none !important; }
+  .reader .page { display: flex !important; border-radius: 0; box-shadow: none; animation: none !important; break-after: page; }
+  * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+}
+
+/* ───────── chapter book additions ───────── */
+.story .text { font-size: 11.6pt; line-height: 1.62; }
+:lang(ar) .story .text { font-size: 11.2pt; line-height: 1.8; }
+.arch { height: 74mm; }
+.lift b { letter-spacing: .1em; }
+.lift small { display: block; margin-top: 1mm; font-size: 7.4pt; color: #D2B48A; line-height: 1.35; }
+.lift p { font-size: 10.4pt; }
+.opener { background: linear-gradient(180deg, var(--soft) 55%, #EFE7DA 100%); }
+.opener h1 { font-size: 34pt; margin: 3mm 0 6mm; }
+.opener .lead.big { font-size: 13.5pt; line-height: 1.55; color: var(--ink); }
+.opener blockquote { margin: 5mm 0 0; padding: 4mm 5mm; border-inline-start: 1mm solid var(--bronze); background: var(--sand); border-radius: 0 3mm 3mm 0; font-size: 12pt; font-weight: 500; color: var(--teal); }
+[dir="rtl"] .opener blockquote { border-radius: 3mm 0 0 3mm; }
+.opener cite { display: block; margin-top: 1.5mm; font-style: normal; font-size: 8.5pt; color: var(--bronze); font-weight: 600; }
+.inthis { margin-top: auto; }
+.inthis ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 2.4mm; }
+.inthis li { display: flex; align-items: center; gap: 2.4mm; background: var(--white); border: .3mm solid var(--line); border-radius: 3mm; padding: 1.8mm 2.2mm; font-weight: 600; font-size: 9.6pt; color: var(--teal); }
+.inthis .thumb { width: 11mm; height: 11mm; border-radius: 5.5mm 5.5mm 1.5mm 1.5mm; object-fit: cover; flex: none; }
+.tools h3 { margin: 4mm 0 2mm; }
+.sumrow .lab { position: relative; }
+.sumrow .lab em { position: absolute; top: 100%; left: 0; right: 0; text-align: center; font-style: normal; font-size: 7.4pt; color: var(--grey); margin-top: .8mm; }
+.tools .sumbox { padding-bottom: 7mm; }
+.checks { list-style: none; margin: 0; padding: 0; }
+.checks li { display: flex; gap: 2.5mm; align-items: flex-start; padding: 1.6mm 0; border-bottom: .3mm dashed var(--line); font-size: 10.4pt; }
+.tick { width: 3.6mm; height: 3.6mm; border: .35mm solid var(--bronze); border-radius: .8mm; flex: none; margin-top: 1mm; }
+.lead.small { font-size: 9pt; margin-bottom: 2mm; }
+.tally { display: grid; grid-template-columns: repeat(10, 1fr); gap: 2mm; }
+.tally .dot { aspect-ratio: 1; border-radius: 50%; border: .4mm dashed var(--bronze); display: grid; place-items: center; font-size: 6.5pt; color: var(--grey); }
+.teencover { background: linear-gradient(180deg, var(--ivory) 60%, #F1E6D2 100%); }
+.tp-art img, .back-art img { object-position: center 20%; }
+.wlines .wl { border-bottom: .4mm dashed var(--bronze); height: 8mm; }
+.eq.long .box { min-width: 0; flex: 1; padding: 2.5mm 1.5mm; }
+.eq.long .box b { font-size: 19pt; }
+.eq.long { gap: 1.5mm; }
+.tools .sumbox { padding-bottom: 11mm; }
+.tools .sumrow .blank { width: 27mm; }
+.tools .sumrow .blank.big { width: 30mm; }
+.sumrow .lab em { font-size: 7pt; line-height: 1.25; }
+.fulltoc { list-style: none; margin: 2mm 0 0; padding: 0; }
+.fulltoc li { display: flex; align-items: baseline; gap: 3mm; padding: 1.7mm 0; border-bottom: .3mm solid var(--line); font-weight: 600; color: var(--ink); font-size: 10.6pt; }
+.fulltoc li bdi { color: var(--bronze); width: 6mm; }
+.fulltoc li span { flex: 1; }
+.fulltoc li em { font-style: normal; font-size: 8.5pt; color: var(--grey); font-weight: 500; }
+.fulltoc li.read span { color: var(--teal); }
+.fullbook .note { margin-top: auto; text-align: center; color: var(--bronze); font-weight: 600; font-size: 9.5pt; }
+/* Teenpreneur chapters have five scenes: a smaller opener picture and a tighter list keep the opener on one page. */
+.opener .arch.mini { height: 38mm; }
+.opener h1 { margin: 2mm 0 4mm; }
+.opener .lead.big { font-size: 12.5pt; }
+.opener blockquote { margin-top: 3.5mm; padding: 3mm 4.5mm; font-size: 11.2pt; }
+.inthis h3 { margin-bottom: 1.5mm; }
+.inthis ul { gap: 1.8mm; }
+.inthis li { padding: 1.3mm 2mm; font-size: 9pt; line-height: 1.3; }
+.inthis .thumb { width: 9.5mm; height: 9.5mm; }
+.teencover .arch.cover-art { height: 132mm; }
+</style>
+</head>
+<body>
+<header class="bar">
+  <a class="home" href="../ar.html"><img src="../../teen/icons/icon-192.png" alt=""><span>تينبرونور</span></a>
+  <a class="chip" href="./" lang="en">English</a>
+  <a class="chip" href="teenpreneur-sample-ar.pdf" download>عيّنة PDF</a>
+  <a class="chip primary" href="../../teen/?lang=ar">العب اللعبة</a>
+</header>
+<main class="reader"><div class="stage"><div class="book">
+<section class="page cover teencover" data-n="1">
+    <div class="cover-top"><span class="ages">حكاية للأعمار من 13 إلى 17</span></div>
+    <h1>تينبرونور</h1>
+    <p class="cover-sub">عام دراسي واحد، ومشروع جانبي واحد، وكل ما لا يقوله أحد عن المال</p>
+    <figure class="arch cover-art"><img src="art/cover.jpg" alt=""></figure>
+    <p class="cover-foot">adam.ahmedhaz.com/teen</p></section>
+<section class="page titlepage" data-n="2">
+    <div class="tp-art"><img src="art/laila.jpg" alt="" class=""><img src="art/omar.jpg" alt="" class=""><img src="art/salma.jpg" alt="" class=""><img src="art/nour.jpg" alt="" class=""></div>
+    <h1>تينبرونور</h1>
+    <h2 class="alt">Teenpreneur</h2>
+    <p class="lead">حكاية عن ليلى وعمر وسلمى والخالة نور، وعن عام دراسي واحد مع مشروع جانبي.</p><p class="lead">مكتوبة للمراهقين الذين يريدون كسب مالهم بأنفسهم، وللكبار الذين يشجعونهم.</p>
+    <div class="credits"><p>الصور: فن يدوي من الصوف صُنع لهذا الكتاب. الخطوط: Manrope و Readex Pro (رخصة SIL المفتوحة).</p><p>الأفكار من لعبة «تينبرونور»، وليست نصيحة مالية أو قانونية.</p><p>© <bdi class="n">2026</bdi> adam.ahmedhaz.com</p></div><footer class="pn"><bdi class="n">2</bdi></footer></section>
+<section class="page parents" data-n="3">
+    <h2>قبل أن تبدأ</h2>
+    <p>ليلى عمرها <bdi class="n">15</bdi> عامًا. يتوقف لابتوب أختها القديم في منتصف واجب رياضيات، والجديد يكلّف <bdi class="n">18,000</bdi> جنيه. يتبعها هذا الكتاب خلال عام دراسي كامل تصمّم فيه القوائم والملصقات لمحلات شارعها، مع صديقيها عمر وسلمى، وخالتها نور التي تدير مطبعة صغيرة منذ عشرين عامًا.</p><p>وينتهي كل مشهد بـ«ملاحظة نور»: فكرة واحدة بكلمات بسيطة. وفي آخر كل فصل صفحة أدوات للاستخدام في مشروعك الجانبي هذا الأسبوع.</p><p>خرجت الحكاية من «تينبرونور»، لعبة مجانية تدير فيها مشروعًا جانبيًا أسبوعًا بأسبوع وتحافظ على درجاتك. فصل للقراءة، ثم عام كامل للّعب.</p>
+    <div class="toc"><h3>المحتويات</h3><ol><li><span>الفصل 1: السعر الأول</span><i></i><bdi class="n">4</bdi></li></ol></div><footer class="pn"><bdi class="n">3</bdi></footer></section>
+<section class="page opener" data-n="4">
+      <div class="kicker">الفصل <bdi class="n">1</bdi> · الأسبوع <bdi class="n">1</bdi></div>
+      <h1>السعر الأول</h1>
+      <figure class="arch mini"><img src="art/c1open.jpg" alt=""></figure>
+      <p class="lead big">كل مشروع جانبي يبدأ بشيء تريده، وشيء تجيده، ورقم تخاف أن تقوله بصوت عالٍ.</p>
+      <blockquote>إن لم تضع سعرًا لوقتك، سيضعه غيرك. وغالبًا يكون صفرًا.<cite>الخالة نور</cite></blockquote>
+      <div class="inthis"><h3>في هذا الفصل</h3><ul><li><img src="art/c1s1.jpg" alt="" class="thumb"><span>هدف يمكن تقسيمه</span></li><li><img src="art/c1s2.jpg" alt="" class="thumb"><span>السعر يغطي التكلفة والوقت</span></li><li><img src="art/c1s3.jpg" alt="" class="thumb"><span>الربح هو ما يتبقّى</span></li><li><img src="art/c1s4.jpg" alt="" class="thumb"><span>حساب الساعات</span></li><li><img src="art/c1s5.jpg" alt="" class="thumb"><span>قواعد تُكتب معًا</span></li></ul></div><footer class="pn"><bdi class="n">4</bdi></footer></section>
+<section class="page story equation" data-n="5">
+          <div class="kicker">الفصل <bdi class="n">1</bdi> · <bdi class="n">1</bdi></div>
+          <h2><bdi class="n">600</bdi> في الأسبوع</h2>
+          <div class="eq long" dir="ltr">
+            <div class="box in"><b>18,000</b><span>اللابتوب (جنيه)</span></div><i>÷</i>
+            <div class="box out"><b>30</b><span>أسبوعًا دراسيًا</span></div><i>=</i>
+            <div class="box pr"><b>600</b><span>جنيه أسبوعيًا</span></div>
+          </div>
+          <figure class="arch mini"><img src="art/c1s1.jpg" alt=""></figure>
+          <p class="text">انطفأت الشاشة في الساعة <bdi class="n">11</bdi> ليلًا، في منتصف واجب رياضيات. كان لابتوب أخت ليلى عمره <bdi class="n">8</bdi> سنوات، وهذه المرة لم يعد للحياة. والمستعمل الجيد يكلّف <bdi class="n">18,000</bdi> جنيه. قالت ليلى الرقم لخالتها نور كأنه جبل. فأخذت نور قلمًا وكتبته على ظهر إيصال، وسألت: «كم أسبوعًا في العام الدراسي؟» نحو <bdi class="n">30</bdi>. فقسمت وقالت: «إذن هو ليس <bdi class="n">18,000</bdi>. هو <bdi class="n">600</bdi> في الأسبوع. هل يمكن إيجاد <bdi class="n">600</bdi> في الأسبوع؟» لم تكن ليلى تعرف. لكن <bdi class="n">600</bdi> بدت شيئًا يمكن تجربته.</p>
+          <div class="idea lift"><img src="art/nour.jpg" alt="" class="gp"><div><b>ملاحظة نور · هدف يمكن تقسيمه</b><p>الرقم الكبير أمنية. والرقم نفسه مقسومًا على الأسابيع المتاحة خطة يمكن مراجعتها كل يوم جمعة.</p></div></div><footer class="pn"><bdi class="n">5</bdi></footer></section>
+<section class="page story" data-n="6">
+          <figure class="arch "><img src="art/c1s2.jpg" alt=""></figure>
+          <div class="kicker">الفصل <bdi class="n">1</bdi> · <bdi class="n">2</bdi></div>
+          <h2>كم تساوي الساعة؟</h2>
+          <p class="text">كانت قائمة مقهى عم فتحي على الناصية هي نفسها منذ ما قبل ولادة ليلى. فرسمت له ليلى قائمة جديدة في دفتر رسمها. أحبّها كثيرًا وسأل: «بكم؟» قالت ليلى: «<bdi class="n">100</bdi>؟» فرفعت خالتها نور، التي كانت تشرب الشاي على الطاولة الخلفية، حاجبًا واحدًا. ثم سألتها لاحقًا: كم ساعة استغرقت؟ ست ساعات مع التعديلات. وطباعتها بشكل لائق؟ <bdi class="n">150</bdi> جنيهًا. فقالت نور: «يعني ستدفعين <bdi class="n">50</bdi> جنيهًا مقابل شرف العمل ست ساعات.» عادت ليلى في اليوم التالي وقالت: <bdi class="n">450</bdi>. ووافق عم فتحي قبل أن تُكمل جملتها.</p>
+          <div class="idea lift"><img src="art/nour.jpg" alt="" class="gp"><div><b>ملاحظة نور · السعر يغطي التكلفة والوقت</b><p>أولًا ما يكلّفه العمل من مال، ثم قيمة عادلة للساعات. والسعر الأول الذي يقوله الناس غالبًا هو ما يخافون منه، لا ما يستحقه العمل.</p></div></div><footer class="pn"><bdi class="n">6</bdi></footer></section>
+<section class="page story equation" data-n="7">
+          <div class="kicker">الفصل <bdi class="n">1</bdi> · <bdi class="n">3</bdi></div>
+          <h2>الربح الأول</h2>
+          <div class="eq" dir="ltr">
+            <div class="box in"><b>450</b><span>دفع عم فتحي</span></div><i>−</i>
+            <div class="box out"><b>150</b><span>الطباعة</span></div><i>=</i>
+            <div class="box pr"><b>300</b><span>الربح</span></div>
+          </div>
+          <figure class="arch mini"><img src="art/c1s3.jpg" alt=""></figure>
+          <p class="text">دفع عم فتحي بأوراق نقدية جديدة وأهداها عصير مانجو مجانًا. ومشت ليلى إلى البيت ومعها <bdi class="n">450</bdi> جنيهًا وإحساس بالثراء. وفي المطبعة استردّت نور <bdi class="n">150</bdi> مقابل التغليف، ولم تعطها خصمًا عائليًا، وقالت: «أنتِ زبونة الآن. والزبائن يدفعون.» فتحت ليلى دفترًا ورسمت عمودين: داخل وخارج. <bdi class="n">450</bdi> داخل. <bdi class="n">150</bdi> خارج. <bdi class="n">300</bdi> باقية. نصف هدف أسبوع من قائمة واحدة. ورسمت بجانبها نجمة صغيرة.</p>
+          <div class="idea lift"><img src="art/nour.jpg" alt="" class="gp"><div><b>ملاحظة نور · الربح هو ما يتبقّى</b><p>المال الداخل ليس لك بعد. يُطرح منه ما صُرف لإنجاز العمل، والباقي وحده يُحسب نحو الهدف.</p></div></div><footer class="pn"><bdi class="n">7</bdi></footer></section>
+<section class="page story" data-n="8">
+          <figure class="arch "><img src="art/c1s4.jpg" alt=""></figure>
+          <div class="kicker">الفصل <bdi class="n">1</bdi> · <bdi class="n">4</bdi></div>
+          <h2>مفك عمر</h2>
+          <p class="text">كان عمر من الدور الرابع يصلح الهواتف. والكل يعرف ذلك، لأنه يفعله تقريبًا بلا مقابل. شاشة مكسورة بـ<bdi class="n">200</bdi> جنيه، يدفع منها <bdi class="n">170</bdi> في القطعة. وأرى ليلى مفكاته الصغيرة كأنه جرّاح. قالت بعد أن حسبت: «أنت تكسب <bdi class="n">30</bdi> جنيهًا في الساعة.» ضحك، ثم توقف عن الضحك وقال: «لم أحسب الساعات أبدًا.» جلسا على السلّم وحسبا سعرًا حقيقيًا للشاشة: القطعة، ووقته، وقليلًا مقابل الشاشات التي يكسرها وهو يتعلّم. خرج الرقم <bdi class="n">400</bdi>. قال عمر: «لن يدفع أحد هذا.» وفي ذلك الأسبوع دفع <bdi class="n">3</bdi> أشخاص.</p>
+          <div class="idea lift"><img src="art/nour.jpg" alt="" class="gp"><div><b>ملاحظة نور · حساب الساعات</b><p>ما يتبقّى مقسومًا على ساعات العمل. وإذا كان الناتج أقل من أجر عمل بدوام جزئي، فالسعر هو المنخفض، لا العمل هو البطيء.</p></div></div><footer class="pn"><bdi class="n">8</bdi></footer></section>
+<section class="page story" data-n="9">
+          <figure class="arch "><img src="art/c1s5.jpg" alt=""></figure>
+          <div class="kicker">الفصل <bdi class="n">1</bdi> · <bdi class="n">5</bdi></div>
+          <h2>الاتفاق في البيت</h2>
+          <p class="text">على العشاء أعلنت ليلى أن لديها مشروعًا. فوضعت أمها ملعقتها وقالت: «والمدرسة؟» كانت ليلى تتوقع هذا. فقد كتبت صفحة كما قالت لها نور. أولًا: المدرسة أولًا دائمًا. ثانيًا: لا عمل بعد الساعة <bdi class="n">10</bdi> ليلًا. ثالثًا: إذا نزلت الدرجات تحت <bdi class="n">70</bdi>، يتوقف المشروع حتى تعود. رابعًا: كل عميل جديد، ماما تعرف من هو. قرأها أبوها مرتين ووقّع في أسفلها، وطلب قائمة لمكتبه. ووقّعت أمها أيضًا، وثبّتت الصفحة على الثلاجة بمغناطيس على شكل ليمونة.</p>
+          <div class="idea lift"><img src="art/nour.jpg" alt="" class="gp"><div><b>ملاحظة نور · قواعد تُكتب معًا</b><p>قلق الأهل يقلّ عندما يرون. واتفاق قصير مكتوب عن الدراسة والنوم والأمان يحوّل الخلاف إلى خطة.</p></div></div><footer class="pn"><bdi class="n">9</bdi></footer></section>
+<section class="page worksheet tools" data-n="10">
+      <div class="kicker">الفصل <bdi class="n">1</bdi></div>
+      <h2>أدوات الأسبوع <bdi class="n">1</bdi></h2>
+      <h3><bdi class="n">1</bdi>. الهدف مقسومًا</h3><div class="sumbox"><div class="sumrow" dir="ltr"><span class="blank lab"><em>الهدف</em></span><i>÷</i><span class="blank lab"><em>الأسابيع</em></span><i>=</i><span class="blank big lab"><em>في الأسبوع</em></span></div></div>
+<h3><bdi class="n">2</bdi>. قبل قول أي سعر</h3><ul class="checks"><li><i class="tick"></i><span>كم سيكلّف هذا العمل من مواد أو طباعة أو مواصلات؟</span></li><li><i class="tick"></i><span>كم ساعة سيستغرق فعلًا، مع التعديلات؟</span></li><li><i class="tick"></i><span>كم يكلّف عمل مشابه في المنطقة؟</span></li><li><i class="tick"></i><span>هل سيبقى هذا السعر مرضيًا بعد التعديل الثالث؟</span></li></ul>
+<h3><bdi class="n">3</bdi>. الاتفاق في البيت: أربع قواعد</h3><div class="wlines"><div class="wl"></div><div class="wl"></div><div class="wl"></div><div class="wl"></div></div><footer class="pn"><bdi class="n">10</bdi></footer></section>
+<section class="page fullbook" data-n="11">
+      <h2>الكتاب الكامل</h2>
+      <p class="lead">كان هذا الفصل <bdi class="n">1</bdi> من <bdi class="n">8</bdi>. والعام الدراسي كاملًا، مع أدوات كل فصل، في الكتاب المطبوع.</p>
+      <ol class="fulltoc"><li class="read"><bdi class="n">1</bdi><span>السعر الأول</span><em>الأسبوع <bdi class="n">1</bdi></em></li><li class=""><bdi class="n">2</bdi><span>الزبائن الأوائل</span><em>الأسبوع <bdi class="n">4</bdi></em></li><li class=""><bdi class="n">3</bdi><span>موسم الامتحانات</span><em>الأسبوع <bdi class="n">9</bdi></em></li><li class=""><bdi class="n">4</bdi><span>الشريك</span><em>الأسبوع <bdi class="n">13</bdi></em></li><li class=""><bdi class="n">5</bdi><span>التعليق</span><em>الأسبوع <bdi class="n">16</bdi></em></li><li class=""><bdi class="n">6</bdi><span>ليالٍ متأخرة</span><em>الأسبوع <bdi class="n">19</bdi></em></li><li class=""><bdi class="n">7</bdi><span>الثقة</span><em>الأسبوع <bdi class="n">24</bdi></em></li><li class=""><bdi class="n">8</bdi><span>نهاية العام</span><em>الأسبوع <bdi class="n">30</bdi></em></li></ol>
+      <p class="note"><bdi class="n">60</bdi> صفحة · بالعربية والإنجليزية · <bdi class="n">48</bdi> مشهدًا</p><footer class="pn"><bdi class="n">11</bdi></footer></section>
+<section class="page back" data-n="12">
+    <p class="blurb">تحتاج ليلى إلى <bdi class="n">18,000</bdi> جنيه قبل نهاية العام الدراسي. لديها دفتر رسم، وصديق يصلح الهواتف، وخالة لها آراء، وأمّ وقّعت عقدًا معلّقًا على الثلاجة. حكاية عن تسعير الوقت، وقول «لا»، والأمان، والحفاظ على الدرجات، وأول مال يُكسب بالجهد الشخصي.</p>
+    <div class="qrbig"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 29 29" shape-rendering="crispEdges"><path stroke="#0D3F3F" d="M0 0.5h7m8 0h2m1 0h3m1 0h7M0 1.5h1m5 0h1m3 0h1m6 0h2m3 0h1m5 0h1M0 2.5h1m1 0h3m1 0h1m1 0h1m2 0h2m1 0h1m1 0h1m2 0h2m1 0h1m1 0h3m1 0h1M0 3.5h1m1 0h3m1 0h1m1 0h1m1 0h3m3 0h2m1 0h1m2 0h1m1 0h3m1 0h1M0 4.5h1m1 0h3m1 0h1m1 0h3m1 0h4m1 0h3m2 0h1m1 0h3m1 0h1M0 5.5h1m5 0h1m1 0h1m1 0h8m4 0h1m5 0h1M0 6.5h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7M8 7.5h3m2 0h1m1 0h1m3 0h1M0 8.5h1m1 0h5m3 0h3m1 0h2m1 0h1m1 0h2m1 0h5M0 9.5h1m4 0h1m1 0h1m1 0h1m1 0h2m2 0h8m1 0h1m3 0h1M0 10.5h1m1 0h1m1 0h5m1 0h3m7 0h1m1 0h3M3 11.5h1m4 0h2m1 0h2m1 0h1m1 0h1m4 0h3m1 0h1m1 0h1M1 12.5h1m4 0h1m1 0h3m5 0h3m6 0h2M0 13.5h3m5 0h1m3 0h4m1 0h8m3 0h1M3 14.5h8m2 0h5m3 0h1m1 0h4M4 15.5h2m1 0h1m5 0h1m1 0h1m8 0h1m2 0h1M2 16.5h2m2 0h2m1 0h2m3 0h2m1 0h1m1 0h1m5 0h2M0 17.5h1m1 0h2m1 0h1m1 0h1m4 0h1m2 0h2m2 0h6m1 0h1m1 0h1M0 18.5h1m3 0h7m10 0h2m1 0h1m1 0h1M0 19.5h1m1 0h1m1 0h1m3 0h2m1 0h2m1 0h1m1 0h1m1 0h1m1 0h2m1 0h2m2 0h1M0 20.5h1m1 0h5m1 0h1m3 0h1m4 0h1m2 0h5m1 0h3M8 21.5h1m1 0h1m2 0h3m2 0h1m1 0h1m3 0h5M0 22.5h7m5 0h5m2 0h2m1 0h1m1 0h3M0 23.5h1m5 0h1m1 0h3m2 0h1m2 0h1m2 0h2m3 0h1m3 0h1M0 24.5h1m1 0h3m1 0h1m1 0h1m2 0h2m1 0h1m2 0h1m2 0h5m1 0h1m1 0h1M0 25.5h1m1 0h3m1 0h1m1 0h1m3 0h1m5 0h2m5 0h2M0 26.5h1m1 0h3m1 0h1m1 0h2m1 0h2m2 0h1m3 0h1m1 0h7M0 27.5h1m5 0h1m2 0h2m1 0h3m1 0h1m3 0h1m1 0h4m1 0h1M0 28.5h7m1 0h2m3 0h2m2 0h1m1 0h1m4 0h1m1 0h1"/></svg>
+</div>
+    <p class="b1">اللعبة مجانية</p><p class="url">adam.ahmedhaz.com/teen</p>
+    <p class="b2">بالعربية والإنجليزية · بلا حساب</p>
+    <div class="back-art"><img src="art/laila.jpg" alt="" class=""><img src="art/omar.jpg" alt="" class=""><img src="art/salma.jpg" alt="" class=""><img src="art/nour.jpg" alt="" class=""></div></section>
+</div></div></main>
+<nav class="nav"><button class="prev" aria-label="السابق">→</button><span class="count" dir="ltr"><span class="cur">1</span> / 12</span><button class="next" aria-label="التالي">←</button></nav>
+<script>// Page-by-page reader. ?print shows every page for the PDF. #p5 opens page 5.
+(function () {
+  "use strict";
+  if (/[?&]print\b/.test(location.search)) {
+    document.documentElement.classList.add("print");
+    if (/[?&]bleed\b/.test(location.search)) document.documentElement.classList.add("bleed");
+    return;
+  }
+  var pages = Array.prototype.slice.call(document.querySelectorAll(".page"));
+  var rtl = document.documentElement.dir === "rtl";
+  var cur = document.querySelector(".cur"), prev = document.querySelector(".prev"), next = document.querySelector(".next");
+  var stage = document.querySelector(".stage"), bar = document.querySelector(".bar"), nav = document.querySelector(".nav");
+  var i = Math.min(pages.length - 1, Math.max(0, (parseInt((location.hash.match(/p(\d+)/) || [])[1], 10) || 1) - 1));
+
+  function fit() {
+    var px = pages[0].getBoundingClientRect ? 148 * 96 / 25.4 : 559;
+    var w = window.innerWidth - 20, h = window.innerHeight - bar.offsetHeight - nav.offsetHeight - 24;
+    var k = Math.min(w / px, h / (px * 210 / 148), 1.6);
+    stage.style.setProperty("--k", Math.max(0.3, k));
+    document.querySelector(".book").style.setProperty("--k", Math.max(0.3, k));
+  }
+  function show(n, back) {
+    if (n < 0 || n >= pages.length) return;
+    pages[i].classList.remove("current", "back-turn");
+    i = n;
+    pages[i].classList.add("current");
+    pages[i].classList.toggle("back-turn", !!back);
+    cur.textContent = i + 1;
+    prev.disabled = i === 0; next.disabled = i === pages.length - 1;
+    try { history.replaceState(null, "", "#p" + (i + 1)); } catch (e) { /* file:// */ }
+  }
+  prev.addEventListener("click", function () { show(i - 1, true); });
+  next.addEventListener("click", function () { show(i + 1); });
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "ArrowRight") show(rtl ? i - 1 : i + 1, rtl);
+    else if (e.key === "ArrowLeft") show(rtl ? i + 1 : i - 1, !rtl);
+    else if (e.key === "Home") show(0, true);
+    else if (e.key === "End") show(pages.length - 1);
+  });
+  // Swipe: towards the start of the line turns to the next page.
+  var x0 = null, y0 = null;
+  document.querySelector(".reader").addEventListener("touchstart", function (e) { x0 = e.touches[0].clientX; y0 = e.touches[0].clientY; }, { passive: true });
+  document.querySelector(".reader").addEventListener("touchend", function (e) {
+    if (x0 == null) return;
+    var dx = e.changedTouches[0].clientX - x0, dy = e.changedTouches[0].clientY - y0;
+    if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy)) { var fwd = rtl ? dx > 0 : dx < 0; show(fwd ? i + 1 : i - 1, !fwd); }
+    x0 = null;
+  });
+  window.addEventListener("resize", fit);
+  fit();
+  show(i);
+})();
+</script>
+</body>
+</html>

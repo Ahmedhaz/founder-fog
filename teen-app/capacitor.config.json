@@ -1,0 +1,17 @@
+{
+  "appId": "com.ahmedhaz.teenpreneur",
+  "appName": "Teenpreneur",
+  "webDir": "www",
+  "backgroundColor": "#F8F6F1",
+  "ios": {
+    "backgroundColor": "#F8F6F1",
+    "contentInset": "never"
+  },
+  "plugins": {
+    "StatusBar": {
+      "style": "LIGHT",
+      "backgroundColor": "#F8F6F1",
+      "overlaysWebView": false
+    }
+  }
+}
