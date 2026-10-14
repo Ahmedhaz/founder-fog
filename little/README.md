@@ -1,6 +1,6 @@
 # الانتربرونور الصغير · The Little Entrepreneur
 
-A sister game to Bousla for children aged 8–12. The game is at `/little/`, and its promo site (EN `index.html`, AR `ar.html`) is at `/littlebreneur/`, the same way `fog/` promotes `founder-fog/`.
+A sister game to Bousla for children aged 8–12. The game is at `/little/`, and its promo site (EN `index.html`, AR `ar.html`) is at `/littlebreneur/`, the same way `bousla/` promotes `founder-fog/`.
 
 Run a tiny business for one 12-week summer: pick a price, how many to make and one activity each week, sell, then face a dilemma. Grandpa (جدّو) shares a one-line idea after every choice. Some choices come back 2–5 weeks later ("echoes"). Energy is the kid version of clarity: below 40 the screen gets sleepy, and at 70+ a third, wiser option opens.
 

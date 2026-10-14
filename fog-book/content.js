@@ -1,5 +1,5 @@
 // Founder Fog: the picture book. A year in 12 chapters for early founders, English and Arabic side by side.
-// Built into fog/book/ by build.mjs (web reader + A5 PDF), with the same system as the Little
+// Built into bousla/book/ by build.mjs (web reader + A5 PDF), with the same system as the Little
 // Entrepreneur book (little-book/), so the two read as one series.
 //
 // Writing rules:
@@ -20,7 +20,7 @@ module.exports = {
     subtitle: { en: "A year in the founder's chair, and how to see through the fog", ar: "عام على كرسي المؤسس، وكيف ترى عبر الضباب" },
     tag: { en: "A story for founders", ar: "حكاية للمؤسسين" },
     url: "https://adam.ahmedhaz.com/founder-fog/",
-    promo: "https://adam.ahmedhaz.com/fog/",
+    promo: "https://adam.ahmedhaz.com/bousla/",
   },
 
   ui: {
