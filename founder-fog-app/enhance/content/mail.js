@@ -145,7 +145,7 @@
       from: "💼 Tariq Mansour · CTO",
       title: "They called again. This time it wasn't money.",
       body: "Big Tech offered me a Head of Engineering title. Here I'm the guy who keeps the servers up. What am I building toward?",
-      left: { label: "Give him a real stake", fx: { equity: -2, cofounder: 10, baseBurn: -300 }, log: "You moved part of his salary into equity. He stopped checking his phone in meetings." },
+      left: { label: "Give him a real stake", fx: { equity: -2, cofounder: 10, baseBurn: -300 }, log: "You moved part of his salary into equity, vesting over four years. He stopped checking his phone in meetings." },
       right: { label: "Talk about the next two years", fx: { clarity: -4, cofounder: 4, morale: 2 }, log: "Three hours in a cafe. No title change, but a plan he helped write." },
       ignore: { fx: { cofounder: -12, morale: -6 }, log: "Tariq took the interview. He didn't take the job. He didn't tell you either." },
     },

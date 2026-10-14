@@ -2,7 +2,7 @@
   "name": "founder-fog-app",
   "version": "1.0.0",
   "private": true,
-  "description": "Native Android/iOS shell for the Founder Fog game (web build lives in ../founder-fog).",
+  "description": "Native Android/iOS shell for the Bousla game (web build lives in ../founder-fog).",
   "scripts": {
     "sync": "cap sync",
     "android": "cap sync android && cap open android",

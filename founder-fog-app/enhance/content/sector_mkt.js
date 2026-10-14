@@ -43,7 +43,7 @@
         when: (s) => s.sector.id === "ecommerce_marketplace" && s.week >= 14 && s.monthlyRevenue >= 4000 && s.week % 13 === 9,
         title: "🏷 This Week: White Friday Is 10 Days Away",
         tasks: "• Sellers ask how much of the discount you'll fund | • The courier caps you at 600 parcels a day",
-        why: "White Friday can bring a fifth of a quarter's orders and a fifth of the year's returns. Sellers inflate prices to fake discounts, couriers jam, and buyers won with a 50% coupon rarely buy twice. Decide which buyers you want.",
+        why: "White Friday can pack weeks of orders into a few days, and a wave of returns after. Some sellers inflate prices to fake discounts, couriers jam, and buyers won with a 50% coupon rarely buy twice. Decide which buyers you want.",
         strategies: [
           { path: "bold", title: "1. Fund 20% off sitewide from your margin", desc: "The biggest banner in the market for one week. You pay the discount, sellers keep their price.", cost: 4000, tab: "Assets", fx: { activeUsers: 900, monthlyRevenue: 1500, churnRate: 0.8 }, log: "Orders hit four times a normal day. By January most of those buyers were nowhere to be found." },
           { path: "defensive", title: "2. Run early access for repeat buyers only", desc: "Two days before the crowd, for people who have ordered twice. Smaller, calmer and kinder to the courier.", cost: 500, tab: "Relationships", fx: { churnRate: -0.8, monthlyRevenue: 600, mentalClarity: -3 }, log: "Repeat buyers got two quiet days and on-time parcels. The rival banners were louder." },
@@ -75,6 +75,6 @@
         ],
       },
     ],
-    challenge: { id: "sc_mkt", icon: "🛍", name: "Buyers who come back", goal: "Reach $10,000 MRR with monthly churn at or below 4% by week 36.", mode: "venture", deadline: 36, done: (s) => s.monthlyRevenue >= 10000 && s.churnRate <= 4 },
+    challenge: { id: "sc_mkt", icon: "🛍", name: "Buyers who come back", goal: "Reach $14,000 MRR with monthly churn at or below 4% by week 36.", mode: "venture", deadline: 36, done: (s) => s.monthlyRevenue >= 14000 && s.churnRate <= 4 },
     page: { id: "sector_mkt", icon: "🛍", title: "Liquidity before growth", body: "A marketplace works when a buyer who searches usually finds something worth buying, and a seller who lists usually sells within a week. Below that line, ads buy disappointed visitors who never return. Win one category in one city first: enough brands that search never comes back empty, delivered fast enough to earn a second order. This week, measure one number: the share of searches that end in an order.", source: "The Cold Start Problem, Andrew Chen (2021)" },
   };

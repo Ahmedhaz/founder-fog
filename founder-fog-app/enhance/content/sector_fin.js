@@ -75,6 +75,6 @@
         ],
       },
     ],
-    challenge: { id: "sc_fin", icon: "💳", name: "Licensed and Scaling", goal: "Hold your central bank licence and reach $12,000 monthly revenue with churn at 4% or less by week 36.", mode: "venture", deadline: 36, done: (s) => s.mkt.licensed === true && s.monthlyRevenue >= 12000 && s.churnRate <= 4 },
+    challenge: { id: "sc_fin", icon: "💳", name: "Licensed and Scaling", goal: "Hold your central bank licence and reach $16,000 monthly revenue with churn at 4% or less by week 36.", mode: "venture", deadline: 36, done: (s) => s.mkt.licensed === true && s.monthlyRevenue >= 16000 && s.churnRate <= 4 },
     page: { id: "sector_fin", icon: "🏦", title: "Payments run on borrowed permission", body: "A payment company sells trust it borrows: from the central bank that licenses it, the sponsor bank that settles for it and the card schemes whose rules it follows. Any one of them can stop you faster than a competitor can. That is why compliance, reconciliation and fraud controls are the product, not overhead. This week, list everyone who can switch you off and what each one checks.", source: "The Pay Off, Gottfried Leibbrandt and Natasha de Terán (2021)" },
   };

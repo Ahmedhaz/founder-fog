@@ -1,4 +1,4 @@
-// Founder Fog — main game shell (replaces Metro module 144 of the original build).
+// Bousla (formerly Founder Fog) — main game shell (replaces Metro module 144 of the original build).
 // Same dependency list as the original module, so the require indices match:
 // React, StyleSheet, Text, View, SafeAreaView, TouchableOpacity, StatusBar, Modal,
 // ScrollView, fonts, engine, screens, fog helpers, theme, jsx runtime.
@@ -58,7 +58,11 @@ function (g, r, i, a, m, _e, d) {
       const raw = window.localStorage.getItem(SAVE_KEY);
       if (!raw) return null;
       const save = JSON.parse(raw);
-      return save && save.state && !save.state.gameOver && !save.state.victory ? save : null;
+      const st = save && save.state;
+      // a save missing the engine's own fields can't be resumed: forget it rather than crash on Continue
+      const ok = st && typeof st.week === "number" && st.sector && Array.isArray(st.journalLog) && Array.isArray(st.team) && Array.isArray(st.relationships);
+      if (!ok) clearSave();
+      return ok && !st.gameOver && !st.victory ? save : null;
     } catch (err) {
       return null;
     }
@@ -88,6 +92,7 @@ function (g, r, i, a, m, _e, d) {
   function restoreEngine(state) {
     const engine = new Engine.StartupEngine(state.founderName, state.companyName, state.sector && state.sector.id);
     engine.state = state;
+    seedDaily(engine);
     engine.recalculate(); // re-reads the week's target from this page's (possibly other-language) data
     return engine;
   }
@@ -158,8 +163,8 @@ function (g, r, i, a, m, _e, d) {
       .map((p) => p.trim())
       .filter(Boolean)
       .map((p) => {
-        const m = p.match(/[+\-−]/);
-        const text = p.replace(/[+\-\u2212]?\$?[\d][\d,.]*[%kM]?\$?/g, ltr);
+        const m = p.match(/[+\-−](?=\$?[\d?])/);
+        const text = p.replace(/[+\-\u2212]?\$?[\d?][\d?,.]*[%kM]?\$?/g, ltr);
         if (!m || /\$0\b/.test(p)) return { text: text, tone: 0 };
         const up = m[0] === "+";
         const good = BAD_UP.test(p) ? !up : up;
@@ -231,6 +236,7 @@ function (g, r, i, a, m, _e, d) {
 // @include content/dl_mkt.js
 // @include content/dl_health.js
 // @include content/dl_edu.js
+// @include content/dl_chain.js
 // @include content/mail.js
 // @include content/mail_saas.js
 // @include content/mail_fin.js
@@ -257,6 +263,9 @@ function (g, r, i, a, m, _e, d) {
 // @include content/sector_health.js
 // @include content/sector_edu.js
 // @include sectors.js
+// @include book.js
+// @include doors.js
+// @include trust.js
 
   function buildReport(before, after) {
     const rows = [
@@ -334,6 +343,47 @@ function (g, r, i, a, m, _e, d) {
       setS({ ...eng.state });
     }, []);
 
+    // a book link (?book=W07 or #book=W07) starts that chapter's week as soon as the game can draw
+    const bookLink = React.useRef(null);
+    React.useEffect(() => {
+      if (!fontsLoaded) return;
+      const b = fogBookFromUrl();
+      if (!b || !bookLink.current) return;
+      fogBookClearUrl();
+      bookLink.current(b);
+    }, [fontsLoaded]);
+
+    // test hook for local runs only (any page served with a port); does nothing in production
+    React.useEffect(() => {
+      if (typeof location === "undefined" || !location.port) return;
+      window.__ffTest = {
+        engine: () => engine,
+        sync: () => engine && setS({ ...engine.state }),
+        dilemma: (id) => {
+          if (!engine) return false;
+          const s = engine.state,
+            d = LIBRARY.find((x) => x.id === id),
+            pop = (Engine.POPUP_EVENTS_DATABASE || []).find((x) => x.id === id);
+          s.pendingEvent = d ? dlCard(d) : pop ? withDoors(pop) : null;
+          if (d) (ensureStory(s).seen[id] = s.week), metDilemma(id);
+          setReport(null);
+          setS({ ...engine.state });
+          return !!s.pendingEvent;
+        },
+        // the library picker on its own, and the dilemmas met across runs
+        pick: (info) => {
+          if (!engine) return null;
+          const pool = eligibleDilemmas(engine.state),
+            unmet = pool.filter((d) => !SEEN_ALL.includes(d.id)).length,
+            order = pool.map((d) => d.id).sort((a, b) => SEEN_ALL.indexOf(a) - SEEN_ALL.indexOf(b)),
+            ev = libraryEvent(engine.state);
+          if (!info) return ev ? ev.id : null;
+          return { id: ev ? ev.id : null, pool: pool.length, unmet: unmet, rank: ev ? order.indexOf(ev.id) : -1 };
+        },
+        met: () => ({ met: dilemmasMet(), total: LIBRARY.length, ids: LIBRARY.map((d) => d.id) }),
+      };
+    }, [engine]);
+
     // XP can arrive from anywhere (targets, inbox, dilemmas); level up as soon as it does.
     React.useEffect(() => {
       if (engine && S && !S.gameOver && !S.victory && checkLevelUp(engine.state)) setS({ ...engine.state });
@@ -368,33 +418,70 @@ function (g, r, i, a, m, _e, d) {
         children: jsx(StatusBar, { barStyle: "dark-content" }),
       });
 
-    const start = ({ founderName, companyName, sectorId, avatar, mode, challenge, guided, background }) => {
+    const start = ({ founderName, companyName, sectorId, avatar, mode, challenge, guided, background, book }) => {
+      // a new company replaces the saved one: ask first (the daily and the book codes start one too)
+      const w = saved && saved.state && saved.state.week;
+      if (w && !window.confirm(`Start a new company? Your saved game at week ${w} will be replaced.`)) return;
       // the daily challenge: same market, difficulty and luck for everyone today
       const daily = challenge === "daily" ? dailyInfo() : null;
       if (daily) (sectorId = daily.sectorId), (CHALLENGES.daily.mode = daily.mode);
       const eng = withSeed(daily ? daily.n * 1009 : null, () => new Engine.StartupEngine(founderName, companyName, sectorId));
       eng.state.avatar = avatar || "avatar_m1";
       if (daily) eng.state.daily = { day: daily.day, n: daily.n };
-      ensureFeatureState(eng.state);
-      applySectorRoles(eng.state);
-      if (challenge && CHALLENGES[challenge]) eng.state.challenge = challenge;
-      applyMode(eng, challenge && CHALLENGES[challenge] ? CHALLENGES[challenge].mode : mode);
-      applyBackground(eng.state, daily ? "first" : background);
-      eng.recalculate();
+      withSeed(daily ? daily.n * 1009 + 1 : null, () => {
+        ensureFeatureState(eng.state);
+        applySectorRoles(eng.state);
+        if (challenge && CHALLENGES[challenge]) eng.state.challenge = challenge;
+        applyMode(eng, challenge && CHALLENGES[challenge] ? CHALLENGES[challenge].mode : mode);
+        applyBackground(eng.state, daily ? "first" : background);
+        eng.recalculate();
+      });
+      seedDaily(eng);
       // the welcome line was written before the mode and background changed the cash
       const hello = (eng.state.journalLog || []).find((j) => j.week === 1);
       if (hello && hello.text) hello.text = hello.text.replace(/\$[\d,]+/, "$" + Math.round(eng.state.cash).toLocaleString());
       setEndingOpen(false);
-      startGuide(eng.state, !challenge && guided !== false);
+      startGuide(eng.state, !challenge && !book && guided !== false);
+      if (book) applyFogBook(eng, book);
       const got = metaRunStart(eng.state);
       if (got.length) setTimeout(() => notify(trophyToast(got), "ok"), 600);
-      if (unlocked(eng.state, "inbox")) dealInbox(eng.state, 1);
+      if (!book && unlocked(eng.state, "inbox")) dailyLuck(eng.state, "inbox", () => dealInbox(eng.state, 1));
       clearSave();
       setSaved(null);
       setEngine(eng);
       setS({ ...eng.state });
       setTab("hq");
       setReport(null);
+      setInboxOpen(!!(book && book.mail));
+      setGuideOpen(!!(book && book.tgt)); // a target chapter opens straight on its target
+      if (book) setTimeout(() => notify(`📓 Chapter ${book.ch} · Week ${book.week}. The chapter's decision is yours now.`, "info"), 300);
+    };
+    // "From the book": a chapter code (FOG-W07) opens that week of the book's company
+    const startBook = (code) => {
+      const b = typeof code === "object" ? code : fogBookFind(code);
+      if (!b) return false;
+      start({ founderName: "Ahmed", companyName: "Adamos AI", sectorId: "saas_ai", avatar: "avatar_m1", mode: "venture", challenge: null, guided: false, background: "first", book: b });
+      return true;
+    };
+    bookLink.current = startBook;
+    // "Try the other door": a new company from just before decision i of this run (doors.js)
+    const startReplay = (i) => {
+      const r = replayState(engine.state, i);
+      if (!r) return notify("That week is no longer saved.", "bad");
+      const eng = restoreEngine(r.state);
+      ensureFeatureState(eng.state);
+      metaRunStart(eng.state); // a new run id; replays are tagged and earn no trophies
+      keepSnaps(eng.state, r.keep);
+      eng.addLog("🔁 Trying the other door", "Back to week " + r.state.replay.w + ", just before the decision. This run earns no trophies and stays off the daily board.", "mentor");
+      clearSave();
+      setSaved(null);
+      setEngine(eng);
+      setS({ ...eng.state });
+      setTab("hq");
+      setReport(null);
+      setInboxOpen(false);
+      setEndingOpen(false);
+      setTimeout(() => notify("🔁 Week " + r.state.replay.w + ". The other door is open.", "info"), 300);
     };
     const resume = () => {
       if (!saved) return;
@@ -427,6 +514,10 @@ function (g, r, i, a, m, _e, d) {
               backgrounds: BACKGROUNDS.map((b) => ({ id: b.id, icon: b.icon, name: b.name, desc: b.desc, how: b.how, unlocked: b.unlocked() })),
               DailyPanel: DailyPanel,
               challenges: sectorChallenges(),
+              // the market picker: who Northwind and Omar are in each industry, and whether to guide a first-timer
+              sectorRoles: SECTOR_PACKS.reduce((o, p) => ((o[p.sector] = p.roles), o), {}),
+              firstRun: !META.ends,
+              startBook: startBook,
               TrophyPanel: TrophyPanel,
             },
             saved: saved,
@@ -442,7 +533,7 @@ function (g, r, i, a, m, _e, d) {
     // the report card first, then the original ending screen
     if (S.gameOver || S.victory) tourHide(), metaRunEnd(engine.state), (S.metaTrophies = engine.state.metaTrophies);
     if ((S.gameOver || S.victory) && !endingOpen)
-      return jsxs(View, { style: { flex: 1 }, children: [jsx(StatusBar, { barStyle: "dark-content" }), jsx(ReportCard, { S: S, onEnding: () => setEndingOpen(true), onRestart: () => (setEndingOpen(false), restart()) })] });
+      return jsxs(View, { style: { flex: 1 }, children: [jsx(StatusBar, { barStyle: "dark-content" }), jsx(ReportCard, { S: S, onEnding: () => setEndingOpen(true), onRestart: () => (setEndingOpen(false), restart()), onReplay: startReplay })] });
     if (S.gameOver || S.victory)
       return jsxs(Screen, {
         style: st.container,
@@ -456,7 +547,12 @@ function (g, r, i, a, m, _e, d) {
       fogged = Fog.isFogged(S.mentalClarity),
       fogAmt = Fog.fogIntensity(S.mentalClarity),
       fogOp = Fog.fogOpacity(S.mentalClarity),
-      ft = (text, key) => Fog.fogText(text, S.mentalClarity, key, S.week),
+      // in the fog a number loses digits to "?" (same ones everywhere it shows this week), never to letters
+      ft = (text, key) => {
+        const t = String(text),
+          f = Fog.fogText(t, S.mentalClarity, key, S.week);
+        return f === t ? t : [...t].map((ch, i) => (f[i] !== ch && /\d/.test(ch) ? "?" : ch)).join("");
+      },
       runway = parseFloat(S.runwayMonths),
       runwayLabel = S.defaultAlive ? "Alive" : runway >= 999 ? "—" : runway.toFixed(1) + " mo",
       fitLabel = S.mkt && S.mkt.seen ? "Fit ~" + Math.round(S.mkt.seen.value / 5) * 5 + "%" : "Fit unknown",
@@ -492,7 +588,7 @@ function (g, r, i, a, m, _e, d) {
         streakNote = ["🧊", "Streak lost at " + before.streak + ". You missed last week's target.", -1];
         next.streak = 0;
       }
-      if (unlocked(next, "inbox")) dealInbox(next, next.pendingEvent ? 1 : 2);
+      if (unlocked(next, "inbox")) dailyLuck(next, "inbox", () => dealInbox(next, next.pendingEvent ? 1 : 2));
       queueIntros(next);
       engine.recalculate();
       const got = checkTrophies(next);
@@ -684,7 +780,7 @@ function (g, r, i, a, m, _e, d) {
         guide && tile("t", targetDone ? "✅" : "🎯", targetDone ? "Target done" : "Weekly target", targetDone ? "+" + (S.streak || 0) + " streak" : "+" + (target.reward_exp || 50) + " XP", "#FFE8E1", () => setGuideOpen(true), S.streak ? "🔥" + S.streak : null, targetDone),
         unlocked(S, "customers") && tile("f", "🔍", "Customers", fitLabel, "#E5EEFF", () => setCustOpen(true), S.mkt && S.mkt.talkWeek !== S.week ? "!" : null, false),
         unlocked(S, "inbox") && tile("i", "📨", "Inbox", inboxN ? inboxN + " new" : "All clear", "#FFF4D6", () => inboxN && setInboxOpen(true), inboxN || null, !inboxN),
-        tile("m", "💵", "Money", S.defaultAlive ? "Default alive" : runwayLabel + " runway", "#E2F6EA", () => setMoneyOpen(true), null, false),
+        tile("m", "💵", "Money", S.defaultAlive ? "Default alive" : ft(runwayLabel, "runway") + " runway", "#E2F6EA", () => setMoneyOpen(true), null, false),
         tile("a", fogged && !S.slotUsed ? "🧘" : "⚡", fogged && !S.slotUsed ? "Rest now" : "Your action", S.slotUsed ? "used" : "1 left", "#E3F7EA", () => setTab("actions"), null, S.slotUsed),
         unlocked(S, "fundraise") && tile("p", "💼", "Fundraise", raisedThisStage(S) ? "Raised ✓" : canPitch(S) ? roundName : S.week < pitchFrom(S) ? `Week ${pitchFrom(S)}+` : "Not now", "#E5EEFF", () => (canPitch(S) ? setPitchOpen(true) : notify(raisedThisStage(S) ? "Next round opens at the next milestone." : S.slotUsed ? "Pitching needs this week's action." : S.week < pitchFrom(S) ? `Investors take meetings from week ${pitchFrom(S)}.` : "Investors will take a meeting in " + pitchCooldown(S) + " wk.", "info")), null, !canPitch(S)),
         S.challenge && CHALLENGES[S.challenge] && tile("g", CHALLENGES[S.challenge].icon, "Challenge", `Week ${S.week}/${CHALLENGES[S.challenge].deadline}`, "#E2F6EA", () => notify("🎯 " + CHALLENGES[S.challenge].goal, "info"), null, false),
@@ -773,7 +869,7 @@ function (g, r, i, a, m, _e, d) {
         statBar("🤝", "Morale", S.teamMorale, Math.round(S.teamMorale) + "%"),
         statBar("⏳", "Runway", runwayPct, ft(S.defaultAlive ? "Default alive" : runwayLabel, "runway"), true, 3),
         unlocked(S, "customers") && statBar("🔍", "Fit", S.mkt && S.mkt.seen ? S.mkt.seen.value : 0, S.mkt && S.mkt.seen ? "~" + Math.round(S.mkt.seen.value / 5) * 5 + "%" : "?", false, 8),
-        statBar("💼", "Trust", S.investorTrust == null ? 80 : S.investorTrust, Math.round(S.investorTrust == null ? 80 : S.investorTrust) + "%"),
+        statBar("💼", "Investor trust", S.investorTrust == null ? 80 : S.investorTrust, Math.round(S.investorTrust == null ? 80 : S.investorTrust) + "%"),
         fogged && jsx(View, { pointerEvents: "none", dataSet: { ff: "fog" }, style: [st.fogLayer, { opacity: 0.2 + 0.4 * fogAmt }] }),
       ],
     });
@@ -815,7 +911,13 @@ function (g, r, i, a, m, _e, d) {
     else if (tab === "journal") content = jsx(Journal.JournalScreen, { journalLog: S.journalLog, gameState: S });
     else if (tab === "assets") content = company;
     else if (tab === "circle")
-      content = jsx(Circle.RelationshipsScreen, { gameState: S, onContact: (id) => act(engine.contactRelationship(id), "Reached out. Relationship +11.") });
+      content = jsxs(View, {
+        style: { flex: 1 },
+        children: [
+          jsx(TrustPanel, { S: S }),
+          jsx(View, { style: { flex: 1 }, children: jsx(Circle.RelationshipsScreen, { gameState: S, onContact: (id) => act(engine.contactRelationship(id), "Reached out. Relationship +11.") }) }),
+        ],
+      });
     else if (tab === "team")
       content = jsxs(View, {
         style: { flex: 1 },
@@ -913,6 +1015,9 @@ function (g, r, i, a, m, _e, d) {
         }),
       });
 
+    const doorKeys = S.pendingEvent ? ["option_A", "option_B"].concat(S.pendingEvent.option_C ? ["option_C"] : []) : [],
+      doorOpen = S.mentalClarity >= DOOR_CLARITY;
+    const clearer = !!(S.pendingEvent && S.pendingEvent.slept && S.pendingEvent.slept.c < FOG_LINE && S.mentalClarity >= FOG_LINE);
     const dilemmaModal =
       S.pendingEvent &&
       !report &&
@@ -942,35 +1047,93 @@ function (g, r, i, a, m, _e, d) {
                 jsx(View, { style: st.dilemmaPic, dataSet: { ff: "float" }, children: jsx(Pic, { e: S.pendingEvent.icon || "⚖️", size: 84 }) }, "pic"),
                 jsx(Text, { style: st.dilemmaTitle, children: S.pendingEvent.title }, "t"),
                 jsx(Text, { style: st.dilemmaDesc, children: S.pendingEvent.description }, "d"),
-                ["option_A", "option_B"].map((key, idx) =>
+                // a replay: what you chose the first time
+                S.replay && S.replay.was && S.replay.id === S.pendingEvent.id && S.replay.w === S.week &&
+                  jsx(View, { style: st.sleptBox, children: jsx(Text, { style: st.sleptTxt, children: "🔁 Last time you chose door " + S.replay.was + "." }) }, "replay"),
+                // slept on last week: a clearer head sees more of the cost
+                S.pendingEvent.slept &&
                   jsxs(
+                    View,
+                    {
+                      style: [st.sleptBox, clearer && st.sleptBoxClear],
+                      children: [
+                        jsx(Text, { style: st.sleptTxt, children: "😴 You slept on this in week " + S.pendingEvent.slept.w + "." }),
+                        clearer && jsx(Text, { style: [st.sleptTxt, { color: COLOR.act, fontFamily: "Archivo_600SemiBold" }], children: "With a clearer head, you can see more of the cost." }),
+                      ],
+                    },
+                    "slept",
+                  ),
+                doorKeys.map((key, idx) =>
+                  // the third door: shown locked below DOOR_CLARITY, so players learn that clarity opens options
+                  key === "option_C" && !doorOpen
+                    ? jsxs(
+                        View,
+                        {
+                          style: [st.option, st.optionC, st.optionLocked],
+                          dataSet: { ff: "rise4" },
+                          children: [
+                            jsxs(View, {
+                              style: st.optionTop,
+                              children: [
+                                jsx(View, { style: st.optionKey, children: jsx(Text, { style: st.optionKeyTxt, children: "C" }) }),
+                                jsx(Text, { style: [st.optionTitle, { color: COLOR.text3 }], children: S.pendingEvent[key].title }),
+                              ],
+                            }),
+                            jsx(Text, { style: st.lockTxt, children: "🔒 Needs clarity " + ltr(DOOR_CLARITY + "+") }),
+                          ],
+                        },
+                        key,
+                      )
+                    : jsxs(
                     Touchable,
                     {
-                      style: st.option,
+                      style: [st.option, key === "option_C" && st.optionC],
                       activeOpacity: 0.85,
                       dataSet: { ff: "rise" + (idx + 2) },
                       onPress: () => {
                         const next = engine.resolveEventChoice(key);
+                        const got = checkTrophies(next);
                         setS({ ...next });
                         buzz(14);
+                        if (got.length) setTimeout(() => notify(trophyToast(got), "ok"), 900);
                         if (!next.gameOver && !next.victory) notify("Decision made. It's in your journal.", "info");
                       },
                       children: [
+                        key === "option_C" && jsx(Text, { style: st.doorKicker, children: "THE THIRD DOOR · CLARITY " + ltr(DOOR_CLARITY + "+") }),
                         jsxs(View, {
                           style: st.optionTop,
                           children: [
-                            jsx(View, { style: st.optionKey, children: jsx(Text, { style: st.optionKeyTxt, children: idx ? "B" : "A" }) }),
+                            jsx(View, { style: [st.optionKey, key === "option_C" && st.optionKeyC], children: jsx(Text, { style: st.optionKeyTxt, children: key.slice(-1) }) }),
                             jsx(Text, { style: st.optionTitle, children: S.pendingEvent[key].title }),
                           ],
                         }),
                         S.mentalClarity < 30
                           ? jsx(Text, { style: [st.optionFog], children: "🌫️ Too foggy to read the consequences." })
-                          : jsx(View, { style: fogged && { opacity: fogOp }, children: jsx(Chips, { items: previewChips(S.pendingEvent[key].preview), style: { marginTop: 10 } }) }),
+                          : jsx(View, { style: fogged && { opacity: fogOp }, children: jsx(Chips, { items: previewChips(fogged ? ft(S.pendingEvent[key].preview, "p" + key) : S.pendingEvent[key].preview), style: { marginTop: 10 } }) }),
+                        clearer && hasEcho(S.pendingEvent, key) && jsx(Text, { style: st.optionEcho, children: "⏪ This one comes back later." }),
                       ],
                     },
                     key,
                   ),
                 ),
+                // Sleep on it: one week's grace, once, for a small and honest cost (doors.js)
+                engine.canSleep() &&
+                  jsxs(
+                    Touchable,
+                    {
+                      style: st.sleepBtn,
+                      activeOpacity: 0.8,
+                      dataSet: { ff: "rise4" },
+                      onPress: () => {
+                        if (act(engine.sleepOnEvent(), "You'll decide next week. It's first in line.")) buzz(10);
+                      },
+                      children: [
+                        jsx(Text, { style: st.sleepTxt, children: "Sleep on it ▸ decide next week" }),
+                        jsx(Chips, { items: previewChips(sleepCostText(sleepCost(S, S.pendingEvent))), style: { marginTop: 6, justifyContent: "center" } }),
+                      ],
+                    },
+                    "sleep",
+                  ),
                 jsx(Text, { style: st.noRight, children: "THERE IS NO RIGHT OPTION" }, "n"),
               ],
             }),
@@ -1363,6 +1526,17 @@ function (g, r, i, a, m, _e, d) {
     optionKeyTxt: { fontFamily: "AzeretMono_600SemiBold", fontSize: 13, color: COLOR.text },
     optionFog: { fontFamily: "Archivo_500Medium", fontSize: 12.5, color: COLOR.text3, marginTop: 10 },
     optionTitle: { flex: 1, fontFamily: "Archivo_600SemiBold", fontSize: 15, color: COLOR.text },
+    optionC: { backgroundColor: COLOR.panel, borderStyle: "dashed", borderColor: COLOR.vital },
+    optionLocked: { opacity: 0.55, borderColor: COLOR.lineHot },
+    optionKeyC: { borderColor: COLOR.vital },
+    doorKicker: { fontFamily: "AzeretMono_500Medium", fontSize: 9.5, letterSpacing: 1, color: COLOR.vital, marginBottom: 6 },
+    lockTxt: { fontFamily: "Archivo_500Medium", fontSize: 12.5, color: COLOR.text3, marginTop: 8 },
+    sleptBox: { backgroundColor: COLOR.panel2, borderRadius: 12, padding: 10, marginTop: -6, marginBottom: 12 },
+    sleptBoxClear: { backgroundColor: "#E6F0FF" },
+    sleptTxt: { fontFamily: "Archivo_500Medium", fontSize: 13, lineHeight: 19, color: COLOR.text2 },
+    optionEcho: { fontFamily: "Archivo_500Medium", fontSize: 12.5, color: COLOR.fog, marginTop: 8 },
+    sleepBtn: { borderRadius: 14, paddingVertical: 10, paddingHorizontal: 12, marginTop: 2, marginBottom: 6, alignItems: "center", borderWidth: 1, borderColor: COLOR.line, borderStyle: "dashed" },
+    sleepTxt: { fontFamily: "Archivo_600SemiBold", fontSize: 14, color: COLOR.text2 },
     noRight: { fontFamily: "AzeretMono_500Medium", fontSize: 10, letterSpacing: 1.5, color: COLOR.text3, textAlign: "center", marginTop: 6 },
     why: { backgroundColor: COLOR.panel2, borderRadius: 14, padding: 12, marginBottom: 14 },
     whyTxt: { fontFamily: "Archivo_400Regular", fontSize: 13, lineHeight: 19, color: COLOR.text2, marginTop: 6 },

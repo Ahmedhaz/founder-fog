@@ -18,7 +18,7 @@
       example: "Health startups across the region have run out of cash while profitable on paper, waiting for insurers to settle claims coded the wrong way.",
       read: "Redefining Health Care, Michael Porter and Elizabeth Teisberg",
       page: "sector_health",
-      skills: { A: { fundraising: 1, frugality: -1 }, B: { frugality: 1, discovery: -1 } },
+      skills: { A: { fundraising: 1, frugality: -1 }, B: { frugality: 1, discovery: -1 }, C: { discovery: 1, frugality: 1 } },
     },
     dl_health_04: {
       lesson: "A medical device that measures wrong is worse than no device: doctors act on it. Validate every batch before it ships, not after a patient feels it.",

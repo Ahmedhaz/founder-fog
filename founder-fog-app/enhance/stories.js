@@ -26,7 +26,7 @@
   };
   const INDUSTRY = (id, list) => list.map((d) => onlyIn([id], d, { industry: true }));
   const LIBRARY = []
-    .concat(DL_PRODUCT, DL_PEOPLE, DL_LIFE, DL_MENA)
+    .concat(DL_PRODUCT, DL_PEOPLE, DL_LIFE, DL_MENA, DL_CHAIN)
     .map((d) => (B2B_ONLY.includes(d.id) ? onlyIn(["saas_ai", "fintech"], d) : d))
     .concat(INDUSTRY("saas_ai", DL_SAAS), INDUSTRY("fintech", DL_FIN), INDUSTRY("ecommerce_marketplace", DL_MKT), INDUSTRY("healthtech", DL_HEALTH), INDUSTRY("edtech", DL_EDU));
   const MAIL_ALL = [].concat(
@@ -81,7 +81,9 @@
   };
   const sign = (v) => (v < 0 ? "-" : "+");
   function previewOf(fx) {
-    return Object.keys(fx || {})
+    const who = fx && typeof fx.trust === "object" ? fx.trust : null; // trust.js: { tariq, nour, layla, team }
+    const parts = Object.keys(fx || {})
+      .filter((k) => !(k === "trust" && who))
       .map((k) => {
         const v = fx[k],
           a = Math.abs(v);
@@ -89,12 +91,14 @@
         if (k === "mrrPct") return FX_LABELS[k] + " " + sign(v) + Math.round(a * 100) + "%";
         if (k === "churn" || k === "equity") return FX_LABELS[k] + " " + sign(v) + a + "%";
         return FX_LABELS[k] + " " + sign(v) + Math.round(a);
-      })
-      .join(" | ");
+      });
+    if (who) TRUST_PEOPLE.forEach((p) => who[p.id] && parts.push(p.name + " " + sign(who[p.id]) + Math.abs(Math.round(who[p.id]))));
+    return parts.join(" | ");
   }
 
   const rel = (s, id) => (s.relationships || []).find((r) => r.id === id);
   function applyFx(engine, fx) {
+    fx = flatFx(fx); // trust: { tariq, nour, layla, team } (trust.js)
     const s = engine.state,
       o = ensureOrg(s),
       m = ensureMarket(s);
@@ -142,6 +146,18 @@
     POP_012: { option_A: { after: [12, 24], icon: "🏷", title: "Everyone wants the prepay discount", text: "Word got around. Three customers now ask for the same deal, and your new pricing page looks negotiable.", fx: { arpu: -3, mrrPct: -0.03 } } },
   };
 
+  // third doors (doors.js) for the original game's dilemmas, in the library's format
+  const POP_DOORS = {
+    POP_001: {
+      C: {
+        title: "Split 50/50, with vesting for both of you",
+        fx: { morale: 4, clarity: -4, trust: 12, cofounder: 6 },
+        log: "You asked a lawyer to put both of you on four years with a one-year cliff. Tariq read it twice and signed first.",
+        echo: { after: [20, 30], icon: "🤝", title: "The cliff passed, and so did the doubt", text: "A year in, both of your first shares vested on the same day. Tariq bought the coffee and said it was the first contract he never worried about.", fx: { cofounder: 6, trust: 3 } },
+      },
+    },
+  };
+
   // ---------------------------------------------------------- the calendar
   // A 52-week year. Ramadan moves about 11 days earlier every year.
   function season(s) {
@@ -171,6 +187,7 @@
 
   function ensureStory(s) {
     if (!s.story) s.story = { seen: {}, echoes: [], season: null, nourWeek: -99, lonely: 0 };
+    if (!s.story.door) s.story.door = {}; // the door taken on each dilemma: the next step of a story chain reads it
     if (s.relationships && !rel(s, "nour")) {
       s.relationships.push({ id: "nour", name: "Nour", role: "Partner", health: 75, weeksSinceContact: 0 });
       s.relationships.push({ id: "fam", name: "Mum & Dad", role: "Family", health: 70, weeksSinceContact: 0 });
@@ -178,26 +195,74 @@
     return s.story;
   }
 
+  // ------------------------------------------- dilemmas met across runs
+  // founderFog.seenAll lists library ids in the order they were last shown
+  // (oldest first). The picker prefers dilemmas not on it; once every eligible
+  // one is on it, it draws from the least recently shown half instead. So the
+  // list never has to be wiped, the oldest come round first, and "dilemmas
+  // met" only grows. A daily run doesn't read it (the day's draw has to be the
+  // same for everyone) but still adds what it showed.
+  const SEEN_ALL_KEY = "founderFog.seenAll";
+  const SEEN_ALL = (function () {
+    try {
+      const v = JSON.parse(window.localStorage.getItem(SEEN_ALL_KEY) || "[]");
+      return Array.isArray(v) ? v.filter((x) => typeof x === "string") : [];
+    } catch (e) {
+      return [];
+    }
+  })();
+  function metDilemma(id) {
+    const i = SEEN_ALL.indexOf(id);
+    if (i >= 0) SEEN_ALL.splice(i, 1);
+    SEEN_ALL.push(id);
+    try {
+      window.localStorage.setItem(SEEN_ALL_KEY, JSON.stringify(SEEN_ALL));
+    } catch (e) {}
+  }
+  const LIBRARY_IDS = new Set(LIBRARY.map((d) => d.id));
+  const dilemmasMet = () => SEEN_ALL.filter((id) => LIBRARY_IDS.has(id)).length;
+  function preferUnmet(pool) {
+    const fresh = pool.filter((d) => !SEEN_ALL.includes(d.id));
+    if (fresh.length) return fresh;
+    const oldest = pool.slice().sort((a, b) => SEEN_ALL.indexOf(a.id) - SEEN_ALL.indexOf(b.id));
+    return oldest.slice(0, Math.ceil(oldest.length / 2));
+  }
+
   // seasonal dilemmas only appear in their season, and open it when they can
   const SEASONAL = { dl_mena_07: "ramadan", dl_mena_08: "eid", dl_mena_09: "summer" };
+  // every dilemma this company could be dealt right now
+  function eligibleDilemmas(s, only) {
+    const st = ensureStory(s);
+    return LIBRARY.filter((d) => {
+      if (st.seen[d.id] || (only && d.id !== only)) return false;
+      if (SEASONAL[d.id] && SEASONAL[d.id] !== season(s)) return false;
+      try {
+        return !d.when || d.when(s);
+      } catch (e) {
+        return false;
+      }
+    });
+  }
   function libraryEvent(s, only) {
     const st = ensureStory(s),
-      pool = LIBRARY.filter((d) => {
-        if (st.seen[d.id] || (only && d.id !== only)) return false;
-        if (SEASONAL[d.id] && SEASONAL[d.id] !== season(s)) return false;
-        try {
-          return !d.when || d.when(s);
-        } catch (e) {
-          return false;
-        }
-      });
+      pool = eligibleDilemmas(s, only);
     if (!pool.length) return null;
+    // the next step of a story chain comes first (content/dl_chain.js: its `when` reads s.story.door);
+    // a story's opening card only jumps the queue the first time (in a daily, always: it ignores past runs)
+    const next = pool.filter((x) => x.chain && (s.daily || !/_01$/.test(x.id) || !SEEN_ALL.includes(x.id)));
+    // ones met in earlier runs wait their turn (not in a daily, and not for a forced seasonal one)
+    const cand = next.length ? next : only || s.daily ? pool : preferUnmet(pool);
     // the industry's own dilemmas come up about every other time while any are left
-    const own = pool.filter((x) => x.industry),
-      from = own.length && Math.random() < 0.45 ? own : pool;
+    const own = cand.filter((x) => x.industry),
+      from = own.length && Math.random() < 0.45 ? own : cand;
     const d = from[Math.floor(Math.random() * from.length)];
     st.seen[d.id] = s.week;
-    return {
+    metDilemma(d.id);
+    return dlCard(d);
+  }
+  // the card the dilemma screen shows; a third door (C) only when the dilemma has one (doors.js)
+  function dlCard(d) {
+    const card = {
       id: d.id,
       icon: d.icon,
       category: d.cat,
@@ -206,6 +271,8 @@
       option_A: { title: d.A.title, preview: previewOf(d.A.fx), effects: {}, log_text: d.A.log },
       option_B: { title: d.B.title, preview: previewOf(d.B.fx), effects: {}, log_text: d.B.log },
     };
+    if (d.C) card.option_C = { title: d.C.title, preview: previewOf(d.C.fx), effects: {}, log_text: d.C.log };
+    return card;
   }
 
   function storyWeek(engine) {
@@ -218,9 +285,12 @@
     st.echoes = st.echoes.filter((e) => s.week < e.due);
     due.forEach((e) => {
       applyFx(engine, e.fx);
-      const good = Object.keys(e.fx).reduce((a, k) => a + (["churn", "techDebt", "baseBurn"].includes(k) ? -e.fx[k] : e.fx[k]), 0) > 0;
+      const f = flatFx(e.fx),
+        good = Object.keys(f).reduce((a, k) => a + (["churn", "techDebt", "baseBurn"].includes(k) ? -f[k] : f[k]), 0) > 0;
       const when = `Your decision in week ${e.from}.`;
       engine.addLog("⏪ " + e.title, e.text + " " + when, good ? "mentor" : "negative");
+      // the report card's turning point and decision map read this
+      (s.echoLog = s.echoLog || []).push({ from: e.from, id: e.id || null, week: s.week, icon: e.icon, title: e.title, fx: e.fx });
       notes.push([e.icon, e.title + ". " + when, good ? 1 : -1]);
     });
 
@@ -243,7 +313,7 @@
     const nour = rel(s, "nour"),
       fam = rel(s, "fam");
     [nour, fam].forEach((r) => r && (r.health = Math.min(100, r.health + 1)));
-    if (nour && nour.health < 25 && s.week - st.nourWeek >= 12 && !s.pendingEvent) {
+    if (nour && nour.health < 30 && s.week - st.nourWeek >= 10 && !s.pendingEvent) { // Nour's trust below 30: home escalates (trust.js)
       st.nourWeek = s.week;
       s.pendingEvent = {
         id: "ST_NOUR",
@@ -264,13 +334,23 @@
     } else st.lonely = 0;
 
     // more dilemmas: the original events mostly give way to the library
-    if (s.pendingEvent && /^POP_/.test(s.pendingEvent.id) && Math.random() < 0.6) {
+    const ev0 = s.pendingEvent,
+      pop = ev0 && /^POP_/.test(ev0.id) && !ev0.slept;
+    // the original events: once a run each, never back to back with another dilemma, and the
+    // equity-split one stays away once Tariq's own story has settled the split
+    // the "predatory VC" cheque has no place in a bootstrapped company
+    if (pop && (st.seen[ev0.id] || (ev0.id === "POP_005" && s.mode === "bootstrapped") || s.week - (st.lastDl || -9) < DL_GAP || (ev0.id === "POP_001" && st.seen.ch_tariq_01))) s.pendingEvent = null;
+    if (s.pendingEvent && /^POP_/.test(s.pendingEvent.id) && !s.pendingEvent.slept && Math.random() < 0.6) {
       const ev = libraryEvent(s);
       if (ev) s.pendingEvent = ev;
-    } else if (!s.pendingEvent && s.week % 3 === 1 && s.week > 2 && Math.random() < 0.35) {
-      s.pendingEvent = libraryEvent(s);
+    } else if (!s.pendingEvent && s.week - (st.lastDl || -9) >= DL_GAP && s.week > 2) {
+      // a story under way, or roughly one dilemma in three weeks otherwise
+      if (hasNextChain(s) || (s.week % 3 === 1 && Math.random() < 0.35)) s.pendingEvent = libraryEvent(s);
     }
+    if (s.pendingEvent && /^POP_/.test(s.pendingEvent.id)) st.seen[s.pendingEvent.id] = st.seen[s.pendingEvent.id] || s.week;
   }
+  const DL_GAP = 2; // weeks between two dilemmas (the board, Tariq and Nour still come when they must)
+  const hasNextChain = (s) => eligibleDilemmas(s).some((x) => x.chain && !/_01$/.test(x.id));
 
   (function () {
     const P = Engine.StartupEngine.prototype;
@@ -294,12 +374,14 @@
         ev = s.pendingEvent;
       const res = resolve.call(this, key);
       if (!ev) return res;
-      const d = LIBRARY.find((x) => x.id === ev.id);
-      const opt = d ? d[key === "option_A" ? "A" : "B"] : null;
-      if (opt) applyFx(this, opt.fx);
+      const d = LIBRARY.find((x) => x.id === ev.id) || POP_DOORS[ev.id],
+        side = String(key).slice(-1);
+      if (ev.id) (st.door[ev.id] = side), (st.lastDl = s.week);
+      const opt = d ? d[side] : null;
+      if (opt) applyFx(this, ev.slept ? sleptFx(opt.fx) : opt.fx);
       if (ev.id === "ST_NOUR") applyFx(this, key === "option_A" ? { partner: 30, clarity: 10, morale: -4 } : { partner: -12, xp: 30 });
       const echo = opt ? opt.echo : ENGINE_ECHOES[ev.id] && ENGINE_ECHOES[ev.id][key];
-      if (echo) st.echoes.push({ due: s.week + rand(echo.after[0], echo.after[1]), from: s.week, icon: echo.icon, title: echo.title, text: echo.text, fx: echo.fx });
+      if (echo) st.echoes.push({ due: s.week + rand(echo.after[0], echo.after[1]), from: s.week, id: ev.id, icon: echo.icon, title: echo.title, text: echo.text, fx: echo.fx });
       return this.recalculate();
     };
   })();

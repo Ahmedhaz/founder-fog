@@ -1,4 +1,4 @@
-// Real captures of the Founder Fog game for the promo site: 8 screens per language at 390x844 @2x,
+// Real captures of the Bousla game for the promo site: 8 screens per language at 390x844 @2x,
 // played through the built game (title, sectors, hq, dilemma, mentor, customers, money, report).
 //   node founder-fog-app/site/shots.cjs <repo root> <png out dir>
 // then convert to webp into fog/shots/ (cwebp -q 80). Needs Playwright (PLAYWRIGHT=path to it) and,

@@ -26,7 +26,7 @@ const CODE = /^(#[0-9a-f]{3,8}|rgba?\(.*\)|[A-Za-z]+_[0-9]{3}[A-Za-z]+|use stric
 // Lowercase single words are normally code; these few are on-screen labels in our own screens.
 const LABEL_WORDS = new Set(["users", "used", "margin", "runway", "mo",
   "MRR", "RUNWAY", "MORALE", "LATELY", "INTEREST", "HQ", "FOUNDER", "EXP", "CONTINUE", "COMPANY", "CLARITY", "CASH", "CAC", "ARPU",
-  "BANK", "CONSEQUENCE", "MENTOR", "WK", "FRACTURED", "SOUND", "ACTIVE", "CANDIDATES", "ROSTER", "UNPAID", "DIFFICULTY", "VALUATION", "CUSTOMERS", "LEARN", "INSIGHTS", "COMPETITION", "CULTURE", "CHALLENGE", "SKILLS", "WELCOME", "BACKGROUND", "SETTINGS", "TODAY", "LEADERBOARD"]);
+  "BANK", "BOUSLA", "CONSEQUENCE", "MENTOR", "WK", "FRACTURED", "SOUND", "ACTIVE", "CANDIDATES", "ROSTER", "UNPAID", "DIFFICULTY", "VALUATION", "CUSTOMERS", "LEARN", "INSIGHTS", "COMPETITION", "CULTURE", "CHALLENGE", "SKILLS", "WELCOME", "BACKGROUND", "SETTINGS", "TODAY", "LEADERBOARD", "TRUST"]);
 
 // Right-to-left text reorders "+$3,500" into "3,500$+". Wrapping each run of
 // signs/currency/digits/placeholders in a left-to-right isolate keeps it intact.
@@ -47,7 +47,9 @@ function candidates(src, offset) {
     if (node.type === "Literal" && typeof node.value === "string") {
       const v = node.value;
       const isKey = parent && parent.type === "Property" && parent.key === node && !parent.computed;
-      if (!isKey && /[A-Za-z]/.test(v) && (!CODE.test(v) || LABEL_WORDS.has(v))) out.push({ kind: "s", text: v, start: node.start - 1 + offset, end: node.end - 1 + offset });
+      // a string compared with === or used as a switch case is code (an effect key, an id), never shown
+      const isCode = parent && ((parent.type === "BinaryExpression" && /^[!=]==?$/.test(parent.operator)) || (parent.type === "SwitchCase" && parent.test === node));
+      if (!isKey && !isCode && /[A-Za-z]/.test(v) && (!CODE.test(v) || LABEL_WORDS.has(v))) out.push({ kind: "s", text: v, start: node.start - 1 + offset, end: node.end - 1 + offset });
     } else if (node.type === "TemplateLiteral") {
       // node offsets are +1 because of the "(" wrapper; the body sits between the backticks
       const inner = src.slice(node.start, node.end - 2);

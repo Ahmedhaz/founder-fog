@@ -1,6 +1,6 @@
-# Founder Fog — mobile app
+# Bousla — mobile app
 
-Founder Fog (the startup survival game) packaged as a mobile app, two ways.
+Bousla (the startup survival game) packaged as a mobile app, two ways.
 
 ## 1. Install from the web (PWA), no store needed
 The game lives in [`/founder-fog`](../founder-fog) and is served at
@@ -16,7 +16,7 @@ This folder wraps the same `../founder-fog` build in a native shell
 (`com.ahmedhaz.founderfog`).
 
 **Android APK, no setup:** every push that touches the game runs the
-*Founder Fog · Android APK* GitHub Action. Open the run → *Artifacts* →
+*Bousla · Android APK* GitHub Action. Open the run → *Artifacts* →
 download `founder-fog-apk`, unzip, and install `app-debug.apk` on the phone
 (allow "install unknown apps").
 
@@ -35,7 +35,7 @@ Icons and splash screens come from `assets/icon.png`
 
 ## Changing the game
 `../founder-fog/index.html` is **generated**, so don't edit it by hand. The
-original game only exists as the compiled Expo web build of the Founder Fog
+original game only exists as the compiled Expo web build of the Bousla
 artifact (`enhance/original.html`); the React Native source wasn't found in
 any repo. Enhancements are applied on top of it:
 

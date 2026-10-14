@@ -1,4 +1,4 @@
-name: Founder Fog · iOS TestFlight
+name: Bousla · iOS TestFlight
 
 # Builds the iOS app and uploads it to TestFlight.
 # Needs these repository secrets (Settings → Secrets and variables → Actions):
@@ -148,5 +148,5 @@ jobs:
             -authenticationKeyPath "$RUNNER_TEMP/keys/AuthKey_$ASC_KEY_ID.p8" \
             -authenticationKeyID "$ASC_KEY_ID" \
             -authenticationKeyIssuerID "$ASC_ISSUER_ID"
-          echo "### Uploaded Founder Fog build $(( ${{ github.run_number }} + 100 )) to TestFlight" >> "$GITHUB_STEP_SUMMARY"
+          echo "### Uploaded Bousla build $(( ${{ github.run_number }} + 100 )) to TestFlight" >> "$GITHUB_STEP_SUMMARY"
           echo "It appears in App Store Connect → TestFlight after Apple finishes processing (usually 5–30 min)." >> "$GITHUB_STEP_SUMMARY"

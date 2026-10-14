@@ -190,7 +190,7 @@ function page(l) {
     <div class="ctas reveal"><a class="btn btn-light" href="${game}">${esc(H.play[l])}</a><a class="btn btn-ghost" href="${book}">${esc(H.read[l])}</a></div>
   </div></section>
 </main>
-<footer><div class="wrap"><p>${esc(C.foot.line[l])} · <a href="../fog/${ar ? "ar.html" : ""}">${ar ? "ضباب المؤسس" : "Founder Fog"}</a></p><p><small>${ar ? C.foot.credit[l].replace(/(Manrope|Readex Pro|OFL)/g, "<bdi>$1</bdi>") : esc(C.foot.credit[l])}</small></p></div></footer>
+<footer><div class="wrap"><p>${esc(C.foot.line[l])} · <a href="../fog/${ar ? "ar.html" : ""}">${ar ? "بوصلة المؤسس" : "Bousla"}</a></p><p><small>${ar ? C.foot.credit[l].replace(/(Manrope|Readex Pro|OFL)/g, "<bdi>$1</bdi>") : esc(C.foot.credit[l])}</small></p></div></footer>
 <script>${JS}</script>
 </body>
 </html>

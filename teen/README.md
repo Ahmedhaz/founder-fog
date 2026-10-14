@@ -1,6 +1,6 @@
 # تينبرونور · Teenpreneur
 
-The teen sister of The Little Entrepreneur and Founder Fog, for ages 13 to 17. The game is at `/teen/`.
+The teen sister of The Little Entrepreneur and Bousla, for ages 13 to 17. The game is at `/teen/`.
 
 Run one side hustle for a 30-week school year. Each week you set a price, decide how many to prepare and pick one extra thing to do (promote, learn a skill, study or rest). Then you work the week and face a dilemma. Aunt Nour (خالتك نور) leaves a one-line note after every choice. Some choices come back weeks later ("echoes").
 
@@ -17,7 +17,7 @@ What's new compared with Little:
 - `content.js`: all text and numbers, English and Arabic side by side. The writing rules are in its header comment. The Arabic never genders the player.
 - `game.js`: the engine (pure functions, also runs in Node) and the UI.
 - `index.html`: the page and all styles. `sw.js` and `manifest.webmanifest` make it installable and offline.
-- `img/`: handmade felt art, shared with Little and Founder Fog.
+- `img/`: handmade felt art, shared with Little and Bousla.
 - `fonts/`: Manrope and Readex Pro (OFL), bundled.
 
 ## Privacy

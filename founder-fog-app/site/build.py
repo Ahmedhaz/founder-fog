@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build the Founder Fog promo site (fog/index.html and fog/ar.html) from
+"""Build the Bousla promo site (fog/index.html and fog/ar.html) from
 template.html + strings.json, and render the social cards (og-en.png,
 og-ar.png) with Playwright when it's available.
 

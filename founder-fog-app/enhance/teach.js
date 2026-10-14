@@ -59,17 +59,25 @@
   // ------------------------------------------------------------ challenges
   const CHALLENGES = {
     winter26: { icon: "🧊", name: "Survive the funding winter", goal: "Still running at week 26, in a downturn.", mode: "winter", deadline: 26, done: (s) => s.week >= 26 },
-    fit20: { icon: "🔍", name: "Find fit in 20 weeks", goal: "Reach 40% product-market fit by week 20.", mode: "venture", deadline: 20, done: (s) => s.mkt && s.mkt.pmf >= 40 },
+    fit20: { icon: "🔍", name: "Find fit in 12 weeks", goal: "Reach 40% product-market fit by week 12.", mode: "venture", deadline: 12, done: (s) => s.mkt && s.mkt.pmf >= 40 },
     control30: {
       icon: "🪑",
       name: "Raise and keep control",
-      goal: "Close a round by week 30, keep 70% of the company and control of the board.",
+      goal: "Close a round by week 20, keep 70% of the company and control of the board.",
       mode: "venture",
-      deadline: 30,
+      deadline: 20,
       done: (s) => (s.rounds || []).some((r) => !r.pending) && (s.equity == null ? 100 : s.equity) >= 70 && !boardControl(s),
     },
-    boot40: { icon: "🌱", name: "Default alive, bootstrapped", goal: "Reach default alive by week 40 without investors.", mode: "bootstrapped", deadline: 40, done: (s) => !!s.defaultAlive },
+    boot40: { icon: "🌱", name: "Default alive, bootstrapped", goal: "Reach default alive with $6,000 MRR by week 40, without investors.", mode: "bootstrapped", deadline: 40, done: (s) => !!s.defaultAlive && s.monthlyRevenue >= 6000 && !(s.rounds || []).some((r) => !r.pending), fail: (s) => (s.rounds || []).some((r) => !r.pending) },
+    ramadan20: { icon: "🌅", name: "Through Ramadan together", goal: "Reach week 20, past Ramadan, with team morale at 60% or more and Tariq still with you.", mode: "venture", deadline: 20, done: (s) => s.week >= 20 && s.teamMorale >= 60 && trustOf(s, "tariq") != null, fail: (s) => trustOf(s, "tariq") == null },
+    clear26: { icon: "🌫", name: "Never lose the view", goal: "Reach week 26 without your clarity ever falling below 40%.", mode: "venture", deadline: 26, done: (s) => s.week >= 26, fail: (s) => s.mentalClarity < 40 },
+    lean36: { icon: "🛠", name: "Small team, real business", goal: "Reach default alive by week 36 with 4 people or fewer on the team.", mode: "venture", deadline: 36, done: (s) => !!s.defaultAlive && (s.team || []).length <= 4 },
+    people30: { icon: "🫶", name: "Keep your people", goal: "Reach week 30 with Tariq, Nour and Layla all at 60% trust or more.", mode: "venture", deadline: 30, done: (s) => s.week >= 30 && ["tariq", "nour", "layla"].every((id) => (trustOf(s, id) || 0) >= 60), fail: (s) => trustOf(s, "tariq") == null },
+    seriesA78: { icon: "🦄", name: "Series A in a year", goal: "Reach the Series A stage, $40,000 MRR, by week 52.", mode: "venture", deadline: 52, done: (s) => s.stage >= 3 },
   };
+
+  const TWO_YEARS = 104,
+    THREE_YEARS = 156;
 
   // --------------------------------------------------------------- tracking
   function ensureTeach(s) {
@@ -78,7 +86,10 @@
     return s.teach;
   }
   const W = { cash: 1 / 2000, monthlyRevenue: 1 / 400, mrrPct: 40, pmf: 0.5, clarity: 0.25, mentalClarity: 0.25, morale: 0.2, teamMorale: 0.2, equity: 1, churn: 2, churnRate: 2, trust: 0.2, investorTrust: 0.2, techDebt: 0.2, baseBurn: 1 / 300, cofounder: 0.2, partner: 0.2, family: 0.2, culture: 0.3, users: 1 / 200, activeUsers: 1 / 200, valuation: 1 / 100000 };
-  const weightOf = (fx) => Object.keys(fx || {}).reduce((a, k) => a + Math.abs(fx[k]) * (W[k] || 0), 0);
+  const weightOf = (fx) => {
+    const f = flatFx(fx);
+    return Object.keys(f).reduce((a, k) => a + Math.abs(f[k]) * (W[k] || 0), 0);
+  };
 
   (function () {
     const P = Engine.StartupEngine.prototype;
@@ -108,9 +119,9 @@
       const res = resolve.call(this, key);
       if (ev && ev.id) {
         const note = NOTES[ev.id],
-          side = key === "option_A" ? "A" : "B",
-          lib = LIBRARY.find((d) => d.id === ev.id),
-          fx = lib ? lib[side].fx : (ev[key] && ev[key].effects) || {};
+          side = String(key).slice(-1),
+          lib = LIBRARY.find((d) => d.id === ev.id) || POP_DOORS[ev.id],
+          fx = lib && lib[side] ? lib[side].fx : (ev[key] && ev[key].effects) || {};
         t.decisions.push({ week: s.week, id: ev.id, title: ev.title, choice: ev[key] && ev[key].title, weight: weightOf(fx) });
         if (note) {
           const sk = (note.skills || {})[side] || {};
@@ -142,10 +153,23 @@
           s.victory = !0;
           s.overType = "challenge";
           s.endReason = `Challenge complete: ${c.name}.`;
-        } else if (s.week >= c.deadline) {
+        } else if (s.week >= c.deadline || (c.fail && c.fail(s))) {
           s.gameOver = !0;
           s.overType = "challenge_failed";
           s.endReason = `Challenge failed: ${c.name}.`;
+        }
+      }
+      // two years in, a free run that has stopped growing but pays its way ends well (a daily stops at 26)
+      if (!c && !s.daily && !s.gameOver && !s.victory) {
+        // at two years a small company that pays its way ends here; a bigger one plays on toward the exit until three
+        const steady = s.defaultAlive || parseFloat(s.runwayMonths) >= 24,
+          small = (s.valuation || 0) < 30e6;
+        if (s.week === TWO_YEARS - 8 && steady && small)
+          this.addLog("📅 Your two-year review is in 8 weeks", "Grow toward the big exit, or settle into a company that pays for itself. Both are real outcomes.", "mentor");
+        if (steady && ((s.week >= TWO_YEARS && small) || s.week >= THREE_YEARS)) {
+          s.gameOver = !0;
+          s.overType = "steady";
+          s.endReason = "Two years in: a company that pays for itself.";
         }
       }
       return s;
@@ -186,7 +210,7 @@
     return best;
   }
 
-  function ReportCard({ S, onEnding, onRestart }) {
+  function ReportCard({ S, onEnding, onRestart, onReplay }) {
     const sc = skillScores(S),
       t = ensureTeach(S),
       tp = turningPoint(S),
@@ -226,6 +250,7 @@
               },
               "tp",
             ),
+          jsx(DecisionMap, { S: S, tp: tp, onReplay: onReplay }, "map"),
           jsxs(
             View,
             {
@@ -262,6 +287,8 @@
             },
             "adv",
           ),
+          jsx(Text, { style: [tst.hint, { color: COLOR.text2 }], children: trustLine(S) }, "tr"),
+          jsx(Text, { style: tst.hint, children: "Decisions slept on: " + (t.slept || 0) }, "zz"),
           jsx(Text, { style: tst.hint, children: `Playbook: ${t.pages.length} pages this run · ${BOOK.size}/${PLAYBOOK.length} collected` }, "pb"),
           jsx(Touchable, { style: tst.primary, activeOpacity: 0.85, onPress: share, children: jsx(Text, { style: tst.primaryTxt, children: "📤  Share my card" }) }, "sh"),
           jsx(Touchable, { style: tst.secondary, activeOpacity: 0.85, onPress: onEnding, children: jsx(Text, { style: tst.secondaryTxt, children: "See the ending" }) }, "en"),
@@ -291,7 +318,7 @@
       g.fillRect(0, 0, W, H);
       g.fillStyle = "#1C2430";
       g.font = "600 40px Archivo_600SemiBold, sans-serif";
-      g.fillText("FOUNDER FOG", x0, 120);
+      g.fillText("BOUSLA", x0, 120);
       g.font = "600 76px Archivo_600SemiBold, sans-serif";
       g.fillText(S.companyName, x0, 230);
       g.font = "500 40px Archivo_500Medium, sans-serif";
@@ -328,11 +355,11 @@
       g.textAlign = "center";
       g.fillStyle = "#4E5A6B";
       g.font = "500 34px Archivo_500Medium, sans-serif";
-      g.fillText("Can you do better? Play Founder Fog.", W / 2, H - 70);
+      g.fillText("Can you do better? Play Bousla.", W / 2, H - 70);
       cv.toBlob((blob) => {
         if (!blob) return;
         const file = new File([blob], "founder-fog-report.png", { type: "image/png" });
-        if (navigator.canShare && navigator.canShare({ files: [file] })) navigator.share({ files: [file], title: "Founder Fog" }).catch(() => {});
+        if (navigator.canShare && navigator.canShare({ files: [file] })) navigator.share({ files: [file], title: "Bousla" }).catch(() => {});
         else {
           const a = document.createElement("a");
           a.href = URL.createObjectURL(blob);

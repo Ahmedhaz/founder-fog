@@ -7,8 +7,8 @@ const data = (file, type) => `data:${type};base64,` + fs.readFileSync(file).toSt
 const FONTS = path.join(__dirname, "..", "enhance", "fonts");
 const out = process.argv[2];
 const T = {
-  en: { dir: "ltr", font: "Manrope", title: "Build a company.<br>Keep your head clear.", sub: "The startup game that tells the truth · free · English & Arabic", brand: "Founder Fog" },
-  ar: { dir: "rtl", font: "Readex Pro", title: "ابنِ شركة.<br>وحافظ على صفاء ذهنك.", sub: "لعبة الشركات الناشئة التي تقول الحقيقة · مجانية · بالعربية والإنجليزية", brand: "ضباب المؤسس" },
+  en: { dir: "ltr", font: "Manrope", title: "Build a company.<br>Keep your head clear.", sub: "The startup game that tells the truth · free · English & Arabic", brand: "Bousla" },
+  ar: { dir: "rtl", font: "Readex Pro", title: "ابنِ شركة.<br>وحافظ على صفاء ذهنك.", sub: "لعبة الشركات الناشئة التي تقول الحقيقة · مجانية · بالعربية والإنجليزية", brand: "بوصلة المؤسس" },
 };
 (async () => {
   const b = await chromium.launch(process.env.CHROME_PATH ? { executablePath: process.env.CHROME_PATH } : {});
