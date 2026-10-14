@@ -179,8 +179,8 @@ choice is remembered, and first launch follows the device language.
 
 ## Promo site
 
-`founder-fog-app/site/` builds the bilingual landing page at `/fog/`
-(`fog/index.html` in English, `fog/ar.html` in Arabic, plus social cards):
+`founder-fog-app/site/` builds the bilingual landing page at `/bousla/` (the old `/fog/` addresses redirect there)
+(`bousla/index.html` in English, `bousla/ar.html` in Arabic, plus social cards):
 
 ```bash
 python3 founder-fog-app/site/build.py
@@ -188,8 +188,8 @@ python3 founder-fog-app/site/build.py
 
 Copy lives in `site/strings.json` (both languages side by side) and the
 layout in `site/template.html`. It follows the book look (palette, Manrope /
-Readex Pro bundled in `fog/fonts/`, the cover in an arch frame, felted pictures,
+Readex Pro bundled in `bousla/fonts/`, the cover in an arch frame, felted pictures,
 the teal mentor panel). `site/shots.cjs` recaptures the game screens. Set `config.testflight_url` to a public
-TestFlight link to show an "iPhone beta" button. Screenshots in `fog/shots/`
+TestFlight link to show an "iPhone beta" button. Screenshots in `bousla/shots/`
 are real captures of the game in each language.
 

@@ -1,6 +1,6 @@
 // Builds the Founder Fog picture book from content.js, with the Little Entrepreneur book's system:
-//   fog/book/index.html (English) and ar.html (Arabic): a page-by-page web reader
-//   fog/book/founder-fog-{en,ar}.pdf: A5 PDFs (same HTML, ?print)
+//   bousla/book/index.html (English) and ar.html (Arabic): a page-by-page web reader
+//   bousla/book/founder-fog-{en,ar}.pdf: A5 PDFs (same HTML, ?print)
 //
 //   node fog-book/build.mjs                web pages only
 //   node fog-book/build.mjs --pdf          web pages + PDFs (needs playwright or playwright-core,
@@ -19,7 +19,7 @@ import { createRequire } from "node:module";
 const require = createRequire(import.meta.url);
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const FULL = !!process.env.FOG_FULL;
-const OUT = path.resolve(process.env.FOG_OUT || path.join(HERE, "../fog/book"));
+const OUT = path.resolve(process.env.FOG_OUT || path.join(HERE, "../bousla/book"));
 const PDF = (lang) => `founder-fog${FULL ? "" : "-sample"}-${lang}.pdf`;
 const C = require("./content.js");
 const QR = fs.readFileSync(path.join(HERE, "qr-fog.svg"), "utf8").replace(/<\?xml[^>]*>/, "");
@@ -173,7 +173,7 @@ ${body}
 fs.mkdirSync(OUT, { recursive: true });
 if (FULL) {
   // The full build writes outside the repo: bring the fonts and all the art along.
-  const pub = path.join(HERE, "../fog/book");
+  const pub = path.join(HERE, "../bousla/book");
   fs.cpSync(path.join(pub, "fonts"), path.join(OUT, "fonts"), { recursive: true });
   fs.cpSync(path.join(pub, "art"), path.join(OUT, "art"), { recursive: true });
   if (process.env.FOG_ART) fs.cpSync(path.resolve(process.env.FOG_ART), path.join(OUT, "art"), { recursive: true });

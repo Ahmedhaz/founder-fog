@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build the Bousla promo site (fog/index.html and fog/ar.html) from
+"""Build the Bousla promo site (bousla/index.html and bousla/ar.html) from
 template.html + strings.json, and render the social cards (og-en.png,
 og-ar.png) with Playwright when it's available.
 
@@ -12,7 +12,7 @@ import re
 import subprocess
 
 HERE = pathlib.Path(__file__).resolve().parent
-OUT = HERE.parent.parent / "fog"
+OUT = HERE.parent.parent / "bousla"
 
 
 def main():
