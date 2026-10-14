@@ -7,9 +7,12 @@ const file = process.argv[2];
 const src = fs.readFileSync(file, "utf8");
 const name = (src.match(/const\s+([A-Z_0-9]+)\s*=/) || [])[1];
 if (!name) throw new Error("expected `const NAME = [...]`");
-const s = { week: 20, monthlyRevenue: 8000, cash: 40000, team: [1, 2, 3], stage: 2, mentalClarity: 50, teamMorale: 60, churnRate: 5, techDebt: 30, investorTrust: 70, activeUsers: 900, arpu: 30, sector: { id: "saas_ai" }, mkt: { pmf: 35 }, org: { board: null, culture: 60 }, equity: 80, mode: "venture", relationships: [] };
+const s = { week: 20, monthlyRevenue: 8000, cash: 40000, team: [1, 2, 3], stage: 2, mentalClarity: 50, teamMorale: 60, churnRate: 5, techDebt: 30, investorTrust: 70, activeUsers: 900, arpu: 30, sector: { id: "saas_ai" }, mkt: { pmf: 35 }, org: { board: null, culture: 60 }, equity: 80, mode: "venture", relationships: [], story: { seen: {}, door: {} } };
 const list = new Function("s", src + "\nreturn " + name + ";")(s);
 const FX = new Set(["cash", "mrrPct", "users", "churn", "morale", "clarity", "techDebt", "trust", "arpu", "pmf", "culture", "cofounder", "boardTrust", "equity", "baseBurn", "family", "partner", "xp"]);
+const WHO = new Set(["tariq", "nour", "layla", "team"]);
+const WHO_KEY = { tariq: "cofounder", nour: "partner", layla: "trust", team: "morale" };
+let trusts = 0;
 const ICON = /^\p{Extended_Pictographic}/u;
 const errors = [];
 const strings = new Set();
@@ -23,12 +26,23 @@ const fxCheck = (fx, where) => {
   if (!fx || typeof fx !== "object") return errors.push(where + ": fx missing");
   for (const k of Object.keys(fx)) {
     if (!FX.has(k)) errors.push(where + ": unknown fx key " + k);
+    // trust: a number is investor trust; an object moves the four people of trust.js
+    if (k === "trust" && fx[k] && typeof fx[k] === "object") {
+      for (const who of Object.keys(fx[k])) {
+        if (!WHO.has(who)) errors.push(where + ": unknown trust person " + who);
+        const v = fx[k][who];
+        if (typeof v !== "number" || !isFinite(v) || Math.abs(v) > 20) errors.push(where + ": trust." + who + " must be a number within -20..20");
+        if (WHO_KEY[who] !== "trust" && fx[WHO_KEY[who]] != null) errors.push(where + ": trust." + who + " repeats fx." + WHO_KEY[who]);
+      }
+      trusts++;
+      continue;
+    }
     if (typeof fx[k] !== "number" || !isFinite(fx[k])) errors.push(where + ": fx " + k + " must be a number");
   }
   if (!Object.keys(fx).length) errors.push(where + ": fx is empty");
 };
 const ids = new Set();
-let echoes = 0;
+let echoes = 0, doors = 0;
 if (list[0] && list[0].kind === "mail") {
   list.forEach((c, i) => {
     const w = c.id || "#" + i;
@@ -50,9 +64,11 @@ if (list[0] && list[0].kind === "mail") {
     str(d.desc, w + ".desc", 260);
     if (d.when && typeof d.when !== "function") errors.push(w + ": when must be a function");
     if (d.when) try { d.when(s); } catch (e) { errors.push(w + ": when() throws: " + e.message); }
-    for (const k of ["A", "B"]) {
+    // C is the optional third door (doors.js): it only opens at clarity 70+
+    for (const k of ["A", "B", "C"]) {
       const o = d[k];
-      if (!o) { errors.push(w + ": option " + k + " missing"); continue; }
+      if (!o) { if (k !== "C") errors.push(w + ": option " + k + " missing"); continue; }
+      if (k === "C") doors++;
       str(o.title, w + "." + k + ".title", 60);
       str(o.log, w + "." + k + ".log", 200);
       fxCheck(o.fx, w + "." + k);
@@ -81,6 +97,6 @@ else {
     }
   }
 }
-console.log(`${name}: ${list.length} items, ${echoes} echoes, ${strings.size} strings`);
+console.log(`${name}: ${list.length} items, ${echoes} echoes, ${doors} third doors, ${trusts} trust moves, ${strings.size} strings`);
 if (errors.length) { console.log("ERRORS:\n" + errors.join("\n")); process.exit(1); }
 console.log("OK");

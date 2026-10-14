@@ -398,8 +398,11 @@
   const baseInterest = (s) =>
     Math.round(((s.investorTrust == null ? 80 : s.investorTrust) - 60) / 10) + ((MOODS[s.econ && s.econ.mood] || {}).interest || 0) - (s.org && s.org.passUntil > s.week ? 1 : 0); // a recent pass is a signal
 
+  // top-tier funds rarely back a company before it has real traction: their bar drops as you grow
+  const barOf = (s, inv) => inv.bar + (inv.id === "whale" ? Math.max(0, 3 - ((s && s.stage) || 1)) * 2 : 0);
+
   function termSheet(s, inv, interest) {
-    const over = Math.max(0, interest - inv.bar);
+    const over = Math.max(0, interest - barOf(s, inv));
     const pct = inv.pct;
     const pre = s.valuation * inv.premium * (1 + over * 0.05);
     const amount = Math.round((pre * pct) / (1 - pct) / 500) * 500;
@@ -459,6 +462,7 @@
               }),
               jsx(Text, { style: fst.mailTitle, children: Fog.isFogged(S.mentalClarity) ? Fog.fogText(card.title, S.mentalClarity, "mail" + card.id, S.week) : card.title }),
               jsx(Text, { style: fst.mailBody, children: card.body }),
+              /Tariq|\u0637\u0627\u0631\u0642/.test(card.from) && tariqTone(S) && jsx(Text, { style: [fst.mailBody, { fontStyle: "italic", color: COLOR.text3, marginTop: 6 }], children: tariqTone(S) }),
               card.ignore && jsx(Text, { style: fst.warn, children: has(S, "delegator") ? "Ignoring is safe (Delegator)." : "⚠️ Ignoring this has consequences." }),
               jsx(Text, { style: fst.swipeHint, children: "← swipe or tap →" }),
             ],
@@ -545,13 +549,13 @@
         children: [
           jsxs(View, {
             style: fst.meterLabels,
-            children: [jsx(Text, { style: fst.kicker, children: "INTEREST" }), jsx(Text, { style: [fst.kicker, { color: interest >= inv.bar ? COLOR.vital : COLOR.text3 }], children: interest + " / " + inv.bar + " needed" })],
+            children: [jsx(Text, { style: fst.kicker, children: "INTEREST" }), jsx(Text, { style: [fst.kicker, { color: interest >= barOf(S, inv) ? COLOR.vital : COLOR.text3 }], children: interest + " / " + barOf(S, inv) + " needed" })],
           }),
           jsxs(View, {
             style: fst.meter,
             children: [
-              jsx(View, { style: [fst.meterFill, { width: clamp((interest / 12) * 100, 2, 100) + "%", backgroundColor: interest >= inv.bar ? COLOR.vital : COLOR.fog }] }),
-              jsx(View, { style: [fst.meterBar, { left: clamp((inv.bar / 12) * 100, 0, 100) + "%" }] }),
+              jsx(View, { style: [fst.meterFill, { width: clamp((interest / 12) * 100, 2, 100) + "%", backgroundColor: interest >= barOf(S, inv) ? COLOR.vital : COLOR.fog }] }),
+              jsx(View, { style: [fst.meterBar, { left: clamp((barOf(S, inv) / 12) * 100, 0, 100) + "%" }] }),
             ],
           }),
         ],
@@ -612,7 +616,7 @@
                 setReaction({ score: total, text: line });
                 buzz(total > 0 ? 10 : 30);
                 if (qi < qs.length - 1) setQi(qi + 1);
-                else if (next >= inv.bar) {
+                else if (next >= barOf(S, inv)) {
                   setSheet(termSheet(S, inv, next));
                   setPhase("sheet");
                 } else {
@@ -628,7 +632,7 @@
         ),
       ];
     } else if (phase === "sheet") {
-      const odds = clamp(0.35 + (interest - inv.bar) * 0.1 + closer * 0.15, 0.1, 0.85);
+      const odds = clamp(0.35 + (interest - barOf(S, inv)) * 0.1 + closer * 0.15, 0.1, 0.85);
       const trap = trapSheet(sheet);
       const terms = (t) => [
         ["Investment", money(t.amount), "#1f7a4a"],
@@ -660,7 +664,7 @@
             style: fst.secondary,
             activeOpacity: 0.85,
             onPress: () => {
-              if (Math.random() < odds) {
+              if (dailyLuck(S, "negotiate", Math.random) < odds) {
                 const better = { ...sheet, amount: Math.round((sheet.amount * 1.3) / 500) * 500, post: Math.round(sheet.post + sheet.amount * 0.3) };
                 buzz(20);
                 sign(better, true);

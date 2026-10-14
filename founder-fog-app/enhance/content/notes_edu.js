@@ -46,7 +46,7 @@
       example: "Upskilling programmes across the Gulf fund thousands of seats a year; providers that win them usually need months of working capital to wait for payment.",
       read: "Seeing Like a State, James C. Scott",
       page: "mena_regulation",
-      skills: { A: { fundraising: 1, frugality: -1 }, B: { frugality: 1, fundraising: -1 } },
+      skills: { A: { fundraising: 1, frugality: -1 }, B: { frugality: 1, fundraising: -1 }, C: { discovery: 1, frugality: 1 } },
     },
     dl_edu_08: {
       lesson: "Corporate training pays faster and steadier than students do, but it borrows your best teachers. Decide which business you are before it decides for you.",

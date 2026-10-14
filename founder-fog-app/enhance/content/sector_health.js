@@ -75,6 +75,6 @@
         ],
       },
     ],
-    challenge: { id: "sc_health", icon: "🩺", name: "Care That Patients Keep", goal: "Reach $8,000 in monthly revenue with monthly churn at or below 3% within 32 weeks.", mode: "venture", deadline: 32, done: (s) => s.monthlyRevenue >= 8000 && s.churnRate <= 3 },
+    challenge: { id: "sc_health", icon: "🩺", name: "Care That Patients Keep", goal: "Reach $11,000 in monthly revenue with monthly churn at or below 3% within 32 weeks.", mode: "venture", deadline: 32, done: (s) => s.monthlyRevenue >= 11000 && s.churnRate <= 3 },
     page: { id: "sector_health", icon: "🩺", title: "In healthtech, trust is the product", body: "Patients, doctors, employers and insurers all buy the same thing from you: confidence that the medicine is safe. Trust builds slowly, through licensed doctors, validated devices, recorded consent and honest incident reviews, and one hidden mistake can undo a year of it. Growth that outruns clinical governance is borrowed. This week, ask who reviews your last 20 consultations, and where that review is written down.", source: "The Innovator's Prescription, Christensen, Grossman and Hwang (2009)" },
   };

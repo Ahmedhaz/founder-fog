@@ -7,7 +7,7 @@ name: Little Entrepreneur · iOS TestFlight
 #   APP_STORE_CONNECT_ISSUER_ID    Issuer ID shown above the keys list
 #   APP_STORE_CONNECT_API_KEY      contents of the AuthKey_XXXX.p8 file (Admin role,
 #                                  so Xcode can create the distribution certificate)
-# (the same ones Founder Fog uses) and an app in App Store Connect with bundle ID
+# (the same ones Bousla uses) and an app in App Store Connect with bundle ID
 # com.ahmedhaz.littleentrepreneur. The bundle ID is registered by this workflow; the app
 # record itself has to be created once on appstoreconnect.apple.com (Apple has no API for it).
 
@@ -20,7 +20,7 @@ on:
       - 'little-app/**'
       - '.github/workflows/little-testflight.yml'
 
-# Same group as Founder Fog: both workflows revoke the certificates CI created,
+# Same group as Bousla: both workflows revoke the certificates CI created,
 # so they must never run at the same time.
 concurrency:
   group: founder-fog-testflight

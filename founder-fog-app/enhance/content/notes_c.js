@@ -4,7 +4,7 @@
       example: "Four years with a one-year cliff is the norm, and most seed investors ask for founder vesting to be in place before they wire money.",
       read: "Venture Deals, Brad Feld and Jason Mendelson",
       page: "vesting",
-      skills: { A: { fundraising: -1 }, B: { fundraising: 1 } },
+      skills: { A: { fundraising: -1 }, B: { fundraising: 1 }, C: { integrity: 1, hiring: 1 } },
     },
     POP_002: {
       lesson: "Launch early to learn, but sort bugs by what they break. Lost data and wrong invoices are never minor.",
@@ -15,7 +15,7 @@
     },
     POP_003: {
       lesson: "Every week a bully stays, your quiet good people update their CVs. The numbers one person brings hide the people you lose.",
-      example: "Netflix's public culture deck put it bluntly: on a dream team there are no brilliant jerks, because the cost to teamwork is too high.",
+      example: "Netflix's public culture deck put it bluntly: some companies tolerate brilliant jerks, but the cost to teamwork is too high.",
       read: "The No Asshole Rule, Robert Sutton",
       page: "no_jerks",
       skills: { A: { hiring: -1 }, B: { hiring: 1 } },

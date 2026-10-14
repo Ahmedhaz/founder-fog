@@ -25,7 +25,7 @@
       example: "Marketplaces that raised fees faster than their value pushed big sellers to their own web stores, which modern store builders make cheap and easy.",
       read: "A Rake Too Far, Bill Gurley",
       page: "pricing",
-      skills: { A: { fundraising: 1, discovery: -1 }, B: { discovery: 1, fundraising: -1 } },
+      skills: { A: { fundraising: 1, discovery: -1 }, B: { discovery: 1, fundraising: -1 }, C: { discovery: 1, fundraising: 1 } },
     },
     dl_mkt_05: {
       lesson: "A delivery promise is tested at peak, not on a quiet Tuesday. Book courier capacity six weeks before Ramadan, Eid and White Friday.",

@@ -55,7 +55,7 @@
         when: (s) => s.sector.id === "edtech" && s.week >= 16 && s.monthlyRevenue >= 4000,
         title: "🛠 This Week: Your AI Module Is Already Out of Date",
         tasks: "• Employers ask about tools you don't teach | • The next cohort starts in 3 weeks",
-        why: "Tech curricula go stale in six to nine months. Employers test on what's used today, and graduates who learned last year's stack fail the take-home task. Your placement rate drops a full cohort before anyone sees why.",
+        why: "Tech curricula, AI modules above all, can go stale within a year. Employers test on what's used today, and graduates who learned last year's stack fail the take-home task. Your placement rate drops a full cohort before anyone sees why.",
         strategies: [
           { path: "bootstrap", title: "1. Instructors rewrite it on weekends", desc: "The teaching team rebuilds the module themselves over three weekends. Free, current, and tiring.", cost: 0, tab: "Journal", fx: { teamMorale: -8, mentalClarity: -3, churnRate: -0.4 }, log: "The new module shipped two days before the cohort started. One instructor asked if every quarter will be like this." },
           { path: "capital", title: "2. Pay two working engineers to co-teach", desc: "Two engineers from hiring partners teach the new tools one evening a week and bring their own case studies.", cost: 3500, tab: "Relationships", fx: { churnRate: -0.8, arpu: 3, teamMorale: 2 }, log: "The guest engineers brought real code from production. One of them hired two students before the module ended." },
@@ -75,6 +75,6 @@
         ],
       },
     ],
-    challenge: { id: "sc_edu", icon: "🎓", name: "Keep the Placement Promise", goal: "Reach $15,000 monthly revenue with churn at or below 5.5% within 36 weeks, with cash still above zero.", mode: "venture", deadline: 36, done: (s) => s.monthlyRevenue >= 15000 && s.churnRate <= 5.5 && s.cash > 0 },
+    challenge: { id: "sc_edu", icon: "🎓", name: "Keep the Placement Promise", goal: "Reach $20,000 monthly revenue with churn at or below 5.5% within 36 weeks, with cash still above zero.", mode: "venture", deadline: 36, done: (s) => s.monthlyRevenue >= 20000 && s.churnRate <= 5.5 && s.cash > 0 },
     page: { id: "sector_edu", icon: "🎓", title: "Outcomes are the product", body: "A bootcamp doesn't sell lessons, it sells the job after them. Students, and the parents who pay, judge you on one number: how many graduates got hired, at what salary, how fast. Completion, instructors and employer partners all feed that number, and a placement guarantee turns it into a debt. This week, list every graduate of your last cohort with their job, salary and start date, and count honestly.", source: "Competing Against Luck, Clayton M. Christensen et al. (2016)" },
   };

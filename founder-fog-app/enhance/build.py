@@ -22,6 +22,7 @@ import tempfile
 HERE = pathlib.Path(__file__).resolve().parent
 OUT = HERE.parent.parent / "founder-fog" / "index.html"
 OUT_AR = OUT.with_name("ar.html")
+OUT_STATS = OUT.with_name("stats.html")
 DICT_AR = HERE / "ar.json"
 PICS = json.loads((HERE / "pics.json").read_text(encoding="utf-8"))  # emoji -> img/<name>.webp
 
@@ -200,10 +201,13 @@ ENDINGS_PATCH = (
     "alone:{ground:s.COLOR.burnoutGround,accent:s.COLOR.fog,kicker:'ENDING \\xb7 ALONE',title:'You built a company, and lost everyone who would have celebrated it.',"
     "body:'Nour moved out in the spring. Your parents stopped asking how it was going. The company is still running. You are not sure who it is for.',"
     "closing:'The people outside the company are not a distraction from it.',lift:!1},"
+    "steady:{ground:s.COLOR.ink,accent:s.COLOR.vital,kicker:'ENDING \\xb7 TWO YEARS IN',title:'You built a company that pays for itself.',"
+    "body:'It is not a hundred-million-dollar story. It is a business that covers its costs, keeps its people and does not need anyone\\'s permission to exist. Most companies never get here.',"
+    "closing:'Small and alive beats big and dead. Play again if you want the bigger bet.',lift:!0},"
     "challenge:{ground:s.COLOR.ink,accent:s.COLOR.gold,kicker:'CHALLENGE \\xb7 COMPLETE',title:'Challenge complete.',"
     "body:'You set one goal and hit it before the deadline. Real companies rarely get one clear goal at a time, which is why practising with one helps.',"
     "closing:'Try a harder challenge, or play a full run.',lift:!0},"
-    "challenge_failed:{ground:s.COLOR.ink,accent:s.COLOR.crit,kicker:'CHALLENGE \\xb7 FAILED',title:'The deadline came first.',"
+    "challenge_failed:{ground:s.COLOR.ink,accent:s.COLOR.crit,kicker:'CHALLENGE \\xb7 FAILED',title:'Not this time.',"
     "body:'The goal was within reach, but not this time. Look at the report card: the turning point is usually earlier than it feels.',"
     "closing:'Every founder fails a few deadlines. The good ones know why.',lift:!0},"
     "exit:{ground:s.COLOR.ink,accent:s.COLOR.gold,kicker:'ENDING \\xb7 EXIT'",
@@ -223,32 +227,40 @@ HEAD = """<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>Founder Fog</title>
+<title>Bousla — the founder's compass</title>
 <script>
   // Language: remember the player's choice; first visit follows the device language.
   (function () {
     var page = document.documentElement.lang, pref = null;
     try { pref = localStorage.getItem("founderFog.lang"); } catch (e) {}
     var want = pref || ((navigator.language || "").toLowerCase().indexOf("ar") === 0 ? "ar" : "en");
-    if (want !== page) location.replace(want === "ar" ? "ar.html" : "index.html");
+    if (want !== page) location.replace((want === "ar" ? "ar.html" : "index.html") + location.search + location.hash);
   })();
   // Keep Western digits everywhere (the fog scrambles 0-9; Arabic locales would switch to Arabic-Indic).
   (function (orig) {
     Number.prototype.toLocaleString = function (locale, opts) { return orig.call(this, locale || "en-US", opts); };
   })(Number.prototype.toLocaleString);
 </script>
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover, shrink-to-fit=no">
-<meta name="description" content="Founder Fog — a startup survival game. Run your company week by week, manage runway, team and your own mental clarity.">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Bousla, the founder's compass — a startup survival game. Run your company week by week, manage runway, team and your own mental clarity.">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="Founder Fog">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Bousla">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="theme-color" content="#EEF2F7">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
 <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<!--@FONTS-->
 <style>
   html, body { height: 100%; margin: 0; background: #EEF2F7; }
+  /* static first paint until the app draws (removed by the script after #root) */
+  #ff-splash { position: fixed; inset: 0; z-index: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; padding-bottom: 56px; box-sizing: border-box;
+    pointer-events: none; background: linear-gradient(180deg, #CFE3FF 0%, #EAF2FF 45%, #F7F9FC 100%); color: #1C2430; }
+  #ff-splash .ffs-name { font: 700 28px/1.2 ui-monospace, "SF Mono", Menlo, Consolas, "Roboto Mono", monospace; letter-spacing: .3em; padding-inline-start: .3em; }
+  #ff-splash .ffs-hint { font: 500 14px/1.4 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; color: #8C97A6; animation: ff-glow 1.6s ease-in-out infinite; }
+  html[dir="rtl"] #ff-splash .ffs-name { font-family: system-ui, -apple-system, "Segoe UI", Tahoma, sans-serif; letter-spacing: 0; padding: 0; }
+  @media (prefers-reduced-motion: reduce) { #ff-splash .ffs-hint { animation: none; } }
   body { overflow: hidden; -webkit-text-size-adjust: 100%; overscroll-behavior: none; -webkit-user-select: none; user-select: none; }
   #root { display: flex; height: 100%; flex: 1; background: #EEF2F7; box-sizing: border-box;
     padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left); }
@@ -292,6 +304,8 @@ HEAD = """<!doctype html>
   [data-ff="rise2"] { animation-delay: .06s; }
   [data-ff="rise3"] { animation-delay: .12s; }
   [data-ff="rise4"] { animation-delay: .18s; }
+  @keyframes ff-open { from { opacity: 0; max-height: 0; } to { opacity: 1; max-height: 900px; } }
+  [data-ff="open"] { animation: ff-open .4s cubic-bezier(.2,.8,.2,1) both; }
   [data-ff="pop"] { animation: ff-pop .35s cubic-bezier(.2,.9,.25,1) both; }
   [data-ff="toast"] { animation: ff-toast .25s ease-out both; }
   [data-ff="pulse"] { animation: ff-pulse 1.8s ease-out infinite; }
@@ -322,6 +336,24 @@ HEAD = """<!doctype html>
 </head>
 <body>
 <div id="root"></div>
+<div id="ff-splash" aria-hidden="true"><div class="ffs-name">BOUSLA</div><div class="ffs-hint">Loading…</div></div>
+<script>
+  // drop the splash in the same frame the app first draws text (taps already pass through it)
+  (function () {
+    var root = document.getElementById("root"), splash = document.getElementById("ff-splash");
+    if (!window.MutationObserver) return splash.parentNode.removeChild(splash);
+    var mo = new MutationObserver(function () {
+      if (!root.textContent.trim()) return;
+      mo.disconnect();
+      if (splash.parentNode) splash.parentNode.removeChild(splash);
+      // then fetch the fonts the title didn't need (HQ numbers etc.) so they don't swap in later
+      setTimeout(function () {
+        if (document.fonts && document.fonts.forEach) document.fonts.forEach(function (f) { if (f.status === "unloaded") f.load().catch(function () {}); });
+      }, 1500);
+    });
+    mo.observe(root, { childList: true, subtree: true, characterData: true });
+  })();
+</script>
 """
 
 TAIL = """
@@ -379,17 +411,58 @@ def main():
     if DICT_AR.exists():
         build_arabic(bundle)
 
+    # 4. the stats dashboard (not linked from the game), with dilemma titles for its decisions table
+    build_stats()
+
+    # 5. the service worker, versioned by a hash of everything it precaches
+    build_sw()
+
 
 def splice_targets(bundle):
     """Add the milestone targets (targets.js) to the engine's weekly target generator (module 264)."""
     body = "\n".join(l for l in (HERE / "targets.js").read_text(encoding="utf-8").splitlines() if not l.startswith("//"))
     helpers = 'function once(e,i){return!(e.msDone||[]).includes(i)}function done(e,i){(e.msDone=e.msDone||[]).includes(i)||e.msDone.push(i)}'
     # App adds each industry's targets at load time through __addTemplates (sectors.js)
-    hook = ';_e.__addTemplates=function(a){l.splice(l.length-1,0,...a)};_e.__helpers={o:o,t:t,n:n,u:u}},264,[]);'
+    hook = ';_e.__addTemplates=function(a){l.splice(l.length-1,0,...a)};_e.__template=function(i){return l.find(x=>x.id===i)};_e.__helpers={o:o,t:t,n:n,u:u}},264,[]);'
     for anchor, new in (('const l=[{id:"runway_crisis"', helpers + 'const l=[{id:"runway_crisis"'), ('{id:"growth_push",', body + '\n{id:"growth_push",'), ('const h=l.map(e=>e.id)},264,[]);', 'const h=l.map(e=>e.id)' + hook)):
         assert bundle.count(anchor) == 1, f"target splice anchor: {anchor}"
         bundle = bundle.replace(anchor, new)
     return bundle
+
+
+# Web fonts live in founder-fog/fonts/ (written by make_fonts.py) instead of base64 inside the page:
+# smaller, cached across builds, and fetched in parallel with the HTML.
+# Metro module id of each embedded TTF -> expo-font family name (= file name).
+EXT_FONT_MODULES = {227: "Archivo_400Regular", 228: "Archivo_500Medium", 229: "Archivo_600SemiBold",
+                248: "AzeretMono_400Regular", 249: "AzeretMono_500Medium", 250: "AzeretMono_600SemiBold"}
+# Every font the title screen uses, fetched while the HTML is still downloading. With the rules in
+# font_head already in place, expo-font's useFonts reports the fonts as loaded at once, so the app no
+# longer waits for them; a font that is not here yet draws in the browser default (a serif) until it
+# swaps in. Preloading only the headline fonts made the title usable ~0.7s sooner on Fast 3G but
+# showed its body text in serif for about a second.
+FONT_PRELOAD = ["Archivo_400Regular", "Archivo_500Medium", "Archivo_600SemiBold", "AzeretMono_600SemiBold"]
+PLEX_PRELOAD = [600, 400, 500]  # ar.html: the title uses all three (dropping 500 saved ~0.2s but swapped the cards ~2s later)
+FONT_DIR = OUT.parent / "fonts"
+
+
+def externalize_fonts(bundle):
+    """Point the six expo-font modules at fonts/<family>.woff2 (display: swap) instead of base64 TTFs."""
+    for mod_id, family in EXT_FONT_MODULES.items():
+        assert (FONT_DIR / f"{family}.woff2").exists(), f"missing fonts/{family}.woff2: run enhance/make_fonts.py"
+        pat = re.compile(r'm\.exports="data:font/ttf;base64,[A-Za-z0-9+/=]+"(\},%d,\[\]\);)' % mod_id)
+        bundle, n = pat.subn(lambda m: 'm.exports={uri:"fonts/%s.woff2",display:"swap"}%s' % (family, m.group(1)), bundle)
+        assert n == 1, f"font module {mod_id} matched {n} times"
+    return bundle
+
+
+def font_head(head):
+    """Preload links for the first screen's fonts, and the @font-face rules expo-font would add (so it doesn't)."""
+    links = [f'<link rel="preload" href="fonts/{f}.woff2" as="font" type="font/woff2" crossorigin>' for f in FONT_PRELOAD]
+    # expo-font treats a family that already has a rule in this sheet as loaded (no injection, no waiting)
+    faces = "\n".join(f'@font-face{{font-family:"{f}";src:url("fonts/{f}.woff2") format("woff2");font-display:swap}}'
+                      for f in EXT_FONT_MODULES.values())
+    head = head.replace("<!--@FONTS-->", "\n".join(links), 1)
+    return head.replace("</head>", f'<style id="expo-generated-fonts">\n{faces}\n</style>\n</head>', 1)
 
 
 def arabic_head():
@@ -406,7 +479,13 @@ def arabic_head():
   html[dir="rtl"] * { letter-spacing: 0 !important; }
 """
     head = HEAD.replace('<html lang="en">', '<html lang="ar" dir="rtl">', 1)
+    head = head.replace("<title>Bousla — the founder's compass</title>", "<title>\u0628\u0648\u0635\u0644\u0629 \u0627\u0644\u0645\u0624\u0633\u0633 — Bousla</title>", 1)
+    head = head.replace('content="Bousla">', 'content="\u0628\u0648\u0635\u0644\u0629 \u0627\u0644\u0645\u0624\u0633\u0633">', 1)
     head = head.replace("<style>", "<style>\n" + rtl_css, 1)
+    splash = '<div class="ffs-name">BOUSLA</div><div class="ffs-hint">Loading…</div>'
+    assert head.count(splash) == 1, "splash markup"
+    head = head.replace(splash, '<div class="ffs-name">\u0628\u0648\u0635\u0644\u0629 \u0627\u0644\u0645\u0624\u0633\u0633</div>'
+                        '<div class="ffs-hint">\u062c\u0627\u0631\u064d \u0627\u0644\u062a\u062d\u0645\u064a\u0644\u2026</div>', 1)
     return head
 
 
@@ -424,6 +503,110 @@ def build_arabic(bundle):
     ar = ar.replace('"\u2039"', '"\u203a"')
     OUT_AR.write_text(arabic_head() + ar + TAIL, encoding="utf-8")
     print(f"wrote {OUT_AR} ({OUT_AR.stat().st_size:,} bytes)")
+
+
+def build_stats():
+    """founder-fog/stats.html from enhance/stats.html, with the id -> [English, Arabic] title map from stats_titles.mjs."""
+    titles = subprocess.run(["node", str(HERE / "stats_titles.mjs")], check=True, capture_output=True, text=True).stdout
+    page = (HERE / "stats.html").read_text(encoding="utf-8")
+    assert page.count("/*@TITLES*/{}") == 1, "stats.html: titles placeholder"
+    OUT_STATS.write_text(page.replace("/*@TITLES*/{}", titles.replace("</", "<\\/")), encoding="utf-8")
+    print(f"wrote {OUT_STATS} ({OUT_STATS.stat().st_size:,} bytes, {titles.count('],')+1} titles)")
+
+
+OUT_SW = OUT.with_name("sw.js")
+SW = r"""// Founder Fog service worker. GENERATED by founder-fog-app/enhance/build.py; edit it there.
+// The cache name carries a hash of the precached files, so every build that
+// changes them installs a fresh cache and drops the old ones.
+const CACHE = 'founder-fog-@HASH@';
+const ASSETS = @ASSETS@;
+const PAGES = { 'index.html': './index.html', 'ar.html': './ar.html' };
+
+self.addEventListener('install', (e) => {
+  e.waitUntil(
+    caches.open(CACHE)
+      .then((c) => c.addAll(ASSETS.map((u) => new Request(u, { cache: 'reload' }))))
+      .then(() => self.skipWaiting())
+  );
+});
+
+self.addEventListener('activate', (e) => {
+  e.waitUntil(
+    caches.keys()
+      .then((keys) => Promise.all(keys.filter((k) => k.startsWith('founder-fog') && k !== CACHE).map((k) => caches.delete(k))))
+      .then(() => self.clients.claim())
+  );
+});
+
+// Only good same-origin responses are stored: never 404/500 pages, opaque or
+// cross-origin replies (Supabase, Google Fonts).
+function store(req, res) {
+  if (res && res.ok && res.type === 'basic') {
+    const copy = res.clone();
+    caches.open(CACHE).then((c) => c.put(req, copy));
+  }
+  return res;
+}
+
+// The cached game page a navigation stands for: ar.html for the Arabic page,
+// index.html for the folder or index.html; nothing for other pages (stats.html).
+function pageFor(url) {
+  const name = url.pathname.slice(url.pathname.lastIndexOf('/') + 1) || 'index.html';
+  return PAGES[name];
+}
+
+async function navigate(req, url) {
+  try {
+    const res = await fetch(req);
+    if (res.ok) return store(req, res);
+    // the host answered with an error page (e.g. a GitHub Pages 404): prefer the saved game
+    const page = pageFor(url);
+    return (page && (await caches.match(page))) || res;
+  } catch (err) {
+    const hit = await caches.match(req, { ignoreSearch: true });
+    if (hit) return hit;
+    const page = pageFor(url);
+    return (page && (await caches.match(page))) || Response.error();
+  }
+}
+
+async function asset(req) {
+  const hit = await caches.match(req, { ignoreSearch: true });
+  if (hit) return hit;
+  try {
+    return store(req, await fetch(req));
+  } catch (err) {
+    return Response.error();
+  }
+}
+
+self.addEventListener('fetch', (e) => {
+  const req = e.request;
+  if (req.method !== 'GET') return;
+  const url = new URL(req.url);
+  if (url.origin !== self.location.origin) return; // cross-origin: straight to the network, never cached
+  if (req.mode === 'navigate') e.respondWith(navigate(req, url));
+  else e.respondWith(asset(req));
+});
+"""
+
+
+def build_sw():
+    """founder-fog/sw.js: precache the pages, manifest, icons, every picture and the fonts; cache name = hash of their bytes."""
+    import hashlib
+    root = OUT.parent
+    files = ["index.html", "ar.html", "manifest.webmanifest"]
+    files += sorted(f"icons/{p.name}" for p in (root / "icons").iterdir() if p.is_file())
+    files += sorted(f"img/{p.name}" for p in (root / "img").iterdir() if p.is_file())
+    if (root / "fonts").is_dir():
+        files += sorted(f"fonts/{p.name}" for p in (root / "fonts").iterdir() if p.is_file())
+    h = hashlib.sha256()
+    for f in files:
+        h.update(f.encode() + b"\0" + (root / f).read_bytes())
+    tag = h.hexdigest()[:10]
+    assets = "[\n" + ",\n".join(f"  './{f}'" for f in files) + ",\n]"
+    OUT_SW.write_text(SW.replace("@HASH@", tag).replace("@ASSETS@", assets), encoding="utf-8")
+    print(f"wrote {OUT_SW} (cache founder-fog-{tag}, {len(files)} assets)")
 
 
 if __name__ == "__main__":

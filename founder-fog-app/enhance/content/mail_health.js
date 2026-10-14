@@ -27,7 +27,7 @@
       from: "🩺 Dr. Samir Khalil · Partner clinic",
       title: "I'll send you my diabetes patients, but",
       body: "I have 30 patients a month who need home glucose monitoring. Other platforms pay me $15 per patient I refer. What can you do?",
-      left: { label: "Pay the referral fee", fx: { users: 200, cash: -1500, trust: -2 }, log: "Thirty patients a month started arriving. Your lawyer asked you to stop calling it a referral fee in writing." },
+      left: { label: "Pay the referral fee", fx: { users: 200, cash: -1500, trust: -3 }, log: "Thirty patients a month started arriving. Your lawyer warned that paying doctors per referral breaks medical ethics rules in most markets." },
       right: { label: "Offer him their data, not cash", fx: { users: 80, techDebt: 3, pmf: 2 }, log: "You built Dr. Samir a weekly summary of his patients' readings. He sent eight patients and called it 'the first useful app'." },
     },
     {

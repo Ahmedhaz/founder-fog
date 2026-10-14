@@ -22,8 +22,9 @@ for (const n of names) {
       const x = v[id], w = n + "." + id;
       str(x.lesson, w + ".lesson", 160); str(x.example, w + ".example", 180); str(x.read, w + ".read", 80, false);
       if (!PAGES.includes(x.page) && !/^sector_(saas|fin|mkt|health|edu)$/.test(x.page)) errors.push(w + ": unknown page " + x.page);
-      for (const k of ["A", "B"]) {
+      for (const k of ["A", "B", "C"]) {
         const sk = (x.skills || {})[k];
+        if (k === "C" && sk == null) continue; // a third door is optional
         if (!sk || typeof sk !== "object") { errors.push(w + ": skills." + k + " missing"); continue; }
         for (const s in sk) { if (!SKILLS.includes(s)) errors.push(w + ": unknown skill " + s); if (sk[s] !== 1 && sk[s] !== -1) errors.push(w + ": skill values must be 1 or -1"); }
         if (Object.keys(sk).length > 2) errors.push(w + ": max 2 skills per option");

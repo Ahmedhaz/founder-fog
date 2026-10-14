@@ -67,7 +67,7 @@
         when: (s) => s.sector.id === "saas_ai" && (s.stage >= 2 || s.week >= 26) && s.monthlyRevenue >= 6000,
         title: "📈 This Week: Land the Second Department",
         tasks: "• Northwind's finance team saw the call-centre results | • They want an agent for invoice matching",
-        why: "In B2B AI, a second department is cheaper to win than a new customer. Expansion is what pushes net revenue retention above 100%, the number Series A investors check first. But every new use case is a new chance of a bad answer.",
+        why: "In B2B AI, a second department is cheaper to win than a new customer. Expansion is what pushes net revenue retention above 100%, a number Series A investors check closely. But every new use case is a new chance of a bad answer.",
         strategies: [
           { path: "bootstrap", title: "1. Reuse the call-centre agent with new prompts", desc: "Fast and cheap. Invoice data is much messier than support tickets.", cost: 0, tab: "Departments", fx: { monthlyRevenue: 850, techDebt: 6 }, log: "Live in two weeks. Matching accuracy started at 81%. Finance now checks every fifth invoice by hand." },
           { path: "capital", title: "2. Hire a finance-ops specialist and build it right", desc: "Someone who knows their ERP's quirks builds a proper finance agent with their team.", cost: 4500, tab: "Departments", fx: { monthlyRevenue: 1750, churnRate: -1, mentalClarity: -3 }, log: "The specialist knew every quirk of their ERP. Accuracy hit 96% in week 6, and finance signed a 3-year expansion." },
@@ -75,6 +75,6 @@
         ],
       },
     ],
-    challenge: { id: "sc_saas", icon: "🏢", name: "The Enterprise Ladder", goal: "Reach $15,000 MRR by week 32 with monthly churn at or below 3% and tech debt under 50.", mode: "venture", deadline: 32, done: (s) => s.monthlyRevenue >= 15000 && s.churnRate <= 3 && s.techDebt < 50 },
+    challenge: { id: "sc_saas", icon: "🏢", name: "The Enterprise Ladder", goal: "Reach $20,000 MRR by week 32 with monthly churn at or below 3% and tech debt under 50.", mode: "venture", deadline: 32, done: (s) => s.monthlyRevenue >= 20000 && s.churnRate <= 3 && s.techDebt < 50 },
     page: { id: "sector_saas", icon: "🤖", title: "Gross margin is a product decision", body: "Classic SaaS costs almost nothing to serve one more user. AI SaaS doesn't: every answer burns inference, every big client wants custom connectors, and both quietly pull gross margin from 85% toward 50%. Investors value you on that margin, not on revenue. This week, calculate cost per task for your three biggest clients, and check that your price grows when their usage does.", source: "The New Business of AI, Martin Casado and Matt Bornstein (a16z, 2020)" },
   };

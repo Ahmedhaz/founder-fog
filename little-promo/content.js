@@ -162,7 +162,7 @@ module.exports = {
     p: { en: "Start with the story at bedtime, or try the game together after school. Grandpa will be there either way.", ar: "ابدؤوا بالحكاية قبل النوم، أو جرّبوا اللعبة معًا بعد المدرسة. وجدّو حاضر في الحالتين." },
   },
   foot: {
-    line: { en: "The Little Entrepreneur · a sister to Founder Fog", ar: "الانتربرونور الصغير · مشروع شقيق لـ«ضباب المؤسس»" },
+    line: { en: "The Little Entrepreneur · a sister to Bousla", ar: "الانتربرونور الصغير · مشروع شقيق لـ«بوصلة المؤسس»" },
     credit: { en: "Pictures made for this project. Fonts: Manrope and Readex Pro (OFL). No cookies, no tracking.", ar: "رسومات صُنعت لهذا المشروع. الخطوط: Manrope و Readex Pro (رخصة OFL). بلا ملفات تعريف ارتباط ولا تتبّع." },
   },
 };

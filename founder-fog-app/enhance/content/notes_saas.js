@@ -4,7 +4,7 @@
       example: "Enterprise AI buyers often run several vendor pilots at once. The ones that convert usually had a finance sponsor and a conversion price agreed on day one.",
       read: "Mastering the Complex Sale, Jeff Thull",
       page: "pricing",
-      skills: { A: { discovery: 1, frugality: -1 }, B: { frugality: 1, discovery: -1 } },
+      skills: { A: { discovery: 1, frugality: -1 }, B: { frugality: 1, discovery: -1 }, C: { discovery: 1, frugality: 1 } },
     },
     dl_saas_02: {
       lesson: "In enterprise AI, the question about training on their data is a sales question. Have a short, written, true answer before the first meeting.",

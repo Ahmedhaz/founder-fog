@@ -17,7 +17,7 @@
     venture: { icon: "🚀", name: "Venture-backed", desc: "The classic story. Normal cash, normal market.", cash: 1, shock: 1 },
     bootstrapped: { icon: "🧾", name: "Bootstrapped", desc: "40% less cash, and investors won't meet you before week 26.", cash: 0.6, shock: 1, pitchFrom: 26 },
     winter: { icon: "🧊", name: "Funding winter", desc: "You start in a downturn: valuations are low and winters come back more often.", cash: 1, shock: 1.25, mood: "winter" },
-    hard: { icon: "🌫️", name: "Founder Fog", desc: "40% less cash and almost three times the shocks. For bragging rights.", cash: 0.6, shock: 2.8 },
+    hard: { icon: "🌫️", name: "Deep fog", desc: "40% less cash and almost three times the shocks. For bragging rights.", cash: 0.6, shock: 2.8 },
   };
   const MOODS = {
     bull: { icon: "📈", name: "Hot market", mult: 1.3, interest: 1 },
@@ -71,9 +71,12 @@
       mood = MOODS[e.mood] || MOODS.normal,
       arr = s.monthlyRevenue * 12,
       sector = SECTOR_MULTIPLE[s.sector && s.sector.id] || 6,
-      past = e.hist.length >= 5 ? e.hist[e.hist.length - 5] : e.hist[0] || 0,
-      growth = past >= 500 ? (s.monthlyRevenue / past - 1) * 100 : 0,
-      gF = clamp(0.5 + growth / 8, 0.4, 3),
+      // growth is the monthly rate averaged over up to 12 weeks, so one good or bad month doesn't
+      // swing the valuation by 3x; a company that pays its own way keeps a floor on its multiple
+      span = Math.min(12, e.hist.length - 1),
+      past = span > 0 ? e.hist[e.hist.length - 1 - span] : 0,
+      growth = past >= 500 && span >= 4 ? (Math.pow(s.monthlyRevenue / past, 4 / span) - 1) * 100 : 0,
+      gF = clamp(0.5 + growth / 6, s.defaultAlive ? 0.8 : 0.4, 3),
       rF = clamp(1.5 - s.churnRate / 10, 0.5, 1.3),
       mult = sector * gF * rF * mood.mult,
       floor = ((s.sector && s.sector.initial_cash) || 25000) * 10 * mood.mult;
@@ -177,7 +180,7 @@
       e = ensureEcon(s),
       note = (icon, text, tone) => e.notes.push([icon, text, tone]);
     e.notes = [];
-    e.hist = e.hist.concat([s.monthlyRevenue]).slice(-9);
+    e.hist = e.hist.concat([s.monthlyRevenue]).slice(-13);
 
     // valuation re-rates once a week (smoothed), deal premiums fade slowly
     e.base = e.base == null ? valuationParts(s).base : e.base * 0.5 + valuationParts(s).base * 0.5;
@@ -248,10 +251,33 @@
     };
     P.advanceWeek = function () {
       advance.call(this);
-      if (!this.state.gameOver && !this.state.victory) econWeek(this);
+      const s = this.state;
+      // a bigger company weighs more on the founder: a team of 6+ and Series A each add a point a week
+      if (!s.gameOver && !s.victory) s.mentalClarity = Math.max(0, s.mentalClarity - weight(s));
+      if (!s.gameOver && !s.victory) econWeek(this);
       return this.recalculate();
     };
+    // rest works, but not as a routine: another rest within two weeks of the last gives two thirds, then half
+    const act = P.executeActivity;
+    P.executeActivity = function (a, ...rest) {
+      const s = this.state,
+        before = s.mentalClarity,
+        well = a && /Wellness|\u0627\u0644\u0639\u0627\u0641\u064a\u0629/.test(a.category || ""),
+        res = act.call(this, a, ...rest);
+      if (well && res && res.success !== false) {
+        const recent = (s.restLog || []).filter((w) => s.week - w < 2).length,
+          gain = s.mentalClarity - before;
+        if (recent && gain > 0) {
+          s.mentalClarity = before + Math.round(gain / (1 + recent / 2));
+          this.addLog("😮‍💨 Rest is helping less", "Another weekend off this soon gave back less. Rest works best before you are empty, not as the plan.", "mentor");
+        }
+        s.restLog = (s.restLog || []).concat([s.week]).slice(-4);
+        this.recalculate();
+      }
+      return res;
+    };
   })();
+  const weight = (s) => ((s.team || []).length >= 6 ? 1 : 0) + (s.stage >= 3 ? 1 : 0);
 
   // -------------------------------------------------------------- UI: money
   function MoneyModal({ S, ft, onClose, onDo }) {

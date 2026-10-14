@@ -5,8 +5,8 @@
   // analytics and daily scores go to two insert-only Supabase tables through
   // the public (publishable) key. shares App's scope.
 
-  const FF_API = "https://gawicpqglcdiufvogvkv.supabase.co/rest/v1/";
-  const FF_KEY = "sb_publishable_xrU4z3QuWbH94NBZJdqYJA_MgH61__v";
+  const FF_API = "https://yoauooehxblyybahxjyh.supabase.co/rest/v1/";
+  const FF_KEY = "sb_publishable_Rq0Y6gCEsHnKNYThcdhZRQ_E3d8uqXt";
   const META_KEY = "founderFog.meta";
 
   function lsGet(key, fallback) {
@@ -47,7 +47,14 @@
     }
     return d;
   }
-  const TRACKING = typeof location !== "undefined" && !location.port && typeof fetch === "function";
+  // Tracking only on the real site: https and not a local host. This keeps it off
+  // on dev/test servers (127.0.0.1, localhost, any port-less local run), file://,
+  // and inside the Capacitor native app (Android serves https://localhost, iOS
+  // capacitor://localhost). A native build that should report can set
+  // window.FF_NATIVE_TRACKING = true before this script runs.
+  const TRACKING = typeof location !== "undefined" && typeof fetch === "function" &&
+    ((location.protocol === "https:" && !/^(localhost|127\.0\.0\.1|\[::1\])$/.test(location.hostname)) ||
+     (typeof window !== "undefined" && window.FF_NATIVE_TRACKING === true && !!window.Capacitor));
   function post(table, row) {
     // daily scores always go (the leaderboard needs them); play events respect the switch
     if (!TRACKING || (table === "ff_events" && META.noTrack)) return Promise.resolve(null);
@@ -60,7 +67,7 @@
   }
   function track(name, s, props) {
     try {
-      post("ff_events", { device: ffDevice(), run: (s && s.runId) || null, name: name, lang: IS_AR ? "ar" : "en", week: s && s.week != null ? Math.min(200, Math.round(s.week)) : null, props: props || {} });
+      post("ff_events", { device: ffDevice(), run: (s && s.runId) || null, name: name, lang: IS_AR ? "ar" : "en", week: s && s.week != null ? Math.min(200, Math.round(s.week)) : null, props: s && (s.book || s.replay) ? { ...(props || {}), ...(s.book ? { book: true } : {}), ...(s.replay ? { replay: true } : {}) } : props || {} });
     } catch (e) {}
   }
   let opened = false;
@@ -134,6 +141,7 @@
     { id: "year", icon: "🎂", name: "One year in", desc: "Survive 52 weeks.", check: (s) => s.week >= 52 && !s.gameOver },
     { id: "broke", icon: "💸", name: "Out of cash", desc: "Run out of money. Everyone does once.", check: (s) => s.gameOver && s.overType === "bank" },
     { id: "burnout", icon: "🌫️", name: "Into the fog", desc: "Burn out. It happens to real founders too.", check: (s) => s.gameOver && s.overType === "burn" },
+    { id: "steady", icon: "🌱", name: "Pays for itself", desc: "Reach the two-year review with a company that pays its own way.", check: (s) => s.gameOver && s.overType === "steady" },
     { id: "challenge", icon: "🎯", name: "Challenger", desc: "Complete any challenge.", check: (s) => s.victory && s.overType === "challenge" && !s.daily },
     { id: "daily", icon: "📅", name: "Daily player", desc: "Finish a daily challenge.", check: (s) => !!s.daily && (s.gameOver || s.victory) },
     { id: "pages10", icon: "📓", name: "Student", desc: "Collect 10 Founder Playbook pages.", check: () => BOOK.size >= 10 },
@@ -144,6 +152,7 @@
   // returns the trophies earned just now
   function checkTrophies(s, also) {
     const got = [];
+    if (s && (s.book || s.replay)) return got; // a book chapter or a replay starts mid-run: nothing to earn there
     TROPHIES.forEach((t) => {
       if (META.trophies[t.id]) return;
       let ok = also === t.id;
@@ -212,16 +221,44 @@
       Math.random = real;
     }
   }
-  (function () {
-    const P = Engine.StartupEngine.prototype;
-    if (P.__meta) return;
-    P.__meta = true;
-    const adv = P.advanceWeek;
-    P.advanceWeek = function (...args) {
-      const d = this.state.daily;
-      return withSeed(d ? d.n * 1009 + this.state.week * 7919 : null, () => adv.apply(this, args));
-    };
-  })();
+  // A daily run draws every random number from today's seed: each week, and each decision or action
+  // in it, gets its own stream. So the same choices give the same game on every device and in both
+  // languages. Wrapped on the instance, outside every other module's patches.
+  const UNSEEDED = { constructor: 1, recalculate: 1, addLog: 1, canSleep: 1, unlockBadge: 1 };
+  const nameSeed = (n) => [...n].reduce((h, ch) => (Math.imul(h, 31) + ch.charCodeAt(0)) >>> 0, 7);
+  let seeding = false;
+  function seedDaily(eng) {
+    if (!eng || !eng.state || !eng.state.daily || eng.__daily) return eng;
+    eng.__daily = true;
+    for (let P = Object.getPrototypeOf(eng); P && P !== Object.prototype; P = Object.getPrototypeOf(P))
+      Object.getOwnPropertyNames(P).forEach((name) => {
+        const fn = P[name];
+        if (UNSEEDED[name] || typeof fn !== "function" || Object.prototype.hasOwnProperty.call(eng, name)) return;
+        eng[name] = function (...args) {
+          const d = this.state.daily;
+          if (seeding || !d) return fn.apply(this, args);
+          const seed = name === "advanceWeek" ? d.n * 1009 + this.state.week * 7919 : d.n * 1009 + this.state.week * 7919 + nameSeed(name) + (d.k = (d.k || 0) + 1) * 104729;
+          seeding = true;
+          try {
+            return withSeed(seed, () => fn.apply(this, args));
+          } finally {
+            seeding = false;
+          }
+        };
+      });
+    return eng;
+  }
+  // the same for luck drawn outside the engine (the inbox, a negotiation): seeded by week and kind in a daily
+  function dailyLuck(s, tag, fn) {
+    const d = s && s.daily;
+    if (!d || seeding) return fn();
+    seeding = true;
+    try {
+      return withSeed(d.n * 1009 + s.week * 7919 + nameSeed(tag) + (d.k = (d.k || 0) + 1) * 104729, fn);
+    } finally {
+      seeding = false;
+    }
+  }
   CHALLENGES.daily = { icon: "📅", name: "Daily challenge", goal: "Still running at week 26, with the highest valuation you can build.", mode: "venture", deadline: 26, done: (s) => s.week >= 26 };
   const dailyScore = (s) => (s.victory ? Math.max(0, Math.round(s.valuation || 0)) : 0);
 
@@ -247,7 +284,7 @@
     }
     saveMeta();
     sfx(s.victory ? "win" : "lose");
-    track("game_end", s, { outcome: outcome, type: s.overType || null, mrr: bucket(s.monthlyRevenue), valuation: bucket(s.valuation), stage: s.stage, daily: !!s.daily, challenge: s.challenge || null, background: s.background || null });
+    track("game_end", s, { outcome: outcome, type: s.overType || null, mrr: bucket(s.monthlyRevenue), valuation: bucket(s.valuation), stage: s.stage, daily: !!s.daily, challenge: s.challenge || null, background: s.background || null, book: !!s.book, chapter: s.book ? s.book.ch : null });
     return checkTrophies(s);
   }
 
@@ -257,7 +294,7 @@
     META.runs += 1;
     META.sectors[s.sector && s.sector.id] = 1;
     saveMeta();
-    track(s.daily ? "daily_start" : "game_start", s, { sector: s.sector && s.sector.id, mode: s.mode, guided: !!(s.guide && !s.guide.off), challenge: s.challenge || null, background: s.background || null, run: META.runs });
+    track(s.daily ? "daily_start" : "game_start", s, { sector: s.sector && s.sector.id, mode: s.mode, guided: !!(s.guide && !s.guide.off), challenge: s.challenge || null, background: s.background || null, run: META.runs, book: !!s.book, chapter: s.book ? s.book.ch : null });
     return checkTrophies(s);
   }
 
@@ -336,6 +373,7 @@
           style: tst.card,
           children: [
             jsx(Text, { style: tst.cardKicker, children: `TROPHIES · ${n}/${TROPHIES.length}` }),
+            jsx(Text, { style: tst.hint, children: `Dilemmas met: ${dilemmasMet()} of ${LIBRARY.length}` }),
             ...TROPHIES.map((t) =>
               jsxs(View, { style: [xst.row, !META.trophies[t.id] && { opacity: 0.4 }], children: [jsx(Pic, { e: META.trophies[t.id] ? t.icon : "🔒", size: 30 }), jsxs(View, { style: { flex: 1 }, children: [jsx(Text, { style: xst.who, children: t.name }), jsx(Text, { style: xst.how, children: t.desc })] })] }, t.id),
             ),

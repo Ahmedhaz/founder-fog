@@ -4,7 +4,7 @@
       example: "Many B2B startups built a connector for their biggest account and spent the next two years maintaining a product nobody else used.",
       read: "Inspired, Marty Cagan",
       page: "custom_work",
-      skills: { A: { frugality: 1, discovery: -1 }, B: { discovery: 1, integrity: 1 } },
+      skills: { A: { frugality: 1, discovery: -1 }, B: { discovery: 1, integrity: 1 }, C: { frugality: 1, integrity: 1 } },
     },
     dl_prod_02: {
       lesson: "Usage that never turns into revenue is a cost centre with a fan club. Measure what each free feature converts, then decide.",
@@ -18,7 +18,7 @@
       example: "Netscape's decision to rewrite its browser from scratch is the classic warning: years without a release while competitors kept shipping.",
       read: "Things You Should Never Do, Part I, Joel Spolsky",
       page: "tech_debt",
-      skills: { A: { hiring: 1, discovery: -1 }, B: { discovery: 1, hiring: -1 } },
+      skills: { A: { hiring: 1, discovery: -1 }, B: { discovery: 1, hiring: -1 }, C: { discovery: 1, hiring: 1 } },
     },
     dl_prod_04: {
       lesson: "Build what your customers are asking for, not what your competitors announced. Investors fund traction, not feature lists.",
@@ -46,7 +46,7 @@
       example: "Freemium works when the free users cost almost nothing and a steady share upgrades. When support is human, free users can sink a small team.",
       read: "Monetizing Innovation, Madhavan Ramanujam and Georg Tacke",
       page: "pricing",
-      skills: { A: { fundraising: 1, frugality: -1 }, B: { frugality: 1, discovery: 1 } },
+      skills: { A: { fundraising: 1, frugality: -1 }, B: { frugality: 1, discovery: 1 }, C: { discovery: 1, frugality: 1 } },
     },
     dl_prod_08: {
       lesson: "When a critical supplier fails your customers, the credits go to you but the damage goes to them. Price the next outage, not this one.",
@@ -74,7 +74,7 @@
       example: "Inflated customer counts are among the first things diligence teams and reporters test. The correction always gets more readers than the claim.",
       read: "Obviously Awesome, April Dunford",
       page: "ethics",
-      skills: { A: { integrity: -1 }, B: { integrity: 1 } },
+      skills: { A: { integrity: -1 }, B: { integrity: 1 }, C: { integrity: 1, discovery: 1 } },
     },
     dl_prod_12: {
       lesson: "Growth bought just before a raise shows up in the next board meeting. Investors read retention eventually; make sure yours survives it.",
@@ -151,7 +151,7 @@
       example: "Startups that matched one outside offer often faced three more within months. Clear salary bands make the next conversation easier.",
       read: "No Rules Rules, Reed Hastings and Erin Meyer",
       page: "transparency",
-      skills: { A: { hiring: 1, frugality: -1 }, B: { frugality: 1, hiring: -1 } },
+      skills: { A: { hiring: 1, frugality: -1 }, B: { frugality: 1, hiring: -1 }, C: { hiring: 1, frugality: 1 } },
     },
     dl_ppl_05: {
       lesson: "Hiring through family and friends feels like trust and works like debt. Hire on the same bar, then explain it kindly at home.",
@@ -172,14 +172,14 @@
       example: "Founders who cut too little often had to cut again within a quarter. Teams forgive a hard call faster than a slow series of them.",
       read: "The Hard Thing About Hard Things, Ben Horowitz",
       page: "runway",
-      skills: { A: { frugality: 1, hiring: -1 }, B: { integrity: 1, selfcare: -1 } },
+      skills: { A: { frugality: 1, hiring: -1 }, B: { integrity: 1, selfcare: -1 }, C: { integrity: 1, hiring: 1 } },
     },
     dl_ppl_08: {
       lesson: "Overruling your co-founder on a key hire spends trust you will need later. If you go ahead, agree on how you will both judge it.",
       example: "Co-founder splits often start with a hire one of them never wanted. A shared 90-day scorecard turns the argument into a test.",
       read: "The Founder's Dilemmas, Noam Wasserman",
       page: "cofounder",
-      skills: { A: { fundraising: 1, hiring: -1 }, B: { hiring: 1 } },
+      skills: { A: { fundraising: 1, hiring: -1 }, B: { hiring: 1 }, C: { hiring: 1, discovery: 1 } },
     },
     dl_ppl_09: {
       lesson: "A quiet complaint is a test of whether people can trust you with the next one. Protect the reporter first, then fix the behaviour.",
@@ -189,7 +189,7 @@
       skills: { A: { integrity: 1, frugality: -1 }, B: { frugality: 1, hiring: -1 } },
     },
     dl_ppl_10: {
-      lesson: "When your early people vest out, they become free agents. Refresh grants before the cliff, not after the resignation.",
+      lesson: "When your early people vest out, they become free agents. Refresh grants before their last shares vest, not after the resignation.",
       example: "Many startups lost their first engineers right after full vesting. Refresh grants are standard practice in companies that kept them.",
       read: "The Holloway Guide to Equity Compensation, Joshua Levy",
       page: "vesting",
@@ -200,7 +200,7 @@
       example: "Investors generally expect founders to draw a small salary. Founders who took nothing for years often burned out or took worse deals out of fear.",
       read: "The Founder's Dilemmas, Noam Wasserman",
       page: "family",
-      skills: { A: { selfcare: 1, frugality: -1 }, B: { frugality: 1, selfcare: -1 } },
+      skills: { A: { selfcare: 1, frugality: -1 }, B: { frugality: 1, selfcare: -1 }, C: { selfcare: 1, frugality: 1 } },
     },
     dl_ppl_12: {
       lesson: "A competitor's money comes with a competitor's attention. Ask what information rights they get before you ask about the valuation.",
@@ -221,7 +221,7 @@
       example: "SaaS companies that gave loyal customers months of notice and a clear reason usually kept most of them through a price rise.",
       read: "Monetizing Innovation, Madhavan Ramanujam and Georg Tacke",
       page: "pricing",
-      skills: { A: { frugality: 1, integrity: -1 }, B: { integrity: 1, frugality: -1 } },
+      skills: { A: { frugality: 1, integrity: -1 }, B: { integrity: 1, frugality: -1 }, C: { integrity: 1, frugality: 1 } },
     },
     dl_ppl_15: {
       lesson: "Revenue you collect in four months is a loan you give today. Model the cash gap before you celebrate the bigger contract.",
@@ -239,10 +239,10 @@
     },
     dl_ppl_17: {
       lesson: "A bridge with a low cap prices your company before the market does. Compare it with cutting burn, not with running out.",
-      example: "Bridge notes with steep discounts often set the price the next lead investor anchors on. Some founders cut costs and raised later on better terms.",
+      example: "Bridge notes with low valuation caps often set the price the next lead investor anchors on. Some founders cut costs and raised later on better terms.",
       read: "Venture Deals, Brad Feld and Jason Mendelson",
       page: "dilution",
-      skills: { A: { fundraising: -1 }, B: { frugality: 1, hiring: -1 } },
+      skills: { A: { fundraising: -1 }, B: { frugality: 1, hiring: -1 }, C: { fundraising: 1, frugality: 1 } },
     },
     dl_ppl_18: {
       lesson: "In payments, the cheapest provider is the one that never freezes your money. Check their compliance team before their fees.",

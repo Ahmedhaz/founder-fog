@@ -202,7 +202,7 @@
       if (s.mkt && s.mkt.pmf >= 40) rel.health = Math.min(100, rel.health + 1); // winning together heals
       if (rel.health < 8) {
         s.team = s.team.filter((m) => m.id !== "emp_cto");
-      } else if (rel.health < 35 && s.week - o.coTalkWeek >= 12 && !s.pendingEvent) {
+      } else if (rel.health < 35 && s.week - o.coTalkWeek >= 8 && !s.pendingEvent) { // Tariq's trust below 35: he asks sooner (trust.js)
         o.coTalkWeek = s.week;
         orgEvent(s, {
           id: "ORG_COFOUNDER",
@@ -342,7 +342,7 @@
       const s = this.state,
         o = ensureOrg(s),
         ev = s.pendingEvent;
-      if (ev && ev.id === "POP_001" && key === "option_B") o.vested = true;
+      if (ev && ev.id === "POP_001" && (key === "option_B" || key === "option_C")) o.vested = true; // the third door vests both founders
       const res = resolve.call(this, key);
       if (ev && ev.id === "ORG_BOARD" && o.board) {
         const ask = o.board.offer;

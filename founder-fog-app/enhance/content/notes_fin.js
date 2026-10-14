@@ -32,7 +32,7 @@
       example: "Large merchants negotiate cost-plus pricing on card fees. Processors that grew on one anchor client often saw their margin on it shrink to a few basis points.",
       read: "Monetizing Innovation, Madhavan Ramanujam and Georg Tacke",
       page: "pricing",
-      skills: { A: { fundraising: 1, discovery: -1 }, B: { discovery: 1, frugality: -1 } },
+      skills: { A: { fundraising: 1, discovery: -1 }, B: { discovery: 1, frugality: -1 }, C: { frugality: 1, fundraising: 1 } },
     },
     dl_fin_06: {
       lesson: "Reconcile every day against the bank, your ledger and the scheme. A payments company that can't say where every dirham sits will eventually be told.",

@@ -32,7 +32,7 @@
       example: "Companies that email 'we overcharged you, it's already refunded' tend to get thank-you replies. The ones found out later get screenshots.",
       read: "Radical Candor, Kim Scott",
       page: "transparency",
-      skills: { A: { integrity: 1, frugality: -1 }, B: { frugality: 1, integrity: -1 } },
+      skills: { A: { integrity: 1, frugality: -1 }, B: { frugality: 1, integrity: -1 }, C: { integrity: 1, frugality: 1 } },
     },
     dl_life_06: {
       lesson: "Investors remember how you talk about others and assume you'll talk about them the same way. Win on your own numbers.",
@@ -46,21 +46,21 @@
       example: "Partners reschedule all the time. A founder who says 'I have a family wedding, can we do Sunday?' rarely loses the deal over it.",
       read: "Startup Life, Brad Feld and Amy Batchelor",
       page: "family",
-      skills: { A: { fundraising: 1, selfcare: -1 }, B: { selfcare: 1 } },
+      skills: { A: { fundraising: 1, selfcare: -1 }, B: { selfcare: 1 }, C: { selfcare: 1, fundraising: 1 } },
     },
     dl_life_08: {
       lesson: "A launch that can't survive two days without you is a launch with a single point of failure. Write the runbook, then actually leave.",
       example: "Founders who practise short, real disconnections early tend to build teams that can run a launch without them in the room.",
       read: "Startup Life, Brad Feld and Amy Batchelor",
       page: "delegation",
-      skills: { A: { selfcare: 1, hiring: 1 }, B: { selfcare: -1 } },
+      skills: { A: { selfcare: 1, hiring: 1 }, B: { selfcare: -1 }, C: { selfcare: 1, hiring: 1 } },
     },
     dl_life_09: {
       lesson: "Parents worry in the currency they know: salaries. Give them a timeline and a fallback, not a pitch deck.",
       example: "Many founders in the region say the turning point with family was sharing a simple plan: 'if this isn't working by June, here's what I'll do'.",
       read: "Crucial Conversations, Kerry Patterson et al.",
       page: "family",
-      skills: { A: { integrity: 1 }, B: { selfcare: -1 } },
+      skills: { A: { integrity: 1 }, B: { selfcare: -1 }, C: { selfcare: 1, integrity: 1 } },
     },
     dl_life_10: {
       lesson: "Chest pain isn't a calendar item to negotiate. Customers move calls; bodies don't reschedule.",
@@ -88,7 +88,7 @@
       example: "Research on sleep deprivation shows judgement degrades long before people notice it themselves.",
       read: "Why We Sleep, Matthew Walker",
       page: "burnout",
-      skills: { A: { selfcare: 1 }, B: { fundraising: 1, selfcare: -1 } },
+      skills: { A: { selfcare: 1 }, B: { fundraising: 1, selfcare: -1 }, C: { selfcare: 1, hiring: 1 } },
     },
     dl_life_14: {
       lesson: "Burnout named early is cheaper than burnout discovered in a board meeting. Treat support as infrastructure, not indulgence.",
@@ -109,7 +109,7 @@
       example: "Viral outrage usually fades in days, but candidates and customers search the company name for months afterward.",
       read: "So You've Been Publicly Shamed, Jon Ronson",
       page: "no_jerks",
-      skills: { A: { hiring: 1 }, B: { hiring: -1 } },
+      skills: { A: { hiring: 1 }, B: { hiring: -1 }, C: { integrity: 1, hiring: 1 } },
     },
     dl_life_17: {
       lesson: "When customer data leaks, the cover-up is what people remember. Disclose quickly, say exactly what leaked and what you changed.",
@@ -158,7 +158,7 @@
       example: "Saudi, UAE and Egyptian registries have moved much of licensing online, which has made the queue shorter and the favour less necessary.",
       read: "Wasta: The Hidden Force in Middle Eastern Society, Cunningham and Sarayrah",
       page: "mena_wasta",
-      skills: { A: { selfcare: 1, integrity: -1 }, B: { integrity: 1, frugality: -1 } },
+      skills: { A: { selfcare: 1, integrity: -1 }, B: { integrity: 1, frugality: -1 }, C: { integrity: 1, discovery: 1 } },
     },
     dl_mena_02: {
       lesson: "In regulated finance, the licence is the moat. A sandbox is expensive, slow and the cheapest way to own the customer.",
@@ -197,10 +197,10 @@
     },
     dl_mena_07: {
       lesson: "Ramadan changes when people use your product, not just how much. Plan the month like a season: staffing, campaigns and rest.",
-      example: "Across the Gulf and Egypt, app usage and ad prices peak late at night in Ramadan; teams that plan night cover early avoid burning out by the last ten days.",
+      example: "Across the Gulf and Egypt, app usage peaks late at night in Ramadan; teams that plan night cover early avoid burning out by the last ten days.",
       read: "The Culture Map, Erin Meyer",
       page: "mena_seasons",
-      skills: { A: { discovery: 1, hiring: -1 }, B: { hiring: 1, discovery: -1 } },
+      skills: { A: { discovery: 1, hiring: -1 }, B: { hiring: 1, discovery: -1 }, C: { hiring: 1, discovery: 1 } },
     },
     dl_mena_08: {
       lesson: "Customs become expectations. Whatever you decide about Eid, explain it in person, before Eid, with the numbers.",
@@ -291,7 +291,7 @@
       example: "Valuations in a letter of intent often drop during diligence, once competing bidders are locked out.",
       read: "Venture Deals, Brad Feld and Jason Mendelson",
       page: "exits",
-      skills: { A: { fundraising: -1 }, B: { fundraising: 1 } },
+      skills: { A: { fundraising: -1 }, B: { fundraising: 1 }, C: { fundraising: 1, integrity: 1 } },
     },
     dl_mena_21: {
       lesson: "A big licensing deal is revenue that can quietly become your whole company. Price the engineers' time and the exclusivity, not just the logo.",
