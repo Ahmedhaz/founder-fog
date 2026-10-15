@@ -20,6 +20,7 @@ What's different from the other games:
 - **Pay yourself.** After a profitable month you can take a salary. It costs cash and restores energy.
 - **Daily challenge**, as in Bousla: the same business, start and luck for everyone on a given UTC day, 12 months, one try. The score is the cash at the end (zero if the business didn't last). There is no leaderboard, because the game makes no network calls; the end screen copies a short result to share by hand.
 - **The Owner's Playbook**, as in Bousla's Founder Playbook: 32 pages collected across games, each unlocked by a dilemma or a moment in the game (the first loan, money owed piling up, the fog). Each page is the idea, why it matters, one thing to do this month, and a real source. The pages are in `playbook.js`.
+- **Trophies**, as in Bousla: 24, kept on this device across games, from the first profitable month and paying yourself to "it runs without you", paying off every loan, getting through a cash crunch and trying all five businesses. Closing and burning out earn one too. A short toast announces each one, there's a trophy room, and the end screen shows the game's haul.
 - **57 dilemmas**: 11 for the clinic, 8 each for the other four businesses, 8 general ones, 3 for the setting-up months and 3 cash-crunch cards.
 
 ## Files
@@ -53,6 +54,7 @@ Plays thousands of simulated two-year games for both starts and every goal. It c
 - never resting brings the fog and a month in bed;
 - without systems the month away is out of reach.
 - every playbook page is unlocked in some simulated game.
+- every trophy that one game can earn is earned in some simulated game.
 
 ```bash
 CHROME_PATH="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" node owner/tests/play.mjs /tmp/owner-shots
@@ -70,6 +72,6 @@ Plays full games in English and Arabic for every business and both starts in a r
 - a month in bed for a player who never rests;
 - every picture being precached by the service worker.
 
-It also plays the same day's daily challenge in English and Arabic with the same choices and requires the same result, checks that the shared text names the day, and that a second try that day is blocked.
+It also checks the trophy room and the toasts, and earns the three trophies that need several games (every business, both starts, 10 pages) by seeding the device's memory. It also plays the same day's daily challenge in English and Arabic with the same choices and requires the same result, checks that the shared text names the day, and that a second try that day is blocked.
 
 Test URL flags: `?lang=ar|en`, `?seed=N` (replay the same game), `?day=YYYY-MM-DD` (that day's daily challenge), `?fast` (short month animation), `?nosw` (skip the service worker), `?new` (drop the saved game).

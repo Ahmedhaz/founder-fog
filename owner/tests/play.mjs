@@ -82,12 +82,13 @@ async function play({ lang, biz = "clinic", start, seed, mode = "sensible", shot
   await snap("04-setup"); await noHScroll("setup"); await noPlaceholders("setup");
   await page.click('[data-act="start"]');
 
-  const seen = { pageLines: 0, doorLocked: 0, doorOpen: 0, echoes: 0, prepPlans: 0, opening: 0, sick: 0, fog: 0, dilemmas: 0, crunch: 0, forcedDoor: false, forcedFog: false };
+  const seen = { toasts: 0, pageLines: 0, doorLocked: 0, doorOpen: 0, echoes: 0, prepPlans: 0, opening: 0, sick: 0, fog: 0, dilemmas: 0, crunch: 0, forcedDoor: false, forcedFog: false };
   const shot = new Set();
   for (let step = 0; step < 1200; step++) {
     if (await page.$(".endscr")) break;
     const s = await state();
     if (s.energy < 40 && (await page.$("body.fog"))) seen.fog++;
+    if (await page.$(".toast")) seen.toasts++;
 
     if (await page.$('[data-act="ok"]')) {
       const c = s.queue[0];
@@ -208,6 +209,13 @@ async function play({ lang, biz = "clinic", start, seed, mode = "sensible", shot
     check(pb.open === pb.have && pb.have > 0, `${tag}: the playbook shows ${pb.open} open pages, collected ${pb.have}`);
     await noHScroll("playbook"); await noPlaceholders("playbook");
     if (shots) await snap("15-playbook");
+    // trophies: earned ones are open in the trophy room, and the count matches
+    await page.click('[data-act="home"]');
+    await page.click('[data-act="trophies"]');
+    const tr = await page.evaluate(() => ({ all: document.querySelectorAll(".tro").length, open: document.querySelectorAll(".tro:not(.no)").length, have: Object.keys(window.__owner.meta.trophies).length }));
+    check(tr.all === 24 && tr.open === tr.have && tr.have >= 2, `${tag}: trophy room shows ${tr.open} of ${tr.all} open, earned ${tr.have}`);
+    await noHScroll("trophies"); await noPlaceholders("trophies");
+    if (shots) await snap("16-trophies");
   }
   if (start === "open") {
     check(seen.prepPlans >= 2, `${tag}: saw ${seen.prepPlans} fit-out months, want 2 or more`);
@@ -218,6 +226,7 @@ async function play({ lang, biz = "clinic", start, seed, mode = "sensible", shot
   const saved = await page.evaluate(() => localStorage.getItem("owner.v1.game"));
   check(!!saved && saved.includes(lang === "ar" ? "سما" : "Sam"), `${tag}: game not saved to localStorage`);
 
+  check(seen.toasts > 0, `${tag}: no trophy toast was ever shown`);
   check(seen.dilemmas === 0 || seen.pageLines === seen.dilemmas, `${tag}: ${seen.dilemmas - seen.pageLines} dilemma notes had no playbook line`);
   check(errors.length === 0, `${tag}: console errors: ${errors.join(" | ")}`);
   check(external.length === 0, `${tag}: requests left the device: ${external.join(", ")}`);
@@ -289,6 +298,33 @@ async function noScroll(page, tag, where) {
   const w = await page.evaluate(() => ({ sw: document.documentElement.scrollWidth, iw: window.innerWidth }));
   check(w.sw <= w.iw, `${tag}: horizontal scroll on ${where} (${w.sw} > ${w.iw})`);
 }
+
+// Trophies that take several games: with four businesses, one start and 10 pages already on this
+// device, starting the fifth business the other way round earns all three at once.
+async function acrossGames(lang) {
+  const ctx = await browser.newContext({ viewport: { width: 390, height: 844 }, locale: lang === "ar" ? "ar-EG" : "en-US" });
+  const page = await ctx.newPage();
+  const errors = [];
+  page.on("pageerror", (e) => errors.push(String(e)));
+  await page.addInitScript(() => {
+    if (localStorage.getItem("owner.v1.meta")) return;
+    const pages = ["cash_flow", "receivables", "fixed_costs", "capacity", "pricing", "pay_yourself", "systems", "loans", "hiring", "burnout"];
+    localStorage.setItem("owner.v1.meta", JSON.stringify({ biz: { clinic: 1, restaurant: 1, shop: 1, workshop: 1 }, starts: { open: 1 }, pages }));
+  });
+  await page.goto(`${BASE}?lang=${lang}&fast&nosw`);
+  await page.click('[data-act="new"]');
+  await page.fill("#nm", "Sam");
+  await page.click('[data-biz="agency"]');
+  await page.click('[data-start="takeover"]');
+  await page.click('[data-act="start"]');
+  await page.waitForTimeout(300);
+  const got = await page.evaluate(() => Object.keys(window.__owner.meta.trophies));
+  for (const id of ["every_biz", "both_starts", "pages10"]) check(got.includes(id), `${lang}: trophy ${id} not earned across games (got ${got.join(", ")})`);
+  check(!!(await page.$(".toast")), `${lang}: no toast for the across-games trophies`);
+  check(errors.length === 0, `${lang}/across games: page errors ${errors.join(" | ")}`);
+  await ctx.close();
+}
+for (const lang of ["en", "ar"]) await acrossGames(lang);
 
 const dailyRuns = [];
 for (const day of ["2026-10-15", "2026-10-16"]) {

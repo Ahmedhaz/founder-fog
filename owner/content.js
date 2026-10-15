@@ -51,7 +51,7 @@ var OWNER = {
         takeover: { cash: 5000, energy: 60, rep: 55, quality: 45, systems: 10, staff: 3, ar: 4000, loan: { bal: 26000, pay: 1300 }, prep: 0, growth: [1.08, 0.012, 1.45] },
       },
     },
-  restaurant: {
+    restaurant: {
       img: "cooking", prices: [8, 12, 18], base: 950, cap: 450, salary: 900, supply: 4.2, rent: 2400, other: 1200,
       hireFee: 300, minStaff: 1, maxStaff: 6, overdraft: 6000, arBase: 0.02, spoil: 0.3,
       cal: { normal: 1, busy: 1.15, slow: 0.85, ramadan: 1.25, summer: 0.9 },
@@ -195,6 +195,34 @@ var OWNER = {
     reputation: { img: "speech_balloon", page: "reputation", en: "In a neighbourhood, reputation travels faster than any advert.", ar: "في الحي، السمعة تنتقل أسرع من أي إعلان." },
   },
 
+  // ───────────── Trophies (earned across games; the checks are in game.js) ─────────────
+  trophies: [
+    { id: "month1", img: "calendar", name: { en: "First month done", ar: "أول شهر انتهى" }, desc: { en: "Finish your first month open.", ar: "إنهاء أول شهر بعد الافتتاح." } },
+    { id: "opened", img: "party_popper", name: { en: "Doors open", ar: "الأبواب مفتوحة" }, desc: { en: "Open a business from scratch.", ar: "افتتاح مشروع من الصفر." } },
+    { id: "profit", img: "coin", name: { en: "In profit", ar: "أول ربح" }, desc: { en: "Make a profit in a month.", ar: "تحقيق ربح في شهر." } },
+    { id: "cash_up", img: "dollar_banknote", name: { en: "Profit and cash", ar: "ربح ونقد" }, desc: { en: "Have a month where profit and cash both rise by $2,000 or more.", ar: "شهر يرتفع فيه الربح والنقد كلاهما $2,000 أو أكثر." } },
+    { id: "collected", img: "receipt", name: { en: "Chased it down", ar: "تحصيل ناجح" }, desc: { en: "Collect $5,000 or more of money owed in one month.", ar: "تحصيل $5,000 أو أكثر من المستحقات في شهر واحد." } },
+    { id: "paid_self", img: "red_heart", name: { en: "Paid yourself", ar: "راتب لنفسك" }, desc: { en: "Pay yourself a salary.", ar: "دفع راتب لنفسك." } },
+    { id: "full_house", img: "sparkles", name: { en: "Full house", ar: "طاقة كاملة" }, desc: { en: "Use 95% of capacity in a month and turn almost nobody away.", ar: "استخدام 95% من الطاقة في شهر دون رد أحد تقريبًا." } },
+    { id: "team5", img: "busts_in_silhouette", name: { en: "Five on the team", ar: "خمسة في الفريق" }, desc: { en: "Grow the team to 5.", ar: "تكبير الفريق إلى 5." } },
+    { id: "systems70", img: "puzzle_piece", name: { en: "It runs without you", ar: "يعمل دونك" }, desc: { en: "Reach Systems 70.", ar: "الوصول بالأنظمة إلى 70." } },
+    { id: "rest5", img: "person_in_lotus_position", name: { en: "Looked after yourself", ar: "اعتناء بالنفس" }, desc: { en: "Rest 5 times in one game.", ar: "الراحة 5 مرات في لعبة واحدة." } },
+    { id: "clear", img: "glowing_star", name: { en: "Clear head", ar: "ذهن صافٍ" }, desc: { en: "Finish two years without ever falling below 40 energy.", ar: "إنهاء العامين دون النزول تحت 40 طاقة أبدًا." } },
+    { id: "debt_free", img: "classical_building", name: { en: "Debt-free", ar: "بلا ديون" }, desc: { en: "Pay off every loan.", ar: "سداد كل القروض." } },
+    { id: "cushion", img: "shield", name: { en: "Safety cushion", ar: "وسادة أمان" }, desc: { en: "Reach your business's safety-cushion cash.", ar: "بلوغ نقد وسادة الأمان لنشاطك." } },
+    { id: "branch", img: "office_building", name: { en: "Second branch", ar: "فرع ثانٍ" }, desc: { en: "Reach your business's second-branch cash.", ar: "بلوغ نقد الفرع الثاني لنشاطك." } },
+    { id: "away", img: "sunrise", name: { en: "A month away", ar: "شهر بعيدًا" }, desc: { en: "Finish two years with Systems 70 and no loss in the last 3 months.", ar: "إنهاء العامين بأنظمة 70 ودون خسارة في آخر 3 أشهر." } },
+    { id: "two_years", img: "trophy", name: { en: "Two years in", ar: "عامان كاملان" }, desc: { en: "Finish two years without closing.", ar: "إنهاء العامين دون إغلاق." } },
+    { id: "honest", img: "balance_scale", name: { en: "Clean hands", ar: "أيدٍ نظيفة" }, desc: { en: "Finish a game with 3 honest choices and no dishonest ones.", ar: "إنهاء لعبة بـ3 اختيارات نزيهة ودون أي اختيار غير نزيه." } },
+    { id: "crunch", img: "money_with_wings", name: { en: "Through the crunch", ar: "عبور الأزمة" }, desc: { en: "Face a cash crunch and still finish two years.", ar: "المرور بأزمة نقد ثم إنهاء العامين رغم ذلك." } },
+    { id: "closed", img: "chart_decreasing", name: { en: "Closed the doors", ar: "إغلاق الأبواب" }, desc: { en: "Close a business. Most owners learn from one.", ar: "إغلاق مشروع. وأغلب أصحاب الأعمال يتعلّمون من مرة." } },
+    { id: "burnout", img: "face_exhaling", name: { en: "Into the fog", ar: "داخل الضباب" }, desc: { en: "Burn out and sell. It happens to real owners too.", ar: "الإنهاك والبيع. يحدث لأصحاب الأعمال الحقيقيين أيضًا." } },
+    { id: "daily", img: "check_mark_button", name: { en: "Daily player", ar: "لاعب يومي" }, desc: { en: "Finish a daily challenge.", ar: "إنهاء تحدٍّ يومي." } },
+    { id: "pages10", img: "notebook", name: { en: "Student", ar: "طالب علم" }, desc: { en: "Collect 10 playbook pages.", ar: "جمع 10 صفحات من الدليل." } },
+    { id: "every_biz", img: "briefcase", name: { en: "Five trades", ar: "خمس مهن" }, desc: { en: "Start each of the five businesses.", ar: "بدء كل نشاط من الأنشطة الخمسة." } },
+    { id: "both_starts", img: "door", name: { en: "Both ways in", ar: "البدايتان" }, desc: { en: "Start from scratch once, and take over once.", ar: "البدء من الصفر مرة، والاستلام مرة." } },
+  ],
+
   // ───────────────────────── Interface text ─────────────────────────
   ui: {
     title: { en: "Business Owner", ar: "صاحب المشروع" },
@@ -328,6 +356,11 @@ var OWNER = {
     pageOld: { en: "Playbook: {a}", ar: "في الدليل: {a}" },
     pagesRun: { en: "Playbook: {a} new pages this game · {b} of {c} collected", ar: "الدليل: {a} صفحات جديدة في هذه اللعبة · {b} من {c}" },
     source: { en: "Source", ar: "المصدر" },
+    trophiesTitle: { en: "Trophies", ar: "الجوائز" },
+    trophyCount: { en: "{a} of {b}", ar: "{a} من {b}" },
+    trophyOne: { en: "Trophy: {a}", ar: "جائزة: {a}" },
+    trophyMany: { en: "{a} new trophies", ar: "جوائز جديدة: {a}" },
+    trophiesRun: { en: "Trophies this game: {a} · {b} of {c} in all", ar: "جوائز هذه اللعبة: {a} · {b} من {c} في المجموع" },
 
     daily: { en: "Daily challenge", ar: "التحدي اليومي" },
     dailyNew: { en: "New today", ar: "جديد اليوم" },
