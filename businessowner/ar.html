@@ -1,0 +1,605 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>صاحب المشروع: لعبة مجانية عن إدارة مشروع صغير لمدة عامين</title>
+<meta name="description" content="عيادة أو مطعم أو محل أو ورشة أو وكالة. الأسعار والرواتب والتدفق النقدي والمستحقات والاعتناء بالنفس، لمدة 24 شهرًا. بالعربية والإنجليزية. بلا إعلانات ولا تتبّع.">
+<link rel="canonical" href="https://adam.ahmedhaz.com/businessowner/ar.html">
+<link rel="alternate" hreflang="en" href="https://adam.ahmedhaz.com/businessowner/">
+<link rel="alternate" hreflang="ar" href="https://adam.ahmedhaz.com/businessowner/ar.html">
+<link rel="alternate" hreflang="x-default" href="https://adam.ahmedhaz.com/businessowner/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="صاحب المشروع: لعبة مجانية عن إدارة مشروع صغير لمدة عامين">
+<meta property="og:description" content="عيادة أو مطعم أو محل أو ورشة أو وكالة. الأسعار والرواتب والتدفق النقدي والمستحقات والاعتناء بالنفس، لمدة 24 شهرًا. بالعربية والإنجليزية. بلا إعلانات ولا تتبّع.">
+<meta property="og:image" content="https://adam.ahmedhaz.com/businessowner/og-ar.png">
+<meta property="og:url" content="https://adam.ahmedhaz.com/businessowner/ar.html">
+<meta property="og:locale" content="ar_EG">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#FBFAF9">
+<link rel="icon" type="image/png" href="../owner/icons/icon-192.png">
+<link rel="apple-touch-icon" href="../owner/icons/icon-192.png">
+<link rel="preload" href="../owner/fonts/ReadexPro.ttf" as="font" type="font/ttf" crossorigin>
+<script>
+  // First visit follows the device language; a choice made here or in the game is remembered (owner.v1.meta, this device only).
+  (function () {
+    document.documentElement.classList.add("js");
+    var page = document.documentElement.lang, pref = null;
+    try { pref = (JSON.parse(localStorage.getItem("owner.v1.meta") || "{}") || {}).lang || null; } catch (e) {}
+    var want = pref || ((navigator.language || "").toLowerCase().indexOf("ar") === 0 ? "ar" : "en");
+    if (want !== page && !/[?&]stay/.test(location.search)) location.replace(want === "ar" ? "ar.html" : "./");
+  })();
+  function setLang(l) { try { var m = JSON.parse(localStorage.getItem("owner.v1.meta") || "{}") || {}; m.lang = l; localStorage.setItem("owner.v1.meta", JSON.stringify(m)); } catch (e) {} }
+</script>
+<style>/* Visual system: warm ivory and sand fields, Deep Teal for focus, Bronze for small accents,
+   Manrope (EN) / Readex Pro (AR), arch-topped "threshold" frames, needle-felted art.
+   Motion is calm: things settle into place, nothing floats forever. */
+@font-face { font-family: "Manrope"; src: url(../owner/fonts/Manrope.ttf) format("truetype"); font-weight: 200 800; font-display: swap; }
+@font-face { font-family: "Readex Pro"; src: url(../owner/fonts/ReadexPro.ttf) format("truetype"); font-weight: 160 700; font-display: swap; }
+:root {
+  --teal: #0D3F3F; --teal2: #15595A; --ink: #12292B; --ivory: #F8F6F1; --soft: #FBFAF9; --sand: #EEE9E2; --sand2: #E4DDD2;
+  --bronze: #8C6D45; --gold: #D2B48A; --white: #FFFFFF; --grey: #5C6F70; --line: #E2DBD0; --bad: #A4523A; --good: #2F6F5A;
+  --shadow: 0 1px 0 rgba(18, 41, 43, .04), 0 12px 30px rgba(18, 41, 43, .08);
+  --font: "Manrope", "Readex Pro", system-ui, sans-serif; --d: 1;
+}
+:lang(ar) { --font: "Readex Pro", "Manrope", system-ui, sans-serif; }
+[dir="rtl"] { --d: -1; }
+* { box-sizing: border-box; }
+html, body { margin: 0; overflow-x: hidden; }
+body { background: var(--soft); color: var(--ink); font-family: var(--font); font-size: 17px; line-height: 1.6; }
+img { max-width: 100%; display: block; }
+a { color: var(--teal); }
+bdi.n { unicode-bidi: isolate; direction: ltr; font-variant-numeric: tabular-nums; font-family: "Manrope", var(--font); }
+.wrap { max-width: 1120px; margin: 0 auto; padding: 0 18px; }
+section { padding: 64px 0; position: relative; }
+section.sand { background: var(--sand); }
+section.ivory { background: var(--ivory); }
+section.teal { background: var(--teal); color: var(--ivory); }
+.kicker { color: var(--bronze); font-weight: 700; letter-spacing: .16em; text-transform: uppercase; font-size: 12.5px; }
+:lang(ar) .kicker { letter-spacing: 0; font-size: 15px; font-weight: 500; }
+.teal .kicker { color: var(--gold); }
+h1, h2, h3 { color: var(--teal); line-height: 1.15; margin: 8px 0 14px; letter-spacing: -.015em; font-weight: 700; }
+:lang(ar) h1, :lang(ar) h2, :lang(ar) h3 { letter-spacing: 0; font-weight: 600; line-height: 1.3; }
+.teal h2, .teal h3 { color: var(--ivory); }
+h1 { font-size: clamp(36px, 8.6vw, 60px); }
+h2 { font-size: clamp(28px, 6vw, 42px); }
+h3 { font-size: 22px; }
+.sub { color: var(--grey); font-size: 18.5px; max-width: 640px; margin: 0 0 22px; }
+.teal .sub { color: #CFE0DD; }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 54px; padding: 0 26px; border-radius: 999px; font: inherit; font-weight: 600; font-size: 17px;
+       text-decoration: none; border: 1px solid var(--line); background: var(--white); color: var(--teal); transition: transform .2s ease, box-shadow .2s ease, background .2s; }
+.btn:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
+.btn-primary { background: var(--teal); border-color: var(--teal); color: var(--ivory); }
+.btn-light { background: var(--ivory); border-color: var(--ivory); color: var(--teal); }
+.btn-ghost { background: transparent; border-color: rgba(248, 246, 241, .5); color: var(--ivory); }
+.btn-sm { min-height: 44px; padding: 0 16px; font-size: 15px; }
+.btn img { width: 26px; height: 26px; border-radius: 50%; }
+.ctas { display: flex; flex-wrap: wrap; gap: 12px; }
+.round { border-radius: 50%; object-fit: cover; background: #F3EEE6; }
+
+/* bar */
+.bar { position: sticky; top: 0; z-index: 30; background: color-mix(in srgb, var(--soft) 90%, transparent); backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); }
+.bar .wrap { display: flex; align-items: center; gap: 10px; min-height: 66px; }
+.logo { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 18px; color: var(--teal); text-decoration: none; margin-inline-end: auto; min-width: 0; }
+.logo img { width: 38px; height: 38px; border-radius: 10px; flex: none; }
+.logo span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.links { display: none; gap: 22px; margin-inline-end: 10px; }
+.links a { color: var(--ink); text-decoration: none; font-weight: 500; font-size: 15.5px; }
+.links a:hover { color: var(--bronze); }
+@media (min-width: 900px) { .links { display: flex; } }
+@media (max-width: 440px) { .hide-sm { display: none; } }
+.progress { position: absolute; bottom: -1px; inset-inline-start: 0; height: 2px; width: calc(var(--sp, 0) * 100%); background: var(--bronze); }
+
+/* hero */
+.hero { padding: 40px 0 30px; overflow: hidden; }
+.hero-grid { display: grid; gap: 36px; align-items: center; }
+@media (min-width: 900px) { .hero-grid { grid-template-columns: 1.05fr .95fr; } }
+.note { color: var(--grey); font-size: 14.5px; margin-top: 16px; }
+.stage { position: relative; min-height: 560px; display: grid; place-items: center; }
+.arch { overflow: hidden; background: var(--sand); }
+.stage .arch { width: min(380px, 82vw); aspect-ratio: 4 / 5; border-radius: 999px 999px 22px 22px / 46% 46% 22px 22px; box-shadow: var(--shadow); }
+.stage .arch img { width: 100%; height: 100%; object-fit: cover; }
+.stage .phone { position: absolute; width: min(138px, 30vw); bottom: 38px; inset-inline-start: 0; z-index: 3; transform: rotate(calc(var(--d) * -5deg)); }
+.phone { aspect-ratio: 390 / 844; border-radius: 26px; padding: 6px; background: var(--ink); box-shadow: 0 18px 40px rgba(18, 41, 43, .25); }
+.phone img { width: 100%; height: 100%; object-fit: cover; object-position: top; border-radius: 21px; }
+
+/* stats */
+.stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: 30px; }
+@media (min-width: 760px) { .stats { grid-template-columns: repeat(5, 1fr); } }
+.stat { background: var(--white); border: 1px solid var(--line); border-radius: 18px; padding: 14px; text-align: center; }
+.stat b { display: block; font-size: 36px; line-height: 1.05; color: var(--teal); font-weight: 700; }
+.stat span { color: var(--grey); font-size: 14px; }
+.stat:last-child { grid-column: 1 / -1; } @media (min-width: 760px) { .stat:last-child { grid-column: auto; } }
+
+/* two products */
+.two { display: grid; gap: 18px; margin-top: 26px; }
+@media (min-width: 900px) { .two { grid-template-columns: 1fr 1fr; } }
+.prod { background: var(--white); border: 1px solid var(--line); border-radius: 26px; padding: 22px; display: grid; gap: 18px; box-shadow: var(--shadow); }
+@media (min-width: 560px) { .prod { grid-template-columns: 150px 1fr; align-items: start; } }
+.prod .vis { display: grid; place-items: center; }
+.prod .vis .phone { width: 140px; }
+.prod .vis .cover { width: 142px; border-radius: 4px 12px 12px 4px; box-shadow: 0 14px 30px rgba(18, 41, 43, .2); }
+[dir="rtl"] .prod .vis .cover { border-radius: 12px 4px 4px 12px; }
+.prod h3 { margin-top: 0; }
+.prod p { margin: 0 0 12px; color: var(--grey); }
+.prod ul { list-style: none; padding: 0; margin: 0 0 18px; display: grid; gap: 8px; }
+.prod li { position: relative; padding-inline-start: 18px; font-size: 15.5px; }
+.prod li::before { content: ""; position: absolute; inset-inline-start: 0; top: 9px; width: 8px; height: 8px; border-radius: 50%; background: var(--bronze); }
+.prod .ctas .btn { min-height: 48px; }
+
+/* family */
+.split { display: grid; gap: 30px; align-items: center; }
+@media (min-width: 900px) { .split { grid-template-columns: 1fr 1fr; gap: 56px; } }
+.family .arch { border-radius: 999px 999px 24px 24px / 50% 50% 24px 24px; aspect-ratio: 7 / 5; box-shadow: var(--shadow); }
+.family .arch img { width: 100%; height: 100%; object-fit: cover; }
+.people { display: grid; gap: 12px; }
+.person { display: flex; gap: 14px; align-items: flex-start; background: var(--white); border: 1px solid var(--line); border-radius: 18px; padding: 14px; }
+.person img { width: 52px; height: 52px; flex: none; }
+.person b { display: block; color: var(--teal); font-size: 18px; }
+.person span { color: var(--grey); font-size: 15.5px; }
+
+/* steps */
+.steps { list-style: none; padding: 0; margin: 26px 0 0; display: grid; gap: 12px; counter-reset: s; }
+@media (min-width: 900px) { .steps { grid-template-columns: repeat(5, 1fr); } }
+.steps li { background: var(--white); border: 1px solid var(--line); border-radius: 22px; padding: 18px; position: relative; counter-increment: s; }
+.steps li::before { content: counter(s); position: absolute; top: 14px; inset-inline-end: 16px; width: 28px; height: 28px; border-radius: 50%; background: var(--sand); color: var(--teal); font: 700 14px "Manrope", sans-serif; display: grid; place-items: center; transition: background .5s, color .5s; }
+.steps li.in::before { background: var(--teal); color: var(--ivory); }
+.steps img { width: 58px; height: 58px; margin-bottom: 8px; }
+.steps li.in img { animation: settle .8s cubic-bezier(.2, .8, .2, 1); }
+@keyframes settle { from { transform: translateY(8px) scale(.92); } }
+.steps b { display: block; font-size: 19px; color: var(--teal); margin-bottom: 2px; }
+.steps p { margin: 0; color: var(--grey); font-size: 15.5px; }
+
+/* rails (screens and book pages) */
+.rail { display: flex; gap: 20px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 26px 18px 18px; margin: 10px -18px 0; scrollbar-width: thin; }
+.rail figure { flex: 0 0 auto; margin: 0; scroll-snap-align: center; transition: transform .5s ease, opacity .5s ease; transform: scale(.94); opacity: .8; }
+.rail figure.active { transform: scale(1); opacity: 1; }
+.rail .phone { width: 220px; }
+.rail .page { width: 250px; aspect-ratio: 148 / 210; border-radius: 6px; overflow: hidden; background: #fff; box-shadow: 0 14px 30px rgba(18, 41, 43, .16); }
+.rail .page img { width: 100%; height: 100%; object-fit: cover; }
+.rail figcaption { margin-top: 12px; color: var(--grey); font-size: 14.5px; max-width: 250px; }
+.rail figcaption b { display: block; color: var(--teal); font-size: 17px; }
+.dots { display: flex; justify-content: center; gap: 8px; margin-top: 4px; }
+.dots i { width: 8px; height: 8px; border-radius: 99px; background: var(--line); transition: width .3s, background .3s; }
+.dots i.on { width: 24px; background: var(--teal); }
+
+/* energy demo (inside a teal section) */
+.edemo { background: var(--ivory); color: var(--ink); border-radius: 24px; padding: 20px; max-width: 470px; margin-inline: auto; }
+.erow { display: flex; align-items: center; gap: 12px; }
+.erow img { width: 44px; height: 44px; }
+.erow .elabel { font-weight: 700; font-size: 19px; flex: 1; color: var(--teal); }
+.erow .enum { font-size: 40px; font-weight: 700; line-height: 1; min-width: 70px; text-align: end; color: var(--teal); transition: color .3s; font-family: "Manrope", sans-serif; }
+.ebar { position: relative; height: 16px; border-radius: 999px; background: var(--sand); margin: 14px 0 6px; }
+.ebar i { position: absolute; inset-block: 0; inset-inline-start: 0; width: calc(var(--e, .8) * 100%); border-radius: 999px; background: var(--teal2); transition: width .25s linear, background .3s; }
+.ebar .m { position: absolute; top: -5px; bottom: -5px; width: 2px; border-radius: 2px; background: var(--grey); }
+.ebar .m40 { inset-inline-start: 40%; } .ebar .m70 { inset-inline-start: 70%; background: var(--bronze); }
+.marks { position: relative; height: 18px; font-size: 12.5px; color: var(--grey); font-weight: 600; }
+.marks span { position: absolute; transform: translateX(calc(var(--d) * -50%)); }
+.marks .k40 { inset-inline-start: 40%; } .marks .k70 { inset-inline-start: 70%; }
+.estate { display: flex; align-items: center; gap: 10px; margin-top: 10px; min-height: 52px; font-weight: 600; }
+.estate img { width: 38px; height: 38px; }
+.estate .door { margin-inline-start: auto; display: flex; align-items: center; gap: 6px; border: 1px dashed var(--line); border-radius: 999px; padding: 4px 12px 4px 4px; font-size: 13.5px; transition: all .3s; }
+[dir="rtl"] .estate .door { padding: 4px 4px 4px 12px; }
+.estate .door img { width: 28px; height: 28px; }
+.edemo input { width: 100%; margin: 12px 0 0; accent-color: var(--teal); height: 28px; }
+.edemo small { color: var(--grey); }
+.edemo.sleepy .ebar i { background: var(--bad); }
+.edemo.sleepy .enum { color: var(--bad); animation: wobble 1.4s ease-in-out infinite; filter: blur(.8px); }
+@keyframes wobble { 0%, 100% { transform: translate(0, 0) rotate(0) } 25% { transform: translate(1px, -1px) rotate(-4deg) } 75% { transform: translate(-1px, 1px) rotate(4deg) } }
+.edemo.open .door { border-style: solid; border-color: var(--teal); background: var(--teal); color: var(--ivory); }
+
+/* cards */
+.grid3 { display: grid; gap: 12px; margin-top: 24px; }
+@media (min-width: 640px) { .grid3 { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1000px) { .grid3 { grid-template-columns: repeat(3, 1fr); } }
+.ebar .m75 { inset-inline-start: 75%; background: var(--bronze); } .marks .k75 { inset-inline-start: 75%; }
+.grid4 { display: grid; gap: 12px; margin-top: 24px; }
+@media (min-width: 640px) { .grid4 { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1000px) { .grid4 { grid-template-columns: repeat(4, 1fr); } }
+.card { background: var(--white); border: 1px solid var(--line); border-radius: 22px; padding: 20px; transition: transform .3s ease, box-shadow .3s ease; }
+.card:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
+.card img { width: 60px; height: 60px; margin-bottom: 8px; }
+.card h3 { font-size: 20px; margin: 4px 0; }
+.card p { margin: 0; color: var(--grey); font-size: 15.5px; }
+.ticks { list-style: none; padding: 0; margin: 20px 0 0; display: grid; gap: 12px; }
+.ticks li { display: flex; gap: 14px; align-items: flex-start; background: var(--white); border: 1px solid var(--line); border-radius: 18px; padding: 14px 16px; }
+.ticks img { width: 48px; height: 48px; flex: none; }
+.ticks b { display: block; color: var(--teal); font-size: 17.5px; } .ticks span { color: var(--grey); font-size: 15.5px; }
+.phonesteps { counter-reset: p; list-style: none; padding: 0; margin: 18px 0 0; display: grid; gap: 12px; }
+.phonesteps li { counter-increment: p; display: flex; gap: 14px; align-items: flex-start; font-size: 16.5px; }
+.phonesteps li::before { content: counter(p); flex: none; width: 32px; height: 32px; border-radius: 50%; background: var(--teal); color: var(--ivory); font: 700 15px "Manrope", sans-serif; display: grid; place-items: center; }
+
+details { background: var(--white); border: 1px solid var(--line); border-radius: 18px; padding: 4px 20px; margin: 10px 0; }
+details[open] { border-color: var(--teal); }
+summary { cursor: pointer; font-weight: 600; font-size: 18px; min-height: 52px; display: flex; align-items: center; gap: 10px; list-style: none; color: var(--teal); }
+summary::-webkit-details-marker { display: none; }
+summary::after { content: "+"; margin-inline-start: auto; font-size: 24px; color: var(--bronze); transition: transform .3s; }
+details[open] summary::after { transform: rotate(45deg); }
+details p { margin: 0 0 16px; color: var(--grey); }
+details[open] p { animation: drop .35s ease; }
+@keyframes drop { from { opacity: 0; transform: translateY(-6px) } }
+
+.finale { text-align: center; }
+.finale .sub { margin-inline: auto; }
+.finale .ctas { justify-content: center; }
+.finale .row { display: flex; justify-content: center; gap: 12px; margin-bottom: 14px; }
+.finale .row img { width: 60px; height: 60px; border: 2px solid rgba(248, 246, 241, .35); }
+footer { padding: 28px 0 44px; color: var(--grey); font-size: 13.5px; text-align: center; border-top: 1px solid var(--line); }
+footer p { margin: 4px 0; }
+
+.js .reveal { opacity: 0; transform: translateY(16px); transition: opacity .7s ease, transform .7s cubic-bezier(.2, .8, .2, 1); transition-delay: calc(var(--i, 0) * 80ms); }
+.js .reveal.in { opacity: 1; transform: none; }
+h1.words .w { display: inline-block; opacity: 0; transform: translateY(.35em); animation: word .6s cubic-bezier(.2, .8, .2, 1) forwards; animation-delay: calc(var(--i) * 70ms + 120ms); }
+@keyframes word { to { opacity: 1; transform: none } }
+.js .scene:not(.live) *, .js .scene:not(.live) *::before, .js .scene:not(.live) *::after { animation-play-state: paused !important; }
+@media (prefers-reduced-motion: reduce) {
+  .js .reveal { opacity: 1; transform: none; transition: none; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  h1.words .w { opacity: 1; transform: none; }
+}
+
+/* Business Owner: Uncle Salah in the arch, the five businesses circling him */
+.stage .mentor { position: relative; display: grid; place-items: end center; overflow: visible; background: none; box-shadow: none; }
+.stage .mentor::before { content: ""; position: absolute; inset: 0; border-radius: inherit; background: linear-gradient(180deg, var(--sand), var(--sand2)); box-shadow: var(--shadow); }
+.stage .mentor > img:first-child { position: relative; width: 64%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; margin-bottom: 13%; border-radius: 999px 999px 18px 18px / 50% 50% 18px 18px; box-shadow: 0 0 0 8px rgba(255, 255, 255, .55), 0 18px 34px rgba(18, 41, 43, .16); }
+.stage .mentor img.orbit { position: absolute; width: 64px; height: 64px; object-fit: contain; border-radius: 50%; background: var(--white); padding: 8px; box-shadow: var(--shadow); animation: bob 5s ease-in-out infinite; z-index: 2; }
+.orbit.o0 { top: 0; inset-inline-start: 4%; } .orbit.o1 { top: -6%; inset-inline-start: 41%; animation-delay: -1s; } .orbit.o2 { top: 0; inset-inline-end: 4%; animation-delay: -2s; }
+.orbit.o3 { top: 26%; inset-inline-end: -9%; animation-delay: -3s; } .orbit.o4 { top: 24%; inset-inline-start: -9%; animation-delay: -4s; }
+@keyframes bob { 50% { transform: translateY(-7px) } }
+/* the month's money: profit up, cash down */
+.cashcard { position: absolute; bottom: -6px; inset-inline-end: 0; z-index: 4; width: min(270px, 70vw); background: var(--white); border: 1px solid var(--line); border-radius: 18px; padding: 12px 14px; box-shadow: var(--shadow); display: grid; gap: 4px; font-size: 14px; }
+.cashcard small { color: var(--grey); font-weight: 600; font-size: 12.5px; }
+.crow { display: flex; justify-content: space-between; gap: 10px; align-items: baseline; }
+.crow b { font-family: "Manrope", sans-serif; font-variant-numeric: tabular-nums; }
+.crow.profit b { color: var(--good); font-size: 17px; }
+.crow.minus { color: var(--grey); transition: opacity .4s ease, transform .4s ease; }
+.crow.minus b { color: var(--bad); font-weight: 600; }
+.js .cashcard:not(.s1) .crow[data-step="1"], .js .cashcard:not(.s2) .crow[data-step="2"] { opacity: 0; transform: translateY(-4px); }
+.crow.cash { border-top: 1px solid var(--line); padding-top: 6px; margin-top: 2px; font-weight: 700; color: var(--teal); }
+.crow.cash b { font-size: 19px; transition: color .3s; }
+.cashcard.neg .crow.cash b { color: var(--bad); }
+@media (max-width: 560px) { .stage { min-height: 520px; } .stage .mentor img.orbit { width: 52px; height: 52px; padding: 6px; } }
+
+/* five businesses */
+.picker { margin-top: 26px; }
+.tabs { display: flex; gap: 8px; overflow-x: auto; padding: 4px 2px 10px; scrollbar-width: none; }
+.tabs::-webkit-scrollbar { display: none; }
+.tabs button { flex: 0 0 auto; display: flex; align-items: center; gap: 8px; min-height: 50px; padding: 6px 16px 6px 6px; border-radius: 999px; border: 1px solid var(--line); background: var(--white); color: var(--teal); font: inherit; font-weight: 600; font-size: 15px; cursor: pointer; transition: background .25s, color .25s, border-color .25s; }
+[dir="rtl"] .tabs button { padding: 6px 6px 6px 16px; }
+.tabs button img { width: 38px; height: 38px; }
+.tabs button[aria-selected="true"] { background: var(--teal); border-color: var(--teal); color: var(--ivory); }
+.panel { display: grid; gap: 24px; align-items: center; background: var(--white); border: 1px solid var(--line); border-radius: 26px; padding: 22px; box-shadow: var(--shadow); margin-top: 8px; }
+.panel[hidden] { display: none; }
+.panel.on { animation: drop .45s ease; }
+@media (min-width: 760px) { .panel { grid-template-columns: 1fr 230px; padding: 30px 34px; } }
+.panel h3 { margin-top: 0; font-size: 26px; }
+.panel p { color: var(--grey); margin: 0 0 16px; }
+.panel .phone { width: min(230px, 62vw); margin-inline: auto; }
+.pricerow { display: grid; gap: 6px; margin-bottom: 16px; }
+.pricerow small { color: var(--bronze); font-weight: 700; font-size: 13px; }
+.pricerow span { display: flex; gap: 8px; flex-wrap: wrap; }
+.pricerow i { font-style: normal; font-weight: 700; color: var(--teal); border: 1px solid var(--line); border-radius: 12px; padding: 6px 14px; background: var(--ivory); }
+.pricerow i.mid { background: var(--teal); color: var(--ivory); border-color: var(--teal); }
+.panel .hard { display: flex; gap: 12px; align-items: flex-start; background: var(--sand); border-radius: 16px; padding: 12px 14px; color: var(--ink); margin: 0; }
+.panel .hard img { width: 34px; height: 34px; flex: none; }
+
+/* goals */
+.goals { display: grid; gap: 12px; margin-top: 18px; }
+@media (min-width: 760px) { .goals { grid-template-columns: repeat(3, 1fr); } }
+.goal { display: flex; gap: 14px; align-items: center; background: var(--ivory); border: 1px solid var(--line); border-radius: 18px; padding: 12px 14px; }
+.goal img { width: 48px; height: 48px; flex: none; }
+.goal b { display: block; color: var(--teal); } .goal span { color: var(--grey); font-size: 15px; }
+.finale .row img { background: var(--ivory); padding: 6px; }
+.ticks a { color: var(--teal); overflow-wrap: anywhere; }
+.edemo.sick .enum { color: var(--bad); }
+</style>
+</head>
+<body>
+<header class="bar"><div class="wrap">
+  <a class="logo" href="./"><img src="../owner/icons/icon-192.png" alt=""><span>صاحب المشروع</span></a>
+  <nav class="links"><a href="#game">اللعبة</a><a href="#businesses">خمسة مشاريع</a><a href="#programmes">للبرامج</a></nav>
+  <a class="btn btn-sm" href="./" hreflang="en" lang="en" onclick="setLang('en')">EN</a>
+  <a class="btn btn-primary btn-sm hide-sm" href="../owner/?lang=ar">العبوا مجانًا</a>
+</div><span class="progress" aria-hidden="true"></span></header>
+<main>
+  <section class="hero scene"><div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <div class="kicker reveal">لعبة مجانية لأصحاب المشاريع الصغيرة</div>
+        <h1 class="words">الربح ليس النقد.</h1>
+        <p class="sub reveal" style="--i:2">إدارة مشروع صغير لمدة عامين: عيادة أو مطعم أو محل أو ورشة أو وكالة. تحديد الأسعار، والتوظيف، وتحصيل المستحقات، ودفع الإيجار قبل وصول العملاء، وعدم نسيان راتب صاحب المشروع نفسه. العم صلاح أدار صيدلية <bdi class="n">30</bdi> عامًا، ويترك ملاحظة بعد كل اختيار.</p>
+        <div class="ctas reveal" style="--i:3"><a class="btn btn-primary" href="../owner/?lang=ar"><img src="../owner/img/briefcase.webp" alt="" width="160" height="160">العبوا الآن</a><a class="btn" href="#programmes"><img src="../owner/img/classical_building.webp" alt="" width="160" height="160">للبرامج والحاضنات</a></div>
+        <p class="note reveal" style="--i:4">مجانية · بالعربية والإنجليزية · بلا إعلانات ولا حسابات ولا مشتريات</p>
+      </div>
+      <div class="stage reveal">
+        <figure class="arch mentor" style="margin:0"><img src="../owner/img/old_man.webp" alt="العم صلاح" width="320" height="320">
+          <img class="orbit o0" src="../owner/img/stethoscope.webp" alt="" width="160" height="160"><img class="orbit o1" src="../owner/img/cooking.webp" alt="" width="160" height="160"><img class="orbit o2" src="../owner/img/shopping_bags.webp" alt="" width="160" height="160"><img class="orbit o3" src="../owner/img/wrench.webp" alt="" width="160" height="160"><img class="orbit o4" src="../owner/img/laptop.webp" alt="" width="160" height="160"></figure>
+        <div class="phone"><img src="shots/ar-home.webp" alt=""></div>
+        <div class="cashcard" aria-label="الربح ليس النقد: شهر في الورشة">
+          <small>الشهر 7 · ورشة نجارة</small>
+          <div class="crow profit"><span>الربح</span><b dir="ltr"><span data-to="2400" data-sign="+">+$2,400</span></b></div>
+          <div class="crow minus" data-step="1"><span>لم يُدفع بعد</span><b dir="ltr">−$2,900</b></div>
+          <div class="crow minus" data-step="2"><span>قسط القرض</span><b dir="ltr">−$1,000</b></div>
+          <div class="crow cash"><span>تغيّر النقد</span><b dir="ltr"><span data-to="-1500">−$1,500</span></b></div>
+        </div>
+      </div>
+    </div>
+    <div class="stats"><div class="stat reveal" style="--i:0"><b><bdi class="n" data-count="24">24</bdi></b><span>شهرًا من الإدارة</span></div><div class="stat reveal" style="--i:1"><b><bdi class="n" data-count="98">98</bdi></b><span>معضلة حقيقية</span></div><div class="stat reveal" style="--i:2"><b><bdi class="n" data-count="5">5</bdi></b><span>مشاريع</span></div><div class="stat reveal" style="--i:3"><b><bdi class="n" data-count="32">32</bdi></b><span>صفحة في الدليل</span></div><div class="stat reveal" style="--i:4"><b><bdi class="n" data-count="0">0</bdi></b><span>إعلانات أو تتبّع</span></div></div>
+  </div></section>
+
+  <section class="ivory scene" id="businesses"><div class="wrap">
+    <div class="kicker reveal">خمسة مشاريع</div>
+    <h2 class="reveal">العامان نفسهما. وخمس مشكلات مختلفة.</h2>
+    <p class="sub reveal">لكل مشروع أسعاره وفريقه ومواسمه ومعضلاته. وشهر في مطعم ليس كشهر في ورشة.</p>
+    <div class="picker reveal">
+      <div class="tabs" role="tablist"><button role="tab" aria-selected="true" data-i="0"><img src="../owner/img/stethoscope.webp" alt="" class="round" width="160" height="160" loading="lazy"><span>عيادة علاج طبيعي وعافية</span></button><button role="tab" aria-selected="false" data-i="1"><img src="../owner/img/cooking.webp" alt="" class="round" width="160" height="160" loading="lazy"><span>مطعم ومقهى</span></button><button role="tab" aria-selected="false" data-i="2"><img src="../owner/img/shopping_bags.webp" alt="" class="round" width="160" height="160" loading="lazy"><span>محل ومتجر إلكتروني</span></button><button role="tab" aria-selected="false" data-i="3"><img src="../owner/img/wrench.webp" alt="" class="round" width="160" height="160" loading="lazy"><span>ورشة نجارة</span></button><button role="tab" aria-selected="false" data-i="4"><img src="../owner/img/laptop.webp" alt="" class="round" width="160" height="160" loading="lazy"><span>وكالة تسويق</span></button></div>
+      <div class="panel on" role="tabpanel" data-i="0">
+        <div><h3>عيادة علاج طبيعي وعافية</h3><p>آلام الظهر وإصابات الرياضة والضغط. زحمة في يناير، وهدوء في رمضان.</p>
+          <div class="pricerow"><small>سعر الجلسة</small><span><i><bdi class="n">$30</bdi></i><i class="mid"><bdi class="n">$40</bdi></i><i><bdi class="n">$55</bdi></i></span></div>
+          <p class="hard"><img src="../owner/img/warning.webp" alt="" class="round" width="160" height="160" loading="lazy"><span>ساعات المعالجين هي السقف. وشركات التأمين والشركات تدفع بعد أشهر.</span></p></div>
+        <div class="phone"><img loading="lazy" src="shots/ar-clinic.webp" alt="نتائج شهر: عيادة علاج طبيعي وعافية"></div>
+      </div><div class="panel" role="tabpanel" data-i="1" hidden>
+        <div><h3>مطعم ومقهى</h3><p>غداء وعشاء لأهل الحي. وأمسيات رمضان موسمك، والطعام الذي لا يُباع يُرمى.</p>
+          <div class="pricerow"><small>متوسط الفاتورة للفرد</small><span><i><bdi class="n">$8</bdi></i><i class="mid"><bdi class="n">$12</bdi></i><i><bdi class="n">$18</bdi></i></span></div>
+          <p class="hard"><img src="../owner/img/warning.webp" alt="" class="round" width="160" height="160" loading="lazy"><span>هامش صغير وعملاء كثيرون. والطهي الزائد ينتهي في سلة المهملات.</span></p></div>
+        <div class="phone"><img loading="lazy" src="shots/ar-restaurant.webp" alt="نتائج شهر: مطعم ومقهى"></div>
+      </div><div class="panel" role="tabpanel" data-i="2" hidden>
+        <div><h3>محل ومتجر إلكتروني</h3><p>أدوات منزلية في محل صغير وعلى وسائل التواصل. دفع عند الاستلام، وشركات شحن، ومرتجعات.</p>
+          <div class="pricerow"><small>متوسط الطلب</small><span><i><bdi class="n">$17</bdi></i><i class="mid"><bdi class="n">$23</bdi></i><i><bdi class="n">$31</bdi></i></span></div>
+          <p class="hard"><img src="../owner/img/warning.webp" alt="" class="round" width="160" height="160" loading="lazy"><span>المخزون نقد واقف على الرف. وشركات الشحن تحتفظ بالمال، وبعض الطرود ترجع.</span></p></div>
+        <div class="phone"><img loading="lazy" src="shots/ar-shop.webp" alt="نتائج شهر: محل ومتجر إلكتروني"></div>
+      </div><div class="panel" role="tabpanel" data-i="3" hidden>
+        <div><h3>ورشة نجارة</h3><p>مطابخ وأثاث حسب الطلب. أعمال كبيرة، وعملاء قليلون، وعملاء يدفعون متأخرين.</p>
+          <div class="pricerow"><small>متوسط سعر العمل</small><span><i><bdi class="n">$670</bdi></i><i class="mid"><bdi class="n">$920</bdi></i><i><bdi class="n">$1,270</bdi></i></span></div>
+          <p class="hard"><img src="../owner/img/warning.webp" alt="" class="round" width="160" height="160" loading="lazy"><span>أعمال كبيرة قليلة في الشهر. وعميل واحد لا يدفع قد يُفرغ الحساب.</span></p></div>
+        <div class="phone"><img loading="lazy" src="shots/ar-workshop.webp" alt="نتائج شهر: ورشة نجارة"></div>
+      </div><div class="panel" role="tabpanel" data-i="4" hidden>
+        <div><h3>وكالة تسويق</h3><p>التواصل الاجتماعي والحملات للعلامات المحلية. العملاء يدفعون متأخرين، وبعضهم يريد كل شيء.</p>
+          <div class="pricerow"><small>سعر يوم العمل</small><span><i><bdi class="n">$240</bdi></i><i class="mid"><bdi class="n">$320</bdi></i><i><bdi class="n">$450</bdi></i></span></div>
+          <p class="hard"><img src="../owner/img/warning.webp" alt="" class="round" width="160" height="160" loading="lazy"><span>الرواتب هي كل التكلفة تقريبًا. وكل فاتورة غير مدفوعة راتب شهر لأحد الفريق.</span></p></div>
+        <div class="phone"><img loading="lazy" src="shots/ar-agency.webp" alt="نتائج شهر: وكالة تسويق"></div>
+      </div>
+    </div>
+  </div></section>
+
+  <section id="game"><div class="wrap">
+    <div class="kicker reveal">طريقتان للبدء</div>
+    <h2 class="reveal">الافتتاح من الصفر، أو استلام مشروع قائم.</h2>
+    <div class="two">
+      <article class="prod reveal"><div class="vis"><div class="phone"><img loading="lazy" src="shots/ar-prep.webp" alt=""></div></div>
+        <div><h3>الافتتاح من الصفر</h3><p>شهران من التجهيز أولًا. والإيجار يبدأ قبل أول عميل.</p><ul><li>التجهيز، والترخيص، والمقاول الذي يطلب المزيد</li><li>تدريب الفريق أو أخذ طلبات مسبقة قبل فتح الأبواب</li><li>يوم الافتتاح قد يتأخر إذا تأخر التجهيز</li></ul></div></article>
+      <article class="prod reveal" style="--i:1"><div class="vis"><div class="phone"><img loading="lazy" src="shots/ar-plan.webp" alt=""></div></div>
+        <div><h3>استلام مشروع يعمل</h3><p>عملاء من اليوم الأول، وقرض يُسدَّد، وصاحب عمل يفعل كل شيء بنفسه.</p><ul><li>فريق وسمعة وقسط قرض شهري</li><li>مستحقات قائمة بالفعل، وبعضها لا يصل أبدًا</li><li>أنظمة قليلة: كل شيء يمر من خلالكم</li></ul></div></article>
+    </div>
+    <div class="goals"><div class="goal reveal" style="--i:0"><img src="../owner/img/shield.webp" alt="" class="round" width="160" height="160" loading="lazy"><div><b>وسادة أمان</b><span>تكاليف أشهر في البنك</span></div></div><div class="goal reveal" style="--i:1"><img src="../owner/img/office_building.webp" alt="" class="round" width="160" height="160" loading="lazy"><div><b>فرع ثانٍ</b><span>نقد يكفي لافتتاح فرع آخر</span></div></div><div class="goal reveal" style="--i:2"><img src="../owner/img/sunrise.webp" alt="" class="round" width="160" height="160" loading="lazy"><div><b>شهر بعيدًا عن العمل</b><span>مشروع يعمل دونكم</span></div></div></div>
+  </div></section>
+
+  <section class="sand"><div class="wrap">
+    <div class="kicker reveal">كل شهر</div>
+    <h2 class="reveal">خطة، وعمل، وحساب، وقرار.</h2>
+    <ol class="steps"><li class="reveal" style="--i:0"><img src="../owner/img/calendar.webp" alt="" class="round" width="160" height="160" loading="lazy"><b>الخطة</b><p>تحديد السعر، وحجم الفريق، وتركيز واحد: التسويق أو الأنظمة أو التحصيل أو الراحة.</p></li><li class="reveal" style="--i:1"><img src="../owner/img/briefcase.webp" alt="" class="round" width="160" height="160" loading="lazy"><b>الشهر</b><p>العملاء يأتون. والموسم والسعر والجودة والسمعة تحدد عددهم.</p></li><li class="reveal" style="--i:2"><img src="../owner/img/dollar_banknote.webp" alt="" class="round" width="160" height="160" loading="lazy"><b>الحساب</b><p>الربح في جهة، والنقد في جهة أخرى: ما لم يُدفع بعد، والقرض، وما وصل من قبل.</p></li><li class="reveal" style="--i:3"><img src="../owner/img/light_bulb.webp" alt="" class="round" width="160" height="160" loading="lazy"><b>القرار</b><p>معضلة حقيقية: قريب يحتاج وظيفة، أو عميل كبير يدفع بعد 90 يومًا. ثم يترك العم صلاح ملاحظة.</p></li><li class="reveal" style="--i:4"><img src="../owner/img/hourglass_not_done.webp" alt="" class="round" width="160" height="160" loading="lazy"><b>الصدى</b><p>بعض الاختيارات تعود بعد أشهر: «هذا بسبب ما حدث في الشهر <bdi class="n">5</bdi>.»</p></li></ol>
+  </div></section>
+
+  <section class="scene"><div class="wrap">
+    <div class="kicker reveal">داخل اللعبة</div>
+    <h2 class="reveal">شاشات هادئة. وقرارات حقيقية.</h2>
+    <div class="rail" tabindex="0"><figure><div class="phone"><img loading="lazy" src="shots/ar-home.webp" alt="الرئيسية"></div><figcaption><b>الرئيسية</b>العم صلاح يرحّب بكم. مشروع جديد، أو تحدي اليوم.</figcaption></figure><figure><div class="phone"><img loading="lazy" src="shots/ar-setup.webp" alt="المشروع"></div><figcaption><b>المشروع</b>اختيار واحد من خمسة مشاريع، وطريقة البداية.</figcaption></figure><figure><div class="phone"><img loading="lazy" src="shots/ar-plan.webp" alt="خطة الشهر"></div><figcaption><b>خطة الشهر</b>السعر وحجم الفريق وتركيز واحد. والعم صلاح يقدّر عدد العملاء.</figcaption></figure><figure><div class="phone"><img loading="lazy" src="shots/ar-results.webp" alt="الربح والنقد"></div><figcaption><b>الربح والنقد</b>ما ربحه الشهر، وما وصل فعلًا إلى الحساب.</figcaption></figure><figure><div class="phone"><img loading="lazy" src="shots/ar-mail.webp" alt="البريد"></div><figcaption><b>البريد</b>العملاء والموردون والمحاسب يراسلونكم بين الأشهر.</figcaption></figure><figure><div class="phone"><img loading="lazy" src="shots/ar-door.webp" alt="الخطوة الذكية"></div><figcaption><b>الخطوة الذكية</b>مع طاقة <bdi class="n">70</bdi> أو أكثر، يُفتح خيار ثالث.</figcaption></figure><figure><div class="phone"><img loading="lazy" src="shots/ar-echo.webp" alt="الأصداء"></div><figcaption><b>الأصداء</b>الاختيارات تعود بعد أشهر، للأفضل أو للأسوأ.</figcaption></figure><figure><div class="phone"><img loading="lazy" src="shots/ar-playbook.webp" alt="دليل صاحب المشروع"></div><figcaption><b>دليل صاحب المشروع</b><bdi class="n">32</bdi> صفحة تُفتح من اختياراتكم، ولكل صفحة مصدر.</figcaption></figure><figure><div class="phone"><img loading="lazy" src="shots/ar-trophies.webp" alt="الجوائز"></div><figcaption><b>الجوائز</b><bdi class="n">24</bdi> جائزة عبر الألعاب، من أول ربح إلى شهر بعيدًا عن العمل.</figcaption></figure><figure><div class="phone"><img loading="lazy" src="shots/ar-dark.webp" alt="الوضع الليلي"></div><figcaption><b>الوضع الليلي</b>سِمة هادئة للعب في المساء.</figcaption></figure></div>
+    <div class="dots" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+  </div></section>
+
+  <section class="ivory"><div class="wrap">
+    <div class="kicker reveal"><bdi class="n">98</bdi> معضلة حقيقية</div>
+    <h2 class="reveal">المواقف التي تواجه كل صاحب مشروع.</h2>
+    <p class="sub reveal">لكل معضلة إجابات منطقية في الاتجاهين، وبعضها يعود بعد أشهر. ومنها:</p>
+    <div class="grid3"><div class="card reveal" style="--i:0"><img src="../owner/img/busts_in_silhouette.webp" alt="" class="round" width="160" height="160" loading="lazy"><h3>ابن خالتك يحتاج وظيفة</h3><p>اتصلت خالتك: ابنها تخرّج قبل عام ولم يجد عملًا. «الاستقبال، أي شيء.» مقابل <bdi class="n">$700</bdi> شهريًا.</p></div><div class="card reveal" style="--i:1"><img src="../owner/img/mobile_phone.webp" alt="" class="round" width="160" height="160" loading="lazy"><h3>تطبيق التوصيل يريد <bdi class="n">25%</bdi></h3><p>يجلب الطلبات ويأخذ <bdi class="n">25%</bdi> من كل فاتورة.</p></div><div class="card reveal" style="--i:2"><img src="../owner/img/credit_card.webp" alt="" class="round" width="160" height="160" loading="lazy"><h3>الدفع عند الاستلام؟</h3><p>المندوب يحتفظ بالمال أسبوعين، ونحو <bdi class="n">1</bdi> من كل <bdi class="n">7</bdi> يرفض الطرد عند الباب.</p></div><div class="card reveal" style="--i:3"><img src="../owner/img/receipt.webp" alt="" class="round" width="160" height="160" loading="lazy"><h3>مطبخ كبير، بلا عربون</h3><p>مطبخ كامل بقيمة <bdi class="n">$9,000</bdi>، يُدفع عند التركيب ولا شيء قبله.</p></div><div class="card reveal" style="--i:4"><img src="../owner/img/artist_palette.webp" alt="" class="round" width="160" height="160" loading="lazy"><h3>التعديل التاسع</h3><p>النسخة التاسعة من الشعار نفسه. وكل جولة تأخذ يومًا من مصمّم.</p></div><div class="card reveal" style="--i:5"><img src="../owner/img/door.webp" alt="" class="round" width="160" height="160" loading="lazy"><h3>موعد الإيجار، والنقد لا يكفي</h3><p>أُغلق الشهر تحت الصفر. وموعد الإيجار هو نفسه موعد الرواتب.</p></div></div>
+  </div></section>
+
+  <section class="teal scene"><div class="wrap split">
+    <div>
+      <div class="kicker reveal">صاحب المشروع جزء منه</div>
+      <h2 class="reveal">الطاقة جزء من الميزانية.</h2>
+      <p class="sub reveal">كل شهر عمل يُنقص الطاقة. وتحت <bdi class="n">40</bdi> تتشوّش الأرقام وتقع الأخطاء. ومع <bdi class="n">70</bdi> أو أكثر يُفتح خيار أذكى في كل معضلة. وعند <bdi class="n">0</bdi> شهر كامل في الفراش، والمشروع يعمل دون صاحبه، مستعدًا كان أو لا. والأنظمة والمدير الجيد هما طريق صاحب المشروع لاستعادة وقته.</p>
+    </div>
+    <div class="reveal">
+      <div class="edemo" data-sick="0: شهر في الفراش" data-sleepy="تحت 40: الضباب. الأرقام تتشوّش" data-normal="عمل، وتعب يتراكم" data-open="70 فأكثر: الخطوة الذكية تُفتح">
+        <div class="erow"><img src="../owner/img/high_voltage.webp" alt="" class="round" width="160" height="160" loading="lazy"><span class="elabel">الطاقة</span><b class="enum" dir="ltr">75</b></div>
+        <div class="ebar"><i></i><span class="m m40"></span><span class="m m70"></span></div>
+        <div class="marks" aria-hidden="true"><span class="k40"><bdi class="n">40</bdi></span><span class="k70"><bdi class="n">70</bdi></span></div>
+        <div class="estate"><img src="../owner/img/briefcase.webp" alt="" class="round" width="160" height="160" loading="lazy"><span>عمل، وتعب يتراكم</span><span class="door"><img src="../owner/img/locked.webp" alt="" class="round" width="160" height="160" loading="lazy">الخطوة الذكية</span></div>
+        <input type="range" min="0" max="100" value="75" aria-label="الطاقة">
+        <small>اسحبوا للتجربة</small>
+      </div>
+    </div>
+  </div></section>
+
+  <section><div class="wrap">
+    <div class="kicker reveal">ما يتدرّب عليه صاحب المشروع</div>
+    <h2 class="reveal">أجزاء العمل التي لا يعلّمها أحد.</h2>
+    <div class="grid4"><div class="card reveal" style="--i:0"><img src="../owner/img/label.webp" alt="" class="round" width="160" height="160" loading="lazy"><h3>التسعير والتكاليف الثابتة</h3><p>ما يجب أن يغطيه شهر مزدحم، ولماذا نادرًا ما يكون السعر الأرخص هو الأكثر أمانًا.</p></div><div class="card reveal" style="--i:1"><img src="../owner/img/dollar_banknote.webp" alt="" class="round" width="160" height="160" loading="lazy"><h3>التدفق النقدي والمستحقات</h3><p>الربح على الورق، والمال في الحساب، والعملاء بينهما الذين لم يدفعوا.</p></div><div class="card reveal" style="--i:2"><img src="../owner/img/busts_in_silhouette.webp" alt="" class="round" width="160" height="160" loading="lazy"><h3>التوظيف والتفويض</h3><p>متى يكون التوظيف، ومن تتم ترقيته، وكيف تُبنى الأنظمة كي لا يحتاج المشروع صاحبه كل يوم.</p></div><div class="card reveal" style="--i:3"><img src="../owner/img/person_in_lotus_position.webp" alt="" class="round" width="160" height="160" loading="lazy"><h3>الاعتناء بالنفس</h3><p>الراحة وعشاء العائلة وراتب صاحب المشروع جزء من إدارة المشروع، لا مكافأة مؤجلة.</p></div></div>
+  </div></section>
+
+  <section class="sand"><div class="wrap">
+    <div class="kicker reveal">أسباب للعودة</div>
+    <h2 class="reveal">لعبة واحدة درس. وعشر ألعاب عادة.</h2>
+    <div class="grid3"><div class="card reveal" style="--i:0"><img src="../owner/img/calendar.webp" alt="" class="round" width="160" height="160" loading="lazy"><h3>تحدي اليوم</h3><p>مشروع وبداية وأحداث جديدة كل يوم، متطابقة للجميع. <bdi class="n">12</bdi> شهرًا، ونتيجة واحدة.</p></div><div class="card reveal" style="--i:1"><img src="../owner/img/notebook.webp" alt="" class="round" width="160" height="160" loading="lazy"><h3>دليل صاحب المشروع</h3><p><bdi class="n">32</bdi> صفحة قصيرة، من «الربح ليس النقد» إلى التفويض، تُفتح من اختياراتكم. ولكل صفحة كتاب أو دراسة مصدرًا لها.</p></div><div class="card reveal" style="--i:2"><img src="../owner/img/trophy.webp" alt="" class="round" width="160" height="160" loading="lazy"><h3>الجوائز والبريد</h3><p><bdi class="n">24</bdi> جائزة عبر الألعاب، ورسائل بين الأشهر من العملاء والموردين. وتجاهل رسالة له ثمن.</p></div></div>
+  </div></section>
+
+  <section id="programmes"><div class="wrap split">
+    <div>
+      <div class="kicker reveal">لحاضنات الأعمال والبنوك وبرامج التدريب</div>
+      <h2 class="reveal">عامان من الأخطاء، في ثلاثين دقيقة.</h2>
+      <ul class="ticks"><li class="reveal" style="--i:0"><img src="../owner/img/hourglass_not_done.webp" alt="" class="round" width="160" height="160" loading="lazy"><div><b>تكفيها جلسة واحدة</b><span>اللعبة لعامين تستغرق نحو <bdi class="n">30</bdi> دقيقة. اللعب أولًا، ثم الحديث عن الشهر الذي ساءت فيه الأمور. والحديث هو مكان معظم التعلّم.</span></div></li><li class="reveal" style="--i:1"><img src="../owner/img/calendar.webp" alt="" class="round" width="160" height="160" loading="lazy"><div><b>تحدي اليوم، معًا</b><span>كل من يلعب في اليوم نفسه يحصل على المشروع نفسه والبداية نفسها والأحداث نفسها، فتستطيع المجموعة مقارنة النتائج والاختيارات.</span></div></li><li class="reveal" style="--i:2"><img src="../owner/img/notebook.webp" alt="" class="round" width="160" height="160" loading="lazy"><div><b>مصادر، لا شعارات</b><span>كل صفحة في دليل صاحب المشروع تذكر الكتاب أو الدراسة التي تستند إليها، للمدرّبين الراغبين في التعمّق.</span></div></li><li class="reveal" style="--i:3"><img src="../owner/img/shield.webp" alt="" class="round" width="160" height="160" loading="lazy"><div><b>لا تثبيت، ولا جمع بيانات</b><span>تعمل على أي متصفح، ودون اتصال بعد الزيارة الأولى. بلا حسابات، فلا توجد بيانات مشاركين لإدارتها.</span></div></li><li class="reveal" style="--i:4"><img src="../owner/img/speech_balloon.webp" alt="" class="round" width="160" height="160" loading="lazy"><div><b>بالعربية والإنجليزية</b><span>مكتوبة لأصحاب المشاريع في مصر والخليج، بعربية لا تفترض أبدًا إن كان اللاعب رجلًا أو امرأة.</span></div></li><li class="reveal" style="--i:5"><img src="../owner/img/handshake.webp" alt="" class="round" width="160" height="160" loading="lazy"><div><b>مجانية الاستخدام</b><span>يمكن استخدامها في ورش العمل وبرامج التسريع وبرامج التمويل. ولإخبارنا بالتجربة أو طلب شيء، يُرجى المراسلة على <a href="mailto:ahmed.abuelhaz@hotmail.com">ahmed.abuelhaz@hotmail.com</a>.</span></div></li></ul>
+    </div>
+    <div class="reveal"><div class="phone" style="width:min(260px,66vw);margin-inline:auto"><img loading="lazy" src="shots/ar-playbook.webp" alt=""></div></div>
+  </div></section>
+
+  <section class="ivory"><div class="wrap split">
+    <div>
+      <div class="kicker reveal">على الهاتف</div>
+      <h2 class="reveal">إضافتها إلى الشاشة الرئيسية. وتعمل دون اتصال.</h2>
+      <ol class="phonesteps"><li class="reveal" style="--i:0"><span>فتح adam.ahmedhaz.com/owner على الهاتف.</span></li><li class="reveal" style="--i:1"><span>آيفون: مشاركة، ثم إضافة إلى الشاشة الرئيسية. أندرويد: القائمة، ثم تثبيت التطبيق.</span></li><li class="reveal" style="--i:2"><span>الضغط على أيقونة الحقيبة. والمشروع يبقى على الجهاز.</span></li></ol>
+      <div class="ctas reveal" style="margin-top:20px"><a class="btn btn-primary" href="../owner/?lang=ar">العبوا مجانًا</a></div>
+    </div>
+    <div class="reveal"><div class="phone" style="width:min(250px,64vw);margin-inline:auto"><img loading="lazy" src="shots/ar-end.webp" alt=""></div></div>
+  </div></section>
+
+  <section><div class="wrap" style="max-width:820px">
+    <div class="kicker reveal">أسئلة</div>
+    <h2 class="reveal">قبل البدء</h2>
+    <details class="reveal" style="--i:0"><summary>لمن هذه اللعبة؟</summary><p>لمن يفكّر في افتتاح مشروع، ولأصحاب الأعمال الذين يديرون مشروعًا بالفعل. وللمراهقين توجد «تينبرونور»، وللأطفال «الانتربرونور الصغير»، ولمؤسسي الشركات الناشئة «بوصلة المؤسس».</p></details><details class="reveal" style="--i:1"><summary>هل هي مجانية؟</summary><p>نعم. بلا إعلانات ولا حساب ولا مشتريات.</p></details><details class="reveal" style="--i:2"><summary>ما مدى واقعية الأرقام؟</summary><p>مبسّطة، لكنها مبنية على سلوك المشاريع الصغيرة الحقيقي: إيجار ورواتب قبل أول عميل، وعملاء يدفعون بعد أشهر، وطعام يفسد، وطرود ترجع، ومواسم هادئة وأخرى مزدحمة مثل رمضان والصيف.</p></details><details class="reveal" style="--i:3"><summary>كم تستغرق اللعبة؟</summary><p>نحو <bdi class="n">30</bdi> دقيقة لعامين، وتُحفظ أولًا بأول. وتحدي اليوم <bdi class="n">12</bdi> شهرًا.</p></details><details class="reveal" style="--i:4"><summary>ما العملة المستخدمة؟</summary><p>الدولار، لتعمل اللعبة بالطريقة نفسها في كل مكان.</p></details><details class="reveal" style="--i:5"><summary>هل يمكن استخدامها في برنامجنا؟</summary><p>نعم، مجانًا. لا شيء للتثبيت ولا شيء للتوقيع. ويسعدنا أن نعرف كيف كانت التجربة.</p></details><details class="reveal" style="--i:6"><summary>أين تُحفظ البيانات؟</summary><p>على هذا الجهاز فقط. ومسح بيانات المتصفح يبدأ اللعبة من جديد.</p></details>
+  </div></section>
+
+  <section class="teal finale"><div class="wrap">
+    <div class="row" aria-hidden="true"><img src="../owner/img/stethoscope.webp" alt="" class="round" width="160" height="160" loading="lazy"><img src="../owner/img/cooking.webp" alt="" class="round" width="160" height="160" loading="lazy"><img src="../owner/img/shopping_bags.webp" alt="" class="round" width="160" height="160" loading="lazy"><img src="../owner/img/wrench.webp" alt="" class="round" width="160" height="160" loading="lazy"><img src="../owner/img/laptop.webp" alt="" class="round" width="160" height="160" loading="lazy"></div>
+    <h2 class="reveal">الإيجار مستحق في أول الشهر.</h2>
+    <p class="sub reveal">اختيار مشروع، ورؤية كيف يمر أول عامين. والعم صلاح لديه ملاحظات في كل الأحوال.</p>
+    <div class="ctas reveal"><a class="btn btn-light" href="../owner/?lang=ar">العبوا الآن</a><a class="btn btn-ghost" href="#programmes">للبرامج والحاضنات</a></div>
+  </div></section>
+</main>
+<footer><div class="wrap"><p>صاحب المشروع · ضمن سلسلة مع <a href="../littlebreneur/ar.html">الانتربرونور الصغير</a> و<a href="../teenpreneur/ar.html">تينبرونور</a> و<a href="../bousla/ar.html">بوصلة المؤسس</a> · <a href="privacy.html">الخصوصية</a> · <a href="support.html">الدعم</a></p><p><small>الصور صُنعت لهذا المشروع. الخطوط: Manrope و Readex Pro (رخصة OFL). بلا ملفات تعريف ارتباط ولا تتبّع.</small></p></div></footer>
+<script>// Promo page behaviour: reveals, count-ups, the profit-versus-cash card, the five-business picker,
+// self-advancing rails and the live energy meter. Everything pauses off-screen and respects
+// prefers-reduced-motion. No network.
+(function () {
+  var reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var IMG = "../owner/img/";
+  function $(s, r) { return (r || document).querySelector(s); }
+  function $$(s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); }
+  function ease(t) { return 1 - Math.pow(1 - t, 3); }
+  function tween(ms, fn, done) {
+    var t0 = performance.now();
+    (function step(now) { var t = Math.min(1, (now - t0) / ms); fn(ease(t)); if (t < 1) requestAnimationFrame(step); else if (done) done(); })(t0);
+  }
+  function usd(v, plus) { return (v < 0 ? "−" : plus && v > 0 ? "+" : "") + "$" + Math.abs(Math.round(v)).toLocaleString("en-US"); }
+
+  // Headline words arrive one by one.
+  var h1 = $("h1.words");
+  if (h1 && !reduce) h1.innerHTML = h1.textContent.trim().split(/\s+/).map(function (w, i) { return '<span class="w" style="--i:' + i + '">' + w + "</span>"; }).join(" ");
+
+  // Reading progress.
+  var bar = $(".bar");
+  function prog() { var h = document.documentElement.scrollHeight - innerHeight; bar.style.setProperty("--sp", h > 0 ? Math.min(1, scrollY / h) : 0); }
+  addEventListener("scroll", prog, { passive: true }); prog();
+
+  function count(el) {
+    var to = +el.dataset.count;
+    if (reduce) { el.textContent = to; return; }
+    tween(1300, function (t) { el.textContent = Math.round(to * t); });
+  }
+
+  // Five businesses: tabs that advance on their own until someone picks one.
+  var picker = $(".picker"), pick = function () {};
+  if (picker) {
+    var tabs = $$(".tabs button", picker), panels = $$(".panel", picker), cur = 0, chosen = false;
+    pick = function (i, user) {
+      if (user) chosen = true;
+      cur = i;
+      tabs.forEach(function (b, k) { b.setAttribute("aria-selected", k === i ? "true" : "false"); });
+      panels.forEach(function (p, k) { p.hidden = k !== i; p.classList.toggle("on", k === i); });
+      var tb = tabs[i], tr = tb.parentNode;
+      tr.scrollTo({ left: tb.offsetLeft - (tr.clientWidth - tb.offsetWidth) / 2, behavior: reduce ? "auto" : "smooth" });
+    };
+    tabs.forEach(function (b, i) { b.addEventListener("click", function () { pick(i, true); }); });
+    picker.addEventListener("keydown", function (e) {
+      var d = e.key === "ArrowRight" ? 1 : e.key === "ArrowLeft" ? -1 : 0;
+      if (!d) return;
+      if (document.documentElement.dir === "rtl") d = -d;
+      pick((cur + d + tabs.length) % tabs.length, true); tabs[cur].focus();
+    });
+    var cycle = null, sc = picker.closest(".scene");
+    sc.addEventListener("live", function () { if (!reduce && !cycle) cycle = setInterval(function () { if (!chosen) pick((cur + 1) % tabs.length); }, 4500); });
+    sc.addEventListener("idle", function () { clearInterval(cycle); cycle = null; });
+  }
+
+  if (!("IntersectionObserver" in window)) { $$(".reveal").forEach(function (el) { el.classList.add("in"); }); $$(".scene").forEach(function (el) { el.classList.add("live"); }); return; }
+  var seen = new WeakSet();
+  var io = new IntersectionObserver(function (es) {
+    es.forEach(function (x) {
+      if (!x.isIntersecting) return;
+      x.target.classList.add("in");
+      $$("[data-count]", x.target).forEach(function (c) { if (!seen.has(c)) { seen.add(c); count(c); } });
+      io.unobserve(x.target);
+    });
+  }, { rootMargin: "0px 0px -8% 0px" });
+  $$(".reveal").forEach(function (el) { io.observe(el); });
+  var live = new IntersectionObserver(function (es) {
+    es.forEach(function (x) { x.target.classList.toggle("live", x.isIntersecting); x.target.dispatchEvent(new CustomEvent(x.isIntersecting ? "live" : "idle")); });
+  });
+  $$(".scene").forEach(function (el) { live.observe(el); });
+
+  // Hero: the month earns a profit, then money owed and the loan take the cash below zero.
+  var card = $(".cashcard");
+  if (card) {
+    var pv = $(".profit [data-to]", card), cv = $(".cash [data-to]", card), P = +pv.dataset.to, C = +cv.dataset.to, running = false;
+    function show(p, c) { pv.textContent = usd(p, true); cv.textContent = usd(c, true); card.classList.toggle("neg", c < 0); }
+    function run() {
+      if (running) return; running = true;
+      card.classList.remove("s1", "s2"); show(0, 0);
+      tween(1400, function (t) { show(P * t, P * t); }, function () {
+        setTimeout(function () { card.classList.add("s1"); tween(900, function (t) { show(P, P - 2900 * t); }, function () {
+          setTimeout(function () { card.classList.add("s2"); tween(700, function (t) { show(P, P - 2900 - 1000 * t); }, function () {
+            setTimeout(function () { running = false; if (card.closest(".scene").classList.contains("live")) run(); }, 3800);
+          }); }, 500);
+        }); }, 700);
+      });
+    }
+    if (reduce) { card.classList.add("s1", "s2"); show(P, C); }
+    else card.closest(".scene").addEventListener("live", function () { setTimeout(run, 600); });
+  }
+
+  // Rails (game screens): advance on their own until touched; the middle one grows.
+  $$(".rail").forEach(function (rail) {
+    var items = $$("figure", rail), dots = $$("i", rail.nextElementSibling), user = false, auto = null;
+    function active() {
+      var r = rail.getBoundingClientRect(), mid = r.left + r.width / 2, best = 0, bd = 1e9;
+      items.forEach(function (s, i) { var b = s.getBoundingClientRect(), d = Math.abs(b.left + b.width / 2 - mid); if (d < bd) { bd = d; best = i; } });
+      items.forEach(function (s, i) { s.classList.toggle("active", i === best); });
+      dots.forEach(function (d, i) { d.classList.toggle("on", i === best); });
+      return best;
+    }
+    rail.addEventListener("scroll", function () { requestAnimationFrame(active); }, { passive: true });
+    ["pointerdown", "wheel", "touchstart", "keydown"].forEach(function (ev) { rail.addEventListener(ev, function () { user = true; }, { passive: true }); });
+    function next() {
+      if (user) return;
+      var i = active(), atEnd = rail.scrollWidth - rail.clientWidth - Math.abs(rail.scrollLeft) < 4;
+      if (atEnd || i === items.length - 1) { rail.scrollTo({ left: 0, behavior: reduce ? "auto" : "smooth" }); return; }
+      var s = items[i + 1], r = rail.getBoundingClientRect(), b = s.getBoundingClientRect();
+      rail.scrollBy({ left: b.left + b.width / 2 - (r.left + r.width / 2), behavior: reduce ? "auto" : "smooth" });
+    }
+    var sc = rail.closest(".scene");
+    sc.addEventListener("live", function () { active(); if (!reduce && !auto) auto = setInterval(next, 3000); });
+    sc.addEventListener("idle", function () { clearInterval(auto); auto = null; });
+    active();
+  });
+
+  // Energy: the meter from the game. It plays a few months on its own; dragging takes over.
+  var demo = $(".edemo");
+  if (demo) {
+    var range = $("input", demo), enumEl = $(".enum", demo), state = $(".estate", demo), stateImg = $(".estate > img", demo), stateTxt = $(".estate > span", demo);
+    var lock = $(".door img", demo), touched = false, playing = null;
+    function set(v) {
+      v = Math.max(0, Math.min(100, Math.round(v)));
+      demo.style.setProperty("--e", v / 100); enumEl.textContent = v; range.value = v;
+      var sick = v === 0, sleepy = v < 40, open = v >= 70, key = sick ? "sick" : sleepy ? "sleepy" : open ? "open" : "normal";
+      demo.classList.toggle("sleepy", sleepy); demo.classList.toggle("open", open); demo.classList.toggle("sick", sick);
+      if (state.dataset.k !== key) {
+        state.dataset.k = key;
+        stateImg.src = IMG + (sick ? "face_with_spiral_eyes" : sleepy ? "yawning_face" : open ? "glowing_star" : "briefcase") + ".webp";
+        stateTxt.textContent = demo.dataset[key];
+        lock.src = IMG + (open ? "unlocked" : "locked") + ".webp";
+      }
+    }
+    range.addEventListener("input", function () { touched = true; clearTimeout(playing); set(+range.value); });
+    var path = [75, 66, 57, 48, 39, 31, 52, 71, 84, 92], k = 0, now = 75;
+    function month() {
+      if (touched || !demo.closest(".scene").classList.contains("live")) { playing = null; return; }
+      var from = now, to = path[k = (k + 1) % path.length];
+      tween(1200, function (t) { if (!touched) { now = from + (to - from) * t; set(now); } }, function () { if (!touched) playing = setTimeout(month, 800); });
+    }
+    set(75);
+    if (!reduce) demo.closest(".scene").addEventListener("live", function () { if (!playing && !touched) playing = setTimeout(month, 500); });
+  }
+})();
+</script>
+</body>
+</html>

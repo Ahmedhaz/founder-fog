@@ -532,6 +532,7 @@ var OWNER = {
     stickerCount: { en: "{a} of {b} notes", ar: "الأفكار: {a} من {b}" },
     stickerEmpty: { en: "Run a business to collect Salah's notes.", ar: "كل مشروع يضيف أفكارًا جديدة من صلاح." },
 
+    siteLink: { en: "The game's website, with a page for training programmes", ar: "موقع اللعبة، وفيه صفحة لبرامج التدريب" },
     credit: { en: "Pictures: handmade felt art made for these games. Fonts: Manrope and Readex Pro (OFL).", ar: "الصور: فن يدوي صُنع لهذه الألعاب. الخطوط: Manrope و Readex Pro (رخصة OFL)." },
     resetQ: { en: "Start a new business? This one will be lost.", ar: "بدء مشروع جديد؟ سيضيع هذا المشروع." },
     soon: { en: "More businesses are coming.", ar: "أنشطة أخرى قادمة." },

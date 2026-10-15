@@ -673,7 +673,8 @@
   }
 
   function about() {
-    page("about", '<div class="card note">' + img("briefcase", "big") + C.aboutNote[meta.lang].map(function (p) { return "<p>" + H(p) + "</p>"; }).join("") + "</div>", about);
+    page("about", '<div class="card note">' + img("briefcase", "big") + C.aboutNote[meta.lang].map(function (p) { return "<p>" + H(p) + "</p>"; }).join("") +
+      '<p><a href="../businessowner/' + (meta.lang === "ar" ? "ar.html" : "") + '?stay">' + esc(T("siteLink")) + "</a></p></div>", about);
   }
 
   function trophyPage() {
