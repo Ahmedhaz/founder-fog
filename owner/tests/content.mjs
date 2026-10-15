@@ -6,6 +6,7 @@
 //   - every dilemma and every one of Salah's notes points at a playbook page that exists
 //   - every playbook page is unlocked by at least one dilemma or note
 //   - every picture named in the content exists in img/ and is precached by sw.js
+//   - every trophy has text and a check, and every check has text
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -69,6 +70,14 @@ for (const n of imgs) {
 }
 if (!sw.includes("'./playbook.js'")) errors.push("sw.js does not precache playbook.js");
 
-console.log(`${pairs} English/Arabic pairs, ${C.dilemmas.length} dilemmas, ${PB.length} playbook pages, ${imgs.size} pictures`);
+// every trophy has text and a check in the engine, and the other way round
+globalThis.OWNER = C;
+const E = require(path.join(DIR, "game.js"));
+const trIds = new Set(C.trophies.map((t) => t.id));
+if (trIds.size !== C.trophies.length) errors.push("trophies: duplicate ids");
+for (const id of trIds) if (!E.TROPHY_CHECKS[id]) errors.push(`trophy ${id}: no check in game.js`);
+for (const id of Object.keys(E.TROPHY_CHECKS)) if (!trIds.has(id)) errors.push(`trophy check ${id}: no text in content.js`);
+
+console.log(`${pairs} English/Arabic pairs, ${C.dilemmas.length} dilemmas, ${PB.length} playbook pages, ${C.trophies.length} trophies, ${imgs.size} pictures`);
 if (errors.length) { console.log("FAIL\n- " + errors.join("\n- ")); process.exit(1); }
 console.log("PASS: every text has both languages with the same numbers, and every page and picture resolves.");

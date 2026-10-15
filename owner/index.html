@@ -104,7 +104,9 @@
   .btn[disabled] { opacity: .5; cursor: not-allowed; }
 
   /* the Owner's Playbook */
-  .count { font-size: 13px; font-weight: 500; color: var(--ink3); margin-inline-start: 4px; }
+  .count { font-size: 13px; font-weight: 500; color: var(--ink3); }
+  .btn > span:has(.count) { display: grid; line-height: 1.25; text-align: start; }
+  .btn .count { display: block; }
   .idea .pb { display: flex; align-items: center; gap: 8px; margin: 8px 0 0; font-size: 14px; font-weight: 600; color: #D2B48A; }
   :root[data-theme="dark"] .idea .pb { color: #8C6D45; }
   .idea .pb img { width: 24px; height: 24px; border: 1px solid rgba(248, 246, 241, .4); }
@@ -121,6 +123,23 @@
   .pg.no .q { font-size: 26px; color: var(--ink3); margin: 0; }
   .pg.no small { color: var(--ink3); }
   .pbline { display: flex; align-items: center; gap: 10px; width: 100%; font: inherit; font-weight: 600; color: var(--teal); text-align: start; cursor: pointer; }
+
+  /* trophies */
+  .trophies { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .tro { background: var(--panel); border: 1px solid var(--line); border-radius: 18px; padding: 12px; text-align: center; display: grid; justify-items: center; gap: 4px; }
+  .tro img { width: 52px; height: 52px; }
+  .tro b { color: var(--teal); font-size: 15px; line-height: 1.25; }
+  .tro small { color: var(--ink3); font-size: 13px; line-height: 1.35; }
+  .tro.no { background: var(--panel2); border-style: dashed; opacity: .7; }
+  .trline { flex-wrap: wrap; }
+  .tricons { display: flex; gap: 4px; flex-wrap: wrap; width: 100%; }
+  .toast { position: fixed; left: 50%; bottom: calc(24px + env(safe-area-inset-bottom)); transform: translateX(-50%); z-index: 50; display: flex; align-items: center; gap: 10px;
+           max-width: calc(100% - 32px); background: #0D3F3F; color: #F8F6F1; border-radius: 999px; padding: 8px 18px 8px 8px; font-weight: 600; font-size: 15px;
+           box-shadow: 0 10px 30px rgba(18, 41, 43, .25); animation: toastIn .3s ease-out; }
+  @keyframes toastIn { from { opacity: 0; transform: translate(-50%, 12px); } to { opacity: 1; transform: translate(-50%, 0); } }
+  [dir="rtl"] .toast { padding: 8px 8px 8px 18px; }
+  .toast img { width: 32px; height: 32px; border-radius: 50%; flex: none; }
+  :root[data-theme="dark"] .toast { background: #F8F6F1; color: #0D3F3F; }
 
   /* setup */
   .name { width: 100%; min-height: 56px; font: inherit; font-size: 20px; font-weight: 600; padding: 8px 18px; border-radius: 16px; border: 1px solid var(--line); background: var(--panel); color: var(--ink); }

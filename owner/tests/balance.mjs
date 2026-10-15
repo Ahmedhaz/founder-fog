@@ -16,6 +16,7 @@ const C = globalThis.OWNER;
 
 const RUNS = Number(process.argv[2] || 300);
 const PAGES = new Set(); // every playbook page any simulated game unlocked
+const TROPHIES = new Set(); // every trophy any simulated game earned (the ones that need several games are checked by the browser test)
 const BIZ = Object.keys(C.businesses);
 const STARTS = Object.keys(C.starts);
 
@@ -68,11 +69,13 @@ function play(biz, start, goal, seed, strat, daily) {
     }
     const d = E.pickDilemma(s);
     if (d) E.choose(s, d, pickOption(s, d, strat));
+    E.trophiesFor(s, null).forEach((t) => TROPHIES.add(t));
     E.endMonth(s);
     if (s.phase === "finalCards") { s.queue = []; s.phase = "end"; }
   }
   const rep = E.report(s);
   s.pages.forEach((p) => PAGES.add(p));
+  E.trophiesFor(s, null).forEach((t) => TROPHIES.add(t));
   return { won: s.goalDone, over: s.over, cash: s.cash, profit: rep.profit, burnouts: s.burnouts, systems: s.systems, fogMonths, drawn: s.drawn, energy: rep.avgEnergy };
 }
 
@@ -161,4 +164,8 @@ for (const start of STARTS) {
 const missing = E.PLAYBOOK.filter((p) => !PAGES.has(p.id)).map((p) => p.id);
 console.log((missing.length ? "FAIL " : "PASS ") + `every playbook page is unlocked in some game (${PAGES.size} of ${E.PLAYBOOK.length})` + (missing.length ? ": missing " + missing.join(", ") : ""));
 ok = ok && !missing.length;
+const ACROSS_GAMES = ["pages10", "every_biz", "both_starts"];
+const noTrophy = C.trophies.filter((t) => !ACROSS_GAMES.includes(t.id) && !TROPHIES.has(t.id)).map((t) => t.id);
+console.log((noTrophy.length ? "FAIL " : "PASS ") + `every single-game trophy is earned in some game (${TROPHIES.size} of ${C.trophies.length - ACROSS_GAMES.length})` + (noTrophy.length ? ": missing " + noTrophy.join(", ") : ""));
+ok = ok && !noTrophy.length;
 process.exit(ok ? 0 : 1);

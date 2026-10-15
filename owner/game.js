@@ -390,6 +390,40 @@
     return hit;
   }
 
+  // Trophies, checked against the game and what this device remembers across games
+  // (m: { pages: collected playbook pages, biz: businesses started, starts: ways started }).
+  function opened(s) { return s.history.filter(function (h) { return !h.prep; }); }
+  function finished(s) { return (s.phase === "finalCards" || s.phase === "end") && !s.over && s.month >= s.months; }
+  var TROPHY_CHECKS = {
+    month1: function (s) { return opened(s).length >= 1; },
+    opened: function (s) { return s.start === "open" && opened(s).length >= 1; },
+    profit: function (s) { return opened(s).some(function (h) { return h.profit > 0; }); },
+    cash_up: function (s) { return opened(s).some(function (h) { return h.profit >= 2000 && h.cashChange >= 2000; }); },
+    collected: function (s) { return opened(s).some(function (h) { return h.collected >= 5000; }); },
+    paid_self: function (s) { return s.drawn > 0; },
+    full_house: function (s) { return opened(s).some(function (h) { return !h.sick && h.cap && h.done / h.cap >= 0.95 && h.turned <= h.wanted * 0.03; }); },
+    team5: function (s) { return s.staff >= 5; },
+    systems70: function (s) { return s.systems >= 70; },
+    rest5: function (s) { return s.history.filter(function (h) { return h.focus === "rest"; }).length >= 5; },
+    clear: function (s) { return finished(s) && s.months === MONTHS && s.history.every(function (h) { return h.energy >= FOG; }); },
+    debt_free: function (s) { return s.loans.length === 0 && opened(s).length >= 1; },
+    cushion: function (s) { return isOpen(s) && s.cash >= biz(s).goals.safety; },
+    branch: function (s) { return isOpen(s) && s.cash >= biz(s).goals.branch; },
+    away: function (s) { return finished(s) && s.months === MONTHS && freedomReached(s); },
+    two_years: function (s) { return finished(s) && s.months === MONTHS; },
+    honest: function (s) { return (finished(s) || !!s.over) && s.honestPlus >= 3 && s.honestMinus === 0; },
+    crunch: function (s) { return finished(s) && s.months === MONTHS && s.crunchMonth != null; },
+    closed: function (s) { return s.over === "closed"; },
+    burnout: function (s) { return s.over === "burnout"; },
+    daily: function (s) { return !!s.daily && (finished(s) || !!s.over); },
+    pages10: function (s, m) { return !!m && m.pages >= 10; },
+    every_biz: function (s, m) { return !!m && Object.keys(C.businesses).every(function (k) { return m.biz && m.biz[k]; }); },
+    both_starts: function (s, m) { return !!m && !!(m.starts && m.starts.open && m.starts.takeover); },
+  };
+  function trophiesFor(s, m) {
+    return C.trophies.filter(function (tr) { var f = TROPHY_CHECKS[tr.id]; try { return f && f(s, m); } catch (e) { return false; } }).map(function (tr) { return tr.id; });
+  }
+
   function stars(v, a, b) { return v >= b ? 3 : v >= a ? 2 : 1; }
 
   function report(s) {
@@ -408,7 +442,7 @@
              drawn: s.drawn, avgEnergy: Math.round(avgE), avgRep: Math.round(avgR), systems: s.systems, burnouts: s.burnouts };
   }
 
-  var Engine = { PLAYBOOK: PLAYBOOK, pageOf: pageOf, findPage: findPage, MONTHS: MONTHS, DAILY_MONTHS: DAILY_MONTHS, dailyInfo: dailyInfo, dailyScore: dailyScore, DOOR: DOOR, FOG: FOG, MAX_BURNOUTS: MAX_BURNOUTS, newGame: newGame, beginMonth: beginMonth, runMonth: runMonth,
+  var Engine = { TROPHY_CHECKS: TROPHY_CHECKS, trophiesFor: trophiesFor, PLAYBOOK: PLAYBOOK, pageOf: pageOf, findPage: findPage, MONTHS: MONTHS, DAILY_MONTHS: DAILY_MONTHS, dailyInfo: dailyInfo, dailyScore: dailyScore, DOOR: DOOR, FOG: FOG, MAX_BURNOUTS: MAX_BURNOUTS, newGame: newGame, beginMonth: beginMonth, runMonth: runMonth,
     draw: draw, canDraw: canDraw, pickDilemma: pickDilemma, choose: choose, canOpen: canOpen, endMonth: endMonth, report: report,
     guess: guess, capacity: capacity, price: price, salaries: salaries, fixedCosts: fixedCosts, monthlyFloor: monthlyFloor, loanPay: loanPay,
     loanLeft: loanLeft, isOpen: isOpen, goalOf: goalOf, goalTarget: goalTarget, freedomReached: freedomReached, findDilemma: findDilemma, rand: rand };
@@ -434,6 +468,33 @@
   meta.games = meta.games || 0;
   meta.daily = meta.daily || {};
   meta.pages = meta.pages || [];
+  meta.trophies = meta.trophies || {};
+  meta.biz = meta.biz || {};
+  meta.starts = meta.starts || {};
+  function trophyCount() { return C.trophies.filter(function (tr) { return meta.trophies[tr.id]; }).length; }
+  // Award whatever this moment earned, remember it for this game, and show a short toast.
+  function checkTrophies() {
+    if (!S) return [];
+    var got = Engine.trophiesFor(S, { pages: meta.pages.length, biz: meta.biz, starts: meta.starts }).filter(function (id) { return !meta.trophies[id]; });
+    if (!got.length) return got;
+    got.forEach(function (id) { meta.trophies[id] = Date.now(); (S.trophiesNew = S.trophiesNew || []).push(id); });
+    saveAll();
+    var first = C.trophies.filter(function (tr) { return tr.id === got[0]; })[0];
+    toast(first.img, got.length === 1 ? T("trophyOne", { a: L(first.name) }) : T("trophyMany", { a: got.length }));
+    return got;
+  }
+  var toastTimer = null;
+  function toast(image, text) {
+    var old = document.querySelector(".toast");
+    if (old) old.remove();
+    var el = document.createElement("div");
+    el.className = "toast";
+    el.setAttribute("role", "status");
+    el.innerHTML = img(image, "tiny") + "<span>" + H(text) + "</span>";
+    document.body.appendChild(el);
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function () { el.remove(); }, FAST ? 1200 : 2800);
+  }
   function today() { return Engine.dailyInfo(params.get("day")); }
 
   var S = load(KEY_GAME);
@@ -534,10 +595,11 @@
           (canResume ? '<button class="btn primary big" data-act="resume">' + esc(T("resume")) + " · " + H(T("month", { n: S.month, t: S.months })) + "</button>" : "") +
           '<button class="btn ' + (canResume ? "" : "primary big") + '" data-act="new">' + esc(T("newGame")) + "</button>" +
           '<button class="btn daily-btn" data-act="daily">' + img("calendar", "ic") + "<span>" + esc(T("daily")) + "<small>" + esc(T(meta.daily[today().day] ? "dailyPlayed" : "dailyNew")) + "</small></span></button>" +
-          '<div class="row2"><button class="btn" data-act="how">' + img("light_bulb", "ic") + esc(T("howTo")) + "</button>" +
-          '<button class="btn" data-act="stickers">' + img("notebook", "ic") + esc(T("stickers")) + "</button></div>" +
+          '<div class="row2"><button class="btn" data-act="stickers">' + img("notebook", "ic") + esc(T("stickers")) + "</button>" +
+          '<button class="btn" data-act="trophies">' + img("trophy", "ic") + "<span>" + esc(T("trophiesTitle")) + ' <small class="count">' + H(T("trophyCount", { a: trophyCount(), b: C.trophies.length })) + "</small></span></button></div>" +
           '<button class="btn" data-act="playbook">' + img("notebook", "ic") + "<span>" + esc(T("playbook")) + ' <small class="count">' + H(T("playbookCount", { a: meta.pages.length, b: Engine.PLAYBOOK.length })) + "</small></span></button>" +
-          '<button class="btn ghost" data-act="about">' + esc(T("about")) + "</button>" +
+          '<div class="row2"><button class="btn ghost" data-act="how">' + img("light_bulb", "ic") + esc(T("howTo")) + "</button>" +
+          '<button class="btn ghost" data-act="about">' + esc(T("about")) + "</button></div>" +
         "</div>" +
         footer() +
       "</main>");
@@ -553,6 +615,7 @@
     on('[data-act="about"]', about);
     on('[data-act="daily"]', dailyPage);
     on('[data-act="playbook"]', playbookPage);
+    on('[data-act="trophies"]', trophyPage);
   }
 
   // Latin names inside the Arabic credit get their own isolates so the line reads in order.
@@ -571,6 +634,15 @@
 
   function about() {
     page("about", '<div class="card note">' + img("briefcase", "big") + C.aboutNote[meta.lang].map(function (p) { return "<p>" + H(p) + "</p>"; }).join("") + "</div>", about);
+  }
+
+  function trophyPage() {
+    var body = '<p class="lead">' + H(T("trophyCount", { a: trophyCount(), b: C.trophies.length })) + "</p>" +
+      '<div class="trophies">' + C.trophies.map(function (tr) {
+        var got = !!meta.trophies[tr.id];
+        return '<div class="tro' + (got ? "" : " no") + '" data-trophy="' + tr.id + '">' + img(got ? tr.img : "locked") + "<b>" + H(L(tr.name)) + "</b><small>" + H(L(tr.desc)) + "</small></div>";
+      }).join("") + "</div>";
+    page("trophiesTitle", body, trophyPage);
   }
 
   function dailyPage() {
@@ -668,8 +740,10 @@
         S = dd ? Engine.newGame({ name: name, avatar: st.avatar, biz: dd.biz, start: dd.start, goal: "daily", daily: dd, seed: dd.seed })
                : Engine.newGame({ name: name, avatar: st.avatar, biz: st.biz, start: st.start, goal: st.goal, seed: seed != null ? Number(seed) : undefined });
         S.pagesAtStart = meta.pages.length;
+        meta.biz[S.biz] = 1; meta.starts[S.start] = 1;
         Engine.beginMonth(S);
         saveAll();
+        checkTrophies();
         resume();
       });
     }
@@ -908,7 +982,7 @@
     function done() { (r.ideas || []).forEach(collect); S.phase = "draw"; toDilemma(); }
     on("[data-draw]", function (el) {
       var k = el.dataset.draw;
-      if (k !== "keep" && Engine.draw(S, k)) collect("draw");
+      if (k !== "keep" && Engine.draw(S, k)) { collect("draw"); checkTrophies(); }
       done();
     });
     on('[data-act="next"]', done);
@@ -963,6 +1037,7 @@
   function finishMonth() {
     S.pending = null;
     var hit = Engine.endMonth(S);
+    checkTrophies();
     if (hit) {
       if (S.phase === "plan") S.phase = "cards";
       S.queue.unshift({ type: "goal" });
@@ -978,6 +1053,7 @@
     if (!S.counted) {
       S.counted = true; meta.games++;
       S.pagesNew = Math.max(0, meta.pages.length - (S.pagesAtStart || 0));
+      checkTrophies();
       if (S.daily && !meta.daily[S.daily.day]) meta.daily[S.daily.day] = { score: Engine.dailyScore(S), over: S.over || null, month: S.overMonth };
       saveAll();
     }
@@ -1000,12 +1076,20 @@
         '<div class="kv"><span>' + esc(T("totalProfit")) + "</span>" + cash(r.profit, true) + "</div>" +
         '<div class="kv"><span>' + esc(T("paidYourself")) + "</span>" + cash(r.drawn) + "</div>" +
         '<div class="kv"><span>' + esc(T("finalSystems")) + "</span>" + pair(r.systems, 100) + "</div>" +
-      "</section>" + pagesLine() +
+      "</section>" + pagesLine() + trophiesLine() +
       '<div class="stack"><button class="btn primary big" data-act="again">' + esc(T("again")) + '</button><button class="btn" data-act="stickers">' + img("notebook", "ic") + esc(T("stickers")) + "</button></div>";
     gameShell(html, "endscr");
     on('[data-act="again"]', function () { ui.setup.name = S.name; ui.setup.avatar = S.avatar; ui.setup.biz = S.biz; ui.setup.start = S.start; ui.setup.goal = S.goal; S = null; drop(KEY_GAME); setup(); });
     on('[data-act="stickers"]', stickerBook);
     on('[data-act="playbook"]', playbookPage);
+    on('[data-act="trophies"]', trophyPage);
+  }
+
+  // The trophies this game earned, and the collection's size.
+  function trophiesLine() {
+    var ids = S.trophiesNew || [];
+    var icons = ids.map(function (id) { var tr = C.trophies.filter(function (x) { return x.id === id; })[0]; return tr ? img(tr.img, "tiny") : ""; }).join("");
+    return '<button class="card pbline trline" data-act="trophies">' + img("trophy", "tiny") + "<span>" + H(T("trophiesRun", { a: ids.length, b: trophyCount(), c: C.trophies.length })) + "</span>" + (icons ? '<span class="tricons">' + icons + "</span>" : "") + "</button>";
   }
 
   // How many pages this game added to the collection, and the collection's size.
@@ -1028,13 +1112,14 @@
       '<section class="card report"><h3>' + esc(T("report")) + "</h3>" +
         skills.map(function (k) { return '<div class="skill" data-skill="' + k[2] + '" data-stars="' + k[1] + '"><span>' + esc(T("skill" + k[0])) + '</span><span class="stars">' + "★★★".slice(0, k[1]) + '<i>' + "★★★".slice(k[1]) + "</i></span></div>"; }).join("") +
         '<div class="kv"><span>' + esc(T("totalProfit")) + "</span>" + cash(r.profit, true) + "</div>" +
-      "</section>" + pagesLine() +
+      "</section>" + pagesLine() + trophiesLine() +
       '<p class="muted small center copied" hidden>' + esc(T("copied")) + "</p>" +
       '<div class="stack"><button class="btn primary big" data-act="share">' + img("speech_balloon", "ic") + esc(T("share")) + '</button>' +
       '<button class="btn" data-act="home2">' + img("house", "ic") + esc(T("home")) + "</button></div>";
     gameShell(html, "endscr daily-end");
     on('[data-act="home2"]', function () { home(); });
     on('[data-act="playbook"]', playbookPage);
+    on('[data-act="trophies"]', trophyPage);
     on('[data-act="share"]', function () {
       var shown = app.querySelector(".copied");
       function copied() { if (shown) shown.hidden = false; }
