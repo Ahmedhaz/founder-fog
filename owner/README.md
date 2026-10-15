@@ -22,7 +22,7 @@ What's different from the other games:
 - **The Owner's Playbook**, as in Bousla's Founder Playbook: 32 pages collected across games, each unlocked by a dilemma or a moment in the game (the first loan, money owed piling up, the fog). Each page is the idea, why it matters, one thing to do this month, and a real source. The pages are in `playbook.js`.
 - **Trophies**, as in Bousla: 24, kept on this device across games, from the first profitable month and paying yourself to "it runs without you", paying off every loan, getting through a cash crunch and trying all five businesses. Closing and burning out earn one too. A short toast announces each one, there's a trophy room, and the end screen shows the game's haul.
 - **The inbox**, as in Bousla: 0 to 2 messages arrive at the start of each open month, from customers, suppliers, the team, the landlord, the bank, or a scammer pretending to be one. 22 messages: 12 for any business and 2 for each. Each has two answers; a message nobody answers expires at the end of the month, and some cost something when ignored (a late tax fine, a lost payment dispute). The mail comes from the game's own seed, so the daily challenge stays the same for everyone.
-- **57 dilemmas**: 11 for the clinic, 8 each for the other four businesses, 8 general ones, 3 for the setting-up months and 3 cash-crunch cards.
+- **98 dilemmas**: 16 for each of the five businesses, 12 general ones, 3 for the setting-up months and 3 cash-crunch cards.
 
 ## Files
 
