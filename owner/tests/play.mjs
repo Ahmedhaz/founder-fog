@@ -81,7 +81,7 @@ async function play({ lang, start, seed, mode = "sensible", shots = false }) {
   await snap("04-setup"); await noHScroll("setup"); await noPlaceholders("setup");
   await page.click('[data-act="start"]');
 
-  const seen = { doorLocked: 0, doorOpen: 0, echoes: 0, prepPlans: 0, opening: 0, sick: 0, fog: 0, dilemmas: 0, crunch: 0, forcedDoor: false, forcedFog: false };
+  const seen = { pageLines: 0, doorLocked: 0, doorOpen: 0, echoes: 0, prepPlans: 0, opening: 0, sick: 0, fog: 0, dilemmas: 0, crunch: 0, forcedDoor: false, forcedFog: false };
   const shot = new Set();
   for (let step = 0; step < 1200; step++) {
     if (await page.$(".endscr")) break;
@@ -180,6 +180,8 @@ async function play({ lang, start, seed, mode = "sensible", shots = false }) {
       } else if (!shot.has("dilemma")) { shot.add("dilemma"); await snap("12-dilemma"); await noHScroll("dilemma"); }
       const opts = await page.$$("[data-opt]:not([disabled])");
       await opts[step % opts.length].click();
+      // every dilemma names its playbook page under Salah's note
+      seen.pageLines += (await page.$(".idea .pb")) ? 1 : 0;
       if (!shot.has("idea")) { shot.add("idea"); await snap("12c-salah-note"); await noHScroll("idea"); }
       continue;
     }
@@ -195,7 +197,15 @@ async function play({ lang, start, seed, mode = "sensible", shots = false }) {
     await snap("13-end"); await noHScroll("end"); await noPlaceholders("end");
     const stars = await page.$$eval(".skill", (els) => els.map((e) => e.dataset.skill + ":" + e.dataset.stars));
     check(stars.length === 5, `${tag}: report has ${stars.length} skills`);
-    if (shots) { await page.click('[data-act="stickers"]'); await snap("14-notebook"); await noHScroll("notebook"); }
+    if (shots) { await page.click('[data-act="stickers"]'); await snap("14-notebook"); await noHScroll("notebook"); await page.click('[data-act="home"]'); }
+    // the Owner's Playbook: pages collected in this game are there, with their text and source
+    await page.goto(`${BASE}?lang=${lang}&nosw`);
+    await page.click('[data-act="playbook"]');
+    const pb = await page.evaluate(() => ({ open: document.querySelectorAll(".pg:not(.no)").length, all: document.querySelectorAll(".pg").length, have: window.__owner.meta.pages.length }));
+    check(pb.all === 28, `${tag}: the playbook shows ${pb.all} pages, want 28`);
+    check(pb.open === pb.have && pb.have > 0, `${tag}: the playbook shows ${pb.open} open pages, collected ${pb.have}`);
+    await noHScroll("playbook"); await noPlaceholders("playbook");
+    if (shots) await snap("15-playbook");
   }
   if (start === "open") {
     check(seen.prepPlans >= 2, `${tag}: saw ${seen.prepPlans} fit-out months, want 2 or more`);
@@ -206,6 +216,7 @@ async function play({ lang, start, seed, mode = "sensible", shots = false }) {
   const saved = await page.evaluate(() => localStorage.getItem("owner.v1.game"));
   check(!!saved && saved.includes(lang === "ar" ? "سما" : "Sam"), `${tag}: game not saved to localStorage`);
 
+  check(seen.dilemmas === 0 || seen.pageLines === seen.dilemmas, `${tag}: ${seen.dilemmas - seen.pageLines} dilemma notes had no playbook line`);
   check(errors.length === 0, `${tag}: console errors: ${errors.join(" | ")}`);
   check(external.length === 0, `${tag}: requests left the device: ${external.join(", ")}`);
   const rep = await page.evaluate(() => window.__owner.engine.report(window.__owner.state));

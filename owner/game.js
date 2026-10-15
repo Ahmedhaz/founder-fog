@@ -4,6 +4,7 @@
 (function (root) {
   "use strict";
   var C = root.OWNER || (typeof require === "function" ? require("./content.js") : null);
+  var PLAYBOOK = root.OWNER_PLAYBOOK || (typeof require === "function" ? require("./playbook.js") : []);
 
   // ═══════════════════════════ Engine ═══════════════════════════
   var MONTHS = 24;              // two years, one turn a month
@@ -36,7 +37,7 @@
       month: 1, cash: st.cash, energy: st.energy, rep: st.rep, quality: st.quality, systems: st.systems,
       staff: st.staff, ar: st.ar, loans: [], openAt: 1 + st.prep, presold: 0, fitPushed: 0, delayChecked: st.prep === 0,
       honestPlus: 0, honestMinus: 0, burnouts: 0, drawn: 0, goalDone: false, over: null,
-      mods: [], echoes: [], used: [], history: [], ideasSeen: [], log: [],
+      mods: [], echoes: [], used: [], history: [], ideasSeen: [], log: [], pages: [],
       phase: "start", queue: [], rs: seed, seed: seed,
     };
     if (st.loan) s.loans.push({ pay: st.loan.pay, left: Math.ceil(st.loan.bal / st.loan.pay) });
@@ -129,8 +130,13 @@
     if (fx.honest < 0) s.honestMinus -= fx.honest;
   }
 
+  // The playbook page each of Salah's notes or each dilemma unlocks.
+  function pageOf(id) { var o = C.ideas[id] || findDilemma(id); return o && o.page ? o.page : null; }
+  function findPage(id) { for (var i = 0; i < PLAYBOOK.length; i++) if (PLAYBOOK[i].id === id) return PLAYBOOK[i]; return null; }
+  function seePage(s, id) { if (id && s.pages.indexOf(id) < 0) s.pages.push(id); }
   function seeIdea(s, id, out) {
     if (s.ideasSeen.indexOf(id) < 0) { s.ideasSeen.push(id); if (out) out.push(id); }
+    seePage(s, pageOf(id));
   }
 
   // Start of a month: echoes that are due, opening day, and a month in bed if energy ran out.
@@ -262,6 +268,7 @@
     if (pay > 0) seeIdea(s, "loan", ideas);
     if (hires > 0) seeIdea(s, "hire", ideas);
     if (s.systems >= 50) seeIdea(s, "systems", ideas);
+    if (s.systems >= 70) seeIdea(s, "away", ideas);
     if (plan.price === 2 && profit > 0) seeIdea(s, "premium", ideas);
     if (cal === "ramadan") seeIdea(s, "ramadan", ideas);
     if (s.rep >= 70) seeIdea(s, "reputation", ideas);
@@ -283,6 +290,7 @@
       s.cash -= d.cash;
       s.drawn += d.cash;
       s.energy = clamp(s.energy + d.energy, 0, 100);
+      seeIdea(s, "draw");
       return true;
     }
     return false;
@@ -341,6 +349,7 @@
     if (o.echo) s.echoes.push({ id: d.id, opt: opt, from: s.month, due: s.month + randInt(s, o.echo.after[0], o.echo.after[1]) });
     var fresh = [];
     seeIdea(s, d.id, fresh);
+    seePage(s, d.page);
     s.log.push({ month: s.month, id: d.id, opt: opt });
     return { option: o, fresh: fresh.length > 0 };
   }
@@ -390,7 +399,7 @@
              drawn: s.drawn, avgEnergy: Math.round(avgE), avgRep: Math.round(avgR), systems: s.systems, burnouts: s.burnouts };
   }
 
-  var Engine = { MONTHS: MONTHS, DAILY_MONTHS: DAILY_MONTHS, dailyInfo: dailyInfo, dailyScore: dailyScore, DOOR: DOOR, FOG: FOG, MAX_BURNOUTS: MAX_BURNOUTS, newGame: newGame, beginMonth: beginMonth, runMonth: runMonth,
+  var Engine = { PLAYBOOK: PLAYBOOK, pageOf: pageOf, findPage: findPage, MONTHS: MONTHS, DAILY_MONTHS: DAILY_MONTHS, dailyInfo: dailyInfo, dailyScore: dailyScore, DOOR: DOOR, FOG: FOG, MAX_BURNOUTS: MAX_BURNOUTS, newGame: newGame, beginMonth: beginMonth, runMonth: runMonth,
     draw: draw, canDraw: canDraw, pickDilemma: pickDilemma, choose: choose, canOpen: canOpen, endMonth: endMonth, report: report,
     guess: guess, capacity: capacity, price: price, salaries: salaries, fixedCosts: fixedCosts, monthlyFloor: monthlyFloor, loanPay: loanPay,
     loanLeft: loanLeft, isOpen: isOpen, goalOf: goalOf, goalTarget: goalTarget, freedomReached: freedomReached, findDilemma: findDilemma, rand: rand };
@@ -415,6 +424,7 @@
   meta.stickers = meta.stickers || [];
   meta.games = meta.games || 0;
   meta.daily = meta.daily || {};
+  meta.pages = meta.pages || [];
   function today() { return Engine.dailyInfo(params.get("day")); }
 
   var S = load(KEY_GAME);
@@ -516,6 +526,7 @@
           '<button class="btn daily-btn" data-act="daily">' + img("calendar", "ic") + "<span>" + esc(T("daily")) + "<small>" + esc(T(meta.daily[today().day] ? "dailyPlayed" : "dailyNew")) + "</small></span></button>" +
           '<div class="row2"><button class="btn" data-act="how">' + img("light_bulb", "ic") + esc(T("howTo")) + "</button>" +
           '<button class="btn" data-act="stickers">' + img("notebook", "ic") + esc(T("stickers")) + "</button></div>" +
+          '<button class="btn" data-act="playbook">' + img("notebook", "ic") + "<span>" + esc(T("playbook")) + ' <small class="count">' + H(T("playbookCount", { a: meta.pages.length, b: Engine.PLAYBOOK.length })) + "</small></span></button>" +
           '<button class="btn ghost" data-act="about">' + esc(T("about")) + "</button>" +
         "</div>" +
         footer() +
@@ -531,6 +542,7 @@
     on('[data-act="stickers"]', stickerBook);
     on('[data-act="about"]', about);
     on('[data-act="daily"]', dailyPage);
+    on('[data-act="playbook"]', playbookPage);
   }
 
   // Latin names inside the Arabic credit get their own isolates so the line reads in order.
@@ -568,6 +580,17 @@
       ui.setup.daily = d;
       setup();
     });
+  }
+
+  function playbookPage() {
+    var have = meta.pages;
+    var body = '<p class="lead">' + H(T("playbookCount", { a: have.length, b: Engine.PLAYBOOK.length })) + "</p>" +
+      (have.length ? "" : '<p class="muted center">' + esc(T("playbookEmpty")) + "</p>") +
+      '<div class="pages">' + Engine.PLAYBOOK.map(function (p) {
+        if (have.indexOf(p.id) < 0) return '<section class="card pg no" data-page="' + p.id + '"><span class="q">?</span><small>' + esc(T("playbookLocked")) + "</small></section>";
+        return '<section class="card pg" data-page="' + p.id + '"><div class="pg-top">' + img(p.img) + "<h3>" + H(L(p.title)) + "</h3></div><p>" + H(L(p.body)) + '</p><p class="src"><small>' + esc(T("source")) + '</small> <bdi dir="ltr">' + esc(p.source) + "</bdi></p></section>";
+      }).join("") + "</div>";
+    page("playbook", body, playbookPage);
   }
 
   function allStickers() {
@@ -634,6 +657,7 @@
         var seed = params.get("seed");
         S = dd ? Engine.newGame({ name: name, avatar: st.avatar, biz: dd.biz, start: dd.start, goal: "daily", daily: dd, seed: dd.seed })
                : Engine.newGame({ name: name, avatar: st.avatar, biz: st.biz, start: st.start, goal: st.goal, seed: seed != null ? Number(seed) : undefined });
+        S.pagesAtStart = meta.pages.length;
         Engine.beginMonth(S);
         saveAll();
         resume();
@@ -705,13 +729,18 @@
   }
 
   function collect(id) {
-    if (meta.stickers.indexOf(id) < 0) { meta.stickers.push(id); saveAll(); return true; }
-    return false;
+    var page = Engine.pageOf(id), fresh = false;
+    if (page && meta.pages.indexOf(page) < 0) { meta.pages.push(page); fresh = true; }
+    if (meta.stickers.indexOf(id) < 0) { meta.stickers.push(id); fresh = true; }
+    if (fresh) saveAll();
+    return fresh;
   }
   function ideaBox(id, isSystem) {
     var o = isSystem ? C.ideas[id] : Engine.findDilemma(id).idea;
     var isNew = meta.stickers.indexOf(id) < 0;
-    return '<div class="idea">' + img(MENTOR, "gp") + "<div><b>" + esc(T("ideaTitle")) + (isNew ? ' <span class="new">' + esc(T("newSticker")) + "</span>" : "") + "</b><p>" + H(L(o)) + "</p></div></div>";
+    var pg = Engine.findPage(Engine.pageOf(id));
+    var pageLine = pg ? '<p class="pb">' + img(pg.img, "tiny") + "<span>" + H(T(meta.pages.indexOf(pg.id) < 0 ? "pageNew" : "pageOld", { a: L(pg.title) })) + "</span></p>" : "";
+    return '<div class="idea">' + img(MENTOR, "gp") + "<div><b>" + esc(T("ideaTitle")) + (isNew ? ' <span class="new">' + esc(T("newSticker")) + "</span>" : "") + "</b><p>" + H(L(o)) + "</p>" + pageLine + "</div></div>";
   }
 
   function season(calNow, calNext) {
@@ -867,7 +896,7 @@
     function done() { (r.ideas || []).forEach(collect); S.phase = "draw"; toDilemma(); }
     on("[data-draw]", function (el) {
       var k = el.dataset.draw;
-      if (k !== "keep" && Engine.draw(S, k)) { if (S.ideasSeen.indexOf("draw") < 0) S.ideasSeen.push("draw"); collect("draw"); }
+      if (k !== "keep" && Engine.draw(S, k)) collect("draw");
       done();
     });
     on('[data-act="next"]', done);
@@ -936,6 +965,7 @@
     var r = Engine.report(S), g = Engine.goalOf(S);
     if (!S.counted) {
       S.counted = true; meta.games++;
+      S.pagesNew = Math.max(0, meta.pages.length - (S.pagesAtStart || 0));
       if (S.daily && !meta.daily[S.daily.day]) meta.daily[S.daily.day] = { score: Engine.dailyScore(S), over: S.over || null, month: S.overMonth };
       saveAll();
     }
@@ -958,11 +988,18 @@
         '<div class="kv"><span>' + esc(T("totalProfit")) + "</span>" + cash(r.profit, true) + "</div>" +
         '<div class="kv"><span>' + esc(T("paidYourself")) + "</span>" + cash(r.drawn) + "</div>" +
         '<div class="kv"><span>' + esc(T("finalSystems")) + "</span>" + pair(r.systems, 100) + "</div>" +
-      "</section>" +
+      "</section>" + pagesLine() +
       '<div class="stack"><button class="btn primary big" data-act="again">' + esc(T("again")) + '</button><button class="btn" data-act="stickers">' + img("notebook", "ic") + esc(T("stickers")) + "</button></div>";
     gameShell(html, "endscr");
     on('[data-act="again"]', function () { ui.setup.name = S.name; ui.setup.avatar = S.avatar; ui.setup.biz = S.biz; ui.setup.start = S.start; ui.setup.goal = S.goal; S = null; drop(KEY_GAME); setup(); });
     on('[data-act="stickers"]', stickerBook);
+    on('[data-act="playbook"]', playbookPage);
+  }
+
+  // How many pages this game added to the collection, and the collection's size.
+  function pagesLine() {
+    var fresh = (S.pagesNew != null ? S.pagesNew : 0);
+    return '<button class="card pbline" data-act="playbook">' + img("notebook", "tiny") + "<span>" + H(T("pagesRun", { a: fresh, b: meta.pages.length, c: Engine.PLAYBOOK.length })) + "</span></button>";
   }
 
   function dailyEnd(r) {
@@ -979,12 +1016,13 @@
       '<section class="card report"><h3>' + esc(T("report")) + "</h3>" +
         skills.map(function (k) { return '<div class="skill" data-skill="' + k[2] + '" data-stars="' + k[1] + '"><span>' + esc(T("skill" + k[0])) + '</span><span class="stars">' + "★★★".slice(0, k[1]) + '<i>' + "★★★".slice(k[1]) + "</i></span></div>"; }).join("") +
         '<div class="kv"><span>' + esc(T("totalProfit")) + "</span>" + cash(r.profit, true) + "</div>" +
-      "</section>" +
+      "</section>" + pagesLine() +
       '<p class="muted small center copied" hidden>' + esc(T("copied")) + "</p>" +
       '<div class="stack"><button class="btn primary big" data-act="share">' + img("speech_balloon", "ic") + esc(T("share")) + '</button>' +
       '<button class="btn" data-act="home2">' + img("house", "ic") + esc(T("home")) + "</button></div>";
     gameShell(html, "endscr daily-end");
     on('[data-act="home2"]', function () { home(); });
+    on('[data-act="playbook"]', playbookPage);
     on('[data-act="share"]', function () {
       var shown = app.querySelector(".copied");
       function copied() { if (shown) shown.hidden = false; }

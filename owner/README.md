@@ -13,11 +13,12 @@ What's different from the other games:
 - **Goals:** a safety cushion, a second branch, or a month away (Systems 70+ and no loss in the last three months).
 - **Pay yourself.** After a profitable month you can take a salary. It costs cash and restores energy.
 - **Daily challenge**, as in Bousla: the same business, start and luck for everyone on a given UTC day, 12 months, one try. The score is the cash at the end (zero if the business didn't last). There is no leaderboard, because the game makes no network calls; the end screen copies a short result to share by hand.
-- **First business: a physio and wellness clinic**, with 10 clinic dilemmas, 8 general ones, 3 for the fit-out months and 3 cash-crunch cards. More businesses come next.
+- **The Owner's Playbook**, as in Bousla's Founder Playbook: 28 pages collected across games, each unlocked by a dilemma or a moment in the game (the first loan, money owed piling up, the fog). Each page is the idea, why it matters, one thing to do this month, and a real source. The pages are in `playbook.js`.
+- **First business: a physio and wellness clinic**, with 11 clinic dilemmas, 8 general ones, 3 for the fit-out months and 3 cash-crunch cards. More businesses come next.
 
 ## Files
 
-- `content.js`: all text and numbers, English and Arabic side by side. The writing rules are in its header comment. The Arabic never genders the player.
+- `content.js`: all text and numbers, English and Arabic side by side. `playbook.js`: the Owner's Playbook pages, in the same format. The writing rules are in its header comment. The Arabic never genders the player.
 - `game.js`: the engine (pure functions, also runs in Node) and the UI.
 - `index.html`: the page and all styles. `sw.js` and `manifest.webmanifest` make it installable and offline. When you add a picture to `img/`, add it to `sw.js` too.
 - `img/`: handmade felt art, shared with the other games.
@@ -30,6 +31,12 @@ No analytics, no tracking, no accounts and no network calls at all. The player's
 ## Tests
 
 ```bash
+node owner/tests/content.mjs
+```
+
+Checks that every text has English and Arabic with exactly the same numbers and placeholders, that every dilemma and note points at a playbook page that exists, that every page is unlocked by something, and that every picture exists and is precached.
+
+```bash
 node owner/tests/balance.mjs
 ```
 
@@ -39,6 +46,7 @@ Plays thousands of simulated two-year games for both starts and every goal. It c
 - a spender rarely lasts;
 - never resting brings the fog and a month in bed;
 - without systems the month away is out of reach.
+- every playbook page is unlocked in some simulated game.
 
 ```bash
 CHROME_PATH="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" node owner/tests/play.mjs /tmp/owner-shots

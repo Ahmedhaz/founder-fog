@@ -15,6 +15,7 @@
 //     mods: [{ k, x, months }] where k is demand | cost | salary | price | ar | energyUse.
 //     Mods start with the NEXT month (dilemmas come after the month's work).
 //   - Echo after: [min, max] months later. The game adds "month N" itself.
+//   - page: the Owner's Playbook page (playbook.js) a dilemma or one of Salah's notes unlocks.
 //   - C (the third door) needs Energy >= needs (70).
 //   - when: { minMonth, minCash, minStaff, crunch, prep, open, start } (all optional).
 //     crunch: only when the month ended with cash below zero. prep: only before opening.
@@ -106,20 +107,21 @@ var OWNER = {
 
   // ───────────── Uncle Salah's notes from the game itself (collected) ─────────────
   ideas: {
-    profit: { img: "coin", en: "Profit is what you earned. Cash is what you have. They are not the same number.", ar: "الربح هو ما كسبته العيادة. والنقد هو ما في الخزنة. وهما رقمان مختلفان." },
-    owed: { img: "receipt", en: "A sale you haven't been paid for is a loan you gave your customer.", ar: "البيع الذي لم يُدفع ثمنه قرض منحته للعميل." },
-    full: { img: "hourglass_not_done", en: "A waiting list feels like success. To the patient who left, it was just a closed door.", ar: "قائمة الانتظار تبدو نجاحًا. لكنها للمريض الذي رحل مجرد باب مغلق." },
-    idle: { img: "cloud", en: "An empty hour still costs a full salary. Fixed costs don't care how busy you were.", ar: "الساعة الفارغة تكلّف راتبًا كاملًا. والتكاليف الثابتة لا تهتم بمدى انشغالك." },
-    tired: { img: "yawning_face", en: "A tired owner makes expensive mistakes, and doesn't see them.", ar: "صاحب العمل المتعب يصنع أخطاء مكلفة، ولا يراها." },
-    systems: { img: "puzzle_piece", en: "If the business stops when you stop, you have a job, not a business.", ar: "إذا توقّف العمل حين تتوقّف، فهذه وظيفة لا مشروع." },
-    premium: { img: "money_bag", en: "Fewer patients at a better price can mean more profit, and less exhaustion.", ar: "مرضى أقل بسعر أفضل قد يعني ربحًا أكبر، وإرهاقًا أقل." },
-    loan: { img: "classical_building", en: "A loan buys time. The instalment comes every month, busy or slow.", ar: "القرض يشتري وقتًا. والقسط يأتي كل شهر، مزدحمًا كان أو هادئًا." },
-    draw: { img: "red_heart", en: "Paying yourself is not stealing from the business. An owner who never gets paid doesn't last.", ar: "دفع راتب لنفسك ليس سرقة من العمل. وصاحب العمل الذي لا يأخذ شيئًا لا يصمد." },
-    ramadan: { img: "star", en: "Ramadan comes every year. A smart owner plans the cash for it months ahead.", ar: "رمضان يأتي كل عام. وصاحب العمل الذكي يرتّب النقد له قبلها بأشهر." },
-    hire: { img: "busts_in_silhouette", en: "Every hire adds a salary today and maybe revenue later. Hire for demand you can see.", ar: "كل توظيف يضيف راتبًا اليوم وربما إيرادًا لاحقًا. والتوظيف يكون لطلب ظاهر." },
-    delay: { img: "hammer_and_wrench", en: "Every month the opening slips, the rent still comes. Time is the most expensive thing before you open.", ar: "كل شهر يتأخّر فيه الافتتاح يأتي الإيجار رغم ذلك. والوقت أغلى شيء قبل الافتتاح." },
-    fog: { img: "face_with_spiral_eyes", en: "When you're exhausted, the numbers blur. That's the moment to stop, not to push.", ar: "حين يشتد الإرهاق تتشوّش الأرقام. وهذه لحظة التوقّف، لا الضغط أكثر." },
-    reputation: { img: "speech_balloon", en: "In a neighbourhood, reputation travels faster than any advert.", ar: "في الحي، السمعة تنتقل أسرع من أي إعلان." },
+    profit: { img: "coin", page: "cash_flow", en: "Profit is what you earned. Cash is what you have. They are not the same number.", ar: "الربح هو ما كسبته العيادة. والنقد هو ما في الخزنة. وهما رقمان مختلفان." },
+    owed: { img: "receipt", page: "receivables", en: "A sale you haven't been paid for is a loan you gave your customer.", ar: "البيع الذي لم يُدفع ثمنه قرض منحته للعميل." },
+    full: { img: "hourglass_not_done", page: "capacity", en: "A waiting list feels like success. To the patient who left, it was just a closed door.", ar: "قائمة الانتظار تبدو نجاحًا. لكنها للمريض الذي رحل مجرد باب مغلق." },
+    idle: { img: "cloud", page: "fixed_costs", en: "An empty hour still costs a full salary. Fixed costs don't care how busy you were.", ar: "الساعة الفارغة تكلّف راتبًا كاملًا. والتكاليف الثابتة لا تهتم بمدى انشغالك." },
+    tired: { img: "yawning_face", page: "burnout", en: "A tired owner makes expensive mistakes, and doesn't see them.", ar: "صاحب العمل المتعب يصنع أخطاء مكلفة، ولا يراها." },
+    systems: { img: "puzzle_piece", page: "systems", en: "If the business stops when you stop, you have a job, not a business.", ar: "إذا توقّف العمل حين تتوقّف، فهذه وظيفة لا مشروع." },
+    premium: { img: "money_bag", page: "pricing", en: "Fewer patients at a better price can mean more profit, and less exhaustion.", ar: "مرضى أقل بسعر أفضل قد يعني ربحًا أكبر، وإرهاقًا أقل." },
+    loan: { img: "classical_building", page: "loans", en: "A loan buys time. The instalment comes every month, busy or slow.", ar: "القرض يشتري وقتًا. والقسط يأتي كل شهر، مزدحمًا كان أو هادئًا." },
+    draw: { img: "red_heart", page: "pay_yourself", en: "Paying yourself is not stealing from the business. An owner who never gets paid doesn't last.", ar: "دفع راتب لنفسك ليس سرقة من العمل. وصاحب العمل الذي لا يأخذ شيئًا لا يصمد." },
+    ramadan: { img: "star", page: "seasons", en: "Ramadan comes every year. A smart owner plans the cash for it months ahead.", ar: "رمضان يأتي كل عام. وصاحب العمل الذكي يرتّب النقد له قبلها بأشهر." },
+    hire: { img: "busts_in_silhouette", page: "hiring", en: "Every hire adds a salary today and maybe revenue later. Hire for demand you can see.", ar: "كل توظيف يضيف راتبًا اليوم وربما إيرادًا لاحقًا. والتوظيف يكون لطلب ظاهر." },
+    delay: { img: "hammer_and_wrench", page: "contracts", en: "Every month the opening slips, the rent still comes. Time is the most expensive thing before you open.", ar: "كل شهر يتأخّر فيه الافتتاح يأتي الإيجار رغم ذلك. والوقت أغلى شيء قبل الافتتاح." },
+    fog: { img: "face_with_spiral_eyes", page: "burnout", en: "When you're exhausted, the numbers blur. That's the moment to stop, not to push.", ar: "حين يشتد الإرهاق تتشوّش الأرقام. وهذه لحظة التوقّف، لا الضغط أكثر." },
+    away: { img: "sunrise", page: "built_to_sell", en: "The clinic ran a whole month of routines without asking you anything. That is what a business looks like.", ar: "أدارت العيادة شهرًا كاملًا من الإجراءات دون أن تسألك شيئًا. هكذا يبدو المشروع الحقيقي." },
+    reputation: { img: "speech_balloon", page: "reputation", en: "In a neighbourhood, reputation travels faster than any advert.", ar: "في الحي، السمعة تنتقل أسرع من أي إعلان." },
   },
 
   // ───────────────────────── Interface text ─────────────────────────
@@ -247,6 +249,15 @@ var OWNER = {
     resetQ: { en: "Start a new business? This one will be lost.", ar: "بدء مشروع جديد؟ سيضيع هذا المشروع." },
     soon: { en: "More businesses are coming.", ar: "أنشطة أخرى قادمة." },
 
+    playbook: { en: "The Owner's Playbook", ar: "دليل صاحب المشروع" },
+    playbookCount: { en: "{a} of {b} pages", ar: "الصفحات: {a} من {b}" },
+    playbookEmpty: { en: "Every decision can unlock a page. Pages stay with you from one game to the next.", ar: "كل قرار قد يفتح صفحة. والصفحات تبقى معك من لعبة إلى أخرى." },
+    playbookLocked: { en: "Unlocked by a decision", ar: "تُفتح بقرار" },
+    pageNew: { en: "New playbook page: {a}", ar: "صفحة جديدة في الدليل: {a}" },
+    pageOld: { en: "Playbook: {a}", ar: "في الدليل: {a}" },
+    pagesRun: { en: "Playbook: {a} new pages this game · {b} of {c} collected", ar: "الدليل: {a} صفحات جديدة في هذه اللعبة · {b} من {c}" },
+    source: { en: "Source", ar: "المصدر" },
+
     daily: { en: "Daily challenge", ar: "التحدي اليومي" },
     dailyNew: { en: "New today", ar: "جديد اليوم" },
     dailyPlayed: { en: "Played today ✓", ar: "لُعب اليوم ✓" },
@@ -314,7 +325,7 @@ var OWNER = {
 
     // ── Before opening (the "open" start only) ──
     {
-      id: "p_contractor", biz: "all", img: "hammer_and_wrench", when: { prep: true },
+      id: "p_contractor", page: "contracts", biz: "all", img: "hammer_and_wrench", when: { prep: true },
       title: { en: "The contractor wants more money", ar: "المقاول يطلب مالًا إضافيًا" },
       text: { en: "Halfway through the fit-out, the contractor says the plumbing was \"not in the quote\". He wants $3,000 more, or the work slows down.", ar: "في منتصف التجهيز قال المقاول إن السباكة «لم تكن في العرض». ويطلب $3,000 إضافية، وإلا تباطأ العمل." },
       A: { label: { en: "Pay it and keep things moving", ar: "الدفع واستمرار العمل" },
@@ -329,7 +340,7 @@ var OWNER = {
       idea: { en: "A vague quote is a promise to argue later. Write down everything before work starts.", ar: "العرض الغامض وعد بخلاف لاحق. والكتابة تكون قبل بدء العمل." },
     },
     {
-      id: "p_license", biz: "all", img: "memo", when: { prep: true },
+      id: "p_license", page: "licences", biz: "all", img: "memo", when: { prep: true },
       title: { en: "The licence is stuck", ar: "الترخيص متوقف" },
       text: { en: "The health licence has been \"under review\" for five weeks. A man at the office offers to \"speed it up\" for $500 in cash, no receipt.", ar: "ترخيص الصحة «قيد المراجعة» منذ خمسة أسابيع. وعرض رجل في المكتب «تسريعه» مقابل $500 نقدًا، بلا إيصال." },
       A: { label: { en: "Pay the $500", ar: "دفع الـ$500" },
@@ -348,7 +359,7 @@ var OWNER = {
       idea: { en: "A shortcut with no receipt is a debt that can be called in at any time.", ar: "الطريق المختصر بلا إيصال دين يمكن المطالبة به في أي وقت." },
     },
     {
-      id: "p_party", biz: "all", img: "party_popper", when: { prep: true },
+      id: "p_party", page: "marketing_spend", biz: "all", img: "party_popper", when: { prep: true },
       title: { en: "A big opening party?", ar: "حفل افتتاح كبير؟" },
       text: { en: "Your cousin, an event planner, offers a proper opening: flowers, a singer, influencers. \"Family price\": $4,000.", ar: "ابن عمك منظّم فعاليات، ويعرض افتتاحًا كبيرًا: زهور ومطرب ومؤثّرون. «سعر العائلة»: $4,000." },
       A: { label: { en: "Do it: first impressions matter", ar: "الموافقة: الانطباع الأول مهم" },
@@ -365,7 +376,7 @@ var OWNER = {
 
     // ── Cash crunch: only when a month ends below zero ──
     {
-      id: "k_family", biz: "all", img: "house", when: { crunch: true },
+      id: "k_family", page: "cash_crunch", biz: "all", img: "house", when: { crunch: true },
       title: { en: "The account is in the red", ar: "الحساب بالسالب" },
       text: { en: "The bank called about the overdraft. Your brother heard and offers $10,000, \"pay me back when you can\".", ar: "اتصل البنك بشأن السحب على المكشوف. وسمع أخوك بالأمر فعرض $10,000، «تسدّدها حين تستطيع»." },
       A: { label: { en: "Take your brother's money", ar: "قبول مال الأخ" },
@@ -384,7 +395,7 @@ var OWNER = {
       idea: { en: "Family money is the most expensive money there is. It just doesn't send a statement.", ar: "مال العائلة أغلى مال على الإطلاق. لكنه لا يرسل كشف حساب." },
     },
     {
-      id: "k_landlord", biz: "all", img: "door", when: { crunch: true },
+      id: "k_landlord", page: "cash_crunch", biz: "all", img: "door", when: { crunch: true },
       title: { en: "Rent day, and not enough cash", ar: "موعد الإيجار، والنقد لا يكفي" },
       text: { en: "The month closed below zero. The landlord's rent is due, and salaries are due on the same day.", ar: "أُغلق الشهر تحت الصفر. وموعد الإيجار هو نفسه موعد الرواتب." },
       A: { label: { en: "Pay the team, ask the landlord to wait", ar: "دفع رواتب الفريق، وطلب مهلة من المالك" },
@@ -403,7 +414,7 @@ var OWNER = {
       idea: { en: "Know the date your cash runs out. Then act two months before it, not on the day.", ar: "معرفة تاريخ نفاد النقد ضرورية. والتحرّك يكون قبله بشهرين، لا في يومه." },
     },
     {
-      id: "k_supplier", biz: "all", img: "package", when: { crunch: true },
+      id: "k_supplier", page: "suppliers", biz: "all", img: "package", when: { crunch: true },
       title: { en: "The supplier wants paying", ar: "المورّد يطالب بالدفع" },
       text: { en: "You're below zero and the supplier's bill is $2,500. He says he'll stop deliveries if it's not paid this week.", ar: "الحساب تحت الصفر وفاتورة المورّد $2,500. ويقول إنه سيوقف التوريد إن لم تُدفع هذا الأسبوع." },
       A: { label: { en: "Promise to pay next week, then delay again", ar: "الوعد بالدفع الأسبوع القادم، ثم التأجيل مجددًا" },
@@ -424,7 +435,7 @@ var OWNER = {
 
     // ── General (any business, once open) ──
     {
-      id: "g_whatsapp", biz: "all", img: "mobile_phone", when: { open: true, minMonth: 2 },
+      id: "g_whatsapp", page: "systems", biz: "all", img: "mobile_phone", when: { open: true, minMonth: 2 },
       title: { en: "Everything goes through your phone", ar: "كل شيء يمر عبر هاتفك" },
       text: { en: "Bookings, cancellations, complaints and staff questions all arrive on your personal WhatsApp. 140 messages yesterday. A booking system costs $90 a month.", ar: "الحجوزات والإلغاءات والشكاوى وأسئلة الفريق كلها تصل إلى واتساب الشخصي. 140 رسالة أمس. ونظام الحجز يكلّف $90 شهريًا." },
       A: { label: { en: "Keep answering yourself: it's free", ar: "الاستمرار في الرد بنفسك: مجانًا" },
@@ -443,7 +454,7 @@ var OWNER = {
       idea: { en: "If every question comes to you, every answer depends on you.", ar: "إذا جاءك كل سؤال، صار كل جواب معلّقًا بك." },
     },
     {
-      id: "g_manager", biz: "all", img: "woman_office_worker", when: { open: true, minMonth: 5 },
+      id: "g_manager", page: "delegation", biz: "all", img: "woman_office_worker", when: { open: true, minMonth: 5 },
       title: { en: "Promote someone to manager?", ar: "ترقية أحد إلى مدير؟" },
       text: { en: "Mona at reception knows every patient by name and fixes problems before you see them. She asks if she could run the front of the clinic. $400 more a month.", ar: "منى في الاستقبال تعرف كل مريض باسمه، وتحل المشكلات قبل أن تراها. وتسأل إن كان يمكنها إدارة واجهة العيادة. مقابل $400 إضافية شهريًا." },
       A: { label: { en: "Not yet: you'd rather keep control", ar: "ليس الآن: الأفضل إبقاء السيطرة" },
@@ -462,7 +473,7 @@ var OWNER = {
       idea: { en: "You can't grow past the number of things only you can do.", ar: "لا نمو بعد حد الأشياء التي لا يستطيعها أحد غيرك." },
     },
     {
-      id: "g_tax", biz: "all", img: "receipt", when: { open: true, minMonth: 4 },
+      id: "g_tax", page: "integrity", biz: "all", img: "receipt", when: { open: true, minMonth: 4 },
       title: { en: "\"Everyone does it\"", ar: "«الكل يفعل ذلك»" },
       text: { en: "Your accountant suggests recording only half the cash sessions. \"You'd save about $700 a month in tax. Everyone does it.\"", ar: "يقترح المحاسب تسجيل نصف الجلسات النقدية فقط. «ستوفّر نحو $700 شهريًا من الضرائب. الكل يفعل ذلك.»" },
       A: { label: { en: "Do it", ar: "الموافقة" },
@@ -481,7 +492,7 @@ var OWNER = {
       idea: { en: "Hidden money can't be borrowed against, shown to a buyer, or defended in an audit.", ar: "المال المخفي لا يُقترض بضمانه، ولا يُعرض على مشترٍ، ولا يُدافع عنه في مراجعة." },
     },
     {
-      id: "g_dinner", biz: "all", img: "house", when: { open: true, minMonth: 3 },
+      id: "g_dinner", page: "family_time", biz: "all", img: "house", when: { open: true, minMonth: 3 },
       title: { en: "You missed it again", ar: "فاتك مرة أخرى" },
       text: { en: "It's the third family dinner you've missed this month. Your mother says nothing, which is worse than saying something.", ar: "هذا ثالث عشاء عائلي يفوتك هذا الشهر. ولم تقل أمك شيئًا، وهذا أسوأ من الكلام." },
       A: { label: { en: "The clinic needs you right now", ar: "العيادة تحتاجك الآن" },
@@ -496,7 +507,7 @@ var OWNER = {
       idea: { en: "The business is supposed to serve your life, not replace it.", ar: "المشروع وُجد ليخدم حياتك، لا ليحلّ محلّها." },
     },
     {
-      id: "g_theft", biz: "all", img: "money_with_wings", when: { open: true, minMonth: 4 },
+      id: "g_theft", page: "controls", biz: "all", img: "money_with_wings", when: { open: true, minMonth: 4 },
       title: { en: "The cash drawer is short", ar: "درج النقد ناقص" },
       text: { en: "For the third week, the cash drawer is short by about $150. Nobody counts it except you, and only when you remember.", ar: "للأسبوع الثالث، ينقص درج النقد نحو $150. ولا أحد يعدّه غيرك، وحين تتذكّر فقط." },
       A: { label: { en: "Accuse the new receptionist", ar: "اتهام موظف الاستقبال الجديد" },
@@ -511,7 +522,7 @@ var OWNER = {
       idea: { en: "Good systems protect honest people. They make it easy to do the right thing.", ar: "الأنظمة الجيدة تحمي الأمناء. وتجعل فعل الصواب سهلًا." },
     },
     {
-      id: "g_competitor", biz: "all", img: "chart_decreasing", when: { open: true, minMonth: 6 },
+      id: "g_competitor", page: "competition", biz: "all", img: "chart_decreasing", when: { open: true, minMonth: 6 },
       title: { en: "A chain opened down the street", ar: "سلسلة افتُتحت في الشارع نفسه" },
       text: { en: "A big chain opened 300 metres away, with sessions at half your price for the first three months.", ar: "افتُتح فرع لسلسلة كبيرة على بُعد 300 متر، بجلسات بنصف سعرك لأول ثلاثة أشهر." },
       A: { label: { en: "Match their price", ar: "مجاراة سعرهم" },
@@ -526,7 +537,7 @@ var OWNER = {
       idea: { en: "You can't win a price war against someone with deeper pockets. Win on what they can't copy.", ar: "حرب الأسعار مع من يملك مالًا أكثر خاسرة. والفوز يكون بما لا يستطيع تقليده." },
     },
     {
-      id: "g_supplier_terms", biz: "all", img: "shopping_cart", when: { open: true, minMonth: 3 },
+      id: "g_supplier_terms", page: "suppliers", biz: "all", img: "shopping_cart", when: { open: true, minMonth: 3 },
       title: { en: "Buy double, pay in 60 days", ar: "شراء الضعف، والدفع بعد 60 يومًا" },
       text: { en: "Your supplier offers 60 days to pay, if you order six months of supplies at once. $3,000 of stock arrives now.", ar: "يعرض المورّد مهلة 60 يومًا للدفع، إذا طُلبت مستلزمات ستة أشهر دفعة واحدة. بضاعة بـ$3,000 تصل الآن." },
       A: { label: { en: "Take the deal", ar: "قبول العرض" },
@@ -542,7 +553,7 @@ var OWNER = {
       idea: { en: "Payment terms are a loan in disguise. Write the due date where you'll see it.", ar: "مهلة الدفع قرض متنكّر. وموعد السداد يُكتب حيث يُرى." },
     },
     {
-      id: "g_consultant", biz: "all", img: "necktie", when: { open: true, minMonth: 5 },
+      id: "g_consultant", page: "marketing_spend", biz: "all", img: "necktie", when: { open: true, minMonth: 5 },
       title: { en: "The growth package", ar: "باقة النمو" },
       text: { en: "A consultant with a very nice car promises to \"double your revenue in 90 days\". The package is $5,000 upfront.", ar: "مستشار بسيارة فاخرة جدًا يعد «بمضاعفة الإيراد في 90 يومًا». والباقة $5,000 مقدمًا." },
       A: { label: { en: "Buy the package", ar: "شراء الباقة" },
@@ -559,7 +570,7 @@ var OWNER = {
 
     // ── Clinic ──
     {
-      id: "c_corporate", biz: "clinic", img: "office_building", when: { open: true, minMonth: 3 },
+      id: "c_corporate", page: "big_customers", biz: "clinic", img: "office_building", when: { open: true, minMonth: 3 },
       title: { en: "A big company wants a deal", ar: "شركة كبيرة تريد اتفاقًا" },
       text: { en: "A telecom company wants physio for its 300 staff at 25% off. They pay their invoices after 90 days.", ar: "شركة اتصالات تريد علاجًا طبيعيًا لموظفيها الـ300 بخصم 25%. وتدفع فواتيرها بعد 90 يومًا." },
       A: { label: { en: "Sign it: that's a lot of patients", ar: "التوقيع: هذا عدد كبير من المرضى" },
@@ -574,7 +585,7 @@ var OWNER = {
       idea: { en: "A big customer who pays late can sink you while making you busy.", ar: "العميل الكبير المتأخر في الدفع قد يُغرقك وهو يملأ يومك." },
     },
     {
-      id: "c_star", biz: "clinic", img: "man_technologist", when: { open: true, minMonth: 4, minStaff: 2 },
+      id: "c_star", page: "keep_people", biz: "clinic", img: "man_technologist", when: { open: true, minMonth: 4, minStaff: 2 },
       title: { en: "Your best therapist wants a share", ar: "أفضل معالج يريد نسبة" },
       text: { en: "Karim has a waiting list of his own. He wants 40% of his sessions instead of a salary, or he'll go to the chain.", ar: "كريم عنده قائمة انتظار خاصة به. ويريد 40% من جلساته بدل الراتب، وإلا ذهب إلى السلسلة." },
       A: { label: { en: "Agree to 40%", ar: "الموافقة على 40%" },
@@ -589,7 +600,7 @@ var OWNER = {
       idea: { en: "Your stars should win when the clinic wins, not only when they're busy.", ar: "النجوم يكسبون حين تكسب العيادة، لا حين يمتلئ جدولهم فقط." },
     },
     {
-      id: "c_packages", biz: "clinic", img: "label", when: { open: true, minMonth: 3 },
+      id: "c_packages", page: "prepaid", biz: "clinic", img: "label", when: { open: true, minMonth: 3 },
       title: { en: "Sell yearly memberships?", ar: "بيع اشتراكات سنوية؟" },
       text: { en: "Patients ask for a yearly card: unlimited sessions, paid upfront. At $1,200 each you could sell about 15 this month.", ar: "يطلب المرضى بطاقة سنوية: جلسات بلا حد، تُدفع مقدمًا. بسعر $1,200 للبطاقة يمكن بيع نحو 15 هذا الشهر." },
       A: { label: { en: "Sell as many as you can", ar: "بيع أكبر عدد ممكن" },
@@ -602,13 +613,13 @@ var OWNER = {
       B: { label: { en: "No packages: pay per session", ar: "لا باقات: الدفع لكل جلسة" },
            fx: {},
            log: { en: "Simple. Some patients went where they could get a deal.", ar: "بسيط. وذهب بعض المرضى حيث يجدون عرضًا." } },
-      C: { needs: 70, label: { en: "Packages of 10 sessions, valid for 4 months", ar: "باقات من 10 جلسات، صالحة لأربعة أشهر" },
+      C: { needs: 70, label: { en: "Packages of 10 sessions, valid for 4 months", ar: "باقات من 10 جلسات، صالحة لـ4 أشهر" },
            fx: { cash: 6000, mods: [{ k: "price", x: 0.93, months: 4 }] },
            log: { en: "Cash upfront, and every package has an end date.", ar: "نقد مقدمًا، ولكل باقة تاريخ انتهاء." } },
       idea: { en: "Money paid upfront is a promise you still owe. Don't spend it as if it were profit.", ar: "المال المدفوع مقدمًا وعد ما زال عليك. ولا يُنفق كأنه ربح." },
     },
     {
-      id: "c_review", biz: "clinic", img: "speech_balloon", when: { open: true, minMonth: 2 },
+      id: "c_review", page: "reputation", biz: "clinic", img: "speech_balloon", when: { open: true, minMonth: 2 },
       title: { en: "A one-star review", ar: "تقييم بنجمة واحدة" },
       text: { en: "\"Waited 45 minutes, the therapist was rushed.\" One star, on the first page of Google Maps.", ar: "«انتظرت 45 دقيقة، والمعالج كان مستعجلًا.» نجمة واحدة، في الصفحة الأولى على خرائط جوجل." },
       A: { label: { en: "Reply and explain it was a busy day", ar: "الرد وشرح أن اليوم كان مزدحمًا" },
@@ -623,7 +634,7 @@ var OWNER = {
       idea: { en: "An angry customer who gets a call often becomes your loudest fan.", ar: "العميل الغاضب الذي يتلقّى اتصالًا كثيرًا ما يصبح أعلى المعجبين صوتًا." },
     },
     {
-      id: "c_insurance", biz: "clinic", img: "shield", when: { open: true, minMonth: 5 },
+      id: "c_insurance", page: "big_customers", biz: "clinic", img: "shield", when: { open: true, minMonth: 5 },
       title: { en: "Join the insurance network?", ar: "الانضمام إلى شبكة التأمين؟" },
       text: { en: "The biggest insurer wants you in its network. Lots of new patients, at a 20% lower price, paid 60 days after each claim.", ar: "أكبر شركة تأمين تريد العيادة في شبكتها. مرضى جدد كثيرون، بسعر أقل 20%، ويُدفع بعد 60 يومًا من كل مطالبة." },
       A: { label: { en: "Join", ar: "الانضمام" },
@@ -638,7 +649,7 @@ var OWNER = {
       idea: { en: "Volume is only good if the money arrives before the bills do.", ar: "الكثرة جيدة فقط إذا وصل المال قبل الفواتير." },
     },
     {
-      id: "c_cousin", biz: "clinic", img: "busts_in_silhouette", when: { open: true, minMonth: 2 },
+      id: "c_cousin", page: "family_hiring", biz: "clinic", img: "busts_in_silhouette", when: { open: true, minMonth: 2 },
       title: { en: "Your cousin needs a job", ar: "ابن خالتك يحتاج وظيفة" },
       text: { en: "Your aunt calls: her son finished university a year ago and can't find work. \"Just reception, anything.\" $700 a month.", ar: "اتصلت خالتك: ابنها تخرّج قبل عام ولم يجد عملًا. «الاستقبال، أي شيء.» مقابل $700 شهريًا." },
       A: { label: { en: "Hire him: family is family", ar: "توظيفه: العائلة عائلة" },
@@ -657,7 +668,7 @@ var OWNER = {
       idea: { en: "Hiring family is fine. Hiring family you can't manage is not.", ar: "توظيف العائلة لا بأس به. أما توظيف من لا يمكن إدارته فلا." },
     },
     {
-      id: "c_machine", biz: "clinic", img: "high_voltage", when: { open: true, minMonth: 4 },
+      id: "c_machine", page: "equipment", biz: "clinic", img: "high_voltage", when: { open: true, minMonth: 4 },
       title: { en: "The shockwave machine", ar: "جهاز الموجات التصادمية" },
       text: { en: "A shockwave therapy machine costs $9,000. Patients ask for it, and the clinic down the road has one. A lease is $450 a month for 24 months.", ar: "جهاز العلاج بالموجات التصادمية يكلّف $9,000. والمرضى يسألون عنه، والعيادة القريبة عندها واحد. والتأجير التمويلي $450 شهريًا لمدة 24 شهرًا." },
       A: { label: { en: "Buy it with cash", ar: "شراؤه نقدًا" },
@@ -672,7 +683,7 @@ var OWNER = {
       idea: { en: "Test demand before you buy capacity. Equipment doesn't get a refund.", ar: "اختبار الطلب يسبق شراء الطاقة. والمعدات لا تُسترد." },
     },
     {
-      id: "c_kickback", biz: "clinic", img: "handshake", when: { open: true, minMonth: 3 },
+      id: "c_kickback", page: "integrity", biz: "clinic", img: "handshake", when: { open: true, minMonth: 3 },
       title: { en: "A doctor offers referrals", ar: "طبيب يعرض إحالات" },
       text: { en: "An orthopaedic surgeon offers to send you all his post-surgery patients, for $15 per patient \"to his assistant\".", ar: "جرّاح عظام يعرض إرسال كل مرضاه بعد الجراحة إليك، مقابل $15 لكل مريض «لمساعده»." },
       A: { label: { en: "Agree", ar: "الموافقة" },
@@ -691,7 +702,7 @@ var OWNER = {
       idea: { en: "A business built on envelopes is one phone call away from closing.", ar: "المشروع المبني على الظروف المغلقة على بُعد مكالمة واحدة من الإغلاق." },
     },
     {
-      id: "c_rent", biz: "clinic", img: "door", when: { open: true, minMonth: 10 },
+      id: "c_rent", page: "contracts", biz: "clinic", img: "door", when: { open: true, minMonth: 10 },
       title: { en: "The landlord raises the rent", ar: "المالك يرفع الإيجار" },
       text: { en: "The lease renews next month. The landlord wants 25% more, \"because the street is popular now\".", ar: "يتجدّد العقد الشهر القادم. ويريد المالك 25% زيادة، «لأن الشارع صار مطلوبًا»." },
       A: { label: { en: "Accept it", ar: "القبول" },
@@ -700,13 +711,13 @@ var OWNER = {
       B: { label: { en: "Move to a cheaper street", ar: "الانتقال إلى شارع أرخص" },
            fx: { cash: -5000, rep: -6, energy: -8 },
            log: { en: "Moving took three weeks. Some patients didn't find the new place.", ar: "استغرق الانتقال ثلاثة أسابيع. وبعض المرضى لم يجدوا المكان الجديد." } },
-      C: { needs: 70, label: { en: "Offer a 5-year lease for a 10% increase", ar: "عرض عقد لخمس سنوات مقابل زيادة 10%" },
+      C: { needs: 70, label: { en: "Offer a 5-year lease for a 10% increase", ar: "عرض عقد لـ5 سنوات مقابل زيادة 10%" },
            fx: { systems: 2, mods: [{ k: "cost", x: 1.03, months: 24 }] },
            log: { en: "A tenant for five years is worth more to him than a gamble. He agreed.", ar: "مستأجر لخمس سنوات أثمن عنده من المغامرة. فوافق." } },
       idea: { en: "Your landlord wants certainty too. Sell it to them.", ar: "المالك يريد الاستقرار أيضًا. وهذا ما يُعرض عليه." },
     },
     {
-      id: "c_overload", biz: "clinic", img: "face_exhaling", when: { open: true, minMonth: 6, minStaff: 2 },
+      id: "c_overload", page: "keep_people", biz: "clinic", img: "face_exhaling", when: { open: true, minMonth: 6, minStaff: 2 },
       title: { en: "The team is exhausted", ar: "الفريق منهك" },
       text: { en: "Your therapists did 9 sessions a day all month. Nadia asks for a week off. \"My hands shake by the evening.\"", ar: "عمل المعالجون 9 جلسات يوميًا طوال الشهر. وتطلب نادية أسبوع إجازة. «يداي ترتجفان في المساء.»" },
       A: { label: { en: "Not now: the waiting list is too long", ar: "ليس الآن: قائمة الانتظار طويلة" },
@@ -725,7 +736,7 @@ var OWNER = {
       idea: { en: "Your team's energy is capacity too. Burn it and it doesn't come back.", ar: "طاقة الفريق جزء من الطاقة الإنتاجية. وإذا احترقت لا تعود." },
     },
     {
-      id: "c_influencer", biz: "clinic", img: "star-struck", when: { open: true, minMonth: 3 },
+      id: "c_influencer", page: "marketing_spend", biz: "clinic", img: "star-struck", when: { open: true, minMonth: 3 },
       title: { en: "An influencer wants free sessions", ar: "مؤثّرة تريد جلسات مجانية" },
       text: { en: "A fitness influencer with 400,000 followers wants ten free sessions \"for content\".", ar: "مؤثّرة في اللياقة لديها 400,000 متابع تريد عشر جلسات مجانية «للمحتوى»." },
       A: { label: { en: "Give her the ten sessions", ar: "منحها الجلسات العشر" },
