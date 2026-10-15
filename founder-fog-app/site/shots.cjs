@@ -1,5 +1,6 @@
 // Real captures of the Bousla game for the promo site: 8 screens per language at 390x844 @2x,
 // played through the built game (title, sectors, hq, dilemma, mentor, customers, money, report).
+// The sectors screen is reached through "Custom company": the main button skips it for a first-timer.
 //   node founder-fog-app/site/shots.cjs <repo root> <png out dir>
 // then convert to webp into bousla/shots/ (cwebp -q 80). Needs Playwright (PLAYWRIGHT=path to it) and,
 // for playwright-core, CHROME_PATH.
@@ -7,8 +8,8 @@ const { chromium } = require(process.env.PLAYWRIGHT || "playwright");
 const path = require('path');
 const [, , ROOT, OUT] = process.argv;
 const L = {
-  en: { file: 'index.html', start: /^Start your company/, cont: /^Continue with/, found: /^Found /, skip: /^Skip tutorial$/, later: /^Later$/, face: /^Face the decision/, week: /^Start week \d+/, plus: /^\+\s*1 Week$/, cust: /^Customers\n/, money: /^Money\n/ },
-  ar: { file: 'ar.html', start: /^ابدأ شركتك/, cont: /^تابع مع/, found: /^أسّس /, skip: /^تخطَّ الشرح$/, later: /^لاحقًا$/, face: /^واجه القرار/, week: /^ابدأ الأسبوع/, plus: /^\+\s*أسبوع$/, cust: /^العملاء\n/, money: /^المال\n/ },
+  en: { file: 'index.html', start: /^Custom company$/, cont: /^Start in /, found: /^Found /, skip: /^Skip tutorial$/, later: /^Later$/, face: /^Face the decision/, week: /^Start week \d+/, plus: /^\+\s*1 Week$/, cust: /^Customers\n/, money: /^Money\n/ },
+  ar: { file: 'ar.html', start: /^شركة مخصّصة$/, cont: /^ابدأ في /, found: /^أسّس /, skip: /^تخطَّ الشرح$/, later: /^لاحقًا$/, face: /^واجه القرار/, week: /^ابدأ الأسبوع/, plus: /^\+\s*أسبوع$/, cust: /^العملاء\n/, money: /^المال\n/ },
 };
 (async () => {
   const b = await chromium.launch(process.env.CHROME_PATH ? { executablePath: process.env.CHROME_PATH } : {});
@@ -19,7 +20,8 @@ const L = {
     const url = 'file://' + path.join(ROOT, 'founder-fog', t.file);
     await p.goto(url); await p.evaluate((l) => { localStorage.clear(); try { localStorage.setItem('ff_lang', l); } catch (e) {} }, lang);
     await p.goto(url); await p.waitForTimeout(2500);
-    const shot = async (n) => { await p.waitForTimeout(900); await p.screenshot({ path: path.join(OUT, `${lang}-${n}.png`) }); console.log(lang, n); };
+    // the programmatic clicks leave a focus ring on the last card; drop it before every capture
+    const shot = async (n) => { await p.waitForTimeout(900); await p.evaluate(() => document.activeElement && document.activeElement.blur()); await p.screenshot({ path: path.join(OUT, `${lang}-${n}.png`) }); console.log(lang, n); };
     const click = (re) => p.evaluate((src) => {
       const re = new RegExp(src);
       const els = [...document.querySelectorAll('div[tabindex],button')].filter((e) => e.offsetParent && getComputedStyle(e).cursor === 'pointer').reverse();
@@ -39,10 +41,25 @@ const L = {
       await click(t.plus);
     }
     await shot('dilemma');
-    await p.evaluate(() => {
+    // choose B; not every card carries a mentor note (a story chain's opening doesn't), so play on
+    // to the next decision until one does
+    const chooseB = () => p.evaluate(() => {
       const opts = [...document.querySelectorAll('div[tabindex]')].filter((e) => e.offsetParent && getComputedStyle(e).cursor === 'pointer' && /^B\s/.test((e.innerText || '').trim()));
       if (opts.length) opts[opts.length - 1].click();
     });
+    const noted = () => p.evaluate(() => /MENTOR NOTE|ملاحظة المرشد/.test(document.body.innerText));
+    for (let round = 0; round < 8; round++) {
+      await chooseB();
+      // the inbox can introduce itself on top of the mentor note; send it away first
+      for (let i = 0; i < 4; i++) { await p.waitForTimeout(500); if (!(await click(t.later))) break; }
+      if (await noted()) break;
+      for (let i = 0; i < 40; i++) {
+        await p.waitForTimeout(450);
+        if (await click(t.face)) break;
+        if (await click(/^(Got it|فهمت)$/) || await click(t.later) || await click(t.week)) continue;
+        await click(t.plus);
+      }
+    }
     await shot('mentor');
     await click(/^(Got it|فهمت)$/);
     for (let i = 0; i < 6; i++) { await p.waitForTimeout(300); if (!(await click(t.later))) break; }
