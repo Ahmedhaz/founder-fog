@@ -21,6 +21,7 @@ What's different from the other games:
 - **Daily challenge**, as in Bousla: the same business, start and luck for everyone on a given UTC day, 12 months, one try. The score is the cash at the end (zero if the business didn't last). There is no leaderboard, because the game makes no network calls; the end screen copies a short result to share by hand.
 - **The Owner's Playbook**, as in Bousla's Founder Playbook: 32 pages collected across games, each unlocked by a dilemma or a moment in the game (the first loan, money owed piling up, the fog). Each page is the idea, why it matters, one thing to do this month, and a real source. The pages are in `playbook.js`.
 - **Trophies**, as in Bousla: 24, kept on this device across games, from the first profitable month and paying yourself to "it runs without you", paying off every loan, getting through a cash crunch and trying all five businesses. Closing and burning out earn one too. A short toast announces each one, there's a trophy room, and the end screen shows the game's haul.
+- **The inbox**, as in Bousla: 0 to 2 messages arrive at the start of each open month, from customers, suppliers, the team, the landlord, the bank, or a scammer pretending to be one. 22 messages: 12 for any business and 2 for each. Each has two answers; a message nobody answers expires at the end of the month, and some cost something when ignored (a late tax fine, a lost payment dispute). The mail comes from the game's own seed, so the daily challenge stays the same for everyone.
 - **57 dilemmas**: 11 for the clinic, 8 each for the other four businesses, 8 general ones, 3 for the setting-up months and 3 cash-crunch cards.
 
 ## Files
@@ -41,7 +42,7 @@ No analytics, no tracking, no accounts and no network calls at all. The player's
 node owner/tests/content.mjs
 ```
 
-Checks that every text has English and Arabic with exactly the same numbers and placeholders, that every dilemma and note points at a playbook page that exists, that every page is unlocked by something, and that every picture exists and is precached.
+Checks that every inbox message has two complete answers and that every business has messages of its own, that every text has English and Arabic with exactly the same numbers and placeholders, that every dilemma and note points at a playbook page that exists, that every page is unlocked by something, and that every picture exists and is precached.
 
 ```bash
 node owner/tests/balance.mjs
@@ -72,6 +73,6 @@ Plays full games in English and Arabic for every business and both starts in a r
 - a month in bed for a player who never rests;
 - every picture being precached by the service worker.
 
-It also checks the trophy room and the toasts, and earns the three trophies that need several games (every business, both starts, 10 pages) by seeding the device's memory. It also plays the same day's daily challenge in English and Arabic with the same choices and requires the same result, checks that the shared text names the day, and that a second try that day is blocked.
+It answers the inbox most months and leaves it every fourth month, checking the "unanswered" cards. It also checks the trophy room and the toasts, and earns the three trophies that need several games (every business, both starts, 10 pages) by seeding the device's memory. It also plays the same day's daily challenge in English and Arabic with the same choices and requires the same result, checks that the shared text names the day, and that a second try that day is blocked.
 
 Test URL flags: `?lang=ar|en`, `?seed=N` (replay the same game), `?day=YYYY-MM-DD` (that day's daily challenge), `?fast` (short month animation), `?nosw` (skip the service worker), `?new` (drop the saved game).

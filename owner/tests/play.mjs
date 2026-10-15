@@ -82,7 +82,7 @@ async function play({ lang, biz = "clinic", start, seed, mode = "sensible", shot
   await snap("04-setup"); await noHScroll("setup"); await noPlaceholders("setup");
   await page.click('[data-act="start"]');
 
-  const seen = { toasts: 0, pageLines: 0, doorLocked: 0, doorOpen: 0, echoes: 0, prepPlans: 0, opening: 0, sick: 0, fog: 0, dilemmas: 0, crunch: 0, forcedDoor: false, forcedFog: false };
+  const seen = { mail: 0, ignoredCards: 0, toasts: 0, pageLines: 0, doorLocked: 0, doorOpen: 0, echoes: 0, prepPlans: 0, opening: 0, sick: 0, fog: 0, dilemmas: 0, crunch: 0, forcedDoor: false, forcedFog: false };
   const shot = new Set();
   for (let step = 0; step < 1200; step++) {
     if (await page.$(".endscr")) break;
@@ -100,6 +100,7 @@ async function play({ lang, biz = "clinic", start, seed, mode = "sensible", shot
         if (!shot.has("echo")) { shot.add("echo"); await snap("10-echo"); await noHScroll("echo"); }
       }
       if (c && c.type === "opening") { seen.opening++; check(s.month === s.openAt, `${tag}: opening card in month ${s.month}, opens ${s.openAt}`); if (!shot.has("opening")) { shot.add("opening"); await snap("06-opening"); } }
+      if (c && c.type === "ignored") { seen.ignoredCards++; if (!shot.has("ignored")) { shot.add("ignored"); await snap("10c-unanswered"); await noHScroll("unanswered card"); } }
       if (c && c.type === "sick") { seen.sick++; if (!shot.has("sick")) { shot.add("sick"); await snap("11-sick"); await noHScroll("sick"); } }
       await noPlaceholders("a card");
       await page.click('[data-act="ok"]');
@@ -112,6 +113,19 @@ async function play({ lang, biz = "clinic", start, seed, mode = "sensible", shot
         await page.click(`[data-focus-k="${s.fitPushed ? "presell" : "fitout"}"]`);
         if (!shot.has("prep")) { shot.add("prep"); await snap("05-prep"); await noHScroll("fit-out plan"); await noPlaceholders("fit-out plan"); }
       } else {
+        // the inbox: answer it most months (alternating answers), and leave it every fourth month
+        if (await page.$(".mailbar")) {
+          if (s.month % 4 === 0) { /* leave it: it expires at the end of the month */ }
+          else {
+            await page.click('[data-act="mail"]');
+            for (let k = 0; k < 4 && (await page.$("[data-mail]")); k++) {
+              if (!shot.has("mail")) { shot.add("mail"); await snap("07d-mail"); await noHScroll("mail"); await noPlaceholders("mail"); }
+              await page.click(`[data-mail="${(s.month + k) % 2 ? "left" : "right"}"]`);
+              seen.mail++;
+              await page.click('[data-act="next"]');
+            }
+          }
+        }
         let f;
         if (mode === "overwork") f = "market";
         else if (s.energy < 50) f = "rest";
@@ -227,11 +241,12 @@ async function play({ lang, biz = "clinic", start, seed, mode = "sensible", shot
   check(!!saved && saved.includes(lang === "ar" ? "سما" : "Sam"), `${tag}: game not saved to localStorage`);
 
   check(seen.toasts > 0, `${tag}: no trophy toast was ever shown`);
+  check(seen.mail > 0, `${tag}: no mail was answered in the whole game`);
   check(seen.dilemmas === 0 || seen.pageLines === seen.dilemmas, `${tag}: ${seen.dilemmas - seen.pageLines} dilemma notes had no playbook line`);
   check(errors.length === 0, `${tag}: console errors: ${errors.join(" | ")}`);
   check(external.length === 0, `${tag}: requests left the device: ${external.join(", ")}`);
   const rep = await page.evaluate(() => window.__owner.engine.report(window.__owner.state));
-  results.push({ run: tag, end: s.over || "24 months", goal: s.goalDone ? "reached" : "not yet", cash: rep.cash, dilemmas: seen.dilemmas, crunch: seen.crunch, echoes: seen.echoes,
+  results.push({ run: tag, end: s.over || "24 months", goal: s.goalDone ? "reached" : "not yet", cash: rep.cash, mail: seen.mail, unanswered: seen.ignoredCards, dilemmas: seen.dilemmas, crunch: seen.crunch, echoes: seen.echoes,
                  door: `${seen.doorLocked} locked / ${seen.doorOpen} open`, sick: seen.sick, fogScreens: seen.fog, errors: errors.length });
   await ctx.close();
 }
@@ -262,6 +277,10 @@ async function playDaily(lang, day) {
     if (await page.$('[data-act="open"]')) {
       if (await page.$(".plan.prep")) await page.click(`[data-focus-k="${s.fitPushed ? "presell" : "fitout"}"]`);
       else {
+        if (await page.$(".mailbar")) {
+          await page.click('[data-act="mail"]');
+          for (let k = 0; k < 4 && (await page.$("[data-mail]")); k++) { await page.click('[data-mail="left"]'); await page.click('[data-act="next"]'); }
+        }
         const f = s.energy < 50 ? "rest" : s.ar > 3000 ? "collect" : s.month % 3 === 0 ? "systems" : s.month % 2 ? "market" : "train";
         await page.click(`[data-focus-k="${f}"]`);
         const info = await page.evaluate(() => ({ g: window.__owner.engine.guess(window.__owner.state, { price: 1, focus: "market" }), cap: window.__owner.engine.capacity(window.__owner.state, window.__owner.state.staff, 0) }));
@@ -292,7 +311,7 @@ async function playDaily(lang, day) {
   check(errors.length === 0, `${tag}: console errors: ${errors.join(" | ")}`);
   check(external.length === 0, `${tag}: requests left the device: ${external.join(", ")}`);
   await ctx.close();
-  return { cash: s.cash, month: s.month, over: s.over, used: s.used, log: s.log, profits: s.history.map((h) => h.profit), score: s.over ? 0 : Math.max(0, Math.round(s.cash)) };
+  return { cash: s.cash, month: s.month, over: s.over, used: s.used, log: s.log, mailSeen: s.mailSeen, profits: s.history.map((h) => h.profit), score: s.over ? 0 : Math.max(0, Math.round(s.cash)) };
 }
 async function noScroll(page, tag, where) {
   const w = await page.evaluate(() => ({ sw: document.documentElement.scrollWidth, iw: window.innerWidth }));

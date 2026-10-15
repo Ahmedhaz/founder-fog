@@ -7,6 +7,7 @@
 //   - every playbook page is unlocked by at least one dilemma or note
 //   - every picture named in the content exists in img/ and is precached by sw.js
 //   - every trophy has text and a check, and every check has text
+//   - every inbox message has two complete answers, and every business has messages of its own
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -70,6 +71,18 @@ for (const n of imgs) {
 }
 if (!sw.includes("'./playbook.js'")) errors.push("sw.js does not precache playbook.js");
 
+// every message has a sender, two answers with text, and a valid business
+const bizIds = new Set(Object.keys(C.businesses));
+const mailIds = new Set();
+for (const m of C.mail) {
+  if (mailIds.has(m.id)) errors.push(`mail ${m.id}: duplicate id`);
+  mailIds.add(m.id);
+  if (m.biz !== "all" && !bizIds.has(m.biz)) errors.push(`mail ${m.id}: unknown business "${m.biz}"`);
+  for (const k of ["left", "right"]) if (!m[k] || !m[k].label || !m[k].log || !m[k].fx) errors.push(`mail ${m.id}: ${k} answer is incomplete`);
+  if (m.ignore && (!m.ignore.fx || !m.ignore.log)) errors.push(`mail ${m.id}: ignore is incomplete`);
+}
+for (const b of bizIds) if (!C.mail.some((m) => m.biz === b)) errors.push(`mail: no message for the ${b}`);
+
 // every trophy has text and a check in the engine, and the other way round
 globalThis.OWNER = C;
 const E = require(path.join(DIR, "game.js"));
@@ -78,6 +91,6 @@ if (trIds.size !== C.trophies.length) errors.push("trophies: duplicate ids");
 for (const id of trIds) if (!E.TROPHY_CHECKS[id]) errors.push(`trophy ${id}: no check in game.js`);
 for (const id of Object.keys(E.TROPHY_CHECKS)) if (!trIds.has(id)) errors.push(`trophy check ${id}: no text in content.js`);
 
-console.log(`${pairs} English/Arabic pairs, ${C.dilemmas.length} dilemmas, ${PB.length} playbook pages, ${C.trophies.length} trophies, ${imgs.size} pictures`);
+console.log(`${pairs} English/Arabic pairs, ${C.dilemmas.length} dilemmas, ${PB.length} playbook pages, ${C.trophies.length} trophies, ${C.mail.length} messages, ${imgs.size} pictures`);
 if (errors.length) { console.log("FAIL\n- " + errors.join("\n- ")); process.exit(1); }
 console.log("PASS: every text has both languages with the same numbers, and every page and picture resolves.");
