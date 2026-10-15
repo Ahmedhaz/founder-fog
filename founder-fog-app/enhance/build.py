@@ -12,7 +12,6 @@ so enhancements are applied as patches on top of it:
 
 Run:  python3 founder-fog-app/enhance/build.py
 """
-import base64
 import json
 import pathlib
 import re
@@ -91,20 +90,6 @@ def book_colors(text):
     for old, new in BOOK_RGBA.items():
         text = text.replace(f"rgba({old},", f"rgba({new},")
     return text
-
-
-# Book fonts: Manrope replaces Archivo and Azeret Mono in the font modules the engine loads
-# (static instances in fonts/, one weight step heavier because Manrope is lighter); Arabic gets Readex Pro.
-FONT_MODULES = {227: 500, 228: 600, 229: 700, 248: 600, 249: 700, 250: 800}
-
-
-def swap_fonts(bundle):
-    for mod_id, weight in FONT_MODULES.items():
-        b64 = base64.b64encode((HERE / "fonts" / f"manrope-{weight}.ttf").read_bytes()).decode()
-        m = re.compile(r'__d\(function\(g,r,i,a,m,e,d\)\{m\.exports="data:font/ttf;base64,[A-Za-z0-9+/=]+"\},%d,\[\]\);' % mod_id).search(bundle)
-        assert m, f"font module {mod_id} not found"
-        bundle = bundle[: m.start()] + '__d(function(g,r,i,a,m,e,d){m.exports="data:font/ttf;base64,%s"},%d,[]);' % (b64, mod_id) + bundle[m.end():]
-    return bundle
 
 
 ENGINE_PATCHES = [
@@ -399,11 +384,11 @@ def main():
         assert n == 1, f"patch '{why}' matched {n} times"
         bundle = bundle.replace(old, new)
     bundle = splice_targets(bundle)
-    bundle = book_colors(swap_fonts(bundle))
+    bundle = book_colors(externalize_fonts(bundle))
 
     global HEAD
     HEAD = HEAD.replace("</style>", "  /* 3D pictures */\n" + pics_css() + "\n</style>", 1)
-    HEAD = book_colors(HEAD)
+    HEAD = book_colors(font_head(HEAD))
     OUT.write_text(HEAD + bundle + TAIL, encoding="utf-8")
     print(f"wrote {OUT} ({OUT.stat().st_size:,} bytes)")
 
@@ -430,55 +415,58 @@ def splice_targets(bundle):
     return bundle
 
 
-# Web fonts live in founder-fog/fonts/ (written by make_fonts.py) instead of base64 inside the page:
-# smaller, cached across builds, and fetched in parallel with the HTML.
-# Metro module id of each embedded TTF -> expo-font family name (= file name).
-EXT_FONT_MODULES = {227: "Archivo_400Regular", 228: "Archivo_500Medium", 229: "Archivo_600SemiBold",
-                248: "AzeretMono_400Regular", 249: "AzeretMono_500Medium", 250: "AzeretMono_600SemiBold"}
-# Every font the title screen uses, fetched while the HTML is still downloading. With the rules in
+# Book fonts: Manrope replaces Archivo and Azeret Mono in the six font modules the engine loads
+# (static instances, one weight step heavier because Manrope is lighter); Arabic gets Readex Pro.
+# The files live in founder-fog/fonts/ (written by make_fonts.py) instead of base64 inside the page:
+# a quarter of the bytes, fetched in parallel with the HTML, cached by the service worker across
+# builds. Metro module id -> (expo-font family name, Manrope weight).
+EXT_FONT_MODULES = {227: ("Archivo_400Regular", 500), 228: ("Archivo_500Medium", 600), 229: ("Archivo_600SemiBold", 700),
+                    248: ("AzeretMono_400Regular", 600), 249: ("AzeretMono_500Medium", 700), 250: ("AzeretMono_600SemiBold", 800)}
+# Every file the title screen uses, fetched while the HTML is still downloading. With the rules in
 # font_head already in place, expo-font's useFonts reports the fonts as loaded at once, so the app no
-# longer waits for them; a font that is not here yet draws in the browser default (a serif) until it
-# swaps in. Preloading only the headline fonts made the title usable ~0.7s sooner on Fast 3G but
-# showed its body text in serif for about a second.
-FONT_PRELOAD = ["Archivo_400Regular", "Archivo_500Medium", "Archivo_600SemiBold", "AzeretMono_600SemiBold"]
-PLEX_PRELOAD = [600, 400, 500]  # ar.html: the title uses all three (dropping 500 saved ~0.2s but swapped the cards ~2s later)
+# longer waits for them; a font that is not here yet draws in the browser default until it swaps in.
+FONT_PRELOAD = [f"manrope-{w}" for w in (500, 600, 700, 800)]
+READEX_PRELOAD = [f"readex-ar-{w}" for w in (600, 400, 500)]  # ar.html: the title uses all three
 FONT_DIR = OUT.parent / "fonts"
 
 
 def externalize_fonts(bundle):
-    """Point the six expo-font modules at fonts/<family>.woff2 (display: swap) instead of base64 TTFs."""
-    for mod_id, family in EXT_FONT_MODULES.items():
-        assert (FONT_DIR / f"{family}.woff2").exists(), f"missing fonts/{family}.woff2: run enhance/make_fonts.py"
+    """Point the six expo-font modules at fonts/manrope-<weight>.woff2 (display: swap) instead of base64 TTFs."""
+    for mod_id, (family, weight) in EXT_FONT_MODULES.items():
+        assert (FONT_DIR / f"manrope-{weight}.woff2").exists(), f"missing fonts/manrope-{weight}.woff2: run enhance/make_fonts.py"
         pat = re.compile(r'm\.exports="data:font/ttf;base64,[A-Za-z0-9+/=]+"(\},%d,\[\]\);)' % mod_id)
-        bundle, n = pat.subn(lambda m: 'm.exports={uri:"fonts/%s.woff2",display:"swap"}%s' % (family, m.group(1)), bundle)
+        bundle, n = pat.subn(lambda m: 'm.exports={uri:"fonts/manrope-%d.woff2",display:"swap"}%s' % (weight, m.group(1)), bundle)
         assert n == 1, f"font module {mod_id} matched {n} times"
     return bundle
 
 
+def preload_links(names):
+    return "\n".join(f'<link rel="preload" href="fonts/{f}.woff2" as="font" type="font/woff2" crossorigin>' for f in names)
+
+
 def font_head(head):
     """Preload links for the first screen's fonts, and the @font-face rules expo-font would add (so it doesn't)."""
-    links = [f'<link rel="preload" href="fonts/{f}.woff2" as="font" type="font/woff2" crossorigin>' for f in FONT_PRELOAD]
     # expo-font treats a family that already has a rule in this sheet as loaded (no injection, no waiting)
-    faces = "\n".join(f'@font-face{{font-family:"{f}";src:url("fonts/{f}.woff2") format("woff2");font-display:swap}}'
-                      for f in EXT_FONT_MODULES.values())
-    head = head.replace("<!--@FONTS-->", "\n".join(links), 1)
+    faces = "\n".join(f'@font-face{{font-family:"{f}";src:url("fonts/manrope-{w}.woff2") format("woff2");font-display:swap}}'
+                      for f, w in EXT_FONT_MODULES.values())
+    head = head.replace("<!--@FONTS-->", preload_links(FONT_PRELOAD), 1)
     return head.replace("</head>", f'<style id="expo-generated-fonts">\n{faces}\n</style>\n</head>', 1)
 
 
 def arabic_head():
-    """The English head, switched to Arabic/RTL, with Readex Pro embedded for Arabic glyphs."""
-    fonts = HERE / "fonts"
-    urange = (fonts / "plex-unicode-range.txt").read_text().strip()
+    """The English head, switched to Arabic/RTL, with Readex Pro (fonts/readex-ar-*.woff2) for Arabic glyphs."""
+    urange = (HERE / "fonts" / "plex-unicode-range.txt").read_text().strip()
     faces = []
     for family, weight in [("Archivo_400Regular", 400), ("Archivo_500Medium", 500), ("Archivo_600SemiBold", 600),
                            ("AzeretMono_400Regular", 400), ("AzeretMono_500Medium", 500), ("AzeretMono_600SemiBold", 600)]:
-        b64 = base64.b64encode((fonts / f"readex-ar-{weight}.woff2").read_bytes()).decode()
-        faces.append(f'  @font-face {{ font-family: "{family}"; src: url(data:font/woff2;base64,{b64}) format("woff2"); unicode-range: {urange}; }}')
+        assert (FONT_DIR / f"readex-ar-{weight}.woff2").exists(), f"missing fonts/readex-ar-{weight}.woff2: run enhance/make_fonts.py"
+        faces.append(f'  @font-face {{ font-family: "{family}"; src: url("fonts/readex-ar-{weight}.woff2") format("woff2"); font-display: swap; unicode-range: {urange}; }}')
     rtl_css = "\n".join(faces) + """
   /* letter-spacing breaks Arabic letter joining */
   html[dir="rtl"] * { letter-spacing: 0 !important; }
 """
     head = HEAD.replace('<html lang="en">', '<html lang="ar" dir="rtl">', 1)
+    head = head.replace(preload_links(FONT_PRELOAD), preload_links(READEX_PRELOAD) + "\n" + preload_links(FONT_PRELOAD), 1)
     head = head.replace("<title>Bousla — the founder's compass</title>", "<title>\u0628\u0648\u0635\u0644\u0629 \u0627\u0644\u0645\u0624\u0633\u0633 — Bousla</title>", 1)
     head = head.replace('content="Bousla">', 'content="\u0628\u0648\u0635\u0644\u0629 \u0627\u0644\u0645\u0624\u0633\u0633">', 1)
     head = head.replace("<style>", "<style>\n" + rtl_css, 1)
