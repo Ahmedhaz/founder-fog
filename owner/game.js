@@ -37,7 +37,7 @@
       month: 1, cash: st.cash, energy: st.energy, rep: st.rep, quality: st.quality, systems: st.systems,
       staff: st.staff, ar: st.ar, loans: [], openAt: 1 + st.prep, presold: 0, fitPushed: 0, delayChecked: st.prep === 0,
       honestPlus: 0, honestMinus: 0, burnouts: 0, drawn: 0, goalDone: false, over: null,
-      mods: [], echoes: [], used: [], history: [], ideasSeen: [], log: [], pages: [],
+      mods: [], echoes: [], used: [], history: [], ideasSeen: [], log: [], pages: [], inbox: [], mailSeen: {}, ignored: [],
       phase: "start", queue: [], rs: seed, seed: seed,
     };
     if (st.loan) s.loans.push({ pay: st.loan.pay, left: Math.ceil(st.loan.bal / st.loan.pay) });
@@ -152,9 +152,48 @@
       s.burnouts++;
       s.queue.push({ type: "sick", eff: Math.round(sickEfficiency(s) * 100) });
     }
+    (s.ignored || []).forEach(function (id) { s.queue.push({ type: "ignored", id: id }); });
+    s.ignored = [];
+    dealMail(s);
     s.phase = s.queue.length ? "cards" : "plan";
   }
   function sickEfficiency(s) { return clamp(0.35 + s.systems * 0.0065, 0.35, 1); }
+
+  // ── The inbox: 0 to 2 messages a month once open, drawn from the game's own seed ──
+  function findMail(id) { for (var i = 0; i < C.mail.length; i++) if (C.mail[i].id === id) return C.mail[i]; return null; }
+  function dealMail(s) {
+    s.inbox = s.inbox || []; s.mailSeen = s.mailSeen || {};
+    if (!isOpen(s) || s.month <= s.openAt || s.sick) return;
+    var r = rand(s), n = r < 0.3 ? 0 : r < 0.8 ? 1 : 2;
+    var pool = C.mail.filter(function (m) {
+      return (m.biz === "all" || m.biz === s.biz) && s.inbox.indexOf(m.id) < 0 && (s.mailSeen[m.id] == null || s.month - s.mailSeen[m.id] >= 10);
+    });
+    for (var i = 0; i < n && pool.length; i++) {
+      var m = pool.splice(randInt(s, 0, pool.length - 1), 1)[0];
+      s.inbox.push(m.id); s.mailSeen[m.id] = s.month;
+    }
+  }
+  function answerMail(s, id, side) {
+    var m = findMail(id), i = s.inbox.indexOf(id);
+    if (!m || i < 0 || (side !== "left" && side !== "right")) return null;
+    s.inbox.splice(i, 1);
+    var o = m[side];
+    applyFx(s, o.fx);
+    addMods(s, o.fx && o.fx.mods, s.month + 1);
+    s.log.push({ month: s.month, mail: id, side: side });
+    return o;
+  }
+  // Unanswered mail expires at the end of the month; some of it costs something.
+  function expireMail(s) {
+    (s.inbox || []).forEach(function (id) {
+      var m = findMail(id);
+      if (!m || !m.ignore) return;
+      applyFx(s, m.ignore.fx);
+      addMods(s, m.ignore.fx && m.ignore.fx.mods, s.month + 1);
+      s.ignored.push(id);
+    });
+    s.inbox = [];
+  }
 
   function findDilemma(id) { for (var i = 0; i < C.dilemmas.length; i++) if (C.dilemmas[i].id === id) return C.dilemmas[i]; return null; }
 
@@ -372,6 +411,7 @@
   // After the month: goal check, closing or burnout, then the next month or the end.
   function endMonth(s) {
     var g = goalOf(s), b = biz(s), hit = false;
+    expireMail(s);
     if (!s.goalDone && g.kind === "cash" && isOpen(s) && s.cash >= b.goals[g.id]) { s.goalDone = true; s.goalMonth = s.month; hit = true; }
     if (s.cash < -b.overdraft && (s.crunchMonth === s.month || s.cash < -2 * b.overdraft)) s.over = "closed";
     else if (s.burnouts >= MAX_BURNOUTS) s.over = "burnout";
@@ -442,7 +482,7 @@
              drawn: s.drawn, avgEnergy: Math.round(avgE), avgRep: Math.round(avgR), systems: s.systems, burnouts: s.burnouts };
   }
 
-  var Engine = { TROPHY_CHECKS: TROPHY_CHECKS, trophiesFor: trophiesFor, PLAYBOOK: PLAYBOOK, pageOf: pageOf, findPage: findPage, MONTHS: MONTHS, DAILY_MONTHS: DAILY_MONTHS, dailyInfo: dailyInfo, dailyScore: dailyScore, DOOR: DOOR, FOG: FOG, MAX_BURNOUTS: MAX_BURNOUTS, newGame: newGame, beginMonth: beginMonth, runMonth: runMonth,
+  var Engine = { findMail: findMail, answerMail: answerMail, TROPHY_CHECKS: TROPHY_CHECKS, trophiesFor: trophiesFor, PLAYBOOK: PLAYBOOK, pageOf: pageOf, findPage: findPage, MONTHS: MONTHS, DAILY_MONTHS: DAILY_MONTHS, dailyInfo: dailyInfo, dailyScore: dailyScore, DOOR: DOOR, FOG: FOG, MAX_BURNOUTS: MAX_BURNOUTS, newGame: newGame, beginMonth: beginMonth, runMonth: runMonth,
     draw: draw, canDraw: canDraw, pickDilemma: pickDilemma, choose: choose, canOpen: canOpen, endMonth: endMonth, report: report,
     guess: guess, capacity: capacity, price: price, salaries: salaries, fixedCosts: fixedCosts, monthlyFloor: monthlyFloor, loanPay: loanPay,
     loanLeft: loanLeft, isOpen: isOpen, goalOf: goalOf, goalTarget: goalTarget, freedomReached: freedomReached, findDilemma: findDilemma, rand: rand };
@@ -780,6 +820,9 @@
     if (c.type === "echo") {
       var d = Engine.findDilemma(c.id), e = d[c.opt].echo;
       html = card(e.img, L(e.title), L(e.text), '<p class="because">' + img("hourglass_not_done", "tiny") + "<span>" + H(T("echoFrom", { n: c.from })) + "</span></p>" + fxLine(e.fx), "echo");
+    } else if (c.type === "ignored") {
+      var im = Engine.findMail(c.id);
+      html = card(im.img, T("ignoredTitle", { a: L(im.title) }), L(im.ignore.log), fxLine(im.ignore.fx), "echo");
     } else if (c.type === "opening") {
       html = card(C.businesses[S.biz].img, T("openTitle"), T("openText"), '<div class="confetti">' + img("party_popper") + img("sparkles") + img("glowing_star") + "</div>", "goal");
     } else if (c.type === "sick") {
@@ -861,8 +904,9 @@
     if (S.energy < FOG) warns += '<div class="warn fog-warn">' + img("face_with_spiral_eyes", "tiny") + "<span>" + esc(T("fogWarn")) + "</span></div>";
     if (S.cash < Engine.monthlyFloor(S)) warns += '<div class="warn">' + img("dollar_banknote", "tiny") + "<span>" + esc(T("cashWarn")) + "</span></div>";
     if (calNext === "ramadan") warns += '<div class="warn">' + img("star", "tiny") + "<span>" + esc(T("ramadanWarn")) + "</span></div>";
+    var mailBar = S.inbox && S.inbox.length ? '<button class="card mailbar" data-act="mail">' + img("incoming_envelope", "tiny") + "<span><b>" + H(T("inboxBar", { a: S.inbox.length })) + "</b><small>" + esc(T("inboxNote")) + "</small></span></button>" : "";
     var html =
-      '<h2 class="h">' + esc(T("planTitle")) + "</h2>" + warns + season(calNow, calNext) +
+      '<h2 class="h">' + esc(T("planTitle")) + "</h2>" + mailBar + warns + season(calNow, calNext) +
       '<section class="card"><div class="q">' + esc(L(b.priceLabel)) + "</div>" +
         '<div class="seg">' + b.prices.map(function (pr, i) {
           return '<button class="opt' + (p.price === i ? " on" : "") + '" data-price="' + i + '" aria-pressed="' + (p.price === i) + '"><small>' + esc(L(C.prices[i])) + "</small><b>" + cash(Engine.price(S, i)) + "</b></button>";
@@ -881,6 +925,32 @@
     on("[data-focus-k]", function (el) { p.focus = el.dataset.focusK; plan(); });
     on("[data-st]", function (el) { p.staff = clamp(p.staff + +el.dataset.st, b.minStaff, b.maxStaff); plan(); });
     on('[data-act="open"]', function () { work(); });
+    on('[data-act="mail"]', function () { mailScreen(); });
+  }
+
+  // One message at a time: two answers, or "later" (it expires at the end of the month).
+  function mailScreen() {
+    var id = S.inbox && S.inbox[0], m = id && Engine.findMail(id);
+    if (!m) return plan();
+    var html = '<section class="card dilemma mail">' +
+        '<div class="from">' + img(m.img, "tiny") + "<b>" + H(L(m.from)) + "</b></div>" +
+        "<h2>" + H(L(m.title)) + "</h2><p>" + H(L(m.body)) + "</p>" +
+        (m.ignore ? '<p class="because">' + img("warning", "tiny") + "<span>" + esc(T("inboxWarn")) + "</span></p>" : "") +
+        (S.inbox.length > 1 ? '<p class="muted small">' + H(T("inboxLeft", { a: S.inbox.length - 1 })) + "</p>" : "") +
+      "</section>" +
+      '<div class="choices">' + ["left", "right"].map(function (k) { return '<button class="choice" data-mail="' + k + '"><span>' + H(L(m[k].label)) + "</span></button>"; }).join("") + "</div>" +
+      '<div class="sticky"><button class="btn ghost" data-act="later">' + esc(T("inboxLater")) + "</button></div>";
+    gameShell(html, "mailscr");
+    on("[data-mail]", function (el) {
+      var o = Engine.answerMail(S, id, el.dataset.mail);
+      if (!o) return;
+      saveAll();
+      var res = '<section class="card big-card">' + img(m.img, "hero-img") + "<h2>" + H(L(o.label)) + "</h2><p>" + H(L(o.log)) + "</p>" + fxLine(o.fx) + "</section>" +
+        '<div class="sticky"><button class="btn primary big" data-act="next" data-focus>' + esc(T("next")) + "</button></div>";
+      gameShell(res, "mailres");
+      on('[data-act="next"]', function () { S.inbox.length ? mailScreen() : plan(); });
+    });
+    on('[data-act="later"]', function () { plan(); });
   }
 
   function prepPlan() {

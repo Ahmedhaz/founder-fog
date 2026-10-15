@@ -62,6 +62,12 @@ function play(biz, start, goal, seed, strat, daily) {
     if (strat !== "spender" && E.isOpen(s) && s.staff >= b.maxStaff - 1 && E.guess(s, plan) > E.capacity(s, s.staff, 0) * 1.1) plan.price = 2;
     plan.staff = E.isOpen(s) ? staffFor(s, strat, plan, b) : s.staff;
     if (s.energy < E.FOG) fogMonths++;
+    // the inbox: the spender takes whichever answer spends more; others answer most mail and leave some
+    for (const id of s.inbox.slice()) {
+      const m = E.findMail(id);
+      if (strat === "spender") E.answerMail(s, id, (m.left.fx.cash || 0) <= (m.right.fx.cash || 0) ? "left" : "right");
+      else { const r = E.rand(s); if (r < 0.75) E.answerMail(s, id, r < 0.375 ? "left" : "right"); }
+    }
     E.runMonth(s, plan);
     if (E.canDraw(s)) {
       if (strat === "spender") E.draw(s, s.cash >= C.draws.big.cash ? "big" : "small");
