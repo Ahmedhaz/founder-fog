@@ -1,7 +1,7 @@
 // Business Owner service worker: caches the whole game so it works offline.
 // Everything is same-origin: fonts and pictures are bundled. When a picture is added to img/,
 // add it here too (owner/tests/play.mjs checks that every file in img/ is listed).
-const CACHE = 'owner-v1';
+const CACHE = 'owner-v2';
 const ASSETS = [
   './',
   './index.html',
@@ -13,6 +13,7 @@ const ASSETS = [
   './icons/icon-512.png',
   './fonts/Manrope.ttf',
   './fonts/ReadexPro.ttf',
+  './img/artist_palette.webp',
   './img/balance_scale.webp',
   './img/bar_chart.webp',
   './img/battery.webp',
@@ -21,11 +22,14 @@ const ASSETS = [
   './img/busts_in_silhouette.webp',
   './img/calendar.webp',
   './img/chart_decreasing.webp',
+  './img/chart_increasing.webp',
   './img/check_mark_button.webp',
   './img/child.webp',
   './img/classical_building.webp',
   './img/cloud.webp',
   './img/coin.webp',
+  './img/cooking.webp',
+  './img/credit_card.webp',
   './img/crossed_swords.webp',
   './img/detective.webp',
   './img/dollar_banknote.webp',
@@ -42,8 +46,10 @@ const ASSETS = [
   './img/hourglass_not_done.webp',
   './img/house.webp',
   './img/label.webp',
+  './img/laptop.webp',
   './img/light_bulb.webp',
   './img/locked.webp',
+  './img/magnifying_glass_tilted_left.webp',
   './img/man.webp',
   './img/man_office_worker.webp',
   './img/man_technologist.webp',
@@ -67,8 +73,10 @@ const ASSETS = [
   './img/puzzle_piece.webp',
   './img/receipt.webp',
   './img/red_heart.webp',
+  './img/robot.webp',
   './img/seedling.webp',
   './img/shield.webp',
+  './img/shopping_bags.webp',
   './img/shopping_cart.webp',
   './img/sparkles.webp',
   './img/speech_balloon.webp',
@@ -80,8 +88,10 @@ const ASSETS = [
   './img/test_tube.webp',
   './img/trophy.webp',
   './img/unlocked.webp',
+  './img/warning.webp',
   './img/woman.webp',
   './img/woman_office_worker.webp',
+  './img/wrench.webp',
   './img/yawning_face.webp',
 ];
 
