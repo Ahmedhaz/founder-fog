@@ -27,9 +27,9 @@ function focus(s, strat, b) {
   }
   if (strat === "spender") return "market";
   if (strat !== "overwork" && s.energy < 50) return "rest";
-  if (s.ar > 3000) return "collect";
   // a player who wants the month away builds systems every other month, otherwise every third
   if (strat === "sensible" && s.month % (s.goal === "freedom" ? 2 : 3) === 0) return "systems";
+  if (s.ar > E.fixedCosts(s)) return "collect"; // more owed than a month of rent and running costs
   return s.month % 2 ? "market" : "train";
 }
 
@@ -80,7 +80,7 @@ const out = [];
 for (const strat of ["sensible", "spender", "overwork", "nosystems"]) {
   for (const biz of BIZ) {
     for (const start of STARTS) {
-      const row = { strat, start };
+      const row = { strat, biz, start };
       let closed = 0, burnedOut = 0, anyBurn = 0, cash = 0, profit = 0, sys = 0, fog = 0, drawn = 0, en = 0;
       for (const g of C.goals.filter((x) => !x.hidden)) {
         let wins = 0;
@@ -111,19 +111,20 @@ for (const strat of ["sensible", "spender", "overwork", "nosystems"]) {
 }
 console.table(out);
 
-const by = (st, start) => out.find((r) => r.strat === st && r.start === start);
+const by = (st, biz, start) => out.find((r) => r.strat === st && r.biz === biz && r.start === start);
 const pct = (v) => parseInt(v, 10);
 let ok = true;
-for (const start of STARTS) {
-  const sen = by("sensible", start), sp = by("spender", start), ow = by("overwork", start), ns = by("nosystems", start);
+for (const biz of BIZ) for (const start of STARTS) {
+  const sen = by("sensible", biz, start), sp = by("spender", biz, start), ow = by("overwork", biz, start), ns = by("nosystems", biz, start);
+  const tag = `${biz}/${start}`;
   const checks = [
-    [`${start}: sensible usually builds the safety cushion (${sen.safety})`, pct(sen.safety) >= 50 && pct(sen.safety) <= 85],
-    [`${start}: a second branch is hard but possible for sensible (${sen.branch})`, pct(sen.branch) >= 5 && pct(sen.branch) <= 45],
-    [`${start}: the month away is reachable for sensible (${sen.freedom})`, pct(sen.freedom) >= 25],
-    [`${start}: sensible rarely closes (${sen.closed}) or ends up in bed (${sen.anyBed})`, pct(sen.closed) <= 10 && pct(sen.anyBed) <= 15],
-    [`${start}: the spender rarely lasts (closed ${sp.closed}, sold to rest ${sp.burnout}) or reaches the cushion (${sp.safety})`, pct(sp.closed) + pct(sp.burnout) >= 60 && pct(sp.safety) <= 15],
-    [`${start}: never resting means the fog and a month in bed (fog ${ow.fogMo} months, in bed ${ow.anyBed})`, ow.fogMo >= 4 && pct(ow.anyBed) >= 40],
-    [`${start}: without systems the month away is out of reach (${ns.freedom})`, pct(ns.freedom) <= 3],
+    [`${tag}: sensible usually builds the safety cushion (${sen.safety})`, pct(sen.safety) >= 50 && pct(sen.safety) <= 85],
+    [`${tag}: a second branch is hard but possible for sensible (${sen.branch})`, pct(sen.branch) >= 5 && pct(sen.branch) <= 45],
+    [`${tag}: the month away is reachable for sensible (${sen.freedom})`, pct(sen.freedom) >= 25],
+    [`${tag}: sensible rarely closes (${sen.closed}) or ends up in bed (${sen.anyBed})`, pct(sen.closed) <= 10 && pct(sen.anyBed) <= 15],
+    [`${tag}: the spender rarely lasts (closed ${sp.closed}, sold to rest ${sp.burnout}) or reaches the cushion (${sp.safety})`, pct(sp.closed) + pct(sp.burnout) >= 60 && pct(sp.safety) <= 15],
+    [`${tag}: never resting means the fog and a month in bed (fog ${ow.fogMo} months, in bed ${ow.anyBed})`, ow.fogMo >= 4 && pct(ow.anyBed) >= 40],
+    [`${tag}: without systems the month away is out of reach (${ns.freedom})`, pct(ns.freedom) <= 3],
   ];
   for (const [label, pass] of checks) { console.log((pass ? "PASS " : "FAIL ") + label); ok = ok && pass; }
 }

@@ -42,10 +42,10 @@ const launch = process.env.CHROME_PATH ? { executablePath: process.env.CHROME_PA
 const browser = await pw.chromium.launch(launch);
 const results = [];
 
-async function play({ lang, start, seed, mode = "sensible", shots = false }) {
+async function play({ lang, biz = "clinic", start, seed, mode = "sensible", shots = false }) {
   const ctx = await browser.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 2, locale: lang === "ar" ? "ar-EG" : "en-US" });
   const page = await ctx.newPage();
-  const tag = `${lang}/${start}/${mode}`;
+  const tag = `${lang}/${biz}/${start}/${mode}`;
   const errors = [], external = [];
   page.on("console", (m) => { if (m.type() === "error") errors.push(m.text()); });
   page.on("pageerror", (e) => errors.push(String(e)));
@@ -76,6 +76,7 @@ async function play({ lang, start, seed, mode = "sensible", shots = false }) {
   }
   await page.click('[data-act="new"]');
   await page.fill("#nm", lang === "ar" ? "سما" : "Sam");
+  await page.click(`[data-biz="${biz}"]`);
   await page.click(`[data-start="${start}"]`);
   await page.click('[data-goal="safety"]');
   await snap("04-setup"); await noHScroll("setup"); await noPlaceholders("setup");
@@ -113,7 +114,7 @@ async function play({ lang, start, seed, mode = "sensible", shots = false }) {
         let f;
         if (mode === "overwork") f = "market";
         else if (s.energy < 50) f = "rest";
-        else if (s.ar > 3000) f = "collect";
+        else if (s.ar > (await page.evaluate(() => window.__owner.engine.fixedCosts(window.__owner.state)))) f = "collect";
         else if (s.month % 3 === 0) f = "systems";
         else f = s.month % 2 ? "market" : "train";
         await page.click(`[data-focus-k="${f}"]`);
@@ -202,7 +203,8 @@ async function play({ lang, start, seed, mode = "sensible", shots = false }) {
     await page.goto(`${BASE}?lang=${lang}&nosw`);
     await page.click('[data-act="playbook"]');
     const pb = await page.evaluate(() => ({ open: document.querySelectorAll(".pg:not(.no)").length, all: document.querySelectorAll(".pg").length, have: window.__owner.meta.pages.length }));
-    check(pb.all === 28, `${tag}: the playbook shows ${pb.all} pages, want 28`);
+    const want = await page.evaluate(() => window.__owner.engine.PLAYBOOK.length);
+    check(pb.all === want, `${tag}: the playbook shows ${pb.all} pages, want ${want}`);
     check(pb.open === pb.have && pb.have > 0, `${tag}: the playbook shows ${pb.open} open pages, collected ${pb.have}`);
     await noHScroll("playbook"); await noPlaceholders("playbook");
     if (shots) await snap("15-playbook");
@@ -296,11 +298,14 @@ for (const day of ["2026-10-15", "2026-10-16"]) {
 }
 console.table(dailyRuns);
 
+// Every business in both languages: one start each way round, plus a never-rests run per language.
 let seed = 11;
+const RUNS = {
+  en: [["clinic", "open", true], ["restaurant", "takeover"], ["shop", "open"], ["workshop", "takeover"], ["agency", "open"], ["clinic", "takeover", false, "overwork"]],
+  ar: [["clinic", "open", true], ["restaurant", "open"], ["shop", "takeover"], ["workshop", "open"], ["agency", "takeover"], ["shop", "takeover", false, "overwork"]],
+};
 for (const lang of ["en", "ar"]) {
-  await play({ lang, start: "open", seed: seed++, shots: true });
-  await play({ lang, start: "takeover", seed: seed++ });
-  await play({ lang, start: "takeover", seed: seed++, mode: "overwork" });
+  for (const [biz, start, shots, mode] of RUNS[lang]) await play({ lang, biz, start, seed: seed++, shots: !!shots, mode: mode || "sensible" });
 }
 await browser.close();
 server.close();

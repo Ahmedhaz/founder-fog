@@ -5,7 +5,13 @@ The small-business sister of Bousla, The Little Entrepreneur and Teenpreneur, fo
 Run a small business for two years, one month at a time. Each month you set a price, size the team and pick one focus: marketing, training, chasing payments, building systems or resting. Then the month runs and a dilemma usually follows. Uncle Salah (العم صلاح), who ran a pharmacy for 30 years, leaves a one-line note after every choice. Some choices come back months later ("echoes").
 
 What's different from the other games:
-- **Two starts.** "Open a new clinic" begins with two months of fit-out: rent runs, no patients yet, and an unpushed fit-out can slip a month. "Take over a running clinic" begins with patients, a bigger loan and an owner who does everything.
+- **Five businesses**, each with its own economics and dilemmas:
+  - a physio and wellness clinic;
+  - a restaurant and café, where food bought for tables that stay empty is thrown away and Ramadan evenings are the rush;
+  - a shop and online store, with cash on delivery, couriers and returns;
+  - a carpentry workshop, with big jobs, few clients and late payers;
+  - a marketing agency, with high salaries, clients who pay in 60 days and endless revisions.
+- **Two starts.** "Open from scratch" begins with two months of setting up: rent runs, no customers yet, and an unpushed fit-out can slip a month. "Take over a running business" begins with customers, a bigger loan and an owner who does everything.
 - **Profit is not cash.** Every month shows both. Part of revenue is paid later (insurers and companies), old debts are collected or go bad, and the loan instalment comes every month.
 - **Systems** are the fourth meter: how much runs without you. They shield your energy and keep the clinic going if you burn out.
 - **The fog**, as in Bousla: below 40 energy the numbers blur and tired mistakes cost money. At 0 you spend a month in bed and the clinic runs on its systems. The second time, you sell it to rest.
@@ -13,8 +19,8 @@ What's different from the other games:
 - **Goals:** a safety cushion, a second branch, or a month away (Systems 70+ and no loss in the last three months).
 - **Pay yourself.** After a profitable month you can take a salary. It costs cash and restores energy.
 - **Daily challenge**, as in Bousla: the same business, start and luck for everyone on a given UTC day, 12 months, one try. The score is the cash at the end (zero if the business didn't last). There is no leaderboard, because the game makes no network calls; the end screen copies a short result to share by hand.
-- **The Owner's Playbook**, as in Bousla's Founder Playbook: 28 pages collected across games, each unlocked by a dilemma or a moment in the game (the first loan, money owed piling up, the fog). Each page is the idea, why it matters, one thing to do this month, and a real source. The pages are in `playbook.js`.
-- **First business: a physio and wellness clinic**, with 11 clinic dilemmas, 8 general ones, 3 for the fit-out months and 3 cash-crunch cards. More businesses come next.
+- **The Owner's Playbook**, as in Bousla's Founder Playbook: 32 pages collected across games, each unlocked by a dilemma or a moment in the game (the first loan, money owed piling up, the fog). Each page is the idea, why it matters, one thing to do this month, and a real source. The pages are in `playbook.js`.
+- **57 dilemmas**: 11 for the clinic, 8 each for the other four businesses, 8 general ones, 3 for the setting-up months and 3 cash-crunch cards.
 
 ## Files
 
@@ -41,7 +47,7 @@ node owner/tests/balance.mjs
 ```
 
 Plays thousands of simulated two-year games for both starts and every goal. It checks that:
-- a sensible player usually builds the safety cushion, sometimes opens a second branch, and can reach the month away;
+- in every business and both starts, a sensible player usually builds the safety cushion, sometimes opens a second branch, and can reach the month away;
 - a sensible player rarely closes or ends up in bed;
 - a spender rarely lasts;
 - never resting brings the fog and a month in bed;
@@ -52,7 +58,7 @@ Plays thousands of simulated two-year games for both starts and every goal. It c
 CHROME_PATH="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" node owner/tests/play.mjs /tmp/owner-shots
 ```
 
-Plays full games in English and Arabic for both starts in a real browser at 390px, plus a run where the player never rests. It checks for:
+Plays full games in English and Arabic for every business and both starts in a real browser at 390px, plus a run per language where the player never rests. It checks for:
 - console errors;
 - horizontal scroll;
 - any outside request;

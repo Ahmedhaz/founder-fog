@@ -14,7 +14,7 @@
   var MAX_BURNOUTS = 2;         // the second month in bed ends the game
   var PRICE_F = [1.3, 1, 0.68]; // demand at a low, fair and premium price
   var SICK_REST = 45;           // energy back after a month in bed
-  var PRESELL = { cash: 4000, sessions: 110, energy: -4 };
+  var PRESELL_ENERGY = -4;     // advance orders before opening: a month of capacity, at 90% of the fair price
   var DELAY_ODDS = 0.5;         // chance the fit-out slips if it was never pushed
 
   function clamp(v, lo, hi) { return Math.max(lo, Math.min(hi, v)); }
@@ -171,7 +171,11 @@
     var fixed = fixedCosts(s), cost = f.cost, ideas = [], presold = 0, presoldCash = 0;
     s.cash -= fixed + cost;
     if (plan.focus === "fitout") s.fitPushed++;
-    if (plan.focus === "presell") { presoldCash = PRESELL.cash; presold = PRESELL.sessions; s.cash += presoldCash; s.presold += presold; s.energy = clamp(s.energy + PRESELL.energy, 0, 100); }
+    if (plan.focus === "presell") {
+      var b = biz(s);
+      presold = b.cap; presoldCash = Math.round((b.cap * b.prices[1] * 0.9) / 100) * 100;
+      s.cash += presoldCash; s.presold += presold; s.energy = clamp(s.energy + PRESELL_ENERGY, 0, 100);
+    }
     if (plan.focus === "train") s.quality = clamp(s.quality + 8, 0, 100);
     s.energy = clamp(s.energy + (plan.focus === "rest" ? 12 : -3), 0, 100);
     var delayed = false;
@@ -213,10 +217,12 @@
     var revenue = Math.round(paid * p);
     var mistake = 0;
     if (fogged && revenue > 0 && rand(s) < 0.8) mistake = Math.round(revenue * (0.04 + rand(s) * 0.04));
+    // returns and refunds (a shop that delivers): a share of what was sold comes back
+    var refunds = Math.round(revenue * (b.returns || 0) * modProduct(s, "returns"));
 
     // money owed: part of every month's revenue is paid later, and old debts come in or go bad
-    var arShare = clamp(0.08 + modSum(s, "ar"), 0, 0.6);
-    var newlyOwed = Math.round((revenue - mistake) * arShare);
+    var arShare = clamp((b.arBase != null ? b.arBase : 0.08) + modSum(s, "ar"), 0, 0.6);
+    var newlyOwed = Math.round((revenue - mistake - refunds) * arShare);
     var collectAll = plan.focus === "collect";
     var collected = Math.round(s.ar * (collectAll ? 1 : 0.5));
     var badDebt = collectAll ? 0 : Math.round((s.ar - collected) * 0.06);
@@ -224,14 +230,16 @@
 
     var sal = salaries(s, staff);
     var fixed = fixedCosts(s);
-    var supplies = Math.round(done * b.supply * modProduct(s, "cost"));
+    // supplies follow the work; a kitchen also buys for the tables it expects, and throws away the rest
+    var wasted = Math.round(idle * (b.spoil || 0) * b.supply * modProduct(s, "cost"));
+    var supplies = Math.round(done * b.supply * modProduct(s, "cost")) + wasted;
     var hiring = hires * b.hireFee + fires * b.salary;
     var pay = loanPay(s);
     s.loans.forEach(function (l) { l.left--; });
     s.loans = s.loans.filter(function (l) { return l.left > 0; });
 
-    var profit = revenue - mistake - badDebt - sal - fixed - supplies - f.cost - hiring;
-    var cashChange = revenue - mistake - newlyOwed + collected - sal - fixed - supplies - f.cost - hiring - pay;
+    var profit = revenue - mistake - refunds - badDebt - sal - fixed - supplies - f.cost - hiring;
+    var cashChange = revenue - mistake - refunds - newlyOwed + collected - sal - fixed - supplies - f.cost - hiring - pay;
     s.cash += cashChange;
 
     // Reputation: price, quality, turned-away patients, a worn-out owner, a rushed team.
@@ -275,7 +283,7 @@
 
     var r = { month: s.month, sick: sick, price: p, priceIdx: plan.price, focus: plan.focus, staff: staff, hires: hires, fires: fires,
               cap: cap, asked: asked, wanted: wanted, done: done, turned: turned, idle: idle, presoldUsed: presoldUsed,
-              revenue: revenue, mistake: mistake, badDebt: badDebt, salaries: sal, fixed: fixed, supplies: supplies, focusCost: f.cost,
+              revenue: revenue, mistake: mistake, refunds: refunds, wasted: wasted, badDebt: badDebt, salaries: sal, fixed: fixed, supplies: supplies, focusCost: f.cost,
               hiring: hiring, profit: profit, newlyOwed: newlyOwed, collected: collected, loanPay: pay, cashChange: cashChange,
               fogged: fogged, ideas: ideas, cal: cal, cash: s.cash, energy: s.energy, rep: s.rep, systems: s.systems, quality: s.quality };
     s.history.push(r);
@@ -308,6 +316,7 @@
     if (w.minMonth && s.month < w.minMonth) return false;
     if (w.minCash && s.cash < w.minCash) return false;
     if (w.minStaff && s.staff < w.minStaff) return false;
+    if (w.nextSeason && !(s.month < s.months && s.cal[s.month] === w.nextSeason)) return false;
     return true;
   }
 
@@ -439,9 +448,10 @@
   // Keep numbers, signs and dollar amounts readable inside Arabic: each goes in an LTR isolate.
   function nums(html) { return html.replace(/[+−-]?\$?\d+(?:[.,]\d+)*%?/g, function (m) { return '<bdi class="num" dir="ltr">' + m + "</bdi>"; }); }
   function L(o) { return o ? (o[meta.lang] != null ? o[meta.lang] : o.en) : ""; }
+  function curBiz() { return C.businesses[S ? S.biz : ui.setup.biz] || C.businesses.clinic; }
   function T(key, vars) {
     var s = L(C.ui[key]) || key;
-    return s.replace(/\{(\w)\}/g, function (_, k) { return vars && vars[k] != null ? vars[k] : ""; });
+    return s.replace(/\{(\w)\}/g, function (_, k) { return vars && vars[k] != null ? vars[k] : k === "u" ? L(curBiz().units) : ""; });
   }
   function H(text) { return nums(esc(text)); }
   function money(n, signed) {
@@ -768,7 +778,7 @@
     var calNow = S.cal[S.month - 1], calNext = S.month < S.months ? S.cal[S.month] : null;
     if (!ui.plan || ui.plan.month !== S.month || ui.plan.prep) {
       var lp = S.lastPlan || { price: 1 };
-      ui.plan = { month: S.month, price: lp.price, staff: S.staff, focus: S.energy < 50 ? "rest" : S.ar > 3000 ? "collect" : "market" };
+      ui.plan = { month: S.month, price: lp.price, staff: S.staff, focus: S.energy < 50 ? "rest" : S.ar > Engine.fixedCosts(S) ? "collect" : "market" };
     }
     var p = ui.plan;
     var hires = Math.max(0, p.staff - S.staff);
@@ -779,7 +789,7 @@
     if (calNext === "ramadan") warns += '<div class="warn">' + img("star", "tiny") + "<span>" + esc(T("ramadanWarn")) + "</span></div>";
     var html =
       '<h2 class="h">' + esc(T("planTitle")) + "</h2>" + warns + season(calNow, calNext) +
-      '<section class="card"><div class="q">' + esc(T("priceQ")) + "</div>" +
+      '<section class="card"><div class="q">' + esc(L(b.priceLabel)) + "</div>" +
         '<div class="seg">' + b.prices.map(function (pr, i) {
           return '<button class="opt' + (p.price === i ? " on" : "") + '" data-price="' + i + '" aria-pressed="' + (p.price === i) + '"><small>' + esc(L(C.prices[i])) + "</small><b>" + cash(Engine.price(S, i)) + "</b></button>";
         }).join("") + "</div></section>" +
@@ -825,8 +835,8 @@
     saveAll();
     var b = C.businesses[S.biz];
     var people = ["woman", "old_man", "man", "old_woman", "boy", "girl", "child"];
-    var shown = r.prep ? 0 : Math.min(Math.round(r.wanted / 20), 14);
-    var served = r.prep ? 0 : Math.min(Math.round(r.done / 20), shown);
+    var shown = r.prep ? 0 : Math.min(14, Math.max(1, Math.round((r.wanted / b.base) * 9)));
+    var served = r.prep ? 0 : Math.min(shown, Math.round((shown * r.done) / Math.max(1, r.wanted)));
     var walkers = "";
     for (var i = 0; i < shown; i++) {
       walkers += '<span class="walker' + (i < served ? " buys" : " sad") + '" style="--i:' + i + ";--n:" + shown + '">' + img(people[i % people.length]) + "</span>";
@@ -860,7 +870,7 @@
         '<table><tr class="tot"><td>' + esc(T("cashChange")) + "</td><td>" + cash(r.cashChange, true) + "</td></tr></table></section>";
     } else {
       var rows = [
-        [T("sessions"), pair(r.done, r.wanted)],
+        [L(C.businesses[S.biz].doneLabel), pair(r.done, r.wanted)],
         [T("revenue"), cash(r.revenue, true)],
         [T("supplies"), cash(-r.supplies)],
         [T("salaries"), cash(-r.salaries)],
@@ -868,6 +878,7 @@
       ];
       if (r.focusCost) rows.push([T("focusCost"), cash(-r.focusCost)]);
       if (r.hiring) rows.push([T("hiring"), cash(-r.hiring)]);
+      if (r.refunds) rows.push([T("returns"), cash(-r.refunds)]);
       if (r.mistake) rows.push([T("mistake"), cash(-r.mistake)]);
       if (r.badDebt) rows.push([T("badDebt"), cash(-r.badDebt)]);
       var flow = [[T("profit"), cash(r.profit, true)]];
@@ -878,6 +889,7 @@
           '<tr class="tot"><td>' + esc(T("profit")) + "</td><td>" + cash(r.profit, true) + "</td></tr></table>" +
           (r.turned >= 10 ? '<p class="bad">' + img("hourglass_not_done", "tiny") + "<span>" + H(T("waiting", { n: r.turned })) + "</span></p>" : "") +
           (r.idle >= r.cap * 0.3 ? '<p class="bad">' + img("cloud", "tiny") + "<span>" + H(T("idleHours", { n: r.idle })) + "</span></p>" : "") +
+          (r.wasted >= 200 ? '<p class="bad">' + img("grimacing_face", "tiny") + "<span>" + H(T("wastedFood", { a: money(r.wasted) })) + "</span></p>" : "") +
         "</section>" +
         '<section class="card results flow"><div class="q">' + esc(T("cashSide")) + "</div><table>" + flow.map(function (x) { return "<tr><td>" + esc(x[0]) + "</td><td>" + x[1] + "</td></tr>"; }).join("") +
           '<tr class="tot"><td>' + esc(T("cashChange")) + "</td><td>" + cash(r.cashChange, true) + "</td></tr></table></section>";
