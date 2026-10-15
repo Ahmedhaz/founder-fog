@@ -1,7 +1,7 @@
 // Business Owner service worker: caches the whole game so it works offline.
 // Everything is same-origin: fonts and pictures are bundled. When a picture is added to img/,
 // add it here too (owner/tests/play.mjs checks that every file in img/ is listed).
-const CACHE = 'owner-v4';
+const CACHE = 'owner-v5';
 const ASSETS = [
   './',
   './index.html',

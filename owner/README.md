@@ -1,6 +1,6 @@
 # صاحب المشروع · Business Owner
 
-The small-business sister of Bousla, The Little Entrepreneur and Teenpreneur, for adults: people thinking about opening a business and owners who already run one. The game is at `/owner/`.
+The small-business sister of Bousla, The Little Entrepreneur and Teenpreneur, for adults: people thinking about opening a business and owners who already run one. The game is at `/owner/`, and its promo site (English, Arabic, privacy, support) is at `/businessowner/`.
 
 Run a small business for two years, one month at a time. Each month you set a price, size the team and pick one focus: marketing, training, chasing payments, building systems or resting. Then the month runs and a dilemma usually follows. Uncle Salah (العم صلاح), who ran a pharmacy for 30 years, leaves a one-line note after every choice. Some choices come back months later ("echoes").
 
