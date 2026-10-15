@@ -12,6 +12,7 @@ What's different from the other games:
 - **Cash crunch.** A month that ends below zero brings a way out: family money, a bank loan or a supplier deal, each with its own price. The clinic closes only if cash is still past what the bank covers after that.
 - **Goals:** a safety cushion, a second branch, or a month away (Systems 70+ and no loss in the last three months).
 - **Pay yourself.** After a profitable month you can take a salary. It costs cash and restores energy.
+- **Daily challenge**, as in Bousla: the same business, start and luck for everyone on a given UTC day, 12 months, one try. The score is the cash at the end (zero if the business didn't last). There is no leaderboard, because the game makes no network calls; the end screen copies a short result to share by hand.
 - **First business: a physio and wellness clinic**, with 10 clinic dilemmas, 8 general ones, 3 for the fit-out months and 3 cash-crunch cards. More businesses come next.
 
 ## Files
@@ -55,4 +56,6 @@ Plays full games in English and Arabic for both starts in a real browser at 390p
 - a month in bed for a player who never rests;
 - every picture being precached by the service worker.
 
-Test URL flags: `?lang=ar|en`, `?seed=N` (replay the same game), `?fast` (short month animation), `?nosw` (skip the service worker), `?new` (drop the saved game).
+It also plays the same day's daily challenge in English and Arabic with the same choices and requires the same result, checks that the shared text names the day, and that a second try that day is blocked.
+
+Test URL flags: `?lang=ar|en`, `?seed=N` (replay the same game), `?day=YYYY-MM-DD` (that day's daily challenge), `?fast` (short month animation), `?nosw` (skip the service worker), `?new` (drop the saved game).

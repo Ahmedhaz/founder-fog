@@ -7,6 +7,7 @@
 
   // ═══════════════════════════ Engine ═══════════════════════════
   var MONTHS = 24;              // two years, one turn a month
+  var DAILY_MONTHS = 12;        // the daily challenge is one year
   var DOOR = 70;                // energy needed for the smart third option
   var FOG = 40;                 // below this, the numbers blur and tired mistakes happen
   var MAX_BURNOUTS = 2;         // the second month in bed ends the game
@@ -31,6 +32,7 @@
     var b = C.businesses[o.biz], st = b.start[o.start];
     var s = {
       v: 1, name: o.name, avatar: o.avatar, biz: o.biz, start: o.start, goal: o.goal,
+      months: o.daily ? DAILY_MONTHS : MONTHS, daily: o.daily ? { day: o.daily.day, n: o.daily.n } : null,
       month: 1, cash: st.cash, energy: st.energy, rep: st.rep, quality: st.quality, systems: st.systems,
       staff: st.staff, ar: st.ar, loans: [], openAt: 1 + st.prep, presold: 0, fitPushed: 0, delayChecked: st.prep === 0,
       honestPlus: 0, honestMinus: 0, burnouts: 0, drawn: 0, goalDone: false, over: null,
@@ -42,16 +44,27 @@
     // and moves about 11 days earlier each year. The rest is mostly ordinary.
     var moy0 = randInt(s, 0, 11), r1 = randInt(s, 2, 11), r2 = r1 + 11;
     s.cal = [];
-    for (var m = 1; m <= MONTHS; m++) {
+    for (var m = 1; m <= s.months; m++) {
       var moy = (moy0 + m - 1) % 12, r = rand(s);
       s.cal.push(m === r1 || m === r2 ? "ramadan" : moy === 0 ? "busy" : moy === 6 || moy === 7 ? "summer" : r < 0.72 ? "normal" : r < 0.86 ? "slow" : "busy");
     }
     return s;
   }
 
+  // The daily challenge: the same business, start and luck for everyone on a given UTC day.
+  // Every random number in a game comes from its seed, so the same choices give the same year
+  // on every device and in both languages.
+  function dailyInfo(dayStr) {
+    var d = dayStr && /^\d{4}-\d{2}-\d{2}$/.test(dayStr) ? new Date(dayStr + "T00:00:00Z") : new Date();
+    var n = Math.floor(Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate()) / 864e5);
+    var bizIds = Object.keys(C.businesses), starts = Object.keys(C.starts);
+    return { day: new Date(n * 864e5).toISOString().slice(0, 10), n: n, biz: bizIds[n % bizIds.length], start: starts[n % starts.length], seed: (n * 1009 + 7) >>> 0 };
+  }
+  function dailyScore(s) { return s.over ? 0 : Math.max(0, Math.round(s.cash)); }
+
   function biz(s) { return C.businesses[s.biz]; }
   function goalOf(s) { for (var i = 0; i < C.goals.length; i++) if (C.goals[i].id === s.goal) return C.goals[i]; return C.goals[0]; }
-  function goalTarget(s) { var g = goalOf(s); return g.kind === "cash" ? biz(s).goals[g.id] : g.target; }
+  function goalTarget(s) { var g = goalOf(s); return g.kind === "cash" ? biz(s).goals[g.id] : g.kind === "daily" ? s.months : g.target; }
   function isOpen(s) { return s.month >= s.openAt; }
 
   function modProduct(s, k) {
@@ -344,11 +357,12 @@
     if (!s.goalDone && g.kind === "cash" && isOpen(s) && s.cash >= b.goals[g.id]) { s.goalDone = true; s.goalMonth = s.month; hit = true; }
     if (s.cash < -b.overdraft && (s.crunchMonth === s.month || s.cash < -2 * b.overdraft)) s.over = "closed";
     else if (s.burnouts >= MAX_BURNOUTS) s.over = "burnout";
-    if (s.over || s.month >= MONTHS) {
+    if (s.over || s.month >= s.months) {
       s.overMonth = s.month;
       s.queue = s.over ? [] : s.echoes.map(function (e) { return echoCard(s, e); });
       s.echoes = [];
       if (!s.over && !s.goalDone && g.kind === "freedom" && freedomReached(s)) { s.goalDone = true; s.goalMonth = s.month; hit = true; }
+      if (!s.over && g.kind === "daily") { s.goalDone = true; s.goalMonth = s.month; }
       if (!s.over && !s.goalDone && g.kind === "cash" && s.cash >= b.goals[g.id]) { s.goalDone = true; s.goalMonth = s.month; hit = true; }
       s.phase = "finalCards";
     } else {
@@ -376,7 +390,7 @@
              drawn: s.drawn, avgEnergy: Math.round(avgE), avgRep: Math.round(avgR), systems: s.systems, burnouts: s.burnouts };
   }
 
-  var Engine = { MONTHS: MONTHS, DOOR: DOOR, FOG: FOG, MAX_BURNOUTS: MAX_BURNOUTS, newGame: newGame, beginMonth: beginMonth, runMonth: runMonth,
+  var Engine = { MONTHS: MONTHS, DAILY_MONTHS: DAILY_MONTHS, dailyInfo: dailyInfo, dailyScore: dailyScore, DOOR: DOOR, FOG: FOG, MAX_BURNOUTS: MAX_BURNOUTS, newGame: newGame, beginMonth: beginMonth, runMonth: runMonth,
     draw: draw, canDraw: canDraw, pickDilemma: pickDilemma, choose: choose, canOpen: canOpen, endMonth: endMonth, report: report,
     guess: guess, capacity: capacity, price: price, salaries: salaries, fixedCosts: fixedCosts, monthlyFloor: monthlyFloor, loanPay: loanPay,
     loanLeft: loanLeft, isOpen: isOpen, goalOf: goalOf, goalTarget: goalTarget, freedomReached: freedomReached, findDilemma: findDilemma, rand: rand };
@@ -400,10 +414,12 @@
   if (!meta.theme) meta.theme = "light";
   meta.stickers = meta.stickers || [];
   meta.games = meta.games || 0;
+  meta.daily = meta.daily || {};
+  function today() { return Engine.dailyInfo(params.get("day")); }
 
   var S = load(KEY_GAME);
   if (S && S.v !== 1) S = null;
-  var ui = { plan: null, setup: { name: "", avatar: "woman_office_worker", biz: "clinic", start: "open", goal: "safety" } };
+  var ui = { plan: null, setup: { name: "", avatar: "woman_office_worker", biz: "clinic", start: "open", goal: "safety", daily: null } };
   var app = document.getElementById("app");
 
   function saveAll() { if (S) store(KEY_GAME, S); store(KEY_META, meta); }
@@ -456,10 +472,10 @@
   // ── chrome pieces ──
   function topbar() {
     var g = Engine.goalOf(S), target = Engine.goalTarget(S);
-    var have = g.kind === "cash" ? S.cash : S.systems;
+    var have = g.kind === "cash" ? S.cash : g.kind === "daily" ? S.month : S.systems;
     var pct = S.goalDone ? 100 : Math.max(0, Math.min(100, Math.round((have / target) * 100)));
     return '<header class="top">' +
-      '<div class="who">' + img(S.avatar, "av") + '<span class="nm">' + nameHtml() + '</span><span class="wk">' + H(T("month", { n: S.month })) + "</span></div>" +
+      '<div class="who">' + img(S.avatar, "av") + '<span class="nm">' + nameHtml() + '</span><span class="wk">' + H(T("month", { n: S.month, t: S.months })) + "</span></div>" +
       '<div class="meters">' +
         meter("dollar_banknote", T("cash"), short(S.cash), "m-cash" + (S.cash < 0 ? " low" : "")) +
         meter("high_voltage", T("energy"), S.energy, "m-energy" + (S.energy < FOG ? " low" : S.energy >= Engine.DOOR ? " high" : "")) +
@@ -468,7 +484,7 @@
       "</div>" +
       '<div class="piggy" title="' + esc(T("goal")) + '">' + img(g.img, "pig") +
         '<div class="bar"><i style="width:' + pct + '%"></i></div>' +
-        '<span class="pnum">' + (S.goalDone ? "✓" : g.kind === "cash" ? '<bdi class="num" dir="ltr">' + short(S.cash) + " / " + short(target) + "</bdi>" : pair(S.systems, target)) + "</span></div>" +
+        '<span class="pnum">' + (g.kind === "daily" ? '<bdi class="num" dir="ltr">' + short(S.cash) + "</bdi>" : S.goalDone ? "✓" : g.kind === "cash" ? '<bdi class="num" dir="ltr">' + short(S.cash) + " / " + short(target) + "</bdi>" : pair(S.systems, target)) + "</span></div>" +
       "</header>";
   }
   function meter(icon, label, v, cls) {
@@ -495,8 +511,9 @@
         '<h1 class="title">' + esc(T("title")) + "</h1>" +
         '<p class="lead">' + esc(T("subtitle")) + "</p>" +
         '<div class="stack">' +
-          (canResume ? '<button class="btn primary big" data-act="resume">' + esc(T("resume")) + " · " + H(T("month", { n: S.month })) + "</button>" : "") +
+          (canResume ? '<button class="btn primary big" data-act="resume">' + esc(T("resume")) + " · " + H(T("month", { n: S.month, t: S.months })) + "</button>" : "") +
           '<button class="btn ' + (canResume ? "" : "primary big") + '" data-act="new">' + esc(T("newGame")) + "</button>" +
+          '<button class="btn daily-btn" data-act="daily">' + img("calendar", "ic") + "<span>" + esc(T("daily")) + "<small>" + esc(T(meta.daily[today().day] ? "dailyPlayed" : "dailyNew")) + "</small></span></button>" +
           '<div class="row2"><button class="btn" data-act="how">' + img("light_bulb", "ic") + esc(T("howTo")) + "</button>" +
           '<button class="btn" data-act="stickers">' + img("notebook", "ic") + esc(T("stickers")) + "</button></div>" +
           '<button class="btn ghost" data-act="about">' + esc(T("about")) + "</button>" +
@@ -507,11 +524,13 @@
     on('[data-act="resume"]', function () { resume(); });
     on('[data-act="new"]', function () {
       if (canResume && S.month > 1 && !confirm(T("resetQ"))) return;
+      ui.setup.daily = null;
       setup();
     });
     on('[data-act="how"]', howTo);
     on('[data-act="stickers"]', stickerBook);
     on('[data-act="about"]', about);
+    on('[data-act="daily"]', dailyPage);
   }
 
   // Latin names inside the Arabic credit get their own isolates so the line reads in order.
@@ -530,6 +549,25 @@
 
   function about() {
     page("about", '<div class="card note">' + img("briefcase", "big") + C.aboutNote[meta.lang].map(function (p) { return "<p>" + H(p) + "</p>"; }).join("") + "</div>", about);
+  }
+
+  function dailyPage() {
+    var d = today(), b = C.businesses[d.biz], st = C.starts[d.start], played = meta.daily[d.day];
+    var body = '<section class="card daily-card">' +
+        '<div class="q">' + esc(T("dailyToday")) + ' <span class="unit"><bdi class="num" dir="ltr">' + d.day + "</bdi></span></div>" +
+        '<div class="today">' + img(b.img) + "<div><b>" + esc(L(b.name)) + "</b><small>" + esc(L(st.name)) + "</small></div></div>" +
+        "<p>" + H(T("dailyGoal")) + "</p>" +
+        (played ? '<p class="okay">' + img("check_mark_button", "tiny") + "<span>" + H(T("dailyResult", { a: played.over ? "—" : money(played.score) })) + "</span></p>" : "") +
+      "</section>" +
+      '<p class="muted small center">' + esc(T("dailyPrivacy")) + "</p>" +
+      '<div class="sticky"><button class="btn primary big" data-act="playdaily"' + (played ? " disabled" : "") + ">" + esc(T(played ? "dailyDone" : "dailyPlay")) + "</button></div>";
+    page("daily", '<p class="lead">' + H(T("dailySub")) + "</p>" + body, dailyPage);
+    on('[data-act="playdaily"]', function () {
+      if (played) return;
+      if (S && S.phase !== "end" && S.month > 1 && !S.daily && !confirm(T("dailyReplace"))) return;
+      ui.setup.daily = d;
+      setup();
+    });
   }
 
   function allStickers() {
@@ -552,7 +590,8 @@
   function setup() {
     var st = ui.setup;
     function render() {
-      var b = C.businesses[st.biz];
+      var dd = st.daily;
+      var b = C.businesses[dd ? dd.biz : st.biz];
       show('<main class="screen setup">' +
         '<div class="toolbar"><button class="chip" data-act="home">' + (meta.lang === "ar" ? "→ " : "← ") + esc(T("home")) + "</button>" + langBtn() + themeBtn() + "</div>" +
         '<h2 class="h">' + esc(T("setupTitle")) + "</h2>" +
@@ -563,6 +602,8 @@
         '<div class="avatars">' + C.avatars.map(function (a) {
           return '<button class="pick av' + (st.avatar === a ? " on" : "") + '" data-av="' + a + '" aria-pressed="' + (st.avatar === a) + '">' + img(a) + "</button>";
         }).join("") + "</div>" +
+        (dd ? '<div class="q">' + esc(T("daily")) + ' <span class="unit"><bdi class="num" dir="ltr">' + dd.day + "</bdi></span></div>" +
+          '<section class="card daily-card"><div class="today">' + img(b.img) + "<div><b>" + esc(L(b.name)) + "</b><small>" + esc(L(C.starts[dd.start].name)) + "</small></div></div><p>" + H(T("dailyGoal")) + "</p></section>" :
         '<div class="q">' + esc(T("bizQ")) + "</div>" +
         '<div class="grid1">' + Object.keys(C.businesses).map(function (k) {
           var x = C.businesses[k];
@@ -574,10 +615,10 @@
           return '<button class="pick start' + (st.start === k ? " on" : "") + '" data-start="' + k + '" aria-pressed="' + (st.start === k) + '">' + img(x.img) + "<b>" + esc(L(x.name)) + "</b><small>" + H(L(x.tag)) + "</small></button>";
         }).join("") + "</div>" +
         '<div class="q">' + esc(T("goalQ")) + "</div>" +
-        '<div class="grid3">' + C.goals.map(function (g) {
+        '<div class="grid3">' + C.goals.filter(function (g) { return !g.hidden; }).map(function (g) {
           var t = g.kind === "cash" ? cash(b.goals[g.id]) : '<bdi class="num" dir="ltr">' + g.target + "</bdi> " + esc(T("systems"));
           return '<button class="pick goal' + (st.goal === g.id ? " on" : "") + '" data-goal="' + g.id + '" aria-pressed="' + (st.goal === g.id) + '">' + img(g.img) + "<b>" + esc(L(g.name)) + "</b><span>" + t + "</span></button>";
-        }).join("") + "</div>" +
+        }).join("") + "</div>") +
         '<div class="sticky"><button class="btn primary big" data-act="start">' + esc(T("start")) + "</button></div>" +
         "</main>");
       wireChrome(render);
@@ -591,7 +632,8 @@
         var name = (st.name || "").trim().slice(0, 14);
         if (!name) { nm.classList.add("shake"); nm.placeholder = T("needName"); nm.focus(); setTimeout(function () { nm.classList.remove("shake"); }, 500); return; }
         var seed = params.get("seed");
-        S = Engine.newGame({ name: name, avatar: st.avatar, biz: st.biz, start: st.start, goal: st.goal, seed: seed != null ? Number(seed) : undefined });
+        S = dd ? Engine.newGame({ name: name, avatar: st.avatar, biz: dd.biz, start: dd.start, goal: "daily", daily: dd, seed: dd.seed })
+               : Engine.newGame({ name: name, avatar: st.avatar, biz: st.biz, start: st.start, goal: st.goal, seed: seed != null ? Number(seed) : undefined });
         Engine.beginMonth(S);
         saveAll();
         resume();
@@ -694,7 +736,7 @@
   function plan() {
     if (!Engine.isOpen(S)) return prepPlan();
     var b = C.businesses[S.biz];
-    var calNow = S.cal[S.month - 1], calNext = S.month < Engine.MONTHS ? S.cal[S.month] : null;
+    var calNow = S.cal[S.month - 1], calNext = S.month < S.months ? S.cal[S.month] : null;
     if (!ui.plan || ui.plan.month !== S.month || ui.plan.prep) {
       var lp = S.lastPlan || { price: 1 };
       ui.plan = { month: S.month, price: lp.price, staff: S.staff, focus: S.energy < 50 ? "rest" : S.ar > 3000 ? "collect" : "market" };
@@ -892,7 +934,12 @@
   // ── The end: two years, a closed clinic, or a sale to rest ──
   function endScreen() {
     var r = Engine.report(S), g = Engine.goalOf(S);
-    if (!S.counted) { S.counted = true; meta.games++; saveAll(); }
+    if (!S.counted) {
+      S.counted = true; meta.games++;
+      if (S.daily && !meta.daily[S.daily.day]) meta.daily[S.daily.day] = { score: Engine.dailyScore(S), over: S.over || null, month: S.overMonth };
+      saveAll();
+    }
+    if (S.daily) return dailyEnd(r);
     var lines = [L(C.endLines[S.over || (S.goalDone ? "win" : "notYet")])];
     var skills = [["Money", r.money, "money"], ["Customers", r.customers, "customers"], ["Freedom", r.freedom, "freedom"], ["Balance", r.balance, "balance"], ["Honesty", r.honesty, "honesty"]];
     var low = skills.slice().sort(function (a, b) { return a[1] - b[1]; })[0];
@@ -916,6 +963,44 @@
     gameShell(html, "endscr");
     on('[data-act="again"]', function () { ui.setup.name = S.name; ui.setup.avatar = S.avatar; ui.setup.biz = S.biz; ui.setup.start = S.start; ui.setup.goal = S.goal; S = null; drop(KEY_GAME); setup(); });
     on('[data-act="stickers"]', stickerBook);
+  }
+
+  function dailyEnd(r) {
+    var b = C.businesses[S.biz], score = Engine.dailyScore(S);
+    var lines = [L(C.endLines[S.over || "win"])];
+    var title = S.over === "closed" ? T("endClosed") : S.over === "burnout" ? T("endBurnout") : T("dailyEnd");
+    var text = S.over ? T("dailyZero") : T("dailyScore", { a: money(score) });
+    var label = L(b.name) + " · " + L(C.starts[S.start].name);
+    var share = S.over ? T("shareClosed", { a: S.daily.day, b: label }) : T("shareText", { a: S.daily.day, b: label, c: money(score) });
+    var skills = [["Money", r.money, "money"], ["Customers", r.customers, "customers"], ["Freedom", r.freedom, "freedom"], ["Balance", r.balance, "balance"], ["Honesty", r.honesty, "honesty"]];
+    var html =
+      '<section class="card big-card end">' + img(S.over ? "chart_decreasing" : "calendar", "hero-img") + "<h2>" + esc(title) + "</h2><p>" + H(text) + "</p></section>" +
+      '<section class="card grandpa">' + img(MENTOR, "gp") + "<div><b>" + esc(T("endMentor")) + "</b>" + lines.map(function (x) { return "<p>" + H(x) + "</p>"; }).join("") + "</div></section>" +
+      '<section class="card report"><h3>' + esc(T("report")) + "</h3>" +
+        skills.map(function (k) { return '<div class="skill" data-skill="' + k[2] + '" data-stars="' + k[1] + '"><span>' + esc(T("skill" + k[0])) + '</span><span class="stars">' + "★★★".slice(0, k[1]) + '<i>' + "★★★".slice(k[1]) + "</i></span></div>"; }).join("") +
+        '<div class="kv"><span>' + esc(T("totalProfit")) + "</span>" + cash(r.profit, true) + "</div>" +
+      "</section>" +
+      '<p class="muted small center copied" hidden>' + esc(T("copied")) + "</p>" +
+      '<div class="stack"><button class="btn primary big" data-act="share">' + img("speech_balloon", "ic") + esc(T("share")) + '</button>' +
+      '<button class="btn" data-act="home2">' + img("house", "ic") + esc(T("home")) + "</button></div>";
+    gameShell(html, "endscr daily-end");
+    on('[data-act="home2"]', function () { home(); });
+    on('[data-act="share"]', function () {
+      var shown = app.querySelector(".copied");
+      function copied() { if (shown) shown.hidden = false; }
+      function copy() {
+        if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(share).then(copied, fallback);
+        else fallback();
+      }
+      function fallback() {
+        var ta = document.createElement("textarea");
+        ta.value = share; ta.setAttribute("readonly", ""); ta.style.position = "fixed"; ta.style.opacity = "0";
+        document.body.appendChild(ta); ta.select();
+        try { document.execCommand("copy"); copied(); } catch (e) { /* nothing more to try */ }
+        document.body.removeChild(ta);
+      }
+      if (navigator.share) navigator.share({ text: share }).catch(copy); else copy();
+    });
   }
 
   // Test hook (local only, no network): lets the Playwright script read state.

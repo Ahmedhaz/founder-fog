@@ -60,6 +60,8 @@ var OWNER = {
     { id: "safety", kind: "cash", img: "shield", name: { en: "A safety cushion", ar: "وسادة أمان" } },
     { id: "branch", kind: "cash", img: "office_building", name: { en: "A second branch", ar: "فرع ثانٍ" } },
     { id: "freedom", kind: "freedom", img: "sunrise", target: 70, name: { en: "A month away", ar: "شهر بعيدًا عن العمل" } },
+    // the daily challenge's goal: still open after its 12 months (not offered in setup)
+    { id: "daily", kind: "daily", img: "calendar", hidden: true, name: { en: "Today's challenge", ar: "تحدي اليوم" } },
   ],
 
   avatars: ["woman_office_worker", "man_office_worker", "woman", "man"],
@@ -151,7 +153,7 @@ var OWNER = {
     energy: { en: "Energy", ar: "الطاقة" },
     rep: { en: "Reputation", ar: "السمعة" },
     systems: { en: "Systems", ar: "الأنظمة" },
-    month: { en: "Month {n} of 24", ar: "الشهر {n} من 24" },
+    month: { en: "Month {n} of {t}", ar: "الشهر {n} من {t}" },
     goal: { en: "Goal", ar: "الهدف" },
 
     planTitle: { en: "Plan the month", ar: "خطة الشهر" },
@@ -244,6 +246,25 @@ var OWNER = {
     credit: { en: "Pictures: handmade felt art made for these games. Fonts: Manrope and Readex Pro (OFL).", ar: "الصور: فن يدوي صُنع لهذه الألعاب. الخطوط: Manrope و Readex Pro (رخصة OFL)." },
     resetQ: { en: "Start a new business? This one will be lost.", ar: "بدء مشروع جديد؟ سيضيع هذا المشروع." },
     soon: { en: "More businesses are coming.", ar: "أنشطة أخرى قادمة." },
+
+    daily: { en: "Daily challenge", ar: "التحدي اليومي" },
+    dailyNew: { en: "New today", ar: "جديد اليوم" },
+    dailyPlayed: { en: "Played today ✓", ar: "لُعب اليوم ✓" },
+    dailySub: { en: "The same business, the same start and the same luck for everyone today. 12 months, one try.", ar: "النشاط نفسه والبداية نفسها والحظ نفسه للجميع اليوم. 12 شهرًا، ومحاولة واحدة." },
+    dailyToday: { en: "Today", ar: "اليوم" },
+    dailyGoal: { en: "Still open after 12 months, with as much cash as you can. Your score is the cash at the end.", ar: "العمل مفتوح بعد 12 شهرًا، بأكبر قدر ممكن من النقد. والنتيجة هي النقد في النهاية." },
+    dailyResult: { en: "Your result today: {a}", ar: "نتيجتك اليوم: {a}" },
+    dailyPlay: { en: "Play today's challenge", ar: "هيا نلعب تحدي اليوم" },
+    dailyDone: { en: "A new challenge tomorrow", ar: "تحدٍّ جديد غدًا" },
+    dailyPrivacy: { en: "There is no leaderboard and nothing is sent anywhere. Share your result yourself if you like.", ar: "لا توجد لوحة صدارة، ولا يُرسل شيء إلى أي مكان. ومشاركة النتيجة متاحة لمن يريد." },
+    dailyReplace: { en: "Start today's challenge? Your saved game will be replaced.", ar: "بدء تحدي اليوم؟ ستُستبدل اللعبة المحفوظة." },
+    dailyEnd: { en: "Today's challenge is done", ar: "انتهى تحدي اليوم" },
+    dailyScore: { en: "Today's score: {a}", ar: "نتيجة اليوم: {a}" },
+    dailyZero: { en: "No score today: the business didn't last 12 months.", ar: "لا نتيجة اليوم: لم يصمد العمل 12 شهرًا." },
+    share: { en: "Share the result", ar: "مشاركة النتيجة" },
+    copied: { en: "Copied. Paste it anywhere.", ar: "نُسخت النتيجة، وجاهزة للصق في أي مكان." },
+    shareText: { en: "Business Owner · daily challenge {a}\n{b}\nCash after 12 months: {c}", ar: "صاحب المشروع · التحدي اليومي {a}\n{b}\nالنقد بعد 12 شهرًا: {c}" },
+    shareClosed: { en: "Business Owner · daily challenge {a}\n{b}\nIt didn't last the year.", ar: "صاحب المشروع · التحدي اليومي {a}\n{b}\nلم يصمد العمل العام كاملًا." },
   },
 
   // Salah's end-of-game words. One line per skill, chosen by score.
