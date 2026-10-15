@@ -3,7 +3,13 @@
     "base": "https://adam.ahmedhaz.com/bousla/",
     "play_en": "../founder-fog/index.html",
     "play_ar": "../founder-fog/ar.html",
-    "testflight_url": ""
+    "testflight_url": "",
+    "counts": {
+      "dilemmas": 195,
+      "pages": 45,
+      "endings": 9,
+      "langs": 2
+    }
   },
   "en": {
     "lang": "en",
@@ -13,7 +19,7 @@
     "en_on": "on",
     "ar_on": "",
     "brand": "Bousla",
-    "meta_title": "Bousla: a free startup simulation, in English and Arabic",
+    "meta_title": "Bousla, the founder's compass: a free startup simulation, in English and Arabic",
     "meta_desc": "Run a startup for a year in about an hour. Find product-market fit, manage runway, raise without losing control and keep your head clear. Built for founders in the Middle East. Free.",
     "cta_play_short": "Play free",
     "cta_play": "Play free in your browser",
@@ -41,7 +47,7 @@
     "screens_kicker": "Inside the game",
     "screens_title": "Every week, a real decision.",
     "s1_t": "Dilemmas",
-    "s1_p": "131 of them, 40 written for your industry, and they come back weeks later.",
+    "s1_p": "195 of them, 80 written for your industry, and they come back weeks later.",
     "s2_t": "Customers",
     "s2_p": "Talk, build, test, pivot.",
     "s3_t": "Money",
@@ -153,7 +159,7 @@
     "screens_kicker": "داخل اللعبة",
     "screens_title": "كل أسبوع، قرار حقيقي.",
     "s1_t": "المعضلات",
-    "s1_p": "131 معضلة، منها 40 كُتبت لقطاعك، وتعود إليك بعد أسابيع.",
+    "s1_p": "195 معضلة، منها 80 كُتبت لقطاعك، وتعود إليك بعد أسابيع.",
     "s2_t": "العملاء",
     "s2_p": "تحدّث، ابنِ، جرّب، تحوّل.",
     "s3_t": "المال",
