@@ -23,11 +23,14 @@ def main():
         s = dict(data[lang])
         s["base"] = cfg["base"]
         s["play_url"] = cfg["play_" + lang]
+        # the headline numbers are shared by both languages
+        for k, v in cfg["counts"].items():
+            s["n_" + k] = str(v)
         # the iPhone button only appears once there is a public TestFlight link
         s["testflight_button"] = (
             f'<a class="btn btn-ghost" href="{html.escape(cfg["testflight_url"])}"> {html.escape(s["cta_testflight"])}</a>' if cfg["testflight_url"] else ""
         )
-        raw = {"testflight_button", "play_url", "base"}
+        raw = {"testflight_button", "play_url", "base"} | {"n_" + k for k in cfg["counts"]}
         page = re.sub(r"\{\{(\w+)\}\}", lambda m: s[m.group(1)] if m.group(1) in raw else html.escape(s[m.group(1)], quote=True), tpl)
         left = re.findall(r"\{\{\w+\}\}", page)
         assert not left, f"unfilled placeholders: {left}"
