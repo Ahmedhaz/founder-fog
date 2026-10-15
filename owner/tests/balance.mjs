@@ -1,7 +1,7 @@
 // Balance check: plays thousands of two-year games with the real engine, for both starts.
 //   node owner/tests/balance.mjs [runs]
 // Strategies:
-//   sensible   fair price, a team sized to Salah's estimate, rests when tired, chases payments when
+//   sensible   fair price (premium once the team is nearly at its largest and still full), a team sized to Salah's estimate, rests when tired, chases payments when
 //              a lot is owed, builds systems every third month, pays itself a modest salary when
 //              there's room, takes a random option in dilemmas
 //   spender    hires to the maximum, markets every month, pays itself the big salary whenever it can,
@@ -15,6 +15,7 @@ const E = require("../game.js");
 const C = globalThis.OWNER;
 
 const RUNS = Number(process.argv[2] || 300);
+const PAGES = new Set(); // every playbook page any simulated game unlocked
 const BIZ = Object.keys(C.businesses);
 const STARTS = Object.keys(C.starts);
 
@@ -56,6 +57,8 @@ function play(biz, start, goal, seed, strat, daily) {
     s.queue = [];
     const plan = { price: 1, focus: "" };
     plan.focus = focus(s, strat, b);
+    // a careful owner raises the price when the team is full and there's no room to hire
+    if (strat !== "spender" && E.isOpen(s) && s.staff >= b.maxStaff - 1 && E.guess(s, plan) > E.capacity(s, s.staff, 0) * 1.1) plan.price = 2;
     plan.staff = E.isOpen(s) ? staffFor(s, strat, plan, b) : s.staff;
     if (s.energy < E.FOG) fogMonths++;
     E.runMonth(s, plan);
@@ -69,6 +72,7 @@ function play(biz, start, goal, seed, strat, daily) {
     if (s.phase === "finalCards") { s.queue = []; s.phase = "end"; }
   }
   const rep = E.report(s);
+  s.pages.forEach((p) => PAGES.add(p));
   return { won: s.goalDone, over: s.over, cash: s.cash, profit: rep.profit, burnouts: s.burnouts, systems: s.systems, fogMonths, drawn: s.drawn, energy: rep.avgEnergy };
 }
 
@@ -78,7 +82,7 @@ for (const strat of ["sensible", "spender", "overwork", "nosystems"]) {
     for (const start of STARTS) {
       const row = { strat, start };
       let closed = 0, burnedOut = 0, anyBurn = 0, cash = 0, profit = 0, sys = 0, fog = 0, drawn = 0, en = 0;
-      for (const g of C.goals) {
+      for (const g of C.goals.filter((x) => !x.hidden)) {
         let wins = 0;
         for (let i = 0; i < RUNS; i++) {
           const r = play(biz, start, g.id, 1000 + i, strat);
@@ -151,4 +155,9 @@ for (const start of STARTS) {
   ];
   for (const [label, pass] of checks) { console.log((pass ? "PASS " : "FAIL ") + label); ok = ok && pass; }
 }
+
+// Every playbook page must be reachable in real play.
+const missing = E.PLAYBOOK.filter((p) => !PAGES.has(p.id)).map((p) => p.id);
+console.log((missing.length ? "FAIL " : "PASS ") + `every playbook page is unlocked in some game (${PAGES.size} of ${E.PLAYBOOK.length})` + (missing.length ? ": missing " + missing.join(", ") : ""));
+ok = ok && !missing.length;
 process.exit(ok ? 0 : 1);
