@@ -92,6 +92,17 @@
   @keyframes bob { 0%, 100% { transform: translateY(0) } 50% { transform: translateY(-6px) } }
   @keyframes settle { 0%, 100% { transform: translateY(0) } 50% { transform: translateY(-3px) } }
 
+  /* daily challenge */
+  .daily-btn { justify-content: center; }
+  .daily-btn span { display: grid; text-align: start; line-height: 1.2; }
+  .daily-btn small { font-size: 13px; font-weight: 500; color: var(--ink3); }
+  .daily-card .today { display: flex; align-items: center; gap: 12px; }
+  .daily-card .today img { width: 60px; height: 60px; border-radius: 30px 30px 10px 10px !important; flex: none; }
+  .daily-card .today b { display: block; color: var(--teal); font-size: 18px; }
+  .daily-card .today small { color: var(--ink3); }
+  .daily-card p { margin: 10px 0 0; color: var(--ink2); }
+  .btn[disabled] { opacity: .5; cursor: not-allowed; }
+
   /* setup */
   .name { width: 100%; min-height: 56px; font: inherit; font-size: 20px; font-weight: 600; padding: 8px 18px; border-radius: 16px; border: 1px solid var(--line); background: var(--panel); color: var(--ink); }
   .name:focus { outline: 2px solid var(--bronze2); border-color: var(--teal); }

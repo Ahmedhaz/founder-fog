@@ -47,9 +47,9 @@ function pickOption(s, d, strat) {
   return opts[Math.floor(E.rand(s) * opts.length)];
 }
 
-function play(biz, start, goal, seed, strat) {
+function play(biz, start, goal, seed, strat, daily) {
   const b = C.businesses[biz];
-  const s = E.newGame({ name: "T", avatar: "man", biz, start, goal, seed });
+  const s = E.newGame({ name: "T", avatar: "man", biz, start, goal, seed, daily });
   E.beginMonth(s);
   let fogMonths = 0, guard = 0;
   while (s.phase !== "end" && guard++ < 60) {
@@ -120,6 +120,34 @@ for (const start of STARTS) {
     [`${start}: the spender rarely lasts (closed ${sp.closed}, sold to rest ${sp.burnout}) or reaches the cushion (${sp.safety})`, pct(sp.closed) + pct(sp.burnout) >= 60 && pct(sp.safety) <= 15],
     [`${start}: never resting means the fog and a month in bed (fog ${ow.fogMo} months, in bed ${ow.anyBed})`, ow.fogMo >= 4 && pct(ow.anyBed) >= 40],
     [`${start}: without systems the month away is out of reach (${ns.freedom})`, pct(ns.freedom) <= 3],
+  ];
+  for (const [label, pass] of checks) { console.log((pass ? "PASS " : "FAIL ") + label); ok = ok && pass; }
+}
+
+// The daily challenge: 12 months on the day's seed. A careful player should usually still be open.
+const days = [];
+for (let i = 0; i < RUNS; i++) days.push(E.dailyInfo(new Date((20700 + i) * 864e5).toISOString().slice(0, 10)));
+const dailyRows = [];
+for (const strat of ["sensible", "spender"]) {
+  for (const start of STARTS) {
+    const scores = [];
+    let open = 0;
+    for (const d of days) {
+      const r = play(d.biz, start, "daily", d.seed, strat, d);
+      if (!r.over) open++;
+      scores.push(r.over ? 0 : Math.max(0, r.cash));
+    }
+    scores.sort((a, b) => a - b);
+    dailyRows.push({ strat, start, stillOpen: Math.round((open / RUNS) * 100) + "%", median: scores[Math.floor(RUNS / 2)], top10: scores[Math.floor(RUNS * 0.9)] });
+  }
+}
+console.table(dailyRows);
+for (const start of STARTS) {
+  const sen = dailyRows.find((r) => r.strat === "sensible" && r.start === start), sp = dailyRows.find((r) => r.strat === "spender" && r.start === start);
+  const checks = [
+    [`daily ${start}: sensible is usually still open after 12 months (${sen.stillOpen})`, pct(sen.stillOpen) >= 85],
+    [`daily ${start}: scores spread out (median ${sen.median}, top 10% ${sen.top10})`, sen.top10 > sen.median * 1.2],
+    [`daily ${start}: sensible scores more than the spender (${sen.median} vs ${sp.median})`, sen.median > sp.median],
   ];
   for (const [label, pass] of checks) { console.log((pass ? "PASS " : "FAIL ") + label); ok = ok && pass; }
 }

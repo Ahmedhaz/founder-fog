@@ -214,6 +214,77 @@ async function play({ lang, start, seed, mode = "sensible", shots = false }) {
   await ctx.close();
 }
 
+// The daily challenge must be the same year in English and Arabic: same day, same choices, same result.
+// Choices here depend only on the game state (never on text), and dilemmas always take the last open option.
+async function playDaily(lang, day) {
+  const ctx = await browser.newContext({ viewport: { width: 390, height: 844 }, locale: lang === "ar" ? "ar-EG" : "en-US" });
+  await ctx.grantPermissions(["clipboard-read", "clipboard-write"], { origin: BASE.replace(/\/owner\/$/, "") });
+  await ctx.addInitScript(() => { try { delete Navigator.prototype.share; } catch (e) { /* not there */ } });
+  const page = await ctx.newPage();
+  const tag = `${lang}/daily`;
+  const errors = [], external = [];
+  page.on("console", (m) => { if (m.type() === "error") errors.push(m.text()); });
+  page.on("pageerror", (e) => errors.push(String(e)));
+  page.on("request", (r) => { if (new URL(r.url()).hostname !== "127.0.0.1") external.push(r.url()); });
+  await page.goto(`${BASE}?lang=${lang}&day=${day}&fast&nosw`);
+  await page.click('[data-act="daily"]');
+  check(!(await page.$eval('[data-act="playdaily"]', (b) => b.disabled)), `${tag}: today's challenge is already marked played`);
+  await page.click('[data-act="playdaily"]');
+  await page.fill("#nm", lang === "ar" ? "سما" : "Sam");
+  check(!(await page.$("[data-start]")), `${tag}: the daily setup shouldn't offer a choice of start`);
+  await page.click('[data-act="start"]');
+  for (let step = 0; step < 600; step++) {
+    if (await page.$(".endscr")) break;
+    const s = await page.evaluate(() => JSON.parse(JSON.stringify(window.__owner.state)));
+    if (await page.$('[data-act="ok"]')) { await page.click('[data-act="ok"]'); continue; }
+    if (await page.$('[data-act="open"]')) {
+      if (await page.$(".plan.prep")) await page.click(`[data-focus-k="${s.fitPushed ? "presell" : "fitout"}"]`);
+      else {
+        const f = s.energy < 50 ? "rest" : s.ar > 3000 ? "collect" : s.month % 3 === 0 ? "systems" : s.month % 2 ? "market" : "train";
+        await page.click(`[data-focus-k="${f}"]`);
+        const info = await page.evaluate(() => ({ g: window.__owner.engine.guess(window.__owner.state, { price: 1, focus: "market" }), cap: window.__owner.engine.capacity(window.__owner.state, window.__owner.state.staff, 0) }));
+        if (info.g > info.cap * 1.08 && s.staff < 6) await page.click('[data-st="1"]');
+      }
+      await page.click('[data-act="open"]');
+      continue;
+    }
+    if (await page.$('[data-act="skip"]')) { await page.click('[data-act="skip"]').catch(() => {}); continue; }
+    if (await page.$("[data-draw]")) { await page.click('[data-draw="keep"]'); continue; }
+    if (await page.$("[data-opt]")) { const o = await page.$$("[data-opt]:not([disabled])"); await o[o.length - 1].click(); continue; }
+    if (await page.$('[data-act="next"]')) { await page.click('[data-act="next"]'); continue; }
+    await page.waitForTimeout(100);
+  }
+  check(!!(await page.$(".daily-end")), `${tag}: did not reach the daily's end screen`);
+  const s = await page.evaluate(() => JSON.parse(JSON.stringify(window.__owner.state)));
+  check(s.months === 12 && (s.over || s.month === 12), `${tag}: the daily should last 12 months, ended in month ${s.month}`);
+  await noScroll(page, tag, "daily end");
+  await page.click('[data-act="share"]');
+  await page.waitForTimeout(300);
+  const clip = await page.evaluate(() => navigator.clipboard.readText().catch(() => ""));
+  check(clip.includes(day), `${tag}: the shared result doesn't name the day: "${clip}"`);
+  check(await page.$eval(".copied", (e) => !e.hidden), `${tag}: no "copied" message after sharing`);
+  // one try a day
+  await page.click('[data-act="home2"]');
+  await page.click('[data-act="daily"]');
+  check(await page.$eval('[data-act="playdaily"]', (b) => b.disabled), `${tag}: today's challenge can be played twice`);
+  check(errors.length === 0, `${tag}: console errors: ${errors.join(" | ")}`);
+  check(external.length === 0, `${tag}: requests left the device: ${external.join(", ")}`);
+  await ctx.close();
+  return { cash: s.cash, month: s.month, over: s.over, used: s.used, log: s.log, profits: s.history.map((h) => h.profit), score: s.over ? 0 : Math.max(0, Math.round(s.cash)) };
+}
+async function noScroll(page, tag, where) {
+  const w = await page.evaluate(() => ({ sw: document.documentElement.scrollWidth, iw: window.innerWidth }));
+  check(w.sw <= w.iw, `${tag}: horizontal scroll on ${where} (${w.sw} > ${w.iw})`);
+}
+
+const dailyRuns = [];
+for (const day of ["2026-10-15", "2026-10-16"]) {
+  const en = await playDaily("en", day), ar = await playDaily("ar", day);
+  check(JSON.stringify(en) === JSON.stringify(ar), `daily ${day}: English and Arabic diverged\n  en ${JSON.stringify(en).slice(0, 300)}\n  ar ${JSON.stringify(ar).slice(0, 300)}`);
+  dailyRuns.push({ day, en: en.score, ar: ar.score, dilemmas: en.log.length, end: en.over || "12 months" });
+}
+console.table(dailyRuns);
+
 let seed = 11;
 for (const lang of ["en", "ar"]) {
   await play({ lang, start: "open", seed: seed++, shots: true });
