@@ -1,18 +1,17 @@
 #!/usr/bin/env python3
-"""Write the game's web fonts to ../../founder-fog/fonts/ (run once; build.py only references them).
+"""Write the game's web fonts to ../../founder-fog/fonts/ (build.py only references them).
 
-  * Archivo 400/500/600 and Azeret Mono 400/500/600: taken from the base64 TTFs inside
-    original.html (Metro modules 227-229, 248-250), subset to Latin + punctuation/symbols
-    and saved as WOFF2 under their expo-font family names.
-  * IBM Plex Sans Arabic 400/500/600 (enhance/fonts/plex-ar-*.woff2): copied as-is (ar.html).
+  * Manrope 500/600/700/800 (enhance/fonts/manrope-*.ttf, the static instances the book uses):
+    subset to Latin + punctuation/symbols and saved as WOFF2.
+  * Readex Pro Arabic 400/500/600 (enhance/fonts/readex-ar-*.woff2): copied as-is (ar.html).
+
+Run it again whenever a font in enhance/fonts/ changes. The output is committed, so the
+pages, the service worker and the app shells all ship the same files.
 
 Needs:  pip install fonttools brotli
 Run:    python3 founder-fog-app/enhance/make_fonts.py
 """
-import base64
-import io
 import pathlib
-import re
 import shutil
 
 from fontTools import subset
@@ -21,9 +20,8 @@ from fontTools.ttLib import TTFont
 HERE = pathlib.Path(__file__).resolve().parent
 OUT = HERE.parent.parent / "founder-fog" / "fonts"
 
-# Metro module id -> expo-font family name (the names App.js passes to useFonts)
-LATIN = {227: "Archivo_400Regular", 228: "Archivo_500Medium", 229: "Archivo_600SemiBold",
-         248: "AzeretMono_400Regular", 249: "AzeretMono_500Medium", 250: "AzeretMono_600SemiBold"}
+MANROPE = (500, 600, 700, 800)
+READEX = (400, 500, 600)
 
 # Generous on purpose: all of Latin-1 + Latin Extended-A/B (player names), IPA/modifiers, combining
 # marks, general punctuation (– — ’ “ ” • … ‹ ›), super/subscripts, currency (€ £ ₹), letterlike,
@@ -36,11 +34,8 @@ UNICODES = ("U+0000-024F,U+0250-02FF,U+0300-036F,U+2000-206F,U+2070-209F,U+20A0-
 
 def main():
     OUT.mkdir(parents=True, exist_ok=True)
-    src = (HERE / "original.html").read_text(encoding="utf-8")
-    for mod_id, family in LATIN.items():
-        m = re.search(r'm\.exports="data:font/ttf;base64,([A-Za-z0-9+/=]+)"\},%d,\[\]\);' % mod_id, src)
-        assert m, f"font module {mod_id} not found"
-        font = TTFont(io.BytesIO(base64.b64decode(m.group(1))))
+    for weight in MANROPE:
+        font = TTFont(str(HERE / "fonts" / f"manrope-{weight}.ttf"))
         opts = subset.Options()
         opts.flavor = "woff2"
         opts.layout_features = ["*"]
@@ -50,12 +45,12 @@ def main():
         sub.populate(unicodes=subset.parse_unicodes(UNICODES))
         sub.subset(font)
         font.flavor = "woff2"
-        dest = OUT / f"{family}.woff2"
+        dest = OUT / f"manrope-{weight}.woff2"
         font.save(str(dest))
         print(f"wrote {dest} ({dest.stat().st_size:,} bytes)")
-    for weight in (400, 500, 600):
-        dest = OUT / f"plex-ar-{weight}.woff2"
-        shutil.copyfile(HERE / "fonts" / f"plex-ar-{weight}.woff2", dest)
+    for weight in READEX:
+        dest = OUT / f"readex-ar-{weight}.woff2"
+        shutil.copyfile(HERE / "fonts" / f"readex-ar-{weight}.woff2", dest)
         print(f"wrote {dest} ({dest.stat().st_size:,} bytes)")
 
 
